@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#toast {
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 50%;
+  z-index: 99999;
+  margin: 0 auto;
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+}
+</style>
+
+<body>
+  <button id="login">登录</button>
+  <div id="toast"></div>
+  <script>
+  (function() {
+    /***
+     * 信息提示组件PromptBox v1.0
+     * @param {Object} container 内容容器(必填) css选择器
+     * @param {Object} content 文字内容(可选) 字符串类型
+     * @param {Object} duration 显示时长(可选) 数字类型,默认2000
+     * 使用方法
+     * var promptBox = new PromptBox("toast", "你好，对话框");
+     * promptBox.show(callback);(支持回调函数)
+     */
+    function PromptBox(container, content, duration) {
+      this.container = document.querySelector(container);
+      this.content = content || "这是一段对话";
+      this.duration = duration || 2000;
+    }
+
+    PromptBox.prototype = {
+      show: function(callback) {
+        this.callback = callback || function() {};
+        this.container.style.display = "block";
+        this.container.innerHTML = this.content;
+        setTimeout(function() {
+          this.callback && this.callback();
+          this.hide();
+        }.bind(this), this.duration);
+        return this;
+      },
+      hide: function(callback) {
+        this.callback = callback || function() {};
+        this.container.style.display = "none";
+        this.callback && this.callback();
+        return this;
+      }
+    }
+
+    window.PromptBox = PromptBox;
+
+  })(window);
+
+  var loginBtn = document.querySelector("#login");
+
+  loginBtn.onclick = function(){
+     var promptBox = new PromptBox("#toast", "用户名或密码错误",5000);
+      promptBox.show()
+  }
+  </script>
+</body>
+
+</html>

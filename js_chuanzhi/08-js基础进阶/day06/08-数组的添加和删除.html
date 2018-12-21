@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 入栈出栈
+    // 后进先出
+    // 添加和删除
+    var arr = [ '张飞','赵云','关羽','刘备','诸葛亮' ];
+    // [ '张飞','赵云','关羽'.'吕布','黄忠','曹操'.['周瑜','孙权'] ]
+    // 1.参数及其个数   2.返回值
+    //  push 返回值 数组的个数
+    // push在数组的最后添加新的元素
+//    console.log( arr.push('吕布','黄忠','曹操',[ '周瑜','孙权' ]) );
+//    console.log( arr );
+    // 删除数组  ----> 删除最后一个
+    // pop  返回值 是删除的数组中的项
+//    console.log( arr.pop() );
+    // unshift  作用：在数组的最前边添加元素
+    // 参数，表示要添加的元素
+    // 返回值  执行后数组的长度
+//    console.log( arr.unshift( '曹操','周瑜' ) );
+    // shift 就是从数组的前边删除 ，使用方式和pop一样，返回删除的数组
+    console.log( arr.shift() );
+    console.log( arr );
+</script>
+</body>
+</html>

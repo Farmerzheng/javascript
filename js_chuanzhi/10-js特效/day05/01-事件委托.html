@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>添加</button>
+<ul>
+    <li>我是土著人</li>
+    <li>我是土著人</li>
+    <li>我是土著人</li>
+    <li>我是土著人</li>
+</ul>
+<script>
+    //委托：自己做不了，让别人代替
+    //可以用于优化代码，提高执行效率
+    var lis = document.getElementsByTagName('li');
+    var button = document.getElementsByTagName('button')[0];
+    var ul = document.getElementsByTagName('ul')[0];
+//    for( var i = 0; i < lis.length; i++ ){
+//        lis[i].onclick = function () {
+//            alert('我是土著人');
+//        }
+//
+//    }
+    ul.onclick = function ( event ) {
+        var e = event || window.event;
+        //获取事件触发的目标元素
+        var target = e.target ? e.target : e.srcElement;
+        //alert('我是土著人');
+//        console.log( target );
+        alert( target.innerHTML );
+    }
+
+    //点击button，添加多个li
+    button.onclick = function () {
+        //创建元素
+        var newLi = document.createElement('li');
+        newLi.innerHTML = '我是北漂的';
+        //加入到ul中
+        //ul.appendChild(newLi);
+        ul.insertBefore(newLi,lis[1]);
+    }
+</script>
+</body>
+</html>

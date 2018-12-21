@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="div1"></div>
+  <script>
+  // 1、字面量方法创建对象
+  var zhangsan = {
+    name: "zhangsan",
+    speak: function() {
+      console.log(this.name + "会说话")；
+    }
+  }
+  // 2、构造函数的形式创建对象
+  function Person(name) {
+    this.name = name;
+  }
+  Person.prototype = {
+    speak: function() {
+      console.log(this.name + "会说话")；
+    }
+  }
+  var zhangsan = new Person("zhangsan")
+
+  // 3、将name属性改写成set、get方法的形式
+  function Person(name) {
+    this._name = name;
+  }
+  Person.prototype = {
+    speak: function() {
+      console.log(this.name + "会说话")；
+    },
+    set name(value) {
+      this._name = name;
+      //渲染页面
+    },
+    get name() {
+      return this._name;
+    }
+
+  }
+  var zhangsan = new Person("zhangsan")
+
+  // 4、call、apply 、bind
+    function person(name){
+    	this.name = name
+    }
+    // 改变函数内部的this指针指向，this指针指向了zhangsan
+    person.call(zhangsan,"zhangsan")
+    person.apply(zhangsan,["zhangsan"])
+    person.bind(zhangsan,"zhangsan")//有返回值，返回函数本身
+
+   // 5、遍历对象 for……in
+    for(var key in zhangsan){
+    	console.log(key)
+    	console.log(zhangsan[key]);
+    }
+  </script>
+</body>
+
+</html>

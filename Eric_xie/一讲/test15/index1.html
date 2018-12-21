@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="text">
+<div></div>
+<script>
+    var text=document.querySelector("#text");
+    var div0=document.querySelector("div");
+    var reg=/^[a-zA-Z0-9_]+@[a-zA-Z0-9]{2,}\.[a-z]{2,3}\.?[a-z]{0,3}$/;
+
+    text.addEventListener("blur",inputHandler);
+    function inputHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+
+        if(reg.test(text.value)){
+            div0.textContent="输入正确"
+        }else{
+            div0.textContent="输入有误"
+        }
+    }
+</script>
+</body>
+</html>

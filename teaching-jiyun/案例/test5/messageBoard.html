@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            left: 50px;
+            position: absolute;
+        }
+    </style>
+    <script src="js/DomCreate.js"></script>
+</head>
+<body>
+        <div dates="aaa" id="div0"></div>
+    <script>
+        var div0=document.getElementById("div0");
+        console.log(div0.currentStyle);
+
+        var div=DomCreate.createElement("div",document.body,{margin:"auto",width:"400px",height:"200px"});
+        var select=DomCreate.createSelect(["张三","李四","王五","赵六","刘七"],div);
+        DomCreate.createElement("label",div,{},{textContent:"说："});
+        var textarea=DomCreate.createElement("textarea",div,{},{cols:"60",rows:"6"});
+        var addbn=DomCreate.createElement("input",div,{},{type:"button",value:"添加"});
+        var removebn=DomCreate.createElement("input",div,{},{type:"button",value:"删除"});
+        var allbn=DomCreate.createElement("input",div,{},{type:"button",value:"全选"});
+        var reversebn=DomCreate.createElement("input",div,{},{type:"button",value:"反选"});
+        var ul=DomCreate.createElement("ul",div,{listStyle:"none"});
+        addbn.addEventListener("click",clickHandler);
+        removebn.addEventListener("click",clickHandler);
+        allbn.addEventListener("click",clickHandler);
+        reversebn.addEventListener("click",clickHandler);
+        function clickHandler(e) {
+             if(!e){
+                 e=window.event;
+             }
+            if(this==addbn){
+                addli();
+            }else if(this==removebn){
+                removeli()
+            }else if(this==allbn) {
+                allLi();
+            }else if(this==reversebn) {
+                reversli()
+            }else{
+                this.removeEventListener("click",clickHandler);
+                this.parentElement.remove();
+            }
+        }
+        
+        function reversli() {
+            var lis=ul.getElementsByTagName("li");
+            for(var i=0;i<lis.length;i++){
+                lis[i].firstElementChild.checked=!lis[i].firstElementChild.checked;
+            }
+        }
+        
+        function allLi() {
+            var lis=ul.getElementsByTagName("li");
+            for(var i=0;i<lis.length;i++){
+                lis[i].firstElementChild.checked=true;
+            }
+        }
+        function removeli() {
+            var lis=ul.getElementsByTagName("li");
+            var arr=[];
+            for(var i=0;i<lis.length;i++){
+                 if(lis[i].firstElementChild.checked){
+                     arr.push(lis[i]);
+                 }
+            }
+            var len=arr.length;
+            for(var j=0;j<len;j++){
+                arr[j].remove();
+                arr[j]=null;
+            }
+            arr.length=0;
+        }
+        
+        function addli() {
+            var li=DomCreate.createElement("li",ul);
+//            li.textContent=select.selectedOptions[0].value+"说："+textarea.value;
+            var checkBox=DomCreate.createElement("input",li,{},{type:"checkbox"});
+            DomCreate.createElement("label",li,{},{textContent:select.selectedOptions[0].value+"说："+textarea.value})
+            var a=DomCreate.createElement("a",li,{float:"right"},{textContent:"删除",href:"#"});
+            a.addEventListener("click",clickHandler);
+        }
+
+
+        function randomNum(max,min) {
+            return Math.random()*(max-min)+min;
+        }
+
+    </script>
+</body>
+</html>

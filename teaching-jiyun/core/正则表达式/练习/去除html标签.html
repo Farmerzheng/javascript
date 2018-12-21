@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <textarea cols="30" rows="30" id = "area1"></textarea>
+    <textarea cols="30" rows="30" id = "area2"></textarea>
+    <button id = "btn">转换</button>
+	<script type="text/javascript">
+		var area1 = document.getElementById("area1");
+		var area2 = document.getElementById("area2");
+		var btn = document.getElementById("btn");
+		btn.onclick = function(){
+			var area1Text = area1.value;
+			var myReg = /<[^<>]+>/g;
+			var area2Text = area1Text.replace("<br/>","\n");
+			alert(area2Text);
+            area2Text = area1Text.replace(myReg,"");
+            alert(area2Text);
+            area2.value = area2Text;
+		}
+	</script>
+</body>
+</html>

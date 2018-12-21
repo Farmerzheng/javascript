@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Person(){
+			this.age = 13;//动态属性
+		}
+		Person.prototype = {
+			// speak方法能够被new出来的对象继承,
+			// 添加到prototype属性上面的方法称之为动态方法
+			speak:function(){
+               console.log("I can speak")
+			}
+		}
+        // eat方法直接添加在了构造函数上面
+        // 直接添加到构造函数上面的方法我们称之为静态方法
+        // 静态方法不会被创建的对象继承
+        // 如何使用静态方法？通过构造函数直接使用静态方法
+        // 静态方法的好处？不用创建对象就能够使用，节省CPU
+        // 静态方法与动态方法的区别？
+		Person.eat = function(){
+           console.log("I can eat");
+		}
+		Person.name = "zhangsan";//静态属性
+		var zhangsan = new Person();
+		zhangsan.speak();//通过new出来的对象调用动态方法
+		Person.eat();//通过构造函数直接调用静态方法
+
+	</script>
+</body>
+</html>

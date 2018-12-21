@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+       /* var div0=document.createElement("div");
+        document.body.appendChild(div0);
+        var div1=document.createElement("div");
+        document.body.appendChild(div1);
+        div0.style.width="100px";
+        div0.style.height="100px";
+        div1.style.width="100px";
+        div1.style.height="100px";
+        div0.style.backgroundColor="#FF0000";
+        div1.style.backgroundColor="#0000FF";
+        div0.style.float="left";
+        div1.style.float="left";
+        div1.style.marginLeft="10px";*/
+//       createElement("div",document.body,{width:"100px",height:"100px",backgroundColor:"#FF0000",float:"left"},123)
+//       createElement("div",document.body,{width:"100px",height:"100px",backgroundColor:"#0000FF",float:"left",marginLeft:"10px"})
+       var arr=["首页","产品","企业文化","联系我们"]
+        var ul=createElement("ul",document.body,{listStyle:"none"})
+        for(var i=0;i<arr.length;i++){
+            createElement("li",ul,{float:"left",marginRight:"10px"},{textContent:arr[i]})
+        }
+       createElement("br",document.body);
+       createElement("label",document.body,{},{textContent:"用户名："});
+       createElement("input",document.body,{},{type:"text"});
+       createElement("br",document.body);
+       createElement("label",document.body,{},{textContent:"密 码："});
+       createElement("input",document.body,{},{type:"password"});
+       createElement("br",document.body);
+       createElement("label",document.body,{},{textContent:"性别："});
+     /*  createElement("label",document.body,{},{textContent:"男"});
+       createElement("input",document.body,{},{type:"radio",value:"男",name:"sexsGroup"});
+       createElement("label",document.body,{},{textContent:"女"});
+       createElement("input",document.body,{},{type:"radio",value:"女",name:"sexsGroup"});
+       createElement("label",document.body,{},{textContent:"不详"});
+       createElement("input",document.body,{},{type:"radio",value:"不详",name:"sexsGroup"});*/
+
+
+       var list=createRadio(["男","女","不详","变性人"],"sexsGroup",false,"click",clickHandler);
+//       console.log(list);
+
+       function createRadio(labelArr,groupName,radioOrCheck,event,eventHandler) {
+           var arr=[];
+            for(var i=0;i<labelArr.length;i++){
+                var check;
+                createElement("label",document.body,{},{textContent:labelArr[i]});
+                if(radioOrCheck){
+                    check=createElement("input",document.body,{},{type:"radio",value:labelArr[i],name:groupName,addEventListener:eventHandler},event);
+                }else {
+                    check=createElement("input",document.body,{},{type:"checkbox",value:labelArr[i],name:groupName,addEventListener:eventHandler},event);
+                }
+                arr.push(check);
+            }
+           return arr;
+       }
+
+       function clickHandler(e) {
+           console.log(e)
+       }
+        /*
+        * 创建标签，并且设置该标签的样式
+        * 参数
+        *    htmlName   String   要创建的标签名称
+        *    parent     HtmlElement  父级标签对象
+        *    styleObj   Object   要创建的标签样式，必须是对象型
+        *    propertyObj Object  要创建的标签的属性，必须是对象型
+        *                   例如：{width:100px,height:100px,backgroundColor:#FF0000}
+        * */
+        function createElement(htmlName,parent,styleObj,propertyObj,event) {
+            var element=document.createElement(htmlName);
+            parent.appendChild(element);
+            for(var names in propertyObj){
+                if(names=="addEventListener" && event){
+                    element.addEventListener(event,propertyObj[names]);
+                }else{
+                    element[names]=propertyObj[names];
+                }
+
+            }
+            for(var str in styleObj){
+                element.style[str]=styleObj[str];
+            }
+            return element;
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <textarea id = "comment" cols="30" rows="20"></textarea>
+	<script type="text/javascript">
+
+	    var userInput = document.getElementById("comment");
+	    //输入框获得焦点的时候，挂接键盘事件
+	    //输入框失去焦点的时候，将挂接在键盘上的事件移除掉
+
+	    userInput.addEventListener("focus",function(){
+           
+           document.onkeyup = function (e){
+		             var event = e || window.event;
+		             // console.log(event)
+		             if(event.keyCode == 13){
+		                 //将 userInput.value 发送到服务器
+		                 console.log("发送网络请求")
+		             }
+				}
+
+	    });
+
+	    userInput.addEventListener("blur",function(){
+
+	    	    document.onkeyup = null;
+
+	    })
+
+	
+	</script>
+</body>
+</html>

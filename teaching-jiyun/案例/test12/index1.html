@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+   <!--<ul>
+       <li>第一级1
+           <ul>
+               <li>第二级1</li>
+                    <ul>
+                        <li>第三级1</li>
+                        <li>第三级2</li>
+                        <li>第三级3</li>
+                    </ul>
+               <li>第二级2
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+               <li>第二级3
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+           </ul>
+       </li>
+       <li>第一级2
+           <ul>
+               <li>第二级4
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+               <li>第二级5
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+               <li>第二级6
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+           </ul>
+       </li>
+       <li>第一级3
+           <ul>
+               <li>第二级7
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+               <li>第二级8
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+               <li>第二级9
+                   <ul>
+                       <li>第三级1</li>
+                       <li>第三级2</li>
+                       <li>第三级3</li>
+                   </ul>
+               </li>
+           </ul>
+       </li>
+
+   </ul>-->
+<script>
+        function createUl(arr) {
+            var ul=document.createElement("ul");
+            for(var i=0;i<arr.length;i++){
+                var li=document.createElement("li");
+                ul.appendChild(li);
+                li.textContent=arr[i];
+                li.addEventListener("click",clickHandler)
+            }
+            return ul;
+        }
+    var arr=["第一级1","第一级2","第一级3"];
+        var firstul=createUl(arr);
+            document.body.appendChild(firstul);
+        firstul.className="cssul1"
+
+        var arr1=[["第二级1","第二级2","第二级3"],["第二级4","第二级5","第二级6"],["第二级7","第二级8","第二级9"]]
+        for(var i=0;i<arr1.length;i++){
+            var secondul=createUl(arr1[i]);
+            secondul.className="cssul2"
+            firstul.children[i].appendChild(secondul)
+        }
+    var arr2=["第三级1","第三级2","第三级3"];
+    for(var j=0;j<firstul.children.length;j++){
+        for(var k=0;k<firstul.children[j].children.length;k++){
+           for(var s=0;s<firstul.children[j].children[k].children.length;s++){
+               var ul3=createUl(arr2);
+               ul3.className="cssul3"
+              firstul.children[j].children[k].children[s].appendChild(ul3);
+           }
+        }
+    }
+        var ul1=document.getElementsByClassName("cssul1");
+        var ul2=document.getElementsByClassName("cssul2");
+        var ul3=document.getElementsByClassName("cssul3");
+        for(var i=0;i<ul2.length;i++){
+            ul2[i].style.display="none";
+        }
+        for(var i=0;i<ul3.length;i++){
+            ul3[i].style.display="none";
+        }
+
+    function clickHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        e.stopPropagation();
+        if(this.lastElementChild.style.display=="block"){
+            this.lastElementChild.style.display="none";
+            return;
+        }
+        var parents=this.parentElement;
+        for(var i=0;i<parents.children.length;i++){
+            parents.children[i].lastElementChild.style.display="none";
+        }
+        this.lastElementChild.style.display="block";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 300px;
+            background: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div style="left:30.6px;top:200px;"></div>
+<script>
+   var div = document.getElementsByTagName('div')[0];
+   // offsetLeft 会对小数点进行四舍五入取值
+    console.log( div.offsetLeft );
+</script>
+</body>
+</html>

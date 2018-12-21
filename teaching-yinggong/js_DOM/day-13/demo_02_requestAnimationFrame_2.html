@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="start">开始</button>
+  <button id="end">停止</button>
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  /*     听写
+         点击按钮，让盒子运动
+         requestAnimationFrame优点？
+         没必要考虑定时器什么时候关闭
+       */
+
+  let box = document.querySelector(".box");
+  startBtn = document.querySelector("#start");
+  endBtn = document.querySelector("#end")
+  moveBoolean = false; //开关按钮
+
+  startBtn.addEventListener("click", startClickHandler);
+  endBtn.addEventListener("click", endClickHandler)
+
+  function startClickHandler() {
+
+    moveBoolean = true
+  }
+
+  function endClickHandler() {
+
+    moveBoolean = false
+  }
+
+
+  box.update = function(speed) {
+    this.style.left = this.offsetLeft + speed + "px"
+  }
+
+// 永动机（循环体）
+  animation();
+  function animation() {
+    requestAnimationFrame(animation);
+
+    //跟新盒子
+    if(moveBoolean){
+      box.update(20)
+    }
+
+  }
+
+  
+  </script>
+</body>
+
+</html>

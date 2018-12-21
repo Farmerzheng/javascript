@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table
+        {
+            width: 300px;
+            height: 300px;
+            border-collapse: collapse;
+        }
+        td
+        {
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<p>aaa</p>
+<!--<div>sd</div>-->
+<a href="index1.html" onclick="clickHandler" name="ab">链接</a>
+<ul>
+    <!--<li name="cd">1</li>-->
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+    <script>
+        var ul=document.querySelector("ul")
+            var li=ul.childNodes[1];
+            var li1=li.textContent;
+              ul.innerHTML=li1+ul.innerHTML;
+        var li2=ul.children[0];
+           var lis=document.createElement("li");
+        lis.textContent=7;
+        var li3=lis.cloneNode(true)
+        ul.replaceChild(lis,li2);
+        ul.appendChild(li3)
+     /*  var table=document.createElement("table");
+        document.body.appendChild(table);
+       var tds=8;
+        for(var i=0;i<3;i++){
+            var tr=document.createElement("tr");
+            for(var j=0;j<tds;j++){
+                var td=document.createElement("td");
+                td.textContent=j;
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }*/
+
+
+    </script>
+</body>
+</html>

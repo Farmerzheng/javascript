@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+		position:absolute;
+		left:0;
+		top:0;
+		width:100px;
+		height:100px;
+		background-color: red;
+	}
+	button{
+		position:absolute;
+		left:0;
+		top:100px;
+	}
+	.bar{
+		width:1px;
+		height:400px;
+		position:absolute;
+		background-color: red;
+		left:500px;
+		top:0;
+	}
+</style>
+<body>
+    <div class="box"></div>
+    <button class="btn">点击</button>
+    <div class="bar"></div>
+	<script type="text/javascript">
+		var box = document.getElementsByClassName("box")[0];
+		var btn = document.getElementsByClassName("btn")[0];
+		var iTarget = 500;
+		btn.addEventListener("click",function(){
+			var speed = 10;
+
+			var timer = setInterval(function(){
+
+				speed = (iTarget - box.offsetLeft)/15;
+                speed = speed > 0?Math.ceil(speed):Math.floor(speed);
+	            box.style.left = box.offsetLeft + speed +"px";
+                
+
+                console.log(speed);
+
+	            if(box.offsetLeft == iTarget){
+
+                       clearInterval(timer)
+
+	            }
+
+			},16);
+		
+		})
+	</script>
+</body>
+</html>	

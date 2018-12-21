@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">点击</button>
+  <script>
+  var btn = document.getElementById("btn");
+  // attach  附加、依附  IE8支持attachEvent方法
+  btn.attachEvent("onclick", clickHandler);
+
+  function clickHandler(e) {
+    alert("btn");
+    var e = e || window.event;
+    // cancel 放弃、取消
+    // bubble 冒泡
+    e.cancelBubble = true;
+    // 移除挂接的事件
+    // btn.detachEvent("onclick",clickHandler);
+
+  }
+
+  document.body.attachEvent("onclick", bodyClickHandler);
+
+  function bodyClickHandler() {
+    alert("body")
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		  var str = "abc345hh678abca666dkfabc";
+          var reg = /\d{3}/gi;//数字开头，长度为2
+          var newStr = str.replace(reg,"这里原来是三个数字")
+          console.log(newStr)//abc这里原来是三个数字hh这里原来是三个数字abca这里原来是三个数字dkfabc
+	</script>
+</body>
+</html>	

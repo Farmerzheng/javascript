@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        div
+        {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+
+        }
+        ul
+        {
+            list-style: none;
+            width: 80px;
+            height: 124px;
+            border-left: solid 1px #000000;
+            border-right: solid 1px #000000;
+            border-top: solid 1px #000000;
+            position: absolute;
+            display: none;
+            z-index: 999;
+        }
+        li
+        {
+            height: 24px;
+            line-height: 24px;
+            background-color: antiquewhite;
+            border-bottom: solid 1px #000000;
+            text-align: center;
+        }
+    </style>
+    <script src="js/DomCreate.js"></script>
+    <script src="js/DragObj.js"></script>
+</head>
+<body>
+<ul>
+    <li>创建</li>
+    <li>复制</li>
+    <li>剪切</li>
+    <li>粘贴</li>
+    <li>删除</li>
+</ul>
+    <script>
+        window.addEventListener("contextmenu",mouseRightHandler);
+        var ul=document.getElementsByTagName("ul")[0];
+        ul.addEventListener("mouseleave",mouseOuthandler);
+        var lis=document.getElementsByTagName("li");
+
+        var seletedDiv;
+        var seletedDrag;
+        var cloneDiv;
+        for(var i=0;i<lis.length;i++){
+            lis[i].addEventListener("mouseenter",liHandler);
+            lis[i].addEventListener("click",liHandler);
+        }
+        function liHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.type=="mouseenter"){
+                this.addEventListener("mouseleave",liHandler);
+                this.style.backgroundColor="#FF0000";
+            }else  if(e.type=="mouseleave"){
+                this.removeEventListener("mouseleave",liHandler);
+                this.style.backgroundColor="antiquewhite";
+            }else if(e.type=="click"){
+                switch (this.textContent){
+                    case "创建":
+                            createDivs(e);
+                        break;
+                    case "复制":
+                            cloneDivs();
+                        break;
+                    case "剪切":
+                            cuteDivs();
+                        break;
+                    case "粘贴":
+                            pasteDivs(e);
+                        break;
+                    case "删除":
+                            removeDivs();
+                        break;
+                }
+                ul.style.display="none";
+            }
+        }
+
+        function mouseOuthandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            ul.style.display="none";
+        }
+        function mouseRightHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            e.preventDefault();
+            ul.style.display="block";
+            ul.style.left=e.clientX-5+"px";
+            ul.style.top=e.clientY-5+"px";
+        }
+        
+        function createDivs(e) {
+            var div=DomCreate.createElement("div",document.body);
+
+            div.style.backgroundColor="#"+Math.floor(Math.random()*0xFFFFFF).toString(16);
+            div.style.left=e.clientX-div.clientWidth/2+"px";
+            div.style.top=e.clientY-div.clientHeight/2+"px";
+            div.addEventListener("click",clickHandler)
+            seletedTarget(div);
+        }
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            seletedTarget(this);
+        }
+        function seletedTarget(div) {
+            if(seletedDiv){
+                seletedDiv.style.border="none";
+                if(seletedDrag){
+                    seletedDrag.removeDrag();
+                }
+            }
+            seletedDiv=div;
+            seletedDiv.style.border="1px solid #FF0000";
+            seletedDrag=new DragObj(seletedDiv);
+        }
+        
+        function cloneDivs() {
+            if(seletedDiv){
+                cloneDiv=seletedDiv.cloneNode(true);
+            }
+        }
+        function pasteDivs(e) {
+            if(cloneDiv){
+                document.body.appendChild(cloneDiv);
+
+                cloneDiv.style.left=e.clientX-cloneDiv.clientWidth/2+"px";
+                cloneDiv.style.top=e.clientY-cloneDiv.clientHeight/2+"px";
+                seletedTarget(cloneDiv);
+                cloneDiv.addEventListener("click",clickHandler);
+                cloneDiv=null;
+            }
+        }
+        function cuteDivs() {
+            if(seletedDiv){
+                cloneDiv=seletedDiv.cloneNode(true);
+                removeDivs();
+            }
+        }
+
+        function removeDivs() {
+            if(seletedDiv){
+                seletedDiv.remove();
+
+                seletedDiv=null;
+            }
+        }
+    </script>
+</body>
+</html>

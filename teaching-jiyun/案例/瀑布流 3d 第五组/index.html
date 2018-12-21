@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        div{
+            margin: auto;
+        }
+        #headDiv ul{
+            list-style: none;
+            cursor: pointer;
+        }
+        #headDiv li{
+            float: left;
+            height: 30px;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            line-height: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: 19px 55px 0px 0px;
+            color: #9A9A9A;
+        }
+        #center
+        {
+            border: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        #imgTop
+        {
+            float: left;
+            margin: 18px 200px 0px 120px;
+        }
+        #centerDiv
+        {
+            width: 1366px;
+            height: 588px;
+        }
+        #bottom
+        {
+            width: 220px;
+            height: 120px;
+            margin-top: 30px;
+            border: solid 2px #FF0000;
+        }
+        .email
+        {
+            margin: auto;
+            display: block;
+        }
+        .linkedln
+        {
+            margin:30px 10px 20px 20px;
+        }
+        #spanBottom
+        {
+            font-size: 12px;
+        }
+        .centerImg
+        {
+            position: fixed;
+            width: 600px;
+            height: 400px;
+            left: 468px;
+            top: 132px;
+        }
+    </style>
+</head>
+<body>
+    <div id="headDiv">
+        <img src="img/home/shininglogo.png" id="imgTop">
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Renderings</li>
+            <li>3D Animate</li>
+            <li>BIM</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+    <div id="centerDiv">
+        <iframe src="Home.html" id="center"></iframe>
+    </div>
+    <div id="bottom">
+    </div>
+    <script>
+        var arr=["588","584","5930","1504","3500","750"]
+        var headDiv=document.getElementById("headDiv");
+        var centerDiv=document.getElementById("centerDiv");
+        var center=document.getElementById("center");
+        var bottom=document.getElementById("bottom");
+        var lis=headDiv.getElementsByTagName("li");
+        var renderele;
+        headDiv.style.width="1366px";
+        headDiv.style.height="70px";
+        headDiv.style.backgroundColor="#000000";
+        var imgsrc="img/home/";
+        for(var i=0;i<lis.length;i++){
+            lis[i].addEventListener("mouseover",mouseHandler);
+            lis[i].addEventListener("click",mouseHandler);
+        }
+        lis[0].style.color="#FFFFFF";
+        lis[0].style.borderColor="#9A9A9A";
+
+        function frameHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            var img=new Image();
+            img.src=e.imgsrc;
+            document.body.insertBefore(img,headDiv)
+            img.className="centerImg"
+
+        }
+        function huanyuan() {
+            for(var i=0;i<lis.length;i++){
+                lis[i].style.color="#9A9A9A";
+                lis[i].style.borderColor="#000000";
+            }
+        }
+        function mouseHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            huanyuan();
+            if(e.type=="mouseover"){
+                e.target.style.color="#FFFFFF";
+                e.target.style.borderColor="#9A9A9A";
+                e.target.addEventListener("mouseout",mouseHandler);
+            }
+            if(e.type=="mouseout"){
+                e.target.style.color="#9A9A9A";
+                e.target.style.borderColor="#000000";
+            }
+            if(e.type=="click"){
+                e.target.style.color="#FFFFFF";
+                e.target.style.borderColor="#9A9A9A";
+
+                    center.onload=function (e) {
+                        if(center.src.indexOf("Renderings")==-1) return;
+                        if(!renderele){
+                            e.srcElement.contentDocument.addEventListener("FrameEvent",frameHandler)
+                            renderele=e.srcElement.contentDocument;
+                        }
+
+                    };
+
+                center.src=this.textContent+".html";
+                for(var i=0;i<lis.length;i++){
+                    if(this==lis[i]){
+                        centerDiv.style.height=arr[i]+"px";
+                    }
+                }
+                e.target.removeEventListener("mouseout",mouseHandler);
+            }
+        }
+        appendImage(bottom,"mail","email");
+        appendImage(bottom,"linkedln","linkedln");
+        appendImage(bottom,"youtube","linkedln");
+        appendImage(bottom,"facebook","linkedln");
+        appendImage(bottom,"twitter","linkedln");
+        var spans=document.createElement("span");
+        spans.textContent="Copyright ©1998-2015 shining Group";
+        spans.id="spanBottom";
+        bottom.appendChild(spans);
+        var imgs=bottom.getElementsByTagName("img");
+        for(var i=0;i<imgs.length;i++){
+            imgs[i].addEventListener("mouseover",mouseHandlers);
+            imgs[i].addEventListener("mouseout",mouseHandlers);
+        }
+        function mouseHandlers(e) {
+            if(!e){
+                e=window.event;
+            }
+            var namess=e.target.getAttribute("name");
+            if(e.type=="mouseover"){
+                e.target.src=imgsrc+namess+"_h.jpg"
+            }
+            if(e.type=="mouseout"){
+                e.target.src=imgsrc+namess+".jpg"
+            }
+        }
+        function appendImage(div,imgName,classname) {
+            var img=new Image();
+            img.src=imgsrc+imgName+".jpg";
+            img.className=classname;
+            img.setAttribute("name",imgName);
+            div.appendChild(img);
+            return img;
+        }
+    </script>
+</body>
+</html>

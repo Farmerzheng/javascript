@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log( 0.1+0.2 );// 0.30000000000000004
+    // 产生的原因，在计算的时候，值的转换所产生的问题
+    //解决方法：使用 toFixed( 2 )  ,保留小数点几位
+    console.log(  (0.1+0.2).toFixed(3) );
+</script>
+</body>
+</html>

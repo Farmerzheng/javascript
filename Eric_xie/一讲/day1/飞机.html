@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/Plane.js"></script>
+</head>
+<body>
+    <script>
+//    初始时间，创建时间
+     var time=30;
+//    创建飞机后的存储列表
+     var list=[];
+       animation()
+        function animation() {
+            requestAnimationFrame(animation);
+        //            如果时间是0时，创建飞机，传入callback，并且时间重新随机定义初始值
+            if(time==0){
+                var plane=new Plane(callBack);
+                document.body.appendChild(plane.createPlane());
+                plane.planeLeft();
+                plane.scale(Math.random()*0.5+0.5);
+                time=Math.floor(Math.random()*30+20);
+                list.push(plane);
+            }
+            time--;
+        //更新列表中所有飞机的位置
+            for(var i=0;i<list.length;i++){
+                list[i].update();
+            }
+        }
+        //当删除飞机时，在列表中找到当前飞机，并且删除它
+        function callBack(plane) {
+            if(~list.indexOf(plane)){
+                var index=list.indexOf(plane);
+                list[index]=null;
+                list.splice(index,1);
+            }
+        }
+    </script>
+</body>
+</html>

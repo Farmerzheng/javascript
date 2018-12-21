@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    1 打印正方形
+//    9行  9列
+//for(var j = 1; j<=9; j++){
+//    for(var i=1; i<=9; i++){
+//        document.write( '☆' );
+//    }
+//    //每次输出一行，加br
+//    document.write('<br>');
+//}
+//    2 打印直角三角形
+// 第一次for循环，循环9行
+for(var i=1; i<=9; i++){
+    //第二次循环，循环9列
+    for(var j = 1; j<=i; j++){
+        document.write( '☆' );
+    }
+    //每输出一行，加br换行
+    document.write('<br>');
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function myFunction() {
+    try {
+      var x = 11;
+      if (x == "") throw "empty";
+      if (isNaN(x)) throw "not a number";
+      if (x > 10) throw "too high";
+      if (x < 5) throw "too low";
+    } catch (err) {
+      console.log("Error: " + err );
+    }
+  }
+
+  myFunction()
+  </script>
+  </script>
+</body>
+
+</html>

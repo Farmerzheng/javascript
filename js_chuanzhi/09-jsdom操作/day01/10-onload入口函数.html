@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+    <script>
+        //入口函数,如果写在其它位置，应该加入这个
+        window.onload = function(){
+            document.getElementsByClassName('box')[0].onclick = function(){
+                alert('ok');
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box"></div>
+<!--在标签内部的js代码，是以事件的形式写入的-->
+<button onclick="alert(1)">按钮</button>
+</body>
+</html>

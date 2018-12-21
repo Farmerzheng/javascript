@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 在正则表达式中， |优先级最低
+    // footer  bootstrap
+    //  | 或  两个满足其一
+    console.log( /foot|boot/.test('bootstrap') );
+    console.log( /foot|boot/.test('footer') );
+
+    //（） 提升运算的优先级
+    console.log( /(f|b)oot/.test('boot3434') );
+    console.log( /(f|b|m|n)oot/.test('dsnoot') );
+</script>
+</body>
+</html>

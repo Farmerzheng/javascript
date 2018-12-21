@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+       <script>
+           var obj={};
+           obj.name="aaa";
+           obj.sexs="men";
+           obj.age=30;
+
+           obj.arr=[1,2,3,4,5]
+          var str=JSON.stringify(obj)
+
+           var obj1=JSON.parse(str);
+           console.log(obj1.arr[0])
+           localStorage.bool=false;
+
+            if(parseInt(localStorage.time)<new Date().getTime()){
+                localStorage.removeItem("name");
+                localStorage.removeItem("time");
+            }
+            console.log(localStorage.name)
+
+           if(!localStorage.bool){
+               localStorage.setItem("name","123");
+               localStorage.bool=true;
+               var date=new Date();
+               date.setHours(8,54,0,0)
+               localStorage.time=date.getTime();
+           }
+
+
+       </script>
+</body>
+</html>

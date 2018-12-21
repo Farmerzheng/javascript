@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="隐藏">
+<div></div>
+<script>
+    // 开闭思想   一个变量有两个状态
+    // button 即作为 隐藏，又作为显示 按钮
+    // flag   如果 是true 表示当前开   否则  是 false  表示当前是关
+    var flag = true;
+    var input = document.getElementsByTagName('input')[0];
+    var div = document.getElementsByTagName('div')[0];
+    input.onclick = function(){
+        //判断状态
+        // 如果当前是开，点击执行关闭（盒子隐藏）
+        if( flag ){
+            div.style.display = 'none';
+            //关闭之后，状态也要变化为关闭
+            flag = false;
+            // input中的文字也要变为打开
+            this.value = '打开';
+        }else{
+            //否则表示当前是关，点击执行打开（盒子显示）
+            div.style.display = 'block';
+            // 状态变化
+            flag = true;
+            this.value = '隐藏';
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    button{
+        position:fixed;
+        right:0;
+        top:600px;
+        display: none;
+    }
+</style>
+<body style = "height:3000px">
+ <button>返回顶部</button>
+ <script>
+     var btn = document.getElementsByTagName("button")[0];
+     var flag = true;
+     var toTopBoolean = false;
+     //监听滚动条的滚动
+     window.addEventListener("scroll",scrollHandler);
+     //点击按钮，回到顶部
+     btn.addEventListener("click",toTopClickHandler);
+
+     function scrollHandler(){   
+
+         //网页卷去的高度
+         var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+
+        
+         if(scrollTop >1000&&flag){ //滚动到大于1000像素位置，显示回到顶部按钮
+             btn.style.display = "block";
+             flag = false;
+
+         }else if(scrollTop <=1000 && flag == false){
+             btn.style.display = "none";//滚动到小于1000像素位置，隐藏回到顶部按钮
+             flag = true;
+         }
+   
+     }
+
+     function toTopClickHandler(){
+        toTopBoolean = true;
+      }
+
+     animation();
+     function animation(){
+        requestAnimationFrame(animation);
+        step();
+     }
+      function step(){
+             if(toTopBoolean == false){
+                return;
+             }
+             if(document.documentElement.scrollTop||document.body.scrollTop == 0){                  
+                toTopBoolean = false;
+             }
+             var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+
+             var speed = scrollTop/8;
+
+             document.documentElement.scrollTop = document.body.scrollTop = scrollTop - speed;           
+      }
+
+  
+
+ </script>
+</body>
+</html>

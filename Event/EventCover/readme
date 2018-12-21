@@ -1,0 +1,15 @@
+var btn=document.getElementsByTagName("button")[0];
+
+//    btn.onclick=function(){
+//        alert(1);
+//    };
+//    btn.onclick=function(){
+//        alert(2);
+//    };
+    btn.addEventListener("click",function(){
+        alert(1);
+    });
+
+    btn.addEventListener("click",function(){
+        alert(2);
+    })

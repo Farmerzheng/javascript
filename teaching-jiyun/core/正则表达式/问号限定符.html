@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = "1qasddd";
+		var myReg = /(\d)?/gi;
+		var newStr1 = myReg.exec(str);
+		var newStr2 = myReg.test(str);
+		console.log(newStr1);//1
+        console.log(newStr2);//true
+	</script>
+</body>
+</html>

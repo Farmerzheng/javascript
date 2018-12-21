@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{}
+		#ball{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+			left: 200px;
+			top: 100px;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" value="回放" name="" id="btn">
+	<div id="ball"></div>
+</body>
+<script type="text/javascript">
+	var ball = document.getElementById('ball');
+	var btn = document.getElementById('btn');
+	var arr = [];
+
+	// 拖拽
+	ball.onmousedown = function(e) {
+		var ev = e || window.event;
+		var disx = ev.clientX - ball.offsetLeft;
+		var disy = ev.clientY - ball.offsetTop;
+		// console.log(disx + '  '+ disy)
+		document.onmousemove = function(e){
+			var ev = e || window.event;
+			var x = event.clientX - disx;
+			var y = event.clientY - disy;
+			arr.push([x,y]);
+			ball.style.left = x + 'px';
+			ball.style.top = y + 'px';
+		}
+	}
+
+	// 抬起释放移动
+	ball.onmouseup = function() {
+		document.onmousemove = null;
+	}
+
+	// 点击按钮
+	btn.onclick = function() {
+		var timer = setInterval(function(){
+			var last = arr.pop();  //数组
+			ball.style.left = last[0] + 'px';
+			ball.style.top = last[1] + 'px';
+			if(arr.length == 0){
+				clearInterval(timer);
+			}
+		},10)
+	}
+</script>
+</html>

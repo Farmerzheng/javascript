@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+		width:500px;
+		height:500px;
+		margin:0 auto;
+		position: relative;
+		border:1px solid red;
+	}
+	.box .ball{
+		width:50px;
+		height:50px;
+		background-color: yellow;
+		border-radius:100%;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="ball"></div>
+	</div>
+	<script type="text/javascript">
+
+		var ball = document.getElementsByClassName("ball")[0];
+		var position = {left : 0 , top : 0};
+		var speed = {x : 16 , y : 14};
+
+		//让小球动起来
+		requestAnimationFrame(step);
+
+		function step(){
+			// console.log(1);
+			position.left += speed.x;
+			position.top += speed.y;
+
+
+
+			if(position.top >= 500-ball.offsetHeight ||position.top < 0){
+                
+                speed.y = -speed.y;
+
+			}else if(position.left >= 500 - ball.offsetWidth || position.left < 0){
+
+                speed.x = -speed.x;
+			}
+
+			ball.style.left = position.left + "px";
+			ball.style.top = position.top + "px";
+
+			requestAnimationFrame(step);
+		}
+		
+	</script>
+</body>
+</html>

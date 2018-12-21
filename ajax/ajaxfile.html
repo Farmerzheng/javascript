@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<!--<form>-->
+		<fieldset>
+			<legend>文件跨域上传</legend>
+			<label for="myFile" class="">图片</label>
+			<input type="file" name="myFile" id="myFile">
+			<span class="help-block">请输入文件名称.</span>
+			<img id="img" style="max-width:100px;height:auto;" src="" alt="">
+			<img id="imgSmall" src="" alt="">
+		</fieldset>
+		<button type="submit" class="btn" onclick="return false;">提交</button>
+		<!--</form>-->
+		<script type="text/javascript">
+			(function() {
+				$.fn.ajaxfile = function(a) {
+					//上传图片
+
+					var date = new Date();
+					var formData = new FormData();
+					var obj = $(this);
+					var file = $(this)[0].files[0];
+					formData.append('myFile', file);
+					var xhr = new XMLHttpRequest();
+					xhr.open("post", 'http://crm.daohangma.com/mp.crm/server/tools/', true);
+					xhr.withCredentials = true; // 是否携带cookies
+					xhr.upload.onprogress = function(e) {
+						if (e.lengthComputable) {
+							var percentage = Math.round((e.loaded / e.total) * 100) + "%";
+							$('.progress-bar').css('width', percentage);
+							$(".progress-bar span").html(percentage);
+						}
+					};
+					if (typeof a != "object") {
+						xhr.onload = function() {
+							console.log(JSON.parse(this.responseText));
+							var httpName = JSON.parse(this.responseText).httpName;
+							var smallName = JSON.parse(this.responseText).smallName;
+							obj.data("bigimgid", httpName);
+							obj.data("smallimgid", smallName);					
+						}
+					} else {
+						xhr.onerror = a.error;
+						xhr.onload = function() {
+							console.log(JSON.parse(this.responseText));
+							var httpName = JSON.parse(this.responseText).httpName;
+							var smallName = JSON.parse(this.responseText).smallName;
+							obj.data("bigimgid", httpName);
+							obj.data("smallimgid", smallName);
+							if (a.success) {
+								a.success(httpName, smallName);
+							}
+						}
+					}
+					xhr.send(formData);
+					return false;
+				}
+			})(jQuery);
+
+			$(".btn").click(function() {
+				$("#myFile").ajaxfile({
+					error: function(e) {
+						console.log('上传失败原因: ' + e.toString());
+					},
+					success: function(a, b) {
+						console.log(a, b);
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

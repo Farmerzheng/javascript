@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+  function makeFunc() {
+  	
+    var name = "Mozilla";
+
+    function displayName() {
+      alert(name);
+    }
+
+    return displayName;
+  }
+
+// makeFunc函数执行完以后name局部变量没有销毁
+  var myFunc = makeFunc();
+
+
+  myFunc();
+
+
+  </script>
+</body>
+
+</html>

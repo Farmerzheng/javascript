@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#container{
+		width:320px;
+		height:480px;
+		background-image: url(img/bg.jpg);
+		background-size: 100% 100%;
+		margin:0 auto;
+		position:relative;
+		overflow:hidden;
+	}
+	#container #bird{
+		width:40px;
+		height:26px;
+		background-image: url(img/bird0.png);
+		position:absolute;
+		left:100px;
+		top:0;
+	}
+</style>
+<body>
+    <script type="text/javascript" src = "Hit.js"></script>
+	<div id="container">
+		<div id="bird"></div>
+	</div>
+	<script type="text/javascript">
+	   var bird = document.getElementById("bird");
+	   var birdSpeed = 3;
+	   var upBoolean = false;
+	   var downBoolean = true;
+	   var time = 0;
+	   var pipeArr = [];
+
+	    //创建草坪
+		function createLawn(){
+            var lawn = document.createElement("div");
+            lawn.style.cssText = "width:640px;height:14px;position:absolute;left:0;top:420px";
+            
+            lawn.innerHTML = "<img src = 'img/banner.jpg' style = 'width:320px'><img src ='img/banner.jpg' style = 'width:320px'>";
+
+            container.appendChild(lawn);
+
+            return lawn;
+		};
+		var lawn = createLawn();
+		
+		//创建一个永动机
+		animation();
+		function animation(){
+			requestAnimationFrame(animation);
+			//要运动的对象
+			birdDown();
+			birdUp();
+
+			//更新小鸟的背景图片
+			updateBird();
+
+			time++;
+			if(time%250 == 0){
+				createPipe();
+			};
+           //更新管道（让管道移动）
+			pipeUpdate();
+
+			//草坪更新（草坪移动）
+			lawnUpdate();
+
+		}
+
+		function birdDown(){
+
+
+			if(downBoolean == false)return;
+		
+
+			if(bird.offsetTop >= 390){
+                 downBoolean = false;
+			};
+
+			birdSpeed += 0.1;
+
+			bird.style.top = bird.offsetTop + birdSpeed + "px";
+		}
+
+		function birdUp(){
+			if(upBoolean == false)return;
+			//向上运动，让小鸟的速度不断变慢
+			birdSpeed += 0.1;
+			//当小鸟向上运动，速度减为零的时候，让小鸟执行birdDown()
+			if(birdSpeed <=0){
+				downBoolean = true;
+				upBoolean = false;
+			}
+			bird.style.top = bird.offsetTop + birdSpeed + "px";
+		}
+
+		function updateBird(){
+			if(birdSpeed > 0){
+				bird.style.backgroundImage = "url('img/down_bird0.png')";
+			}else if(birdSpeed < 0){
+				bird.style.backgroundImage = "url('img/up_bird0.png')";
+			}else{
+				bird.style.backgroundImage = "url('img/bird0.png')";
+			}
+		}
+
+		function createPipe(){
+			var pipe = document.createElement("div");
+
+			pipeArr.push(pipe);
+
+			pipe.style.cssText = "width:62px;height:423px;position:absolute;left:320px;top:0";
+
+			var topPipe = document.createElement("div");
+			var bottomPipe = document.createElement("div");
+
+			var topPipeHeight = randomFn(263,60);
+			var blankHeight = randomFn(100,40);
+			var bottomPipeHeight = 423 - topPipeHeight - blankHeight;
+
+
+			topPipe.style.cssText = "width:62px;height:"+topPipeHeight+"px;position:absolute;left:0;top:0;background-image:url('img/up_mod.png');";
+			topPipe.innerHTML = "<img src = 'img/up_pipe.png' style = 'position:absolute;left:0;bottom:0'>";
+			bottomPipe.style.cssText = "width:62px;height:"+bottomPipeHeight+"px;position:absolute;left:0;bottom:0;background-image:url('img/down_mod.png');";
+			bottomPipe.innerHTML = "<img src = 'img/down_pipe.png' style = 'position:absolute;left:0;top:0'>";
+
+			pipe.appendChild(topPipe);
+			pipe.appendChild(bottomPipe);	
+
+
+			container.appendChild(pipe);
+		}
+
+		function pipeUpdate(){
+			if(pipeArr.length <= 0)return;
+
+
+			for(var i = 0 ; i < pipeArr.length  ; i++){		
+
+				pipeArr[i].style.left = pipeArr[i].offsetLeft - 1 + "px"
+			}
+
+
+			if(pipeArr[0].offsetLeft <= -62){
+                 pipeArr[0].remove();
+                 pipeArr.shift();
+			}
+		}
+
+		function randomFn(max,min){
+			return parseInt(Math.random()*(max-min)+min);
+		}
+        
+       
+
+		function lawnUpdate(){
+              lawn.style.left = lawn.offsetLeft - 1 + "px";
+              if(lawn.offsetLeft <= -320){
+              	lawn.style.left = "0px";
+              }
+		}
+
+		//为container添加点击事件
+		container.addEventListener("click",function(){
+              upBoolean = true;
+              downBoolean = false;
+              //每次点击的时候给小鸟一个固定的向上的速度值
+              birdSpeed = -2;
+		});
+
+		Hit.test(bird,pipeArr[0]);
+
+
+		
+	</script>
+</body>
+</html>

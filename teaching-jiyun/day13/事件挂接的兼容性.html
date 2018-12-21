@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	    <button id = "btn">button</button>
+
+     <script type="text/javascript">
+     	var button = document.getElementById("btn");
+
+      function func(){
+        alert(1)
+      }
+    
+      addEvent(button,"click",func);
+
+
+      removeEvent(button,"click",func);
+    
+
+      function addEvent(obj,event,func){
+        if(obj.addEventListener){
+          obj.addEventListener(event,func);
+        }else{
+          obj.attachEvent("on"+event,func)
+        }
+      }
+
+      function removeEvent(obj,event,func){
+        if(obj.removeEventListener){
+          obj.removeEventListener(event,func);
+        }else{
+          obj.detachEvent("on"+event,func)
+        }
+      }
+     </script>
+</body>
+</html>

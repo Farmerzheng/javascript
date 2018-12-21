@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/Main.js"></script>
+</head>
+<style>
+    li{
+        list-style-type: none;
+    }
+</style>
+<body>
+    <script>
+        var skinList=[{x:195,y:104,w:18,h:18},{x:175,y:104,w:18,h:18}];
+
+        var ul=document.createElement("ul");
+
+        for(var i=0;i<10;i++){
+
+            var li=document.createElement("li");
+
+            ul.appendChild(li);
+
+            var check=new CheckBoxButton(skinList);
+
+            li.appendChild(check.createCheckBox());
+            
+            // 为checkbox添加selected事件
+            check.checkBox.addEventListener(check.SELECTED_EVENT,checkhandler)
+        }
+        
+        document.body.appendChild(ul)
+
+        function checkhandler(e) {
+            console.log(e.selected)
+        }
+    </script>
+</body>
+</html>

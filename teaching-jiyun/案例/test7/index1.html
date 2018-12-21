@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            var arr=["张三","李四","王五","张六","李七","王五胜"];
+            var str="王五";
+            var arr1=[];
+            for(var i=0;i<arr.length;i++){
+               var index=arr[i].indexOf(str);
+                if(index>-1){
+                    arr1.push(arr[i]);
+                }
+            }
+            console.log(arr1);
+        </script>
+</body>
+</html>

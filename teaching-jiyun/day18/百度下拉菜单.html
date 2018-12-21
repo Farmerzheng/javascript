@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	li{
+		list-style: none;
+		width:250px;
+	}
+</style>
+<body>
+<input type="text" name="" id = "user">
+<!-- <button id = "search">点击</button> -->
+<div id = "box"></div>
+	<script type="text/javascript">
+
+        // var searchBtn = document.getElementById("search");
+        var userInput = document.getElementById("user");
+        var box = document.getElementById("box");
+
+
+		// searchBtn.addEventListener("click",searchClickHandler);
+        userInput.addEventListener("input",searchClickHandler);
+        userInput.addEventListener("blur",blurHandler);
+
+        //发送网络请求的函数 text 
+		function getData(text){
+			var oScript = document.createElement("script");
+			oScript.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+text+"&json=1&p=3&sid=1420_21087_17001_23631_20929&req=2&csor=1&cb=callBack";
+			document.body.appendChild(oScript);
+			oScript.remove();
+		}
+
+
+        //数据请求成功后会调用此函数，此函数是回调函数
+		function callBack(data){
+			box.style.display = "block";
+
+			box.innerHTML = "";
+			console.log(data);
+			//展示数据(把数据展示在box里面)
+			var dataArr = data.g;
+
+			for(var i = 0 ; i < dataArr.length ; i++){
+				var li = document.createElement("li");
+
+				li.addEventListener("mouseover",mouseoverHandler);
+				li.addEventListener("mouseout",mouseoutHandler)
+				li.innerText = dataArr[i].q;
+				box.appendChild(li);
+				
+			}
+
+		}
+
+
+		function searchClickHandler(){
+
+			var userInputText = userInput.value;
+           //点击按钮，发送网络请求
+			getData(userInputText);
+
+		}
+
+        function mouseoverHandler(){
+        	this.style.background = "yellow";
+        }
+
+        function mouseoutHandler(){
+        	this.style.background = "white";
+        }
+        
+        function blurHandler(){
+        	box.style.display = "none"
+        }
+
+
+	</script>
+</body>
+</html>	

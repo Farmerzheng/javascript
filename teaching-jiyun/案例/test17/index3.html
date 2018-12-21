@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table
+        {
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid #000000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><input type="checkbox" id="allcheck"></td>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>爱好</td>
+            <td>时间</td>
+            <td>价格</td>
+            <td>总价</td>
+            <td>数量</td>
+
+        </tr>
+    </table>
+    <input type="button" value="反选" id="check1">
+    <div id="sums">0</div>
+<script>
+    var table=document.getElementsByTagName("table")[0];
+    var allcheck=document.getElementById("allcheck");
+    var check1=document.getElementById("check1");
+    var sums=document.getElementById("sums");
+    allcheck.addEventListener("click",clickHandler);
+    check1.addEventListener("click",clickHandler1);
+    var trs
+    var arr=[
+        {name:"张三",age:30,sexs:"男",hobby:"旅行",time:"2016/3/15",price:35.2,sumprice:0},
+        {name:"王三",age:32,sexs:"女",hobby:"旅行，游泳",time:"2016/4/15",price:18.2,sumprice:0},
+        {name:"李三",age:33,sexs:"男",hobby:"旅行，看电影",time:"2016/08/15",price:27,sumprice:0},
+        {name:"赵三",age:34,sexs:"女",hobby:"音乐",time:"2016/11/15",price:128,sumprice:0}
+    ];
+
+   for(var i=0;i<arr.length;i++){
+       var tr=document.createElement("tr");
+       table.appendChild(tr);
+       var td=document.createElement("td");
+       tr.appendChild(td);
+       var check=document.createElement("input");
+       check.type="checkbox";
+       check.name="checks"
+       td.appendChild(check);
+       check.addEventListener("click",clickHandler1)
+       for(var str in arr[i]){
+           var td=document.createElement("td");
+           tr.appendChild(td);
+           td.textContent=arr[i][str];
+           if(str=="time"){
+               var reg=/^(\d{4}\/)(\d{1,2})(\/\d{1,2})$/;
+               var month=parseInt(arr[i][str].replace(reg,"$2"))-1;
+              switch (parseInt(month/3))
+              {
+                  case 0:
+                      tr.style.backgroundColor="#00FF00";
+                      break;
+                  case 1:
+                      tr.style.backgroundColor="#FF0000";
+                      break;
+                  case 2:
+                      tr.style.backgroundColor="#FFFF00";
+                      break;
+                  case 3:
+                      tr.style.backgroundColor="#FFFFFF";
+                      break;
+              }
+           }
+       }
+       var td=document.createElement("td");
+       tr.appendChild(td);
+       var bn=document.createElement("input");
+       bn.type="button";
+       bn.value="-"
+       td.appendChild(bn);
+       bn.addEventListener("click",sumHandler)
+       var bn1=document.createElement("input");
+       bn1.type="text";
+       bn1.style.width="60px"
+       bn1.style.textAlign="center";
+       bn1.value=1;
+       bn1.addEventListener("input",sumHandler)
+       td.appendChild(bn1);
+       var bn2=document.createElement("input");
+       bn2.type="button";
+       bn2.value="+"
+       bn2.addEventListener("click",sumHandler)
+       td.appendChild(bn2);
+        td.previousElementSibling.textContent=(parseInt(bn1.value)*arr[i].price).toFixed(2);
+       arr[i].sumprice=parseFloat(td.previousElementSibling.textContent);
+
+   }
+    trs=table.getElementsByTagName("tr");
+    function sumHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        if(e.type=="input"){
+            for(var i=0;i<trs.length;i++){
+                if(trs[i]==this.parentElement.parentElement){
+                    trs[i].lastElementChild.previousElementSibling.textContent=(arr[i-1].price*parseInt(this.value)).toFixed(2);
+                    arr[i-1].sumprice=parseFloat(trs[i].lastElementChild.previousElementSibling.textContent)
+                }
+            }
+
+        }else{
+            var inputs;
+            if(this.value=="+"){
+                this.previousElementSibling.value=parseInt(this.previousElementSibling.value)+1;
+                inputs=this.previousElementSibling.value
+            }else if(this.value=="-"){
+                this.nextElementSibling.value=(parseInt(this.nextElementSibling.value)<2 ? 2 :parseInt(this.nextElementSibling.value))-1;
+                inputs= this.nextElementSibling.value;
+            }
+            for(var i=0;i<trs.length;i++){
+                if(trs[i]==this.parentElement.parentElement){
+                    trs[i].lastElementChild.previousElementSibling.textContent=(arr[i-1].price*parseInt(inputs)).toFixed(2);
+                    arr[i-1].sumprice=parseFloat(trs[i].lastElementChild.previousElementSibling.textContent);
+                }
+            }
+        }
+        sumAll();
+    }
+
+    function clickHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        var checkList=document.getElementsByName("checks");
+        for(var i=0;i<checkList.length;i++){
+            checkList[i].checked=allcheck.checked;
+        }
+        sumAll();
+    }
+    function clickHandler1(e) {
+        if(!e){
+            e=window.event;
+        }
+        var checkList=document.getElementsByName("checks");
+        var arr1=[];
+        if(this==check1){
+            for(var i=0;i<checkList.length;i++){
+                checkList[i].checked=!checkList[i].checked;
+            }
+        }
+
+        for(var i=0;i<checkList.length;i++){
+            arr1.push(checkList[i].checked);
+        }
+        sumAll();
+        if(arr1.indexOf(true)==-1){
+            allcheck.checked=false;
+            return;
+        }
+        if(arr1.indexOf(false)==-1){
+            allcheck.checked=true;
+            return
+        }
+        allcheck.checked=false;
+    }
+    
+    function sumAll() {
+        var sum=0;
+        var checkList=document.getElementsByName("checks");
+        for(var i=0;i<checkList.length;i++){
+            if(checkList[i].checked){
+                sum+=parseFloat(arr[i].sumprice.toFixed(2));
+            }
+        }
+        sums.textContent=sum.toFixed(2);
+    }
+</script>
+</body>
+</html>

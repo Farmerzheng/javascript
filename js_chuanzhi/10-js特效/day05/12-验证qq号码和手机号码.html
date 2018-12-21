@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //qq，开头只能是1-9，后边可以出现4,10位数字
+    console.log( /^[1-9]{1}[0-9]{4,10}$/.test('1111111') );
+    //验证手机
+    console.log( /^1{1}[0-9]{10}$/.test('18133426789') );
+    // 13  15   17  18 19
+    console.log(  /^(13|15|17|18|19)[0-9]{9}$/.test('19013343456')  );
+    //邮箱  _er234@163-a.com
+    // i 忽略大小写
+    console.log( /^[a-z0-9_]{2,18}@{1}[a-z0-9\-]{1,256}\.{1}[a-z]{3}/i.test('Hello@baidu.com') );
+
+    console.log( /^[\u4e00-\u9fa5]{0,}$/.test('中国') );
+</script>
+</body>
+</html>

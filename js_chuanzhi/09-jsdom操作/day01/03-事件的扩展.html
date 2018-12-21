@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 150px;
+            height: 150px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box" style="">英工教育</div>
+<script>
+    // 1.获取标签元素
+    // 2.添加事件
+    // 3. 书写事件驱动程序
+    var box = document.getElementById('box');
+    box.onclick = fn;
+// fn 表示执行fn函数
+// fn() 表示执行fn函数的返回结果
+
+    function fn(){
+        //alert(3);
+        // 是通过事件驱动程序，来让div的宽度变大
+        //console.log(box);
+        //  如果要操作标签中的样式，是需要通过
+        //  所找到的标签.style
+        box.style.width = '300px';
+        box.style.height = '300px';
+        box.style.background = 'orange';
+        box.style.fontSize = '30px';
+    }
+</script>
+</body>
+</html>

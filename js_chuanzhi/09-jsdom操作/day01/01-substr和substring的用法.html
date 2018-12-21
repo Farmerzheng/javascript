@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = 'abcdefg1332432434324';
+    //substr( start,count )
+
+    // start 开始的索引值
+    // count  要截取的长度 (如果没有，到最后)
+    // 如果后边的数为负数，截取不到（转换为0）
+    //console.log( str.substr(3,-1) );
+    //  substring( from,to )
+    // from 开始的索引值
+    //  to  结束的索引值 （不包括to本身）
+    // 如果 to是负数，表示截取前边参数的长度
+    console.log( str.substring( 3,-3 ) );// 返回前3个字符
+    console.log( str.substring(15) ); //如果只写一个参数表示截取前15字符
+    //  \n  \ 在程序表示转义字符
+    //  \转义字符，会自动把后边的字符给转义成普通的字符串，没有特殊意义
+    console.log( [1,2,3].join('\t') );
+    //\n 换行 \t 制表符  \r 回车
+</script>
+</body>
+</html>

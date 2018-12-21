@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/Tween.js"></script>
+    <style>
+        div
+        {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+    var div0=document.getElementsByTagName("div")[0];
+
+    var tween1=new TWEEN.Tween({left:0});
+    tween1.to({left:400},2000);
+    tween1.onUpdate(update);
+
+
+    var tween2=new TWEEN.Tween({top:0});
+    tween2.to({top:400},2000);
+    tween2.onUpdate(update);
+    tween1.delay(3000)
+    tween2.repeat(1);
+    tween2.yoyo(true)
+    tween2.repeatDelay(2000)
+    tween1.chain(tween2);
+    tween1.start();
+
+    animation()
+    function animation() {
+        requestAnimationFrame(animation)
+        TWEEN.update();
+    }
+
+    function update() {
+        div0.style.left=this.left+"px";
+        div0.style.top=this.top+"px";
+
+    }
+
+</script>
+</body>
+</html>

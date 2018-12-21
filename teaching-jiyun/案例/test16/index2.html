@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <div></div>
+        <pre></pre>
+<script>
+        var div0=document.getElementsByTagName("div")[0];
+        var pre0=document.getElementsByTagName("pre")[0];
+        var str="abcdef\rwertq"
+        div0.textContent=str;
+        pre0.textContent=str;
+        var reg=/\r/g;
+
+            console.log(div0.textContent.match(reg));
+</script>
+</body>
+</html>

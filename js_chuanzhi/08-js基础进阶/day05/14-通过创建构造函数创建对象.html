@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //自定义函数
+    function fn(){
+        return 123;
+    }
+    fn();
+    // 自定义构造函数
+    // 通常用于 初始化一些值
+    function Person( name,age,gender ){
+        //成员属性和成员方法
+        //为当前的对象添加成员属性和方法
+        // this 谁实例化的对象，this就指的是谁
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+
+        this.say = function(){
+            return 'My name is ' + this.name;
+        }
+        // 默认返回this，当前创建好的对象
+        //return this;
+    }
+    //1. new实例化一个对象出来
+    //2. 把this的指向，改为指向当前的对象
+    //3. 为当前的对象添加成员属性和方法
+    //4. 自动返回创建好的对象，不需要写return
+    var p1 = new Person( 'Tom',18,'male' ); // 实例化一个对象
+    console.log( p1.say() );
+//
+//    var p2 = new Person( 'Jerry',17,'female' );  //实例化一个对象
+//    console.log( p2.say() );
+//
+    var p4 = new Person( 'David',20,'male' );
+    console.log(p4);
+</script>
+</body>
+</html>

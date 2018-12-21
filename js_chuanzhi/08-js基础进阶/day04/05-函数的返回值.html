@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 获取1到100的累加，然后用这个结果 * 10
+    // 写一个函数：获取1到100累加的结果
+    // 1. 函数执行后，如果不写返回值，默认就是 undefined
+    // 2. 如何写返回值： return
+    // 3. 如果 return 后边 没有任何的内容，也是会返回undefined
+    // 4. return 后边不管写什么内容，就会返回什么结果
+    // 5. 一旦执行了return，后边的代码就不会被执行。
+    function leijia(){
+        var sum = 0;
+        for( var i = 1; i <= 100; i++ ){
+            sum += i;
+        }
+        //函数执行完，需要有返回值
+        return sum;
+        //alert( '返回结束' );
+    }
+    alert( leijia() );
+
+    // 回顾prompt  和 confirm
+    // 查看这两个函数的返回值
+    //  返回值：函数执行后的结果
+    // prompt的返回值：就是用户所输入的内容
+//    var res1 = prompt( '请输入姓名' );
+//    console.log( res1 );
+    // confirm 返回值：布尔型的值
+//    var res2 = confirm('你确定要走吗');
+//    console.log( res2 );
+    // 函数结构
+    // 函数体，参数，返回值
+    function  fn( a,b ){
+        //函数体
+        return ;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            position: absolute;
+            left:0;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+<button>动画</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+    var timer = null;
+
+    button.onclick = function () {
+        //让div动起来,运动到400，就表示让div的left变化到400
+        //div.style.left = '400px';
+
+        timer = setInterval( function () {
+            //让div盒子在原来的基础值上 增加10
+            div.style.left = div.offsetLeft + 9 + 'px';
+
+            //如果div当前的位置是否到了400，停止，清除定时器
+            // 如果到了396的时候，如果再加9，超过了400，
+            //  如果到了396，就让他跳到400
+            // 用到了步伐，每次是9，所剩下来的4，不满足一个步伐
+            if( div.offsetLeft === 396 ){
+                // 如果大于400，就停留在400
+                div.style.left = '400px';
+                clearInterval( timer );
+            }
+        } , 15 );
+    }
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    //初始化ajax（初始化重复的属性）
+    $.ajaxSetup({
+        type:"GET",
+        url:"http://app.sencha.com.cn/soya/apps/testdb/server/",
+        dataType:"jsonp"
+    });
+
+    //发送ajax请求
+    $.ajax({
+        data:{
+                action:"wordList.list",
+                page:1,
+                perPage:20
+        },
+        timeout:3000,
+        success:function(responseText){
+            console.log(responseText);
+        },
+        error:function(e){
+            console.log(e);
+//            if(e.statusText=="timeout"){
+                alert("请求超时");
+//            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+body {
+  /*margin:0;*/
+  /*padding:0;*/
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+</style>
+
+<body>
+  <div class="box"></div>
+  <script>
+  var box = document.querySelector(".box");
+  box.addEventListener("mousedown", mouseDownHandler);
+  document.addEventListener("mouseup", mouseUpHandler);
+  document.addEventListener("mousemove",mouseMoveHandler);
+
+  var x = 0;
+      y = 0;
+      moveBoolean = false;
+
+  function mouseDownHandler(e) {
+    x = e.pageX - box.offsetLeft;
+    y = e.pageY - box.offsetTop;
+    moveBoolean = true;
+
+  }
+
+  function mouseMoveHandler(e) {
+    if(!moveBoolean)return;
+    box.style.left = (e.pageX - x) + "px";
+    box.style.top = (e.pageY - y) + "px";
+  }
+
+
+  function mouseUpHandler() {
+    moveBoolean = false;
+  }
+  </script>
+</body>
+
+</html>

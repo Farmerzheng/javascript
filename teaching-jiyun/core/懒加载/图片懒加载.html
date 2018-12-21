@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	 .box {
+ width: 100%;
+ height: 200px;
+ background: #ff0000;
+ margin-bottom: 10px;
+ text-align: center;
+ color: #fff;
+ line-height: 200px;
+ font-family: microsoft yahei;
+ font-size: 40px;
+  
+ }
+ .animate{
+ animation: showText 1s;
+ }
+ @keyframes showText
+ {
+ from {
+ font-size: 20px;
+ }
+ to {
+ font-size: 40px;
+ }
+ }
+</style>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+	<script type="text/javascript">
+        //offsetTop  对象距离版面顶端的位置
+         var box = document.getElementsByClassName('box');
+
+        document.addEventListener('scroll',function(){
+
+             //显示窗口的底部
+             var visibleBottom = (document.documentElement.scrollTop||document.body.scrollTop) + document.documentElement.clientHeight;
+
+             //显示窗口的顶部
+             var visibleTop = document.documentElement.scrollTop||document.body.scrollTop ;
+
+             for (var i = 0; i < box.length; i++){
+
+                 var centerY = box[i].offsetTop+(box[i].offsetHeight/2);
+
+                 if(centerY>visibleTop&&centerY<visibleBottom){
+
+                  box[i].innerHTML = '区域可见';
+                  box[i].setAttribute("class",'box animate');
+                  console.log('第'+i+'个区域可见');
+
+                 }else{
+
+                  box[i].innerHTML = '';
+                  box[i].setAttribute("class",'box');
+                  console.log('第'+i+'个区域不可见');
+
+                 }
+             }
+        })
+	</script>
+</body>
+</html>

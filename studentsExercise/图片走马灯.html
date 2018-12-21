@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    #div {width:300px;height: 200px;position: relative;overflow: hidden;margin: 50px auto;border: 1px solid #333;}
+    #div ul{width: 1200px;height:200px;position: absolute;top: 0;left:0; }
+    #div ul li{width: 290px;height:190px;float: left;list-style: none;padding:5px;}
+    #div ul li img{width: 290px;height:190px;}
+    #btn {margin: 0 auto;width: 92px;height: 22px;}
+</style>
+<body>
+  <div id="div">
+      <ul id="ul1">
+          <li ><img src="images/psb%20(3).jpg" alt=""></li>
+          <li><img src="images/psb%20(4).jpg" alt=""></li>
+          <li><img src="images/psb%20(7).jpg" alt=""></li>
+          <li><img src="images/psb%20(8).jpg" alt=""></li>
+      </ul>
+  </div>
+  <div id="btn">
+      <button id="start">开始</button>
+      <button id="pause">暂停</button>
+  </div>
+
+<script>
+    window.onload=function(){
+
+        var oDiv=document.getElementById('div');
+        var oUl=document.getElementById('ul1');
+        var startBtn=document.getElementById('start');
+        var pauseBtn=document.getElementById('pause');
+        var timer=null;
+        startBtn.onclick=function(){
+//            alert(oUl.offsetLeft);
+
+            clearInterval(timer);
+            timer=setInterval(function (){
+
+                var iSpeed=-5;
+
+                if(oUl.offsetLeft<=-900)	//是否到达终点
+                {
+                    clearInterval(timer);	//到达终点
+                }
+                else
+                {
+                    oUl.style.left=oUl.offsetLeft+iSpeed+'px';	//到达之前
+                }
+            }, 30);
+
+        };
+        pauseBtn.onclick=function(){
+            clearInterval(timer);
+        }
+    }
+</script>
+</body>
+</html>

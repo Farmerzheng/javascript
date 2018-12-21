@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 400px;
+            margin:100px auto;
+            border:1px solid #ccc;
+        }
+        .box ul{
+            overflow: hidden;
+        }
+        .box ul li{
+            width: 100px;
+            height: 40px;
+            float: left;
+            background: pink;
+            text-align: center;
+            line-height:40px;
+            cursor: pointer;
+        }
+        .box ul .current{
+            background: purple;
+            color:#fff;
+        }
+        .box .bd{
+            height: 200px;
+        }
+        .box .bd div{
+            height: 100%;
+            display: none;
+        }
+        .box .bd div:nth-child(1){
+            background: orange;
+        }
+        .box .bd div:nth-child(2){
+            background: lightblue;
+        }
+        .box .bd div:nth-child(3){
+            background: lightgreen;
+        }
+        .box .bd div:nth-child(4){
+            background: lightsalmon;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <ul class="hd">
+        <li class="current">国际</li>
+        <li>国内</li>
+        <li>娱乐</li>
+        <li>社会</li>
+    </ul>
+    <div class="bd">
+        <div style="display: block">国际</div>
+        <div>国内</div>
+        <div>娱乐</div>
+        <div>社会</div>
+    </div>
+</div>
+<div class="box">
+    <ul>
+        <li class="current">国际</li>
+        <li>国内</li>
+        <li>娱乐</li>
+        <li>社会</li>
+    </ul>
+    <div class="bd">
+        <div style="display: block">国际</div>
+        <div>国内</div>
+        <div>娱乐</div>
+        <div>社会</div>
+    </div>
+</div>
+<script>
+    var box = document.getElementById('box');
+    //找到当前box盒子下边hd下的所有的li
+    var lis = box.getElementsByClassName('hd')[0].getElementsByTagName('li');
+    var divs = box.getElementsByClassName('bd')[0].getElementsByTagName('div');
+    // 给所有的li，添加鼠标滑过事件
+    for( var i = 0; i < lis.length; i++ ){
+        //给每一个li添加索引值
+        lis[ i ].index = i;
+        //给每一个li添加滑过事件
+        lis[ i ].onmouseover = function () {
+            //在给当前的添加current类之前，先把所有li中类移除
+            for( var j = 0; j < lis.length; j++ ){
+                lis[ j ].className = '';
+            }
+            //alert(1);
+            // 给当前的li，添加current类
+            this.className = 'current';
+
+            //通过当前的索引值，来找到下边一组对应的div，是通过for循环
+            //alert( this.index );
+            for( var j = 0; j < lis.length; j++ ){
+                // 先让所有的div隐藏
+                divs[ j].style.display = 'none';
+                // 再用当前的索引值和0,1,2,3进行比较，相同的话，就表示当前的,其display属性为block
+                if( this.index === j ){
+                    divs[j].style.display = 'block';
+                }
+            }
+        }
+    }
+
+
+</script>
+</body>
+</html>

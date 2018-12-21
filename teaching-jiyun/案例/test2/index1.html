@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table
+        {
+            border-collapse: collapse;
+
+        }
+        table td
+        {
+            width: 200px;
+            border: solid 1px #000000;
+            text-align: center;
+        }
+
+        div
+        {
+            width: 400px;
+            height: 35px;
+            line-height: 35px;
+            color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>分数</td>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>24</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td>李四</td>
+            <td>22</td>
+            <td>92</td>
+        </tr>
+        <tr>
+            <td>王五</td>
+            <td>26</td>
+            <td>57</td>
+        </tr>
+        <tr>
+            <td>王六</td>
+            <td>26</td>
+            <td>87</td>
+        </tr>
+        <tr>
+            <td>王七</td>
+            <td>26</td>
+            <td>97</td>
+        </tr>
+    </table>
+    <input type="text" id="texts">
+    <div id="div0"></div>
+    <input type="button" value="搜索" id="bn">
+<script>
+
+      var texts=document.getElementById("texts");
+      var bn=document.getElementById("bn");
+      var div0=document.getElementById("div0");
+      bn.addEventListener("click",clickHandler);
+
+    var trs=document.getElementsByTagName("tr");
+
+
+      function searchResult(result) {
+          var str="";
+          for(var i=1;i<trs.length;i++){
+              var tds=trs[i].getElementsByTagName("td");
+              var resultInt=parseInt(tds[2].textContent/10);
+              if(result==5 && resultInt<=5){
+                  resultInt=5;
+              }
+                if(result==resultInt){
+                    str+=tds[0].textContent+",";
+                }
+          }
+          str=str.substr(0,str.length-1);
+            return str;
+      }
+        /*
+        * 函数的作用
+        * 参数   参数名称   参数的类型  参数作用
+        *  返回值  返回值的名称  返回值的类型 返回值的作用
+        * 1、函数的使用方法
+        * 2、函数的操作过程
+        * */
+      function clickHandler(e) {
+          if(!e){
+              e=window.event;
+          }
+          window.requestAnimationFrame()
+          var search=texts.value;
+          var str="";
+          switch (search)
+          {
+              case "A":
+                  str=searchResult(9);
+                  break;
+              case "B":
+                  str=searchResult(8);
+                  break;
+              case "C":
+                  str=searchResult(7);
+                  break;
+              case "D":
+                  str=searchResult(6);
+                  break;
+              case "E":
+                  str=searchResult(5);
+                  break;
+              default:
+                  break;
+          }
+          div0.textContent=str;
+      }
+
+
+</script>
+</body>
+</html>

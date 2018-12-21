@@ -1,0 +1,102 @@
+*{ margin: 0; padding: 0; }
+a{ text-decoration: none; color: #fff; }
+ul,li{
+	list-style: none;
+}
+body{
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+.w{
+	width: 100%;
+	background: #222222;
+}
+#header{
+	width: 1190px;
+	height: 60px;
+	margin: 0 auto;
+	line-height: 60px;
+}
+#logo{
+	float: left;
+	margin: 8px 30px auto 3px;	
+}
+#mx{
+	float:left;
+	margin-top: 5px
+	
+}
+#header form{
+	float: left;
+	width: 470px;
+	height: 38px;
+	background: red;
+	margin: 10px 37px auto 30px;
+}
+#header p a{
+	margin-right: 15px;
+}
+#hot{
+	position: absolute;
+	right: -10px;
+	top: -10px;
+}
+#txt{
+	float: left;
+	width: 360px;
+	height: 37px;
+	border: none;
+	color:#ccc;
+	padding-left: 10px;
+	box-sizing: border-box;
+	outline: none;
+
+}
+#img{
+	float: left;
+}
+#header p{
+	float: left;
+}
+#header p a:hover{
+	color: #f00;
+}
+#banner{
+	width: 100%;
+	height: 410px;
+	background: url(../images/1.jpg) center 0;
+	min-width: 1190px;
+	;
+}
+#banner2{
+	width: 1190px;
+	height: 410px;
+	margin: 0 auto;
+	position: relative;
+}
+#banner2 ul{
+	width: 220px;
+	height: 350px;
+	background: rgba(0,0,0,.8);
+	position: absolute;
+	top: 30px;
+	right: 0;
+	border-radius: 5px;
+}
+#banner2 li{
+	line-height: 34px;
+	padding-left: 16px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #454545;
+	cursor: pointer;
+}
+#clo{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	font-size: 30px;
+	line-height: 30px;
+	color: #fff;
+	cursor: pointer;
+	z-index: 1000;
+}

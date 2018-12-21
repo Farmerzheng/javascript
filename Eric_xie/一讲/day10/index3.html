@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .ulStlye
+        {
+            display: none;
+            transition: all 1s;
+            list-style: none;
+        }
+        li
+        {
+            width: 300px;
+            height: 25px;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>第一级1
+        <ul class="ulStlye">
+            <li>第二级1
+                <ul class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                </ul>
+            </li>
+            <li>第二级2
+                <ul  class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                </ul>
+            </li>
+            <li>第二级3
+                <ul  class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                    <li>第三级5</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>第一级2
+        <ul class="ulStlye">
+            <li>第二级1
+                <ul class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                    <li>第三级5</li>
+                    <li>第三级6</li>
+                </ul>
+            </li>
+            <li>第二级2
+                <ul class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                    <li>第三级5</li>
+                    <li>第三级6</li>
+                    <li>第三级7</li>
+                </ul>
+            </li>
+            <li>第二级3
+                <ul class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                    <li>第三级5</li>
+                    <li>第三级6</li>
+                    <li>第三级7</li>
+                    <li>第三级8</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>第一级3
+        <ul class="ulStlye">
+            <li>第二级1
+                <ul class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                    <li>第三级5</li>
+                    <li>第三级6</li>
+                    <li>第三级7</li>
+                    <li>第三级8</li>
+                    <li>第三级9</li>
+                </ul>
+            </li>
+            <li>第二级2
+                <ul class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                    <li>第三级5</li>
+                    <li>第三级6</li>
+                    <li>第三级7</li>
+                    <li>第三级8</li>
+                    <li>第三级9</li>
+                    <li>第三级10</li>
+
+                </ul>
+            </li>
+            <li>第二级3
+                <ul class="ulStlye">
+                    <li>第三级1</li>
+                    <li>第三级2</li>
+                    <li>第三级3</li>
+                    <li>第三级4</li>
+                    <li>第三级5</li>
+                    <li>第三级6</li>
+                    <li>第三级7</li>
+                    <li>第三级8</li>
+                    <li>第三级9</li>
+                    <li>第三级10</li>
+                    <li>第三级11</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+    <script>
+        var uls=document.getElementsByTagName("ul");
+        var lis=document.getElementsByTagName("li");
+        const UL_HEIGHT_CHANGE="ul_Height_Change";
+        for(var i=0;i<lis.length;i++){
+            lis[i].addEventListener("click",clickHandler)
+        }
+        for(var j=0;j<uls.length;j++){
+            uls[j].addEventListener(UL_HEIGHT_CHANGE,ulChangeHandler)
+        }
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            e.stopPropagation();
+//            this点的li   this.lastElementChild li下面的ul
+            if(this.children.length==0) return;
+            var ul=this.lastElementChild;
+            if(getComputedStyle(ul).display=="block"){
+                ul.style.display="none";
+                this.style.height="25px"
+            }else{
+                ul.style.display="block";
+
+               var height= setUlheight(ul);
+                this.style.height=height+this.offsetHeight+"px";
+                var evt=new Event(UL_HEIGHT_CHANGE);
+                evt.height=this.offsetHeight;
+                this.parentElement.dispatchEvent(evt);
+
+            }
+            var parent=this.parentElement;
+            for(var i=0;i<parent.children.length;i++){
+                if(parent.children[i]!=this){
+                    parent.children[i].lastElementChild.style.display="none";
+                    parent.children[i].style.height="25px"
+                }
+            }
+        }
+
+        function setUlheight(ul) {
+            var height=0;
+            for(var i=0;i<ul.children.length;i++){
+                height+=ul.children[i].offsetHeight;
+            }
+            ul.style.height=height+"px"
+            return ul.offsetHeight;
+        }
+
+        function ulChangeHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            this.style.height=e.height+"px"
+           if(this.parentElement && this.parentElement!=document.body){
+               this.parentElement.style.height=this.parentElement.offsetHeight+e.height+"px"
+           }
+        }
+        
+
+    </script>
+</body>
+</html>

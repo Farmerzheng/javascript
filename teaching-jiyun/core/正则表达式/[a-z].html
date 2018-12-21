@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var myReg = /[a-z]{3}/gi;
+		var str = "aaa1234";
+		var str2 = "aa1234";
+		var newStr = myReg.test(str);
+		var newStr2 = myReg.test(str2);
+		console.log(newStr);//true
+		console.log(newStr2);//false
+	</script>
+</body>
+</html>	

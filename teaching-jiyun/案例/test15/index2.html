@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            color: #FF0000;
+        }
+        #inputs
+        {
+            width: 800px;
+            height: 40px;
+            font-size: 40px;
+
+        }
+        #reg
+        {
+            width: 800px;
+            height: 40px;
+            font-size: 40px;
+
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="inputs" >
+    <br>
+    <br>
+    <input type="text" id="reg" >
+    <input type="button" id="bn" value="设置正则">
+    <div></div>
+<script>
+        var texts=document.getElementById("inputs");
+        var regs=document.getElementById("reg");
+        var bn=document.getElementById("bn");
+        var div0=document.getElementsByTagName("div")[0];
+        var reg;
+        bn.addEventListener("click",clickHandler)
+            texts.addEventListener("input",inputHandler);
+    function inputHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        if(reg){
+           var arr= texts.value.match(reg);
+
+            if(!arr){
+                div0.innerHTML="未查找到！";
+                return;
+            }
+            var str="";
+            for(var i=0;i<arr.length;i++){
+                str+=arr[i]+"<br>"
+            }
+            div0.innerHTML=str;
+        }
+    }
+
+    function clickHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        reg=new RegExp(regs.value);
+    }
+</script>
+</body>
+</html>

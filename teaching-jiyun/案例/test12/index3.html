@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var sprite=document.createElement("div");
+        sprite.style.backgroundImage="url(img/Actor01-Braver16.png)";
+        sprite.style.width="32px";
+        sprite.style.height="32px";
+        sprite.style.position="absolute";
+        /*sprite.style.backgroundPositionX="-32px";
+        sprite.style.backgroundPositionY="0px"*/
+        document.body.appendChild(sprite)
+        setInterval(frameHandler,200);
+        const ACTOR_STAND="stand";
+        const ACTOR_DOWN="actor_down";
+        const ACTOR_UP="actor_up";
+        const ACTOR_LEFT="actor_left";
+        const ACTOR_RIGHT="actor_right";
+        var state=ACTOR_STAND;
+        var row=0;
+        var col=0;
+
+        function frameHandler() {
+            switch (state)
+            {
+                case ACTOR_STAND:
+                        row=0;
+                        col=0;
+                    sprite.style.backgroundPositionX=-32*col+"px";
+                    sprite.style.backgroundPositionY=-32*row+"px"
+                        return;
+                    break;
+                case ACTOR_DOWN:
+                    row=0;
+                        col++;
+                        if(col>3){
+                            col=0;
+                        }
+                    break;
+                case ACTOR_UP:
+                    row=3;
+                    col++;
+                    if(col>3){
+                        col=0;
+                    }
+                    break;
+                case ACTOR_LEFT:
+                    row=1;
+                    col++;
+                    if(col>3){
+                        col=0;
+                    }
+                    break;
+                case ACTOR_RIGHT:
+                    row=2;
+                    col++;
+                    if(col>3){
+                        col=0;
+                    }
+                    break;
+            }
+            sprite.style.backgroundPositionX=-32*col+"px";
+             sprite.style.backgroundPositionY=-33*row+"px"
+        }
+
+        window.addEventListener("keydown",keyHandler);
+        window.addEventListener("keyup",keyHandler);
+        function keyHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.type=="keyup"){
+                state=ACTOR_STAND;
+                return;
+            }
+            switch (e.keyCode){
+                case 37:
+                        state=ACTOR_LEFT;
+                    sprite.style.left=sprite.offsetLeft-3+"px";
+                    break;
+                case 38:
+                    state=ACTOR_UP;
+                    sprite.style.top=sprite.offsetTop-3+"px";
+                    break;
+                case 39:
+                    state=ACTOR_RIGHT;
+                    sprite.style.left=sprite.offsetLeft+3+"px";
+                    break;
+                case 40:
+                    state=ACTOR_DOWN;
+                    sprite.style.top=sprite.offsetTop+3+"px";
+                    break;
+            }
+
+        }
+    </script>
+</body>
+</html>

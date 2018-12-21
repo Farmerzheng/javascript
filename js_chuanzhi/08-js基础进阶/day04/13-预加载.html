@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //js执行过程
+
+    //1. 检查代码中是否有语法错误
+    //2. 查找代码中的 函数（函数声明方式） 和 变量；提升到最前边-----> 预加载
+    //  只是加载变量的名称，不会加载变量的值
+    //3. 一行一行的执行代码
+    fn();
+    alert( 123 );
+    var a = 1; // 只有只能到这一行的时候，才会给变量赋值
+
+
+    function fn(){
+        return 123;
+    }
+
+</script>
+</body>
+</html>

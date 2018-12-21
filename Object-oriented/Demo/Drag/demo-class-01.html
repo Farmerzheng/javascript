@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+/*body的默认定位方式是position:relative*/
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+</style>
+
+<body>
+  <div class="box"></div>
+  <script>
+  var box = document.querySelector(".box");
+
+  box.addEventListener("mousedown", mouseDownHandler);
+  box.addEventListener("mouseup",mouseUpHandler);
+
+  var moveBoolean = true;
+
+  var divX = 0,
+    divY = 0
+
+  function mouseDownHandler(e) {
+  	moveBoolean = true;
+    divX = e.pageX - box.offsetLeft;
+    divY = e.pageY - box.offsetTop;
+    // console.log(divX,divY) 
+    document.addEventListener("mousemove", mouseMoveHandler);
+  }
+
+  function mouseMoveHandler(e) {
+    // 动态改变box的left 、top值
+    if(moveBoolean == false)return;
+    box.style.left = e.pageX - divX + "px";
+    box.style.top = e.pageY - divY + "px";
+
+  }
+
+  function mouseUpHandler(){
+   moveBoolean = false;
+  }
+  </script>
+</body>
+
+</html>

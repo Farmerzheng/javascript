@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box1">
+    <ul>
+        <li>123</li>
+        <li>1234</li>
+    </ul>
+</div>
+<div class="box2">box2</div>
+<script>
+    // 先找到box1,进行克隆
+    // cloneNode( 参数 )  参数是true表示同时克隆子节点，默认false
+    // 返回克隆的节点（标签）
+    var box1 = document.getElementsByClassName('box1')[0];
+    var box2 = document.getElementsByClassName('box2')[0];
+    //var newBox1 = box1.cloneNode(true);
+    //console.log( newBox1 );
+    // 如果添加的节点，是当前页面中已经存在节点
+    // 表示移动节点
+    box2.appendChild(box1);
+</script>
+</body>
+</html>

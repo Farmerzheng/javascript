@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 400px;
+            background: pink;
+            margin:100px auto;
+        }
+        .box-hd {
+            height: 50px;
+            background: lightblue;
+            line-height:50px;
+        }
+        .box-hd a{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <div class="box-hd">
+            <a href="javascript:;">按钮</a>
+        </div>
+    </div>
+    <script>
+        //
+        var box = document.getElementById('box');
+        var boxHd = box.children[0];
+        var a = boxHd.children[0];
+
+        box.onclick = function ( event ) {
+            var e = event || window.event;
+            //获取事件触发的目标元素
+//            console.log(e.srcElement);
+//            e.srcElement.style.background = 'blue';
+            var target = e.target ? e.target : e.srcElement;
+            console.log( target );
+        }
+    </script>
+</body>
+</html>

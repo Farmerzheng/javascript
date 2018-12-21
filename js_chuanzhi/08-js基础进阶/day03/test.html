@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var numbers = [ 100,19,30,80 ];
+    //一共要需要比较5趟
+    //第一层循环控制比较的趟数
+    var counts = 0;
+    for( var i = 0; i < numbers.length - 1; i++ ){
+        counts++;
+        //如果没有发生数据交换 为true
+        var isSorted = true;
+        //第二层循环是比较的个数
+        for( var j = 0; j <numbers.length - 1 - i; j++ ){
+            //如果前边的数字大于后边的数字，则交换两个的位置
+            if ( numbers[ j ] > numbers[ j + 1 ] ){
+                //一旦发生数据交换，i
+                isSorted = false;
+                var tmp = numbers[ j ];
+                numbers[ j ] = numbers[ j + 1 ];
+                numbers[ j + 1 ] = tmp;
+            }
+            counts++;
+        }
+        //如果没有发生数据交换，则认为是排序结束，此时就可以终止循环
+        if( isSorted ){
+            break;
+        }
+    }
+    console.log( numbers );
+    console.log( counts );
+
+</script>
+</body>
+</html>

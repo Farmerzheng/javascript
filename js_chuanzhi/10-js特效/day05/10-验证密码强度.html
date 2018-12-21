@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #ccc;
+        }
+        .containier{
+            width: 300px;
+            padding:50px;
+            border:1px solid #333;
+            background: #eee;
+            margin:100px auto;
+        }
+        .block3{
+            width: 120px;
+            height: 6px;
+            background: green;
+            border: 1px solid #666;
+        }
+        .block2{
+            width: 90px;
+            height: 6px;
+            background: orange;
+            border: 1px solid #666;
+        }
+        .block1{
+            width: 60px;
+            height: 6px;
+            background: red;
+            border: 1px solid #666;
+        }
+        .block0{
+            width: 120px;
+            height: 6px;
+            border: 1px solid #CCC;
+        }
+    </style>
+</head>
+<body>
+<div class="containier">
+    <input type="text" id="userPass">
+    <p>密码强度: <strong id="strength"></strong></p>
+    <div class="block0" id="strengthLevel"></div>
+</div>
+<script>
+    var userPass = document.getElementById('userPass');
+    var strength = document.getElementById('strength');
+    var strengthLv = document.getElementById('strengthLevel');
+    var arr = ['','低','中','高']
+    //密码强度分为3级，初始值0  一共是4个
+    //文字显示，也是分为4部分
+    //输入框输入事件
+    userPass.oninput = function () {
+        //需要对输入的内容进行验证
+        //1.值有字母+1，如果又有数字 +1  ，又有大写字母+1
+        var level = 0;
+        var val = this.value;
+        if( /[a-z]/.test(val) ){
+            level++;
+        }
+        if( /[0-9]/.test(val) ){
+            level++;
+        }
+        if( /[A-Z]/.test(val) ){
+            level++;
+        }
+        //如果密码的长度小于6，级别同样 为0
+        if( val.length < 6 ){
+            level = 0;
+        }
+        // block2   'block' + level
+        //为strengthLv，设置class类名
+        strengthLv.className = 'block' + level;
+        strength.innerHTML = arr[level];
+    }
+
+</script>
+</body>
+</html>

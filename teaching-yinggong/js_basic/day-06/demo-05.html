@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 输出1~100 所有非质数
+
+  /*for (var i = 0; i <=100; i++) {
+    flag=false;
+  for (var j = 2; j < i; j++) {
+    if( i%j != 0)
+    flag = true
+  }
+  flag = false
+
+
+
+  console.log(i)
+  }*/
+  for (let i = 0; i <= 100; i++) {
+    let flag = true;
+    for (let j = 2; j < i; j++) {
+        if(i%j===0){//如果是合数就改变flag的值
+          flag = false;
+        }
+    }
+    if(flag === false){
+      console.log(i)
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* for (var i = 0; i <= 100; i++) {
+    // 判断i是否是质数
+
+    var flag = false;
+
+    //判断i是否是质数，如果是，将flag变为true
+    for (var j = 2; j < i; j++) {
+      if (i % j === 0) {
+        // 如果2~18当中有能被19整除的数，那么改变flag值
+        flag = true
+      }
+    }
+    // 如果i是质数，flag===false
+    if (flag == false) {
+      console.log(i)
+    }
+
+  }*/
+  </script>
+</body>
+
+</html>

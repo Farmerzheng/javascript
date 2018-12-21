@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+#cart {
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: pink;
+}
+
+.body {
+  width: 800px;
+}
+</style>
+
+<body>
+  <div class="body">
+    <table id="cart" border="1">
+      <tr>
+        <td>
+          <input type="checkbox" name="" id="checkAll">
+        </td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>性别</td>
+        <td>爱好</td>
+        <td>时间</td>
+        <td>价格</td>
+        <td class="total">总价</td>
+        <td>
+        </td>
+      </tr>
+    </table>
+    <div class="totalPrice_wrap">
+      <p style="float: left;">总价</p>
+      <p class="totalPrice" style="float: right;">123</p>
+    </div>
+  </div>
+  <script src="js/SingleCart_02.js"></script>
+  <script>
+  /*
+         单个商品的总价增加或者减少，所有商品的总价要发生变化
+         我们在demo_shopingCart_09.html文件里面并不能够知道 SingleCart.js 的点击事件、失去焦点事件 ，
+         我们要是在demo_shopingCart_09.html文件里面知道单个按钮点击或者输入框失去焦点这些事件就好了
+         要是知道，我们就可以渲染totalPrice
+
+      */
+
+  var data = [
+    { checked: true, name: "张三", age: 30, sex: "男", hobby: "旅行", time: "2016/3/15", price: 35.2, total: '35.20', num: 1 },
+    { checked: false, name: "王三", age: 30, sex: "女", hobby: "旅行,游泳", time: "2016/4/15", price: 18.2, total: '36.4', num: 2 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '120.8', num: 4 },
+    { checked: false, name: "赵三", age: 30, sex: "女", hobby: "读书", time: "2016/6/15", price: 24, total: '72', num: 3 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '120.8', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '120.8', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '120.8', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '120.8', num: 4 },
+    { checked: true, name: "李三", age: 30, sex: "男", hobby: "旅行,打球", time: "2016/5/15", price: 30.2, total: '120.8', num: 4 }
+  ];
+  let cart = document.querySelector("#cart");
+  let checkAll = document.querySelector("#checkAll");
+  let totalPrice = document.querySelector(".totalPrice");
+
+  function Cart(cartData, box, checkAll, totalPrice) {
+    this.cartData = cartData;
+    this.box = box;
+    this.singleCartArr = [];
+    this.checkAll = checkAll;
+    this.totalPrice = totalPrice
+  }
+  Cart.prototype = {
+    init: function() {
+      this.show();
+      this.bindEvent();
+    },
+    bindEvent: function() {
+      this.checkAll.addEventListener("click", this.checkAllHandler.bind(this));
+
+    },
+    checkAllHandler: function() {
+      // 获取到所有创建好的singleCart对象
+      // this.checkeAll.checked  : true false   
+      for (let i = 0; i < this.singleCartArr.length; i++) {
+        // 单个的singleCart : this.singleCartArr[i]
+        // 操作singleCart对象就能够实现选中的功能
+        this.singleCartArr[i].check(this.checkAll.checked);
+      }
+    },
+    show: function() {
+
+      this.totalPriceNum = 0;
+
+      for (let i = 0; i < this.cartData.length; i++) {
+        let singleCart = new SingleCart(this.cartData[i], this.box);
+        singleCart.init();
+
+        this.totalPriceNum += parseInt(singleCart.totalPrice.innerText)
+        // 监听singleCart的num属性变化(接受抛发过来的事件)
+        singleCart.numInput.addEventListener("numChanged", this.numChangedHandler.bind(this));
+
+        this.singleCartArr.push(singleCart)
+      }
+
+      // 显示总价
+      this.totalPrice.innerText = this.totalPriceNum;
+    },
+    numChangedHandler: function(event) {
+      /*    单个购物车数量改变，能够执行singleCartChange 方法就好了
+            事件抛发 （观察者模式）  被观察者（singleCart）和观察者（Cart）两者完全独立
+                                 各司其职（）  
+         singleCart 它的num 值变化要是能够通知外界就好了
+
+         */
+      console.log(event.changedPrice); //总价的增加或者减少量
+      // 改变自身的总价
+      // console.log( event.changedPrice,this.totalPriceNum);
+      this.totalPriceNum += event.changedPrice;
+      // 渲染
+      this.totalPrice.innerText = parseInt(this.totalPriceNum);
+    }
+  }
+  let myCart = new Cart(data, cart, checkAll, totalPrice);
+  // cart  --->
+  myCart.init();
+  </script>
+</body>
+
+</html>

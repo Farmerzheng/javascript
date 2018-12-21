@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		#nav{
+			width: 450px;
+			height: 40px;
+			border: 1px solid #ccc;
+			margin: 0 auto;
+		}
+		#banner{
+			width: 450px;
+			height: 280px;
+			border: 1px solid #ccc;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+		/*子元素*/
+		#list>li{   
+			float: left;
+			width: 150px;
+			line-height: 40px;
+			text-align: center;
+			border: 1px solid red;
+			position: relative;
+			box-sizing: border-box;
+		}
+		.list-inner{
+			position: absolute;
+			left:0;
+			top:40px;
+			border: 1px solid green;
+			display: none;
+
+		}
+		.list-inner li{
+			width: 150px;
+			line-height: 40px;
+			border: 1px solid blue;
+			box-sizing: border-box;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="nav">
+		<ul id="list">
+			<li>一级菜单
+				<ul class="list-inner">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单
+				<ul class="list-inner">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单
+				<ul class="list-inner">
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+	<div id="banner">
+		<img src="2.jpg">
+	</div>
+</body>
+<script type="text/javascript">
+	var lis = document.querySelectorAll('#list>li');
+	var uls = document.querySelectorAll('.list-inner');
+	// console.log(lis.length);
+
+	for(var i = 0; i < lis.length; i++){
+		lis[i].index = i;  //lis[0].index = 0  lis[1].index = 1
+		//给每一个li添加鼠标滑过事件
+		lis[i].onmouseover = function(){
+			//吧所有的都隐藏
+			for(var j = 0; j < uls.length; j++){
+				uls[j].style.display = 'none';
+			}
+			uls[this.index].style.display = 'block';
+		}
+		lis[i].onmouseout = function(){
+			uls[this.index].style.display = 'none';
+		}
+	}
+
+
+	
+</script>
+</html>

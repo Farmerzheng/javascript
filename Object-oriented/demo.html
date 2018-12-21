@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script>
+  class Person {
+    // constructor方法是类的构造方法，就是ES5当中的构造函数
+    constructor(name) {
+      this.name = name
+    }
+    // Person.prototype.speak === speak
+    speak() {
+      console.log("我的名字是" + this.name)
+    }
+
+    // methods
+  }
+  // 通过类创建对象
+  var zhangsan = new Person("zhangsan");
+  var lisi = new Person("lisi");
+  var wangwu = new Person("wangwu")
+  </script>
+</body>
+
+</html>

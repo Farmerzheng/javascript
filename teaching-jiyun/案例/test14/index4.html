@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-size: 22px;
+        }
+        #divs
+        {
+            width: 700px;
+            /*border-left: 1px solid;*/
+            margin: auto;
+        }
+        .tex
+        {
+            width: 200px;
+            height: 20px;
+            margin-top: 5px;
+        }
+        #div0
+        {
+            margin-top: 5px;
+        }
+        textarea
+        {
+            width: 170px;
+            height: 50px;
+        }
+        #in7
+        {
+            margin-left: 2px;
+        }
+        table
+        {
+            border: 1px solid;
+            margin-left: 3px;
+        }
+        td
+        {
+            border: 1px solid;
+        }
+        .xingming
+        {
+            width: 90px;
+            text-align: center;
+        }
+        .jianjie
+        {
+            width: 120px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+<div id="divs">
+    姓名：<input type="text" id="in1" class="tex">
+    <div id="div0">
+        性别：<span>男</span><input type="radio"  name="xingbie" value="男"><span>女</span><input type="radio" id="" name="xingbie" value="女"><span>不详</span><input type="radio" id=" " checked="checked" name="xingbie" value="不详">
+    </div>
+
+    年龄：<input type="text" id="in2" class="tex"><br>
+    <div  id="in3" >爱好：
+        <span>游泳</span><input type="checkbox" name="hobbyName" value="游泳">
+        <span>看书</span><input type="checkbox" name="hobbyName" value="看书">
+        <span>游戏</span><input type="checkbox" name="hobbyName" value="游戏">
+        <span>音乐</span><input type="checkbox" name="hobbyName" value="音乐">
+        <span>电影</span><input type="checkbox" name="hobbyName" value="电影">
+        <span>篮球</span><input type="checkbox" name="hobbyName" value="篮球">
+</div><br>
+    学历：<select id="in4">
+    <option selected="selected">本科</option>
+    <option> 专科</option>
+    <option>高中</option>
+</select><br>
+    专业：<input type="text" id="in5" class="tex"><br>
+    简介：<textarea id="in6"></textarea><br>
+    <input type="button" value="添加" id="in7"><br>
+    <input type="button" value="删除全部" id="in8"><br>
+    <table  id="tables">
+
+        <tr>
+            <td class="xingming">姓名</td>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>爱好</td>
+            <td>学历</td>
+            <td class="xingming">专业</td>
+            <td class="jianjie">简介</td>
+            <td>删除</td>
+        </tr>
+
+    </table>
+</div>
+        <script>
+            var names=document.getElementById("in1");
+            var sexs=document.getElementsByName("xingbie");
+            var ages=document.getElementById("in2");
+            var hobbys=document.getElementsByName("hobbyName");
+            var edus=document.getElementById("in4");
+            var majors=document.getElementById("in5");
+            var infos=document.getElementById("in6");
+            var addBn=document.getElementById("in7");
+            var removeBn=document.getElementById("in8");
+            var trs=document.getElementsByTagName("tr");
+            var tables=document.getElementById("tables");
+            if(!localStorage.tb){
+                var arr=[];
+                localStorage.tb=JSON.stringify(arr)
+            }
+            addBn.addEventListener("click",clickHandler);
+            removeBn.addEventListener("click",clickHandler);
+            refreshTable();
+            function clickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                var arr=[];
+                if(this==removeBn){
+                    arr.length=0;
+                }else if(this==addBn){
+                    var obj={};
+                    obj.name=names.value;
+                    for(var i=0;i<sexs.length;i++){
+                        if(sexs[i].checked){
+                            obj.sex=sexs[i].value;
+                        }
+                    }
+                    obj.age=ages.value;
+                    var str="";
+                    for(var j=0;j<hobbys.length;j++){
+                        if(hobbys[j].checked){
+                            str+=hobbys[j].value+",";
+                        }
+                    }
+                    obj.hobby=str.substr(0,str.length-1);
+                    obj.edu=edus.selectedOptions[0].textContent;
+                    obj.major=majors.value;
+                    obj.info=infos.value;
+
+                   arr=JSON.parse(localStorage.tb);
+                    arr.push(obj);
+                }
+                localStorage.tb=JSON.stringify(arr);
+                refreshTable();
+
+            }
+
+            function refreshTable() {
+                trs=document.getElementsByTagName("tr");
+                var len=trs.length;
+                for(var j=1;j<len;j++){
+                    trs[1].remove();
+                }
+                var arr=JSON.parse(localStorage.tb);
+
+                for(var i=0;i<arr.length;i++){
+                    var tr=document.createElement("tr");
+                    for(var str in arr[i]){
+                        var td=document.createElement("td");
+                        td.textContent=arr[i][str];
+                        tr.appendChild(td);
+                    }
+                    var del=document.createElement("td");
+                    var delBn=document.createElement("input");
+                    delBn.type="button";
+                    delBn.value="删除";
+                    del.appendChild(delBn);
+                    delBn.addEventListener("click",deleteTrHandler);
+                    del.style.textAlign="center";
+                    tr.appendChild(del);
+                    tables.appendChild(tr);
+                }
+            }
+
+            function deleteTrHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                var arr=JSON.parse(localStorage.tb);
+                trs=document.getElementsByTagName("tr");
+                this.removeEventListener("click",deleteTrHandler);
+                var len=trs.length;
+                for(var i=0;i<len;i++){
+                    if(trs[i]==this.parentElement.parentElement){
+                        arr.splice(i-1,1);
+                    }
+                }
+                localStorage.tb=JSON.stringify(arr);
+                refreshTable();
+
+            }
+        </script>
+</body>
+</html>

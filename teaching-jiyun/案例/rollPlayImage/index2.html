@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <input type="button" value="开始" id="bn0">
+        <input type="button" value="停止" id="bn1">
+        <div id="div1"></div>
+<script>
+    var bn0=document.getElementById("bn0");
+    var bn1=document.getElementById("bn1");
+    var div1=document.getElementById("div1")
+    var sum=0;
+    var intervalBoolean=false;
+
+    setInterval(sumHandler,16);
+    function sumHandler() {
+        if(!intervalBoolean) return;
+        sum++;
+        if(sum>99){
+            intervalBoolean=false;
+        }
+        div1.textContent=sum;
+    }
+
+    bn0.onclick=function () {
+        intervalBoolean=true;
+    }
+    bn1.onclick=function () {
+        intervalBoolean=false;
+    }
+</script>
+</body>
+</html>

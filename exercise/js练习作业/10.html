@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea cols="25" rows="10" id="input"></textarea><br/>
+<input id="button" value="点击" type="button"><br/>出现最多的单词
+<input id="result" type="text"><br/>出现次数
+<input id="number" type="text">
+<script>
+
+
+    var oInput=document.getElementById('input');
+    var button=document.getElementById('button');
+    var result=document.getElementById('result');
+    var num=document.getElementById('number');
+
+    方法一
+    button.onclick=function(){
+
+      var wordArr=oInput.value.match(/[a-z]+/gi);
+        var obj={};
+        for(var i=0;i<wordArr.length;i++){
+            var key=wordArr[i];
+            !obj[key]?obj[key]=1:obj[key]++;
+        }
+
+        var max=0;
+        var maxNum=0;
+        for(var j in obj){
+            if(obj[j]>maxNum){
+                maxNum=obj[j];
+                max=j;
+            }
+        }
+        result.value=max;
+        num.value=maxNum;
+
+    }
+    //方法二
+
+//    var word='';
+//    var wordArr=[];
+//
+//    button.onclick=function(){
+//        var inputText=oInput.value;
+////        console.log(input.value.length);
+//        for (var i=0;i<inputText.length;i++){
+//            if(/[,.\s]/.test(inputText[i])){
+//                wordArr.push(word);
+//                word='';
+//            }else {
+//                word+=inputText[i];
+//            }
+//        }
+//        console.log(wordArr);
+//    }
+
+</script>
+</body>
+</html>

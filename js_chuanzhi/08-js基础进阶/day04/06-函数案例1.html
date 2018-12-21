@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //一、求圆的周长和面积
+//    function getLong( r ){
+//        var pi = 3.14;
+//        return 2 * pi * r;
+//    }
+//    console.log( getLong( 3 ) );
+//
+//    function getArea( r ){
+//        //var pi = 3.14;
+////        var area = pi * r * r;
+////        return area;
+//        //return pi * r * r
+//        return Math.PI * Math.pow( r,2 );
+//    }
+//    console.log( getArea( 5 ) );
+    //console.log( Math.PI );
+    //console.log(  Math.pow( 10,3 )  );
+    //二、求2个数中的最大值
+//    function getMax( num1 , num2 ){
+////        if ( num1 > num2 ){
+////            return num1;
+////        }else{
+////            return num2;
+////        }
+//        var num3 = num1 > num2 ?  num1 :  num2;
+//        return num3;
+//    }
+//    console.log(  getMax( 10,2 )  );
+    //三、求3个数中的最大值
+    function getMax( a , b ,c ){
+        // 先比较前两个数字，拿里边的大的和第三个数字比较，选出最大的
+//        if(a > b){
+//            //接着拿a和c比较，哪个大，返回哪一个
+//            if( a > c ){
+//                return a;
+//            }else{
+//                return c;
+//            }
+//
+//        }else{
+//            if( b > c ){
+//                return b;
+//            }else{
+//                return c;
+//            }
+//        }
+        return (a > b ? a : b) > c ? (a > b ? a : b) : c;
+    }
+    console.log( getMax( 22,15,3 ) );
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>按钮</button>
+<script>
+    //事件中， 绑定事件，解绑事件； 事件对象，事件冒泡，取消默认操作
+    //    addEventListener();
+    //    attachEvent()
+    //    onclick
+//    box.onclick = function () {}
+    //函数：功能绑定一个事件；
+    // 参数1：dom元素
+    // 参数2：事件类型
+    // 参数3：事件指令
+    function addEvent( element,type,fn ){
+        //如果浏览器支持addEventListener
+        //  ie低版本  attachevent
+        // box.onclick = function () {}
+        if ( element.addEventListener ){
+            //alert('支持');
+            element.addEventListener( type,fn );
+        }else if( element.attachEvent ){
+            //alert('不支持');
+            element.attachEvent( 'on' + type,fn );
+        }else{
+            element[ 'on' + type ] = fn;
+        }
+    }
+    var button = document.getElementsByTagName('button')[0];
+    addEvent(button,'click',function () {
+        alert(1);
+    });
+
+
+</script>
+</body>
+</html>

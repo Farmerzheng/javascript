@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script type="text/javascript">
+	
+
+	document.onclick = function(e){
+		var event = e || window.event;
+		// console.log(event);
+		// alert(event.srcElement.tagName);
+		var img = new Image();
+		img.src = 'star.png';
+		var width = rand(50,100);
+		img.style.width = width + 'px';
+		img.style.height = width + 'px';
+		// 设置位置
+		img.style.position = 'absolute';
+		img.style.left = event.clientX - width / 2 + 'px';
+		img.style.top = event.clientY - width / 2 + 'px';
+		document.body.appendChild(img);
+	}
+
+	function rand(min, max){
+		return parseInt(Math.random() * (max - min + 1) + min);
+	}
+
+
+	var div = document.getElementById('box');
+	div.onmouseover = function(ev){
+		var event = ev || window.event;
+		// alert(event.srcElement || event.target);
+	}
+
+
+
+
+
+</script>
+</html>

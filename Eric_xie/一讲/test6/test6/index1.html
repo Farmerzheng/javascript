@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/ElementUtil.js"></script>
+    <script src="js/Ball.js"></script>
+    <style>
+        div
+        {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <script>
+            var ball=new Ball();
+            document.body.appendChild(ball.createBall());
+
+
+            animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            ball.update();
+        }
+    </script>
+</body>
+</html>

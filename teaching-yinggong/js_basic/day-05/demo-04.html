@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+      setTime: 设置 年、月、日、时、分、秒
+      year:number 要设置的年份
+      month:number 要设置的月份
+      date:number 要设置的天
+      hour:number 要设置的小时
+      minute:number 要设置的分钟
+      second:number 要设置的秒
+    */
+  function setTime(year, month, date, hour, minute, second) {
+    // 获取当前时间对象
+    var firstTime = new Date();
+    // 改变当前日期对象的时间
+    firstTime.setFullYear(year);
+    month-=1;// 日期对象中月份对应的值 0~11
+    firstTime.setMonth(month);
+    firstTime.setDate(date);
+    firstTime.setHours(hour);
+    firstTime.setMinutes(minute);
+    firstTime.setSeconds(second);
+    return firstTime;
+  }
+
+  // 需求： 得到2018/5/6 07:56:10 对应的时间对象？
+  var date = setTime(2018, 5, 6, 7, 56, 10);
+  console.log(date);
+ 
+  </script>
+</body>
+
+</html>

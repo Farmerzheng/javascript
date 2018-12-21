@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/Tween.js"></script>
+    <style>
+        #blocks
+        {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: aquamarine;
+            top:150px;
+        }
+    </style>
+</head>
+<body>
+<div id="blocks"></div>
+LEFT:<input type="text" id="leftText">
+<br>
+TOP:<input type="text" id="topText">
+<br>
+<input type="button" value="开始" id="bn">
+<br>
+<input type="radio" value="Linear" name="Easing" checked>Linear
+<input type="radio" value="Quadratic" name="Easing">Quadratic
+<input type="radio" value="Cubic" name="Easing">Cubic
+<input type="radio" value="Quartic" name="Easing">Quartic
+<input type="radio" value="Quintic" name="Easing">Quintic
+<input type="radio" value="Sinusoidal" name="Easing">Sinusoidal
+<input type="radio" value="Exponential" name="Easing">Exponential
+<input type="radio" value="Elastic" name="Easing">Elastic
+<input type="radio" value="Back" name="Easing">Back
+<input type="radio" value="Bounce" name="Easing">Bounce
+
+<div id="type0">
+    <input type="radio" value="None" checked>None
+</div>
+<div id="type1" style="display: none">
+    <input type="radio" value="In" name="types" checked>In
+    <input type="radio" value="Out" name="types">Out
+    <input type="radio" value="InOut" name="types">InOut
+</div>
+    <script>
+        var leftText=document.getElementById("leftText");
+        var bn=document.getElementById("bn");
+        var blocks=document.getElementById("blocks");
+        var topText=document.getElementById("topText");
+        var easingList=document.getElementsByName("Easing");
+        var type0=document.getElementById("type0");
+        var type1=document.getElementById("type1");
+        var types=document.getElementsByName("types");
+        var easingType="Linear";
+        var type="None"
+        for(var i=0;i<easingList.length;i++){
+            easingList[i].addEventListener("click",clickHandler)
+        }
+        for(var i=0;i<types.length;i++){
+            types[i].addEventListener("click",typeClickHandler)
+        }
+        bn.addEventListener("click",bnStartHandler);
+        var tween=new TWEEN.Tween({left:0,top:150});
+        tween.onUpdate(update);
+
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+           if(this.value=="Linear"){
+               type0.style.display="block";
+               type1.style.display="none";
+               type="None";
+           }else{
+               type1.style.display="block";
+               type0.style.display="none";
+               for(var i=0;i<types.length;i++){
+                   if(types[i].checked){
+                       type=types[i].value;
+                   }
+               }
+           }
+            easingType=this.value;
+        }
+
+        function typeClickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            type=this.value;
+        }
+
+        function bnStartHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            tween.to({left:parseFloat(leftText.value),top:parseFloat(topText.value)+150},2000);
+            tween.easing(TWEEN.Easing[easingType][type]);
+            tween.start();
+        }
+        function update() {
+            blocks.style.left=parseInt(this.left)+"px";
+            blocks.style.top=parseInt(this.top)+"px";
+
+        }
+
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            TWEEN.update();
+        }
+
+    </script>
+</body>
+</html>

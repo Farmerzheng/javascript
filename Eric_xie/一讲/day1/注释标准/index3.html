@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index2</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #div0
+        {
+            width: 760px;
+            margin: auto;
+            border: 1px solid;
+            position: relative;
+        }
+        #text
+        {
+            width: 500px;
+            height: 300px;
+            margin-top: 20px;
+        }
+        #times
+        {
+            position: absolute;
+            left: 670px;
+            top: 20px;
+        }
+        #bn
+        {
+            width: 80px;
+            height: 30px;
+            position: relative;
+            top: -20px;
+        }
+        #bns
+        {
+            width: 80px;
+            height: 30px;
+            margin:10px 0px 10px 670px;
+        }
+        ul
+        {
+            list-style: none;
+        }
+
+        .span12{
+            display:inline-block;
+            width: 12em;
+            height: 18px;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .unline
+        {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<div id="div0">
+    <select id="selects" multiple="multiple">
+        <option selected>张三</option>
+        <option>李四</option>
+        <option>王五</option>
+        <option>赵六</option>
+    </select>说：&nbsp;&nbsp;&nbsp;&nbsp;
+    <textarea id="text"></textarea>
+    <input type="time" id="times">
+    <input type="button" value="提交" id="bn">
+    <ul id="uls">
+
+    </ul>
+    <input type="button" value="删除" id="bns">
+</div>
+<script>
+
+    var div0=document.getElementById("div0");//div0容器
+    var select=document.getElementById("selects");//选择器
+    var textArea=document.getElementById("text");//文本框
+    var times=document.getElementById("times");//时间input
+    var bn=document.getElementById("bn");//添加按钮
+    var bns=document.getElementById("bns");//删除按钮
+    var uls=document.getElementById("uls");//留言的列表容器
+    bn.addEventListener("click",clickHandler);//给添加按钮加侦听器
+    bns.addEventListener("click",clickHandler);//给删除按钮加侦听器
+//    定义ul中列表队列
+    var lis;
+/*
+* 当鼠标点击添加时和删除时的操作内容
+*参数 e  鼠标事件 click
+*  
+*   点击添加按钮时，执行创建列表项的函数
+*   点击删除时，查找列表项中第一个元素是否是选中状态，如果时选中状态删除该列表元素。
+* */
+    function clickHandler(e,a,c) {
+//        e判断是否存在，如果不存在，把window.event付给e，此处仅为ie8以前
+        if(!e){
+            e=window.event;
+        }
+//        判断e.target与bn是否相同，来判断是否是新增按钮
+        if(e.target==bn){
+            createLi();
+//            判断e.target是否与bns相同，判断是否是删除按钮
+        }else if(e.target==bns){
+//            为了在列表中删除某个项,因为可能改变列表的长度,我们先定义一个列表长度,以控制最少执行该长度的循环
+            var len=lis.length;
+            var arr=[];
+            for(var i=0;i<len;i++){
+                arr.push(lis[i]);
+
+            }
+            for(var l=0;l<len;l++){
+                //                因为列表中项目被删除,长度被改变,因此,有些项不能被找到,先判断该项是否存在.
+//                列表项中第一个子元素判断是否是被选中状态,该子元素是checkbox.
+                if(arr[l].firstElementChild.checked){
+                    uls.removeChild(arr[l]);
+                }
+            }
+            arr.length=0;
+            lis=uls.getElementsByTagName("li");
+        }
+
+    }
+
+    /*
+    * 创建li列表项
+    *
+    * */
+    function createLi() {
+//        创建li节点
+        var li=document.createElement("li");
+//        创建checkbox节点
+        var checkbox=document.createElement("input");
+//        checkbox的type属性为checkbox
+        checkbox.type="checkbox";
+//        将checkbox节点添加到li节点当中
+        li.appendChild(checkbox);
+//        创建span1节点
+        var span1=document.createElement("span");
+//        span1的内容为 下拉列表选的selectedIndex 的内容+文本框中的value值
+        span1.textContent=select.options[select.options.selectedIndex].textContent+"说："+textArea.value;
+//        将span1的className设为span12
+        span1.className="span12";
+//        将span1添加到li节点中
+        li.appendChild(span1);
+//        创建span2节点
+        var span2=document.createElement("span");
+//        span2的内容为时间框的value值
+        span2.textContent=times.value;
+//        span2样式左移50px
+        span2.style.marginLeft="50px";
+//        将span2添加到li中
+        li.appendChild(span2)
+//        创建span3节点
+        var span3=document.createElement("span");
+//        创建a1节点
+        var a1=document.createElement("a");
+//        a1添加的内容为删除
+        a1.textContent="删除";
+//        a1设一个href属性，值为#
+        a1.setAttribute("href","#");
+//        将a1添加到span3中
+        span3.appendChild(a1);
+//        span3的样式为右浮动
+        span3.style.float="right";
+//        给span3添加点击事件，函数名为deletedHandler
+        span3.addEventListener("click",deletedHandler)
+//        将span3添加到li中
+        li.appendChild(span3);
+//        将li添加到uls中
+        uls.appendChild(li);
+        lis=null;
+//        将uls中的所以li弄为一个列表项lis
+        lis=uls.getElementsByTagName("li");
+    }
+//    span3的点击函数
+    function deletedHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+//        删除uls下的节点为 e.currentTarget（鼠标点击的目标属性）的父级元素节点
+       uls.removeChild(e.currentTarget.parentElement)
+    }
+//    setInterval事件 函数showTime   每1秒执行一次
+    setInterval(showTime,1000)
+    /*
+    *根据时间变化显示是否将当前时间的列表项加删除线。
+    * */
+    function showTime() {
+//        如果没有lis就退出这个函数
+        if(!lis) return;
+//       定义并 获取当前时间dates
+        var dates=new Date();
+//        开启循环寻找
+        for(var i=0;i<lis.length;i++){
+//            将lis下的第二个参数的内容转换为字符串添加到arr数组中
+            var arr=(lis[i].children[2].textContent).toString().split(":");
+//          如果arr中的第一位的数值等于dates.getHours（）  并且arr中的第二位的数值等于dates.getMinutes()
+//            就将lis[]下的第二个参数的className变为unline
+            if(parseInt(arr[0])==dates.getHours() && parseInt(arr[1])==dates.getMinutes()){
+                lis[i].children[1].className="unline"
+            }
+        }
+    }
+</script>
+</body>
+</html>

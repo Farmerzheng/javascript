@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.转换为数值型
+    // Number(  )  parseInt( a )  parseFloat( a )
+//    var a = '1.32';
+//    console.log( typeof a );
+//    console.log( typeof Number( a )  );
+    //隐式转换为数值型   减 0   乘1  除1
+    var a = '1';
+    //console.log( typeof (a+0) );
+    //2. 转换为字符串
+//    var b = 2;
+//    var c = true;
+//    var d = null;
+//    b+''
+//    c+''
+//    d+''
+//    console.log( typeof String(b) );
+    //特殊的符号  换行  \n
+    //alert( 'hello\n world' );
+
+    //转换为布尔型
+    // 所有数字里边，除了0，都是true
+    // 所有的字符串，除了空字符，都是true
+    //    null  和 undefined  都是 false
+//    var a = null;
+//    var b = 1;
+//    var c = 'm';
+////    var b = 0;
+//
+////    console.log( Boolean( a ) );
+//    //  !! 可以实现转换为布尔类型值
+//    console.log( !!b );
+
+    // 哪些false   0  null  undefined   ''
+
+    // toString  可以转换为字符串
+//    转换为不同的进制  2  8  10 16
+    var a = true;
+    var b = 8;
+//    console.log( typeof a.toString());
+    console.log( b.toString(8) );
+</script>
+</body>
+</html>

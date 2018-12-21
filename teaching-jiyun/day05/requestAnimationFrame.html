@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+	  //创建一个永动机
+		animate();
+		function animate(){
+			//第一行一定要写此函数
+			requestAnimationFrame(animate);
+			//浏览器刷新的时候会执行animate1 animate2 animate3
+			animate1();
+			animate2();
+		}
+
+		function animate1(){
+            //小鸟飞
+		}
+		function animate2(){
+           //管道向左移动
+		}
+		
+	</script>
+</body>
+</html>

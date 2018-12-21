@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: aquamarine;
+            position: absolute;
+            border-radius: 50px;
+        }
+
+    </style>
+    <script src="js/main.js"></script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    var divs=document.getElementsByTagName("div");
+    var list=[];
+    for(var i=0;i<divs.length;i++){
+        list.push(new HitCircle(divs[i]));
+    }
+    animation();
+    var time=60;
+    var num=0;
+    function animation() {
+        requestAnimationFrame(animation);
+       showDiv();
+        for(var i=0;i<list.length;i++){
+            list[i].update();
+        }
+    }
+    function showDiv() {
+        if(time==0){
+            list[num].begin=true;
+            num++;
+            if(num!=list.length){
+                time=60;
+            }
+        }
+        time--;
+    }
+</script>
+</body>
+</html>

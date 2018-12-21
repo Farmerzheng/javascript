@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        #bg
+        {
+            background-image: url("img/bg.jpg");
+            width: 343px;
+            height: 480px;
+            position: relative;
+            margin: auto;
+            overflow:hidden;
+        }
+        #integral
+        {
+            width: 28px;
+            height: 39px;
+            position: relative;
+        }
+        #integralCon
+        {
+            position: relative;
+        }
+        #startDiv
+        {
+            position: relative;
+            width: 280px;
+        }
+        #runGameDiv
+        {
+            display: none;
+        }
+        #gameOverDiv
+        {
+            display: none;
+            position: relative;
+            width: 280px;
+        }
+        #head
+        {
+            position: relative;
+            left: 50px;
+        }
+        #birdinit
+        {
+            position: relative;
+            left:180px;
+            top:-80px;
+
+        }
+        #startBn
+        {
+            position: relative;
+            left: -25px;
+            top:80px;
+        }
+        #scoreBn
+        {
+            position: relative;
+            left: 50px;
+            top:80px;
+        }
+        #gameOverimg
+        {
+            position: relative;
+            left: 30px;
+        }
+        #okBn
+        {
+            position: relative;
+            left: 90px;
+            top:120px;
+        }
+        #scoreImg
+        {
+            position: relative;
+            display: none;
+            background-image: url("img/message.jpg");
+            width: 269px;
+            height: 135px;
+            left: 5px;
+            top: -20px;
+        }
+    </style>
+    <script src="js/Loadimg.js"></script>
+    <script src="js/HitTest.js"></script>
+</head>
+<body>
+
+      <div id="bg">
+          <div id="integralCon"> <img src="img/0.jpg" id="integral"></div>
+
+          <div id="startDiv">
+                <img src="img/head.jpg" id="head">
+                <img src="img/bird0.png" id="birdinit">
+                <img src="img/start.jpg" id="startBn">
+                <img src="img/score.jpg" id="scoreBn">
+                <div id="scoreImg"></div>
+          </div>
+          <div id="runGameDiv">
+
+          </div>
+          <div id="gameOverDiv">
+                <img src="img/game_over.jpg" id="gameOverimg">
+                <img src="img/ok.jpg" id="okBn">
+          </div>
+      </div>
+<script>
+    var bg=document.getElementById("bg");
+    var integral=document.getElementById("integral");
+    var startDiv=document.getElementById("startDiv");
+    var runGameDiv=document.getElementById("runGameDiv");
+    var gameOverDiv=document.getElementById("gameOverDiv");
+    var startBn=document.getElementById("startBn");
+    var scoreBn=document.getElementById("scoreBn");
+    var okBn=document.getElementById("okBn");
+    var scoreImg=document.getElementById("scoreImg");
+    var integralCon=document.getElementById("integralCon");
+    var runBool=false;
+    var imgList=["img/banner.jpg",
+                        "img/down_pipe.png","img/up_pipe.png",
+                        "img/down_mod.png","img/up_mod.png","img/bird0.png"];
+    var turfArr=[];
+    var pipeArr=[];
+    var bird;
+    var speed=1;
+    var stopBool=false;
+    var integralNum=0;
+    var birdState="";
+    const DEFAULT_STATE="default_state";
+    const FLY_STATE="fly_state";
+    const DROPOUT_STATE="dropout_state";
+    var time=getrandomTime();
+    new LoadImg(imgList,init);
+
+    function init(list) {
+        imgList=list;
+        birdState=DEFAULT_STATE;
+        turfArr.push(imgList[0].cloneNode(true));
+        turfArr.push(imgList[0].cloneNode(true));
+        integralCon.style.zIndex=100;
+        divCenter();
+        animation();
+        startBn.addEventListener("click",clickHandler);
+        scoreBn.addEventListener("click",clickHandler);
+        okBn.addEventListener("click",clickHandler);
+        window.addEventListener("mousedown",flyBirdHandler)
+    }
+
+    function divCenter() {
+        setintegralShow();
+        startDiv.style.left=(bg.offsetWidth-startDiv.offsetWidth)/2+"px";
+        startDiv.style.top="80px";
+        gameOverDiv.style.left=(bg.offsetWidth-gameOverDiv.offsetWidth)/2+"px";
+        gameOverDiv.style.top="80px";
+    }
+    function clickHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+
+        if(this==startBn){
+            startDiv.style.display="none";
+            gameOverDiv.style.display="none";
+            runGameDiv.style.display="block";
+            integralNum=0;
+            setintegralShow();
+            speed=0;
+            runBool=true;
+        }else if(this==scoreBn){
+            scoreImg.style.display="block";
+        }else if(this==okBn){
+            startDiv.style.display="block";
+            gameOverDiv.style.display="none";
+            runGameDiv.style.display="none";
+            integralNum=0;
+            setintegralShow();
+            scoreImg.removeEventListener("click",clickHandler);
+            divCenter();
+        }else if(this==scoreImg){
+            scoreImg.style.display="none";
+        }
+    }
+
+    function gameOver() {
+        runBool=false;
+        bird.remove();
+        bird=null;
+        for(var i=0;i<pipeArr.length;i++){
+            pipeArr[i].remove();
+            pipeArr[i]=null;
+        }
+
+        pipeArr.length=0;
+        stopBool=false;
+        time=getrandomTime();
+
+        startDiv.style.display="none";
+        gameOverDiv.style.display="block";
+        runGameDiv.style.display="none";
+        divCenter();
+        okBn.addEventListener("click",clickHandler);
+
+    }
+
+    function animation() {
+        requestAnimationFrame(animation);
+        if(!runBool) return;
+        birdUpdata();
+        hitTestBird()
+        if(stopBool) return;
+        turfUpdata();
+        pipeUpdata();
+        birdStateUpData();
+    }
+    
+    function birdStateUpData() {
+        if(!bird) return;
+        switch (birdState)
+        {
+            case DEFAULT_STATE:
+                    bird.src="img/bird"+((bird.src.indexOf("0")>-1) ? 1 : 0)+".png";
+                break;
+            case FLY_STATE:
+                bird.src="img/up_bird"+((bird.src.indexOf("0")>-1) ? 1 : 0)+".png";
+                break;
+            case DROPOUT_STATE:
+                bird.src="img/down_bird"+((bird.src.indexOf("0")>-1) ? 1 : 0)+".png";
+                break;
+        }
+    }
+    function turfUpdata() {
+
+        for(var i=0;i<turfArr.length;i++){
+            if(!turfArr[i].parentElement){
+                runGameDiv.appendChild(turfArr[i])
+                turfArr[i].style.position="absolute";
+                if(i==0){
+                    turfArr[i].style.left="0px";
+                    turfArr[i].style.bottom="43px"
+                }else{
+                    turfArr[i].style.left="343px";
+                    turfArr[i].style.bottom="43px"
+                }
+            }
+            if(turfArr[i].offsetLeft<=-343){
+                turfArr[i].style.left="343px"
+            }
+            turfArr[i].style.left=parseFloat(turfArr[i].style.left)-1+"px"
+        }
+    }
+
+    function getrandomTime() {
+        return Math.floor(Math.random()*60+180);
+    }
+
+    function pipeUpdata() {
+        time--;
+        if(time==0){
+            time=getrandomTime();
+            createPipe();
+        }
+        var arr=[];
+        for(var i=0;i<pipeArr.length;i+=2){
+            pipeArr[i].style.left=pipeArr[i].offsetLeft-1+"px";
+            pipeArr[i+1].style.left=pipeArr[i+1].offsetLeft-1+"px";
+            if(pipeArr[i].offsetLeft<-pipeArr[i].offsetWidth){
+                pipeArr[i].remove();
+                pipeArr[i]=null;
+                pipeArr[i+1].remove();
+                pipeArr[i+1]=null;
+                integralNum=parseInt(integralNum)+1;
+                setintegralShow();
+            }else{
+                arr.push(pipeArr[i]);
+                arr.push(pipeArr[i+1]);
+            }
+        }
+        pipeArr=arr.concat();
+        arr.length=0;
+    }
+
+
+
+    function createPipe() {
+
+        var obj=getHeight();
+        var div0=document.createElement("div");
+        runGameDiv.appendChild(div0);
+        div0.style.backgroundImage="url(img/down_mod.png)";
+        div0.appendChild(imgList[1].cloneNode(true));
+        div0.style.position="absolute";
+        div0.style.height=obj.downPipeHeight+"px";
+        div0.style.width="62px";
+        div0.style.bottom="57px";
+
+        var div1=document.createElement("div");
+        runGameDiv.appendChild(div1);
+        div1.style.backgroundImage="url(img/up_mod.png)";
+        var img=imgList[2].cloneNode(true);
+        div1.appendChild(img);
+        img.style.position="absolute";
+        img.style.bottom="0px";
+        div1.style.position="absolute";
+        div1.style.height=obj.upPipeHeigth+"px";
+        div1.style.width="62px";
+        div1.style.top="0px";
+        div0.style.left="343px";
+        div1.style.left="343px";
+        pipeArr.push(div0);
+        pipeArr.push(div1);
+    }
+
+    function getHeight() {
+        var obj={};
+        obj.spacePipe=Math.floor(Math.random()*60+80);
+        obj.upPipeHeigth=Math.floor(Math.random()*40+110);
+        obj.downPipeHeight=423-obj.spacePipe-obj.upPipeHeigth;
+        return obj;
+    }
+
+    function birdUpdata() {
+        if(!bird){
+            bird=imgList[5];
+            runGameDiv.appendChild(bird);
+            bird.style.position="absolute";
+            bird.style.top="140px";
+            bird.style.left="20px"
+        }
+        if(speed>=6){
+            speed=6;
+        }else{
+            speed+=0.2;
+        }
+        if(speed>0){
+            birdState=FLY_STATE;
+        }else if(speed<0){
+            birdState=DROPOUT_STATE;
+        }else{
+            birdState=DEFAULT_STATE;
+        }
+        bird.style.top=parseFloat(bird.style.top)+speed+"px";
+        if(bird.offsetTop>423){
+            gameOver();
+            return;
+        }
+        if(bird.offsetTop<=0){
+            gameOver();
+        }
+    }
+
+    function flyBirdHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        e.preventDefault();
+        speed=-3;
+    }
+
+    function hitTestBird() {
+        if(!bird || pipeArr.length==0) return;
+        for(var i=0;i<pipeArr.length;i++){
+            if(HitTest.test(bird,pipeArr[i])){
+                stopBool=true;
+            }
+        }
+    }
+    function setintegralShow() {
+
+        var arr=integralNum.toString().split("");
+        integralCon.remove();
+        integralCon=document.createElement("div");
+        bg.appendChild(integralCon);
+        integralCon.id="integralCon";
+        for(var i=0;i<arr.length;i++){
+            var img=new Image();
+            integralCon.appendChild(img);
+            img.src="img/"+arr[i]+".jpg";
+        }
+        integralCon.style.position="absolute";
+        integralCon.style.left=(bg.offsetWidth-integralCon.lastElementChild.offsetLeft+integralCon.lastElementChild.offsetWidth)/2-20+"px";
+        integralCon.style.top="25px";
+    }
+
+</script>
+</body>
+</html>

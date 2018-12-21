@@ -1,0 +1,194 @@
+/*公共样式*/
+*{
+	margin:0;
+	padding:0;
+	font-weight: normal;
+}
+body{
+	font-size: 12px;
+	font-family: "微软雅黑";
+	
+}
+ul,li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color:#000;
+}
+.l{
+	float: left;
+}
+.r{
+	float: right;
+}
+.clearfix:after{
+	content:".";
+	display:block;
+	height: 0;
+	visibility:hidden;
+	clear:both;
+}
+div{
+	margin:0 auto;
+}
+/*头部*/
+#header{
+	width: 100%;
+	height: 580px;
+	position: relative;
+	background: #193d85 url(../img/bao-2.png) no-repeat 143px 12px;
+}
+#nav{
+	width: 100%;
+	height: 89px;
+	border-bottom: 1px solid #456097;
+	background-color: rgba(0,0,0,.1);
+}
+#nav img{
+	float: left;
+	margin-top: 20px;
+	margin-left: 201px;
+}
+#nav p{
+	float: right;
+	line-height: 89px;
+	margin-right: 233px;
+}
+#nav p a{
+	font-size: 18px;
+	color:#fff;
+	margin-left: 58px;
+}
+#banner{
+	width: 100%;
+	height: 490px;
+}
+#banner a{
+	width: 44px;
+	height: 44px;
+	position: absolute;
+	top: 50%;
+	margin-top: -22px;
+}
+#banner .btnl{
+	background:url(../img/l-btn.png) no-repeat;
+	left: 70px;
+}
+#banner .btnr{
+	background:url(../img/r-btn.png) no-repeat;
+	right: 70px;
+}
+#banner dl{
+	position: absolute;
+	top: 230px;
+	right: 294px;
+}
+#banner dd{
+	line-height: 82px;
+	font-size: 16px;
+	color:#fff;
+}
+/*版本 产品*/
+#product{
+	width: 100%;
+	background-color: #f8f8f8;
+}
+#product ul{
+	width: 960px;
+	margin:0 auto;
+	padding-left:85px; 
+	padding-top: 60px;
+}
+#product li{
+	float: left;
+	text-align: center;
+	margin-bottom: 54px;
+}
+.mid{
+	margin:0 170px;
+}
+#product li a{
+	margin-bottom: 12px;
+}
+#product li h4{
+	font-size: 18px;
+	color:#ff6900;
+	line-height: 40px;
+}
+/*主体*/
+#main{
+	width: 960px;
+}
+#main h2{
+	padding-top: 25px;
+	line-height: 78px;
+	font-size: 20px;
+	color:#ff6900;
+}
+#main dl{
+	position: relative;
+}
+#main dt{
+	float: left;
+	padding-right: 35px;
+}
+#main dd h3{
+	line-height: 25px;
+	font-size: 17px;
+}
+#main dd span{
+	line-height: 28px;
+	color:#666666;
+}
+#main dd p{
+	padding-top:3px;
+	line-height: 22px;
+	color:#666666;
+}
+#main em{
+	position: absolute;
+	bottom:0;
+	right: 0;
+	width: 107px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	color:#ff6900;
+	background: url(../img/fl-3.png) no-repeat;
+}
+.dl-middle{
+	padding:50px 0;
+}
+#main ul{
+	padding-bottom: 30px;
+}
+#main ul li{
+	float: left;
+	width: 320px;
+	text-indent: 26px;
+	line-height: 30px;
+	color:#666;
+	background: url(../img/bbs.png) no-repeat left center;
+}
+/*底部*/
+#footer{
+	width: 100%;
+	background-color: #464646;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 12px;
+}
+#footer a+p{
+	color:#c0c0c0;	
+}
+#footer a+p a{
+	line-height:43px;
+	padding:0 10px 3px;
+	color:#c0c0c0;
+}
+#footer p+p{
+	color:#6d6d6d;
+	padding-bottom: 11px;
+}
+

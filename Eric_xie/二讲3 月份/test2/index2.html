@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*var obj={a:1};
+        function abc(num1,num2) {
+           obj.a=num1+num2
+        }
+//        abc.call(obj,3,4);
+        abc.apply(obj,[3,4]);*/
+       /* var max=Math.min.apply(null,[1,2,3,4,5]);
+        console.log(max)*/
+
+        /*  var arr=[2,3,4,5,7,9,10];
+        var max=Math.max.apply(null,arr);
+        console.log(max)
+       var Maths=Maths || (function () {
+                return {
+                    max:function () {
+//                        console.log(this.arguments)
+                        var num=arguments[0];
+                        for(var i=1;i<arguments.length;i++){
+                            if(arguments[i]>num){
+                                num=arguments[i];
+                            }
+                        }
+                        return num;
+                    },
+                    min:function () {
+                        var num=arguments[0];
+                        for(var i=1;i<arguments.length;i++){
+                            if(arguments[i]<num){
+                                num=arguments[i];
+                            }
+                        }
+                        return num;
+                    }
+                }
+                })();
+
+      var max= Maths.max.apply(null,[1,2,3,4,5,6]);
+        console.log(max)*/
+
+        /*this.a=3;
+         function abc(num1,num2) {
+         console.log(this,this.a,num1+num2);
+         }
+
+         function Ball() {
+         this.a=6;
+         }
+         /!* Ball();
+         abc(3,5);*!/
+         abc.call(new Ball(),3,4)*/
+    </script>
+</body>
+</html>

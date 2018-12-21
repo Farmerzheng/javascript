@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/ElementUtil.js"></script>
+    <script src="../js/ShopCart.js"></script>
+</head>
+<body>
+    <script>
+        var shoppingCart=[
+            {name:"鸡",info:"鸡肉",checked:false,price:3.5,num:1},
+            {name:"鱼",info:"鱼肉",checked:true,price:4.6,num:2},
+            {name:"肉",info:"肉",checked:true,price:6.8,num:3},
+            {name:"菜",info:"菜",checked:true,price:2.1,num:1}
+        ]
+        var shop=new ShopCart(shoppingCart,["名称","信息","check","单价","数量"]);
+        document.body.appendChild(shop.createTabel());
+        shop.width=800;
+
+    </script>
+</body>
+</html>

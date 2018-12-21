@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.container3{
+		position: absolute;
+		top:400px;
+	}
+	.container2{
+		position:absolute;
+		top:300px;
+	}
+
+	.container1{
+		position:absolute;
+		top:500px;
+	}
+
+	img{
+		position:absolute;
+		top:800px;
+		left:0;
+	}
+</style>
+<body style = "height:3000px">
+    <div class="container3">
+    	   <div class="container2">
+	    	 <div class="container1">
+	    	      <img dataSrc="img/1.jpg">
+	         </div>
+          </div>
+    </div>
+ 
+   
+	
+	<script type="text/javascript">
+		//当图片将要显示出来的时候我们将这个图片的dataSrc属性值赋给图片的src属性
+
+		//   scrollTop   滚动条的位置 document.body.scrollTop
+    	//   窗口的高度  document.documentElement.clientHeight
+    	//   图片距离文档的最顶端的距离   offsetTop
+
+    	// 计算图片距离文档的最顶端的距离
+
+    	  var img = document.getElementsByTagName("img")[0];
+
+
+          //计算图片距离最顶端的距离
+    	  function calculateTop(img){
+
+	    	  var imgTop = 0;
+
+	    	  function calculate(imgs){            
+	             
+	             if(imgs.parentNode){
+	             	 imgTop += imgs.offsetTop;
+	             	 calculate(imgs.parentNode);
+	             }         
+
+	    	  }
+             
+             //img 是calculateTop函数的形参，是calculate函数的实参
+	    	  calculate(img);
+
+	    	  return imgTop;
+
+    	  }
+
+    	  var imgTop = calculateTop(img);
+
+    	  console.log(imgTop);
+
+    	  //判断图片什么时候出现在窗口中
+           
+         
+           var windowHeight = document.documentElement.clientHeight;
+            
+           window.onscroll = function(){
+
+           	  var scrollTop = document.body.scrollTop;
+
+	           if(imgTop <= (scrollTop+windowHeight)){
+	           	// console.log("让图片显示出来")
+	           	var dataSrc = img.getAttribute("dataSrc");
+	           	img.src = dataSrc;
+	           }
+
+           } 
+
+
+
+
+    	 
+
+	</script>
+</body>
+</html>

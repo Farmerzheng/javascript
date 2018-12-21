@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //开头 ^
+    console.log ( /foot/.test('000footer') );
+    console.log( /^foot/.test('000footer') );
+    console.log( /^foot/.test('footer000') );
+    //结尾 $
+    console.log( /boot$/.test('bootstrap') );
+    console.log( /boot$/.test('footboot') );
+    //开头 结尾同时使用    只能是他本身
+    // 两者都满足，一个也不能多，一个也不能少
+    console.log( /^boot$/.test('bootstrap') );
+    console.log( /^boot$/.test('boot') );
+</script>
+</body>
+</html>

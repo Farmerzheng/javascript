@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var str="";
+    function abc(s) {
+//        递归函数
+        for(var i=2;i<=s;i++){
+            if(s%i==0){
+                if(str.length==0){
+                    str=i;
+                }else{
+                    str+="*"+i;
+                }
+                s=s/i;
+                if(s>1){
+                    abc(s);
+                }
+//                跳出 当前当前循环
+                break;
+            }
+        }
+    }
+    abc(8);
+    console.log(str);
+</script>
+</html>

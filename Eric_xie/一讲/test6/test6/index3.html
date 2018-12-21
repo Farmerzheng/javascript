@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    标题：<input type="text" id="texts"><br>
+    内容：<textarea cols="40" rows="10" id="info"></textarea><br>
+    <input type="button" id="bn"><br>
+    <ul id="uls"></ul><br>
+<script>
+    var texts=document.getElementById("texts");
+    var info=document.getElementById("info");
+    var bn=document.getElementById("bn");
+    var uls=document.getElementById("uls");
+    bn.addEventListener("click",clickHandler);
+    var sum=0;
+    function clickHandler(e) {
+        if (!e) {
+            e = window.event;
+        }
+        sum++;
+        var li = document.createElement("li");
+        li.textContent = texts.value + ":" + info.value;
+
+        var a =document.createElement("a");
+        a.textContent="删除";
+        a.href="#";
+        a.style.left="500px";
+        a.addEventListener("click",deleteHandler);
+        li.appendChild(a);
+        if (sum % 2 == 0) {
+            li.style.backgroundColor = "#FF0000"
+        } else {
+            li.style.backgroundColor = "#00FF00"
+        }
+        uls.appendChild(li);
+        function deleteHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            this.removeEventListener("click",deleteHandler);
+            this.parentElement.remove();
+        }
+    }
+
+</script>
+</body>
+</html>

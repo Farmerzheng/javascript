@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  var StaticClass = function() {};
+  StaticClass.name = "StaticName";
+  StaticClass.Sum = function(value1, value2) {
+    return value1 + value2;
+  };
+
+  alert(StaticClass.name); //[StaticName]
+  alert(StaticClass.Sum(1, 3)); //[4]
+  </script>
+</body>
+
+</html>

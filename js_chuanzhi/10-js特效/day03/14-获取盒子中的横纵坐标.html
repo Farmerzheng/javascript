@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 400px;
+            height: 450px;
+            margin:100px auto;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var box = document.getElementById('box');
+    box.onclick = function ( event ) {
+        var e = event || window.event;
+        // 获取相对于网页的横纵坐标
+        var x1 = e.pageX || scroll().left + e.clientX;
+        var y1 = e.pageY || scroll().top + e.clientY;
+        // 盒子本身距离网页的顶部和左侧
+        var x2 = this.offsetLeft;
+        var y2 = this.offsetTop;
+
+        console.log( (x1-x2) + '---' + (y1-y2) );
+    }
+
+    function scroll(  ){
+        return {
+            left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+            top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        }
+    }
+</script>
+</body>
+</html>

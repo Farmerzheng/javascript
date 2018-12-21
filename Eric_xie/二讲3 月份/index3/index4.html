@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+       /* function Ball(_width,_height) {
+            this.width=_width;
+            this.height=_height;
+            this.play=function () {
+                
+            }
+        }
+        Ball.prototype={
+            width:30,
+            height:40,
+            play:function () {
+                
+            }
+        }
+
+        var ball=new Ball(30,40);
+        var ball1=new Ball(10,10)
+        console.log(ball.width,ball1.width)*/
+
+      /*  var Ball={
+            name:"球",
+            play:function () {
+                
+            }
+        };
+
+       if(!Object.create){
+           Object.create=function (obj) {
+               function F() {  };
+               F.prototype=obj;
+               return new F();
+           }
+       }
+
+        var ball=Object.create(Ball);
+        console.log(ball.name)*/
+
+        /*var obj={a:1};
+        function abc(obj) {
+            function F() {  }
+            F.prototype=obj;
+            return new F();
+        }
+      var obj1=abc(obj);
+    console.log(obj1,obj)*/
+
+    /*    function Ball() {
+            this.a=1;
+        }
+       function Balls() {
+            this.b=3;
+       }
+        Balls.prototype=new Ball();
+       Balls.prototype.constructor=Balls;
+
+        var ball=new Balls();*/
+//        console.log(Ball.prototype.isPrototypeOf(ball))
+//        console.log(ball.propertyIsEnumerable("b"),ball)
+//        console.log(ball.constructor==Balls)
+
+        function Ball() {
+
+        }
+        Ball.prototype={
+            constructor:Ball,
+            width:30,
+            height:40
+        }
+        var ball=new Ball()
+        console.log(ball.constructor)
+    </script>
+</body>
+</html>

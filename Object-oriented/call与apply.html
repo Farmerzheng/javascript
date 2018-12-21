@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <script>
+  //call和apply方法，其作用基本相同，参数略有不同
+  //call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。
+
+  function Cat(name) {
+     this.name = name;
+   }
+
+  Cat.prototype = {
+    food: "fish",
+    say: function() {
+      alert("I eat " + this.food);
+    }
+  }
+  var blackCat = new Cat;
+  // blackCat.say();
+
+  // 但是如果我们有一个对象whiteDog = {food:"bone"},我们不想对它重新定义say方法，那么我们可以通过call或apply用blackCat的say方法：blackCat.say.call(whiteDog);可以看出call和apply是为了动态改变this而出现的，当一个object没有某个方法，但是其他的有，我们可以借助call或apply用其它对象的方法来操作
+
+  var whiteDog = {food:"bone"};
+  blackCat.say.call(whiteDog);
+
+  // 猫吃鱼，狗吃肉，奥特曼打小怪兽。
+
+  // 有天狗想吃鱼了
+
+  // 猫.吃鱼.call(狗，鱼)
+
+  // 狗就吃到鱼了
+
+  // 猫成精了，想打怪兽
+
+  // 奥特曼.打小怪兽.call(猫，小怪兽)
+
+  // 就这样记住了。
+  </script>
+</body>
+
+</html>

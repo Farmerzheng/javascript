@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+     <div class="father">
+ 	    <ul>ul</ul>
+		<div id="div1">
+			div
+			<a href="">
+			aaa
+			</a>
+			<b href="">
+			bbb
+			</b>
+		</div>
+		<p>p</p>
+     </div>
+  
+	<script type="text/javascript">
+var oDiv = document.getElementById("div1");
+console.log(
+            oDiv.nodeType,//节点类型（标签节点、文本节点 ）
+
+			oDiv.firstChild,//第一个节点（包含文本节点）
+			oDiv.firstElementChild,//第一个节点（不包含文本节点）		
+			oDiv.lastChild,//最后一个节点（包含文本节点）
+			oDiv.lastElementChild//最后一个节点（不包含文本节点）
+
+			oDiv.childNodes,//所有的子节点 （包含文本节点）
+			oDiv.children,//所有的子节点（不包含文本节点）
+			
+			
+			oDiv.previousSibling,//上一个节点（包含文本节点）
+			oDiv.previousElementSibling,//上一个节点（不包含文本节点）
+			
+			oDiv.nextSibling,//下一个节点（包含文本节点）
+			oDiv.nextElementSibling,//下一个节点（不包含文本节点）
+			
+			oDiv.parentNode,//父节点
+		
+	);
+	</script>
+</body>
+</html>

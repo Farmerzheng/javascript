@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*  function abc() {
+     this.cd();
+     }
+     abc.a=3;
+     abc.cd=function () {
+     console.log("aaa");
+     };
+     abc.call(abc)*/
+
+    /* function funname(num,age,sex) {
+     console.log(num,age,sex)
+     }
+     var ab=3;
+     var cd=20;
+     var _sex="男"
+     funname(ab,null,_sex);*/
+
+    /*function abc(callBack) {
+     callBack();
+     }
+
+     function cd() {
+     console.log("1")
+     }
+     function ef() {
+     console.log("2")
+     }
+     abc(cd);
+     abc(ef)*/
+
+    /* function abc(age,num,list) {
+     if(!num){
+     num=0;
+     }
+     if(!list){
+     list=[];
+     }
+     if((typeof num)!=="number"){
+     console.trace(num+"传入类型错误");
+     return;
+     }
+     if(!(list instanceof Array)){
+     console.trace(list+"传入类型错误");
+     return;
+     }
+     console.log("aaaa")
+     }
+     abc(34,"123",[1,2])*/
+
+    /*var abc=function () {
+     console.log("abc")
+     };
+     var obj={
+     a:3,
+     b:function () {
+
+     }
+     }*/
+
+    /*  var box=new Function("num1","num2","return num1+num2");
+     console.log(box(3,4));*/
+
+    /*function abc() {
+     return 3+4
+     }
+     var obj={};
+     obj.fun1=abc;
+     abc=null;
+     console.log(obj.fun1());*/
+
+
+    var Mathod = Mathod || (function () {
+               return  {
+                    randomNum:function (min,max) {
+                        if(!min) min=0;
+                        if(!max && max!=0) max=1;
+                        if((typeof min)!=="number" || (typeof max)!="number") return;
+                        if(max-min==1)  return Mathod.random();
+                        return Math.floor(Math.random()*(max-min)+min);
+                    },
+                   randomColor:function () {
+                       var str="#";
+                       var color="";
+                       for(var i=0;i<3;i++){
+                           color=Math.floor(Math.random()*256).toString(16);
+                           if(color.length<2){
+                               color="0"+color;
+                           }
+                           str+=color;
+                       }
+                       return str;
+                   }
+                }
+            })();
+    var color=Mathod.randomNum(-5,0);
+    console.log(color)
+
+</script>
+</body>
+</html>

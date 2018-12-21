@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <button>点击</button>
+	<script type="text/javascript">
+
+		var  btn = document.getElementsByTagName("button")[0];
+
+		function addEvent(obj,event,func){
+			if(obj.addEventListener){
+				obj.addEventListener(event,func)
+			}else{
+				obj.attachEvent("on"+event,func)
+			}
+		}
+       
+       //通过addEventListener或attachEvent方法挂接的事件 不会发生覆盖哦
+		addEvent(btn,"click",function(){
+			alert(1)
+		})
+
+		addEvent(btn,"click",function(){
+			alert(2)
+		})
+
+        //通过onclick这种赋值的方法添加的事件会发生覆盖，后面的事件处理函数会将前面的覆盖掉
+		btn.onclick = function(){
+			alert(1);
+		}
+
+		btn.onclick = function(){
+			alert(2);
+		}
+
+
+	</script>
+</body>
+</html>

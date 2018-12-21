@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="关闭窗口">
+   <script>
+        var bn=document.querySelector("input");
+       bn.addEventListener("click",clickHandler);
+       function clickHandler(e) {
+           if(!e){
+               e=window.event;
+           }
+           bn.removeEventListener("click",clickHandler);
+           window.open("index3.html?a=3&b=4")
+       }
+
+   </script>
+</body>
+</html>

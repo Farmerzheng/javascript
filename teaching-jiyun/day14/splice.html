@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		var array1 = ['a','b','c'];
+		var bArray = ['d','e','f'];
+		var cArray = array1.concat(bArray);
+		cArray.splice(1,1);//a c d e f
+		cArray.splice(2,1);//a b d e f 
+		cArray.splice(3,0,"x");// a b c x d e f
+
+		// console.log()
+
+
+	</script>
+</body>
+</html>

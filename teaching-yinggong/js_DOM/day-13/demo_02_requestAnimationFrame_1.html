@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+}
+
+.line {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 600px;
+  top: 0px;
+}
+
+.line2 {
+  background-color: black;
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+}
+</style>
+
+<body>
+  <button id="btn">开始</button>
+  <div class="box"></div>
+  <div class="line"></div>
+  <div class="line2"></div>
+  <script>
+  /*
+        一个定时器可以搞定游戏当中的所有运动
+        function game(){
+         person1.update();
+         person2.update();
+         ……………………
+         person100.update();
+        }
+
+        动画原理？
+        假设盒子每隔1s运动10px
+        浏览器每隔16s刷新一次
+        人肉眼能够看到的是 ： 每隔16s盒子运动160px
+        
+
+        浏览器实际上是1s钟刷新60次（约16.7ms刷新一次）
+        盒子动画如何才能流畅的显示？--->浏览器刷新的时候才改变盒子的位置      
+
+      */
+
+
+
+  let box = document.querySelector(".box"); //DOM
+
+  box.update = function(speed) {
+    this.style.left = this.offsetLeft + speed + "px"
+  }
+
+  animation();
+  // 自定义animation函数
+  function animation() {
+    // 将animation函数放入刷新浏览器刷新队列
+    // 浏览器刷新的时候就会执行animation函数    
+    // requestAnimationFrame 是系统提供给我们的检测浏览器刷新的函数
+    // 自定义函数第一行
+    requestAnimationFrame(animation);
+
+    // 更新小鸟 bird.update()
+    // 更新弹弓 dagong.update()
+    // 更新房子 house.update()
+
+    //跟新盒子
+    box.update(2);
+  }
+  </script>
+</body>
+
+</html>

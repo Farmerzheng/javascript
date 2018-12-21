@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 迭代，按照一定的顺序进行循环，循环之后产生一个新的数组
+    // forEach  every  some  map  filter
+    // forEach   参数是一个回调函数
+//    var arr = [ 10,27,58,49,20 ];
+    //var res = arr.forEach( function( element,index,array ){
+        //element ，所要遍历的每一个元素
+        // index  每一个元素对应的索引
+        // array  索要遍历的数组
+//        console.log( element + '---' + index );
+        //arr[ index ] = element + 20;
+
+//        console.log( array );
+//    } );
+//    console.log( arr );
+//    console.log( res );
+    // every  返回一个布尔型的值（如果所有元素都满足，返回true，只有一个不满足也返回false）
+//    var res = arr.every( function( element,index,array ) {
+//        //查找数组中，所有大于60的，如果整个数组中的每一项都满足 返回true，否则false
+//        return element >= 60;
+//    } );
+//    console.log( res );
+    // some  只有一个或者多个满足条件，就会返回true， 所有的都不满足条件 返回 false
+//    var res = arr.some( function( element,index,array ) {
+//        return element >= 60;
+//    } );
+//    console.log( res );
+
+//    var arr = [ '中国','美国','巴西','日本' ];
+    //map 返回操作之后的数组
+//    var res = arr.map( function(element,index,array) {
+//        return element + '的城市';
+//    } );
+//    console.log( res );
+    var arr = [ 81,65,90,73,100 ];
+    // filter  过滤
+    var res = arr.filter( function( element,index,array ) {
+        return element > 80;
+    } );
+    console.log( res );
+</script>
+</body>
+</html>

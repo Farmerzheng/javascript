@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	#father{
+		width:200px;
+		height:300px;
+		border:1px solid red;
+		float:left;
+        overflow: hidden;
+	}
+	#father #child{
+      position:absolute;
+      top:0;
+      left:0;
+      width:200px;
+	}
+	#bar{
+		width:20px;
+		height:300px;
+		float: left;
+		border:1px solid yellow;
+		position:relative;
+    
+	}
+	#bar #scroll{
+		width:20px;
+		height:20px;
+		background-color: red;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+</style>
+<body>	
+   <div id="father">
+		<div id="child">
+			啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦
+		</div>
+	</div>
+	<div id = "bar">
+		<div id="scroll"></div>
+	</div>
+    <script>
+    	var scroll = document.getElementById("scroll");
+    	var bar = document.getElementById("bar");
+    	var child = document.getElementById("child");
+    	var father = document.getElementById("father");
+
+    	scroll.addEventListener("mousedown",function(e){
+          var event = e || window.event;
+          var divY = event.clientY - this.offsetTop;
+          document.onmousemove = function(e){
+          	  var event = e || window.event;
+              scroll.style.top = event.clientY - divY + "px";
+
+              //让内容区滚动
+             
+               child.style.top = -father.offsetHeight*scroll.offsetTop/bar.offsetHeight + "px";
+               console.log(child.style.top)
+          }
+    	})
+
+        document.addEventListener("mouseup",function(){
+    		document.onmousemove = null;
+    	})
+    </script>
+</body>
+</html>	

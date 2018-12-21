@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position: absolute;
+            left:0;
+            top:34px;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+    button.onclick = function ( ) {
+        //执行div的宽度动画
+        animate( div,'width',400 );
+        animate( div,'height',400 );
+        //animate( div,'left',400 );
+    }
+    function animate( element,attr,target ) {
+        clearInterval( element.timer );
+        element.timer = setInterval( function () {
+            var leader = parseInt(getStyle(element,attr));
+            var step = ( target - leader )/10;
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            element.style[attr] = leader + step + 'px';
+            if( target === leader ){
+                clearInterval(element.timer);
+            }
+        },15 );
+    }
+    function getStyle( obj,attr ){
+        if( window.getComputedStyle ){
+            return window.getComputedStyle(obj,null)[attr];
+        }else{
+            return obj.currentStyle[attr];
+        }
+    }
+</script>
+</body>
+</html>

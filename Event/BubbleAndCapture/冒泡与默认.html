@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <a href="http://www.baidu.com" target="_black">百度</a>
+
+    <div id="c1" onclick="alert(1)">
+        <div id="c2" onclick="alert(2)">
+            <input type="button" id="c3" value="点击" onclick="var a=100;alert(a)">
+        </div>
+    </div>
+</body>
+<script>
+    /*1. event.preventDefault();  -- 阻止元素的默认事件。
+         注：a元素的点击跳转的默认事件 ，
+         button等表单元素的默认事件 ，
+         div 元素没有默认事件*/
+    //解释：点击链接的时候正常情况下会发生跳转，
+    // 但是现在我们阻止了它的默认事件，即跳转事件，
+    // 这时就不会跳转到百度了。
+    var samp = document.getElementsByTagName("a")[0];
+    samp.addEventListener("click", function(e) {
+        //            console.log(e);
+        e.preventDefault();
+        //            return false;
+    }, false);
+
+    //        samp.onclick=function(){
+    //            return false;
+    //        };
+
+
+    /*
+     这里点击button的时候，浏览器会先后弹出3,2,1，本来只想让绑定在button上的事件发生,却无意中触发了它的两个父级上的事件，这里我们只是做了一个简单测试，试想如果在项目开发中，某个按钮和他的父级同时绑定了很重要的事件，那么结果会惨不忍睹。这时的处理方法就是阻止冒泡事件。
+     给input注册click事件，同时阻止它的冒泡事件
+     */
+    document.getElementById('c3').addEventListener('click',
+        function(e) {
+            console.log(e);
+            //                e.stopPropagation();
+            //                return false;
+        }, false);
+</script>
+
+</html>

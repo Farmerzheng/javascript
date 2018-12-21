@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    f2();
+//    console.log(cc);
+//    console.log(bb);
+//    console.log(aa);
+//    function f2(){
+//        var aa = bb = cc = 9;
+//        console.log(aa);
+//        console.log(bb);
+//        console.log(cc);
+//    }
+
+
+
+    // 1. 函数  和  外层变量 num  预加载
+//    var num = 10;   //  num的值 是 10
+//    fun();  // 执行fun函数内部的代码
+//    function fun(){
+//        // 在执行函数这组代码的时候，继续进行预加载，
+//        // num预加载时候，变为了undefined
+//        console.log(num);
+//        var num = 20;
+//    }
+
+
+
+
+
+    // 先预加载    f1 函数   a 变量
+//    var a = 18;  // 给a变量赋值为18
+//    f1(); // 执行函数体
+//    function f1(){
+//        // 虽然a变量在最后边，但是一样需要预加载 a的值变为了 undefined
+//        var b=9;
+//        console.log(a);
+//        console.log(b);
+//        var a = '123';
+//    }
+
+
+
+    //  预加载  a 函数  a 变量
+    var a = 1;  // a里边的值是1
+    function a(){
+        return 2;
+    }
+    console.log( a );
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	.container{
+		width:300px;
+		height:150px;
+		margin:0 auto;
+		border:1px solid black;
+	}
+	.container .flower{
+		width:100px;
+		height:50px;
+		margin:0 auto;
+		line-height: 50px;
+		text-align: center;
+		border:1px solid yellow;
+	}
+	.container .time{
+        width:200px;
+		height:50px;
+		margin:0 auto;
+		line-height: 50px;
+		text-align: center
+	}
+	.container .buttons {
+		width:220px;
+		height:50px;
+		margin:0 auto;
+	}
+
+	.container .buttons div{
+		width:80px;
+		height:40px;
+		float: left;
+		background-color: gold;
+		margin:0 10px;
+		border-radius: 10px;
+		box-shadow: 5px 5px 10px black; 
+		text-align: center;
+		line-height: 40px;
+		cursor:pointer;
+	}
+
+</style>
+<body>
+    <div class="container">
+    	<div class="flower"></div>
+    	<div class="time"></div>
+    	<div class="buttons">
+    		<div class="start">开始</div>
+    		<div class="stop">停止</div>
+    	</div>
+    </div>
+	<script type="text/javascript">
+	    var container = document.getElementsByClassName("container")[0];
+		var flower = document.getElementsByClassName("flower")[0];
+		var time = document.getElementsByClassName("time")[0];
+		var startBtn = document.getElementsByClassName("start")[0];
+		var stopBtn = document.getElementsByClassName("stop")[0];
+		var flowerArr = [];
+		var index = 0;
+		var totalTime = 0;
+		var timer;
+
+		function addEvent(obj,event,func){
+           if(obj.addEventListener){
+           	  obj.addEventListener(event,func);
+           }else{
+           	  obj.attachEvent("on"+event,func)
+           }
+		}
+
+		addEvent(startBtn,"click",function(){
+
+			for(var i = 100 ; i <= 999 ;i++){					
+                    
+                    //将数值转化成字符串
+					var num = i.toString();
+                    //将字符串拆分成数组
+	                var numArr = num.split("");	                
+
+	                var sum = 0;
+                    
+                    //求各个位上的立方和
+	                for(var j = 0 ; j < numArr.length ; j++){
+
+	                        sum += numArr[j]*numArr[j]*numArr[j]
+	                }                    
+                    
+                    //将立方和与这个数本身进行比较
+	                if(sum == i){
+	                	flowerArr.push(i);
+	                }
+             }
+
+             timer = setInterval(function(){
+
+                  flower.innerHTML = flowerArr[index];
+
+                  if( flowerArr[index]%2 == 0){
+                     container.style.backgroundColor = "red";
+                  }else{
+                  	 container.style.backgroundColor = "blue";
+                  }
+
+                  index++;
+
+                  if(index >= flowerArr.length){
+                  	index = 0;
+                  }
+
+             
+
+             },1000);
+		})
+      
+      addEvent(stopBtn,"click",function(){
+
+                  var now  = new Date();
+
+                  now = now.toLocaleString();
+
+                  time.innerHTML = now;
+
+                  clearInterval(timer);
+      });
+
+
+
+	</script>
+</body>
+</html>	

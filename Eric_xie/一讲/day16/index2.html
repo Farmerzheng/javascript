@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        iframe
+        {
+            width: 100%;
+            height: 100%;
+            border: 0px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">1</a>  <a href="#" >2</a>
+    <div>
+        <iframe id="frame1"></iframe>
+    </div>
+
+
+<script>
+    var div=document.querySelector("div");
+    var frame1=document.getElementById("frame1");
+    var as=document.getElementsByTagName("a");
+    for(var i=0;i<as.length;i++){
+        as[i].addEventListener("click",clickHandler)
+    }
+    frame1.addEventListener("load",loadHandler);
+    frame1.src="index3.html";
+
+    function clickHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        frame1.contentDocument.removeEventListener("clickBn",clickBnHandler);
+        if(this==as[0]){
+            frame1.src="index3.html";
+        }else if(this==as[1]){
+            frame1.src="index4.html";
+        }
+    }
+    function clickBnHandler(e) {
+        console.log(e.num)
+    }
+    function loadHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        div.style.width=this.contentDocument.body.firstChild.offsetWidth+50+"px"
+        div.style.height=this.contentDocument.body.offsetHeight+50+"px";
+        console.log(this.contentDocument)
+        this.contentDocument.addEventListener("clickBn",clickBnHandler);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // NaN   ---  not  a  number
+    var a = '1.2c';
+//    console.log( parseInt(a) );
+//    console.log( parseFloat(a) );
+    // Number的转换方式：只要里边含有非数字，自动为NaN
+    //console.log( Number(a) );
+    // 检测是否 为NaN
+    // 如果是NaN ,返回 true ，否则返回 false
+    console.log( isNaN( parseInt(a) ) );
+</script>
+</body>
+</html>

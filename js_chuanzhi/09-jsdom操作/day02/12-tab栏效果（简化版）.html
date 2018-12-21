@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 400px;
+            margin:100px auto;
+            border:1px solid #ccc;
+        }
+        .box ul{
+            overflow: hidden;
+        }
+        .box ul li{
+            width: 100px;
+            height: 40px;
+            float: left;
+            background: pink;
+            text-align: center;
+            line-height:40px;
+            cursor: pointer;
+        }
+        .box ul .current{
+            background: purple;
+            color:#fff;
+        }
+        .box .bd{
+            height: 200px;
+        }
+        .box .bd div{
+            height: 100%;
+            display: none;
+        }
+        .box .bd div:nth-child(1){
+            background: orange;
+        }
+        .box .bd div:nth-child(2){
+            background: lightblue;
+        }
+        .box .bd div:nth-child(3){
+            background: lightgreen;
+        }
+        .box .bd div:nth-child(4){
+            background: lightsalmon;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <ul class="hd">
+        <li class="current">国际</li>
+        <li>国内</li>
+        <li>娱乐</li>
+        <li>社会</li>
+    </ul>
+    <div class="bd">
+        <div style="display: block">国际</div>
+        <div>国内</div>
+        <div>娱乐</div>
+        <div>社会</div>
+    </div>
+</div>
+<div class="box" id="box2">
+    <ul class="hd">
+        <li class="current">体育</li>
+        <li>篮球</li>
+        <li>足球</li>
+        <li>乒乓球</li>
+    </ul>
+    <div class="bd">
+        <div style="display: block">体育</div>
+        <div>篮球</div>
+        <div>足球</div>
+        <div>乒乓</div>
+    </div>
+</div>
+<div class="box" id="box3">
+    <ul class="hd">
+        <li class="current">国际</li>
+        <li>国内</li>
+        <li>娱乐</li>
+        <li>社会</li>
+    </ul>
+    <div class="bd">
+        <div style="display: block">国际</div>
+        <div>国内</div>
+        <div>娱乐</div>
+        <div>社会</div>
+    </div>
+</div>
+<script>
+    function tab( box ){
+        //var box = document.getElementById(id);
+        var lis = box.getElementsByClassName('hd')[0].getElementsByTagName('li');
+        var divs = box.getElementsByClassName('bd')[0].getElementsByTagName('div');
+        for( var i = 0; i < lis.length; i++ ){
+            lis[ i ].index = i;
+            lis[ i ].onmouseover = function () {
+                for( var j = 0; j < lis.length; j++ ){
+                    lis[ j ].className = '';
+                    divs[ j].style.display = 'none';
+                    if( this.index === j ){
+                        divs[j].style.display = 'block';
+                    }
+                }
+                this.className = 'current';
+            }
+        }
+    }
+
+    tab(  document.getElementById('box')  );
+    tab(  document.getElementById('box2')  );
+    tab(  document.getElementById('box3')  );
+</script>
+</body>
+</html>

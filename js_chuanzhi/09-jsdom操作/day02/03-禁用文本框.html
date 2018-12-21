@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- disabled 禁用表单-->
+<input type="text" value="请输入...">
+<input type="button" value="禁用">
+<input type="button" value="启用">
+<script>
+    var input = document.getElementsByTagName('input');
+    //书写事件
+    input[1].onclick = function () {
+        input[0].disabled = true;
+    }
+    input[2].onclick = function () {
+        input[0].disabled = false;
+    }
+</script>
+</body>
+</html>

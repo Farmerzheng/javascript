@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            background-color: beige;
+            text-align: center;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div>暂停</div>
+    <script>
+     /*   var obj={
+            _age:0,
+            callback:sethandler,
+            set age(value){
+                this._age=value;
+            },
+            get age(){
+                console.log("获取了年龄"+this._age);
+                return this._age;
+            }
+        };
+*/
+     var id;
+     var div=document.getElementsByTagName("div")[0];
+     div.prototype={
+         _bool:false,
+         set bool(value){
+             if(value){
+                 cancelAnimationFrame(id);
+                 div.textContent="启动"
+             }else{
+                 animation();
+                 div.textContent="暂停"
+             }
+            this._bool=value;
+         },
+         get bool(){
+             return this._bool;
+         }
+     };
+     div.addEventListener("click",clickHandler);
+     function clickHandler(e) {
+         if(!e){
+             e=window.event;
+         }
+         div.prototype.bool=!div.prototype.bool;
+     }
+
+        animation();
+        function animation() {
+            id=requestAnimationFrame(animation);
+            div.style.left=div.offsetLeft+1+"px"
+        }
+
+
+    </script>
+</body>
+</html>

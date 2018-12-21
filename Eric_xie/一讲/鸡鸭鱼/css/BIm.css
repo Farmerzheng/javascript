@@ -1,0 +1,260 @@
+.contWrap {
+	position: relative;
+	width: 100%;
+	margin-top: 70px;
+}
+
+.contWrap .content {
+	position: relative;
+	width: 100%;
+}
+
+.contWrap .content .contentCenter {
+	position: relative;
+	width: 1000px;
+	height: 590px;
+	margin: 0 auto;
+}
+nav #firstUl li:nth-child(5) {
+	border: 1px solid gray;
+}
+nav #firstUl li:nth-child(5) a {
+	color: white;
+}
+.content:nth-child(even) {
+	background-color: #FFFFFF;
+}
+
+.content:nth-child(odd) {
+	background-color: #e5e5e5;
+}
+
+.contWrap .body1 .contentCenter .word {
+	padding-top: 100px;
+	width: 500px;
+}
+
+.contWrap .body1 .contentCenter .left {
+	width: 129px;
+	float: left;
+	margin-top: 30px;
+}
+
+.contWrap .body1 .contentCenter .right {
+	width: 350px;
+	position: absolute;
+	right: -50px;
+	bottom: 0px;
+}
+
+.contWrap .body2 .contentCenter .word {
+	padding-top: 100px;
+	width: 500px;
+}
+
+.contWrap .body2 .contentCenter .left {
+	width: 230px;
+	/*float: left;*/
+	margin-top: 30px;
+}
+
+.contWrap .body2 .contentCenter .right {
+	width: 350px;
+	position: absolute;
+	right: -5px;
+	top: 0px;
+}
+
+.contWrap .body3 .contentCenter .word {
+	margin-left: 400px;
+	padding-top: 100px;
+	width: 500px;
+}
+
+.contWrap .body3 .contentCenter .left {
+	width: 290px;
+	margin-top: 30px;
+}
+
+.contWrap .body3 .contentCenter .left1 {
+	margin-left: 400px;
+}
+
+.contWrap .body3 .contentCenter .right {
+	width: 400px;
+	position: absolute;
+	left: -95px;
+	bottom: 0px;
+}
+
+.contWrap .body4 .contentCenter .left {
+	position: absolute;
+	left: -42px;
+	top: 0px;
+	width: 400px;
+}
+
+.contWrap .body4 .contentCenter .wordAndPic {
+	position: absolute;
+	top: 200px;
+	width: 400px;
+	left: 100px
+}
+
+.contWrap .body4 .contentCenter .wordAndPic img {
+	width: 215px;
+	margin-top: 20px;
+}
+
+.contWrap .body4 .contentCenter .right {
+	position: absolute;
+	width: 400px;
+	right: -100px;
+	bottom: 0px;
+}
+
+.contWrap .body5 .contentCenter .word {
+	position: absolute;
+	top: 300px;
+	left: 100px;
+	width: 400px;
+}
+
+.contWrap .body5 .contentCenter img {
+	position: absolute;
+	width: 400px;
+	right: -43px;
+	top: 0px;
+}
+
+@media screen and (max-width: 1320px) {
+	.contWrap .content .contentCenter {
+		position: relative;
+		width: 100%;
+		height: 590px;
+		margin: 0 auto;
+	}
+	.contWrap .body1 .contentCenter .word {
+		padding-top: 100px;
+		width: 30%;
+		margin-left: 10px;
+	}
+	.contWrap .body1 .contentCenter .left {
+		width: 10%;
+		float: left;
+		margin-top: 30px;
+		margin-left: 10px;
+	}
+	.contWrap .body2 .contentCenter .word {
+		padding-top: 100px;
+		width: 30%;
+		margin-left: 10px;
+	}
+	.contWrap .body2 .contentCenter .left {
+		margin-left: 10px;
+		width: 20%;
+		/*float: left;*/
+		margin-top: 30px;
+	}
+	.contWrap .body3 .contentCenter .word {
+		margin-left: 300px;
+		padding-top: 100px;
+		width: 30%;
+	}
+	.contWrap .body3 .contentCenter .left {
+		width: 20%;
+		margin-top: 30px;
+	}
+	.contWrap .body3 .contentCenter .left1 {
+		margin-left: 300px;
+	}
+}
+
+@media screen and (max-width: 528px) {
+	.contWrap .body3 .contentCenter .word {
+		margin-left: 200px;
+		padding-top: 100px;
+		width: 30%;
+	}
+	.contWrap .body3 .contentCenter .left1 {
+		margin-left: 200px;
+	}
+}
+
+@media screen and (max-width: 740px) {
+	.contWrap .body4 .contentCenter .wordAndPic {
+		width: 50%;
+		margin-top: 20px;
+	}
+	.contWrap .body4 .contentCenter .wordAndPic img {
+		width: 60%;
+		margin-top: 20px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.contWrap .body4 .contentCenter .wordAndPic {
+		position: absolute;
+		bottom: -100px;
+		left: 0;
+		width: 50%;
+		margin-top: 20px;
+	}
+	.contWrap .body4 .contentCenter .wordAndPic img {
+		width: 60%;
+		margin-top: 20px;
+	}
+	.contWrap .body5 .contentCenter .word {
+		position: absolute;
+		top: 60px;
+		left: 5px;
+		width: 30%;
+	}
+	.contWrap .body1 .contentCenter .right {
+	width: 270px;
+	position: absolute;
+	right: -80px;
+	bottom: 0px;
+}
+	.contWrap .body2 .contentCenter .right {
+	width: 270px;
+	position: absolute;
+	right: -45px;
+	top: 0px;
+}
+	.contWrap .body3 .contentCenter .right {
+	width: 280px;
+	position: absolute;
+	left: -95px;
+	bottom: 0px;
+}
+.contWrap .body4 .contentCenter .left {
+	position: absolute;
+	left: -63px;
+	top: 0px;
+	width: 290px;
+}	
+	.contWrap .body4 .contentCenter .right {
+	position: absolute;
+	width: 290px;
+	right: -100px;
+	bottom: 0px;
+}
+
+.contWrap .body5 .contentCenter img {
+	position: absolute;
+	width: 290px;
+	right: -59px;
+	top: 0px;
+}
+	
+}
+
+@media only screen and (max-width: 960px) and (min-width: 640px){
+	.contWrap .body5 .contentCenter .word {
+		position: absolute;
+		top: 30px;
+		left: 50px;
+		width: 30%;
+	}
+}

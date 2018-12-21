@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">点击</button>
+  <script>
+  var btn = document.getElementById("btn");
+  // addEventListener IE8不支持
+  btn.addEventListener("click", clickHandler);
+
+  function clickHandler(e) {
+    var e = e || window.event;
+    alert("btn");
+    e.stopPropagation();
+    // 移除挂接的事件
+    // btn.removeEventListener("click", clickHandler);
+  }
+
+  document.body.addEventListener("click", bodyClickHandler)
+
+  function bodyClickHandler() {
+    alert("body")
+  }
+  </script>
+</body>
+
+</html>

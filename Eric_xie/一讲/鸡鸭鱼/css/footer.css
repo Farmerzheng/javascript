@@ -1,0 +1,23 @@
+footer {
+	width: 214px;
+	margin: 50px auto 0 auto;
+}
+footer .footerWrap {
+	width: 214px;
+	height: 110px;
+	margin: 0 auto;
+}
+
+footer .footerWrap #first {
+	width: 25px;
+	display: block;
+	margin: 0 auto;
+}
+footer .footerWrap img:not(#first) {
+	margin-left: 20px;
+	margin-top: 30px;
+}
+footer .footerWrap p {
+	margin-top: 25px;
+	font-size: 10px;
+}

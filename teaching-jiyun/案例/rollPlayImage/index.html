@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #div0
+        {
+            margin: auto;
+            width: 600px;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+        #div1
+        {
+            width: 3000px;
+            height: 350px;
+            font-size: 0px;
+            position: absolute;
+            transition: all 1.5s;
+        }
+        #div1 img
+        {
+            width: 600px;
+            height: 350px;
+        }
+        ul
+        {
+            list-style: none;
+            position: absolute;
+            bottom: 10px;
+            left: 200px;
+        }
+        ul li
+        {
+            float: left;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: #CCCCCC;
+            text-align: center;
+            color: #FFFFFF;
+            margin-right: 5px;
+        }
+        #leftBn
+        {
+            position: absolute;
+            left: 10px;
+            top: 160px;
+        }
+        #rightBn
+        {
+            position: absolute;
+            right: 10px;
+            top: 160px;
+        }
+    </style>
+</head>
+<body>
+<!--溢出隐藏的外容器-->
+    <div id="div0">
+        <!--放置图片的容器-->
+        <div id="div1">
+            <img src="img/a.jpeg">
+            <img src="img/b.jpeg">
+            <img src="img/c.jpeg">
+            <img src="img/d.jpeg">
+            <img src="img/e.jpeg">
+        </div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <input type="button" value="左边" id="leftBn">
+        <input type="button" value="右边" id="rightBn">
+    </div>
+    <script>
+        var leftBn=document.getElementById("leftBn")
+        var rightBn=document.getElementById("rightBn")
+        var div1=document.getElementById("div1")
+        var li=document.getElementsByTagName("li");
+        var div0=document.getElementById("div0");
+
+        var postion=0;
+        var bool=false;
+
+        div0.addEventListener("mouseover",ctrlAutoHandler);
+        div0.addEventListener("mouseout",ctrlAutoHandler);
+        function ctrlAutoHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.type=="mouseover"){
+                bool=true
+            }else if(e.type=="mouseout"){
+                bool=false;
+            }
+
+        }
+        setInterval(rightPlay,2000);
+
+        function rightPlay() {
+            if(bool){
+                return;
+            }
+            postion++;
+            if(postion>4){
+                postion=0;
+            }
+            playImage();
+            rebulidLi();
+
+        }
+
+        leftBn.addEventListener("click",clickHandler);
+        rightBn.addEventListener("click",clickHandler);
+        for(var i=0;i<li.length;i++){
+            li[i].addEventListener("click",clickHandler)
+        }
+
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.target==leftBn){
+                if(postion<=0){
+                    postion=4;
+                }else{
+                    postion--;
+                }
+
+            }else if(e.target==rightBn){
+                postion++;
+                if(postion>4){
+                    postion=0;
+                }
+
+            }else{
+                for(var i=0;i<li.length;i++){
+                    if(li[i]==e.target){
+                        postion=i;
+                    }
+                }
+
+            }
+            playImage();
+            rebulidLi();
+
+        }
+    
+
+        function rebulidLi() {
+            for(var i=0;i<li.length;i++){
+                li[i].style.backgroundColor="#CCCCCC";
+            }
+            li[postion].style.backgroundColor="#FF0000";
+        }
+        function playImage() {
+            div1.style.left=-postion*600+"px"
+        }
+    </script>
+</body>
+</html>

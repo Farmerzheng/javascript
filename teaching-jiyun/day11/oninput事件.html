@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" name="user">
+
+	<script type="text/javascript">
+		var input = document.getElementsByName("user")[0];
+		input.oninput = function(){
+           console.log(this.value);
+		}
+	</script>
+</body>
+</html>	

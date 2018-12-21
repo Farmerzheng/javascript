@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = '   a    b   c     ';
+//    console.log( str );
+    // 去除左右两端的空格
+//    console.log( str.trim() );
+    // 获取字符串的长度
+//    console.log( str.length );
+    //去除空格，
+    //带去除空格后的字符放到一个新字符串中
+    var newStr = '';
+    for(var i = 0; i < str.length; i++){
+        //console.log( str.charAt(i) );
+        //如果不为空,把找到的字符放入到newStr
+        if( str.charAt(i) !== ' ' || str.charAt(i) !== '    ' ){
+            newStr += str.charAt(i);
+        }
+    }
+    console.log( newStr );
+</script>
+</body>
+</html>

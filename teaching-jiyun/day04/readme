@@ -1,0 +1,14 @@
+如何获取行内样式、内联样式
+
+行内样式：obj.style.width
+内联样式：
+function getStyle(obj, name) { 
+     if(obj.currentStyle) { 
+          return obj.currentStyle[name]; 
+     } else { 
+         return  getComputedStyle(obj, false)[name]; 
+     } 
+}
+
+div.style["width"]// 正确的
+div.style."width" //不正确

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<select>
+    <option value=""></option>
+</select>
+<input type="range">
+<script>
+    //获取光标   onfocus
+    //失去光标   onblur
+    // 改变内容  onchange   下拉菜单   滑块中
+    // 当输入的时候 oninput
+    var input = document.getElementsByTagName('input')[0];
+    input.onfocus = function () {
+        console.log ( '获取焦点' );
+    }
+    input.onblur = function () {
+        console.log ( '失去光标' );
+    }
+    //当里边的值变化，类似于失去光标
+    input.onchange = function () {
+        console.log( this.value );
+    }
+    //实施监听表单值的变化
+    input.oninput = function (){
+        console.log( this.value );
+    }
+</script>
+</body>
+</html>

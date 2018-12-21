@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 600px;
+            height: 600px;
+            margin: auto;
+            border: solid 1px #000000;
+            position: relative;
+        }
+        img
+        {
+            position: absolute;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+
+</head>
+<body>
+<div></div>
+    <script>
+
+        var list=[];
+        var gameList=[];
+        var num=2;
+
+        var i=0;
+        var img=$("<img>");
+        img.ready(readyHandler);
+        img.attr("src","img/1.png");
+        function readyHandler() {
+            list.push(img.clone());
+            if(i<1){
+                i++;
+                img.ready(readyHandler);
+                img.attr("src","img/2.png")
+            }else{
+                init()
+            }
+        }
+
+        function init() {
+            createDiv(num);
+        }
+        function createDiv(num) {
+            var row=Math.floor(Math.random()*num);
+            var col=Math.floor(Math.random()*num);
+            for(var i=0;i<num;i++){
+                gameList[i]=[];
+                for(var j=0;j<num;j++){
+                    if(i==row && col==j){
+                        gameList[i][j]=list[0].clone()
+                    }else{
+                        gameList[i][j]=list[1].clone()
+                    }
+                    gameList[i][j].css({
+                        width:600/num+"px",
+                        height:600/num+"px",
+                        left:j*(600/num)+"px",
+                        top:i*(600/num)+"px"
+                    });
+
+                    $("div").append(gameList[i][j]);
+                    gameList[i][j].on("click",clickHandler)
+                }
+            }
+            console.log(gameList)
+        }
+        function clickHandler(e) {
+            if(~$(this).attr("src").indexOf("1.png")){
+                num++;
+                clearImage();
+                createDiv(num);
+            }else{
+                alert("你点错了")
+            }
+        }
+        
+        function clearImage() {
+            for(var i=0;i<gameList.length;i++){
+                for(var j=0;j<gameList[i].length;j++){
+                    gameList[i][j].off("click",clickHandler);
+                    gameList[i][j].remove();
+                    gameList[i][j]=null;
+                }
+                gameList[i].length=0;
+            }
+            gameList.length=0;
+        }
+    </script>
+</body>
+</html>

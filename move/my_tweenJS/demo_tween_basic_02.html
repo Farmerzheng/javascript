@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  left:0;
+}
+</style>
+
+<body>
+  <div class="box"></div>
+  <script src="tween-basic.js"></script>
+  <script>
+  /*		Tween.js中的线性匀速运动案例实际上只是某一个静态数值，是无法构建动画的，如果要想实现连续的具有明显轨迹的动画效果，我们需要不停地修改t的数值*/
+
+  /*
+   * t: current time（当前时间）；
+   * b: beginning value（初始值）；
+   * c: change in value（变化量）；
+   * d: duration（持续时间）。
+   */
+
+  let box = document.querySelector(".box");
+  let t = 0,
+    b = 0,
+    c = 100,
+    d = 10;
+
+  animation();
+
+  function animation() {
+    requestAnimationFrame(animation);
+    t++;
+    if (t <= d) {
+      let s = Tween.Linear(t, b, c, d);
+      // console.log(s)
+      box.style.left = s + "px";
+    }
+  }
+  </script>
+</body>
+
+</html>

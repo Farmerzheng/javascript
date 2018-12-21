@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = "adfkl;2345王争alkdsfj;ads6678;lakdsfjla9099"
+		var myReg = /王争/gi;
+		var result = myReg.exec(str);
+		// console.log(result[0])
+		while(result){
+			console.log(result[0]);//王争
+			result = myReg.exec(str);
+		}
+	</script>
+</body>
+</html>		

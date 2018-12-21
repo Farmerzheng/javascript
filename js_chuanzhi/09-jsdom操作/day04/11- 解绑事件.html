@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<button>点击</button>
+<button>解绑</button>
+<div></div>
+
+<script>
+    var button = document.getElementsByTagName('button');
+    var div = document.getElementsByTagName('div')[0];
+    // 谷歌，狐火
+    button[0].addEventListener( 'click',function(){
+        div.style.background = 'blue';
+    } );
+    // removeEventListener
+    // dettachEvent attachEvent
+    button[1].onclick = function(){
+        alert(123);
+        button[0].removeEventListener('click',function(){
+            div.style.background = 'blue';
+        });
+    }
+</script>
+</body>
+</html>

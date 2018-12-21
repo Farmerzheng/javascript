@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function Box(_width,_height) {
+            this.width=_width;
+            this.height=_height;
+        }
+        Box.prototype.getArea=function () {
+            this.width+=10;
+            this.height+=10;
+            console.log(this.width,this.height,"___1")
+//            return this.width*this.height;
+        }
+       /* function Circle(_radius) {
+            this.radius=_radius;
+        }
+        */
+        function RectBox(_width,_height,_color) {
+            Box.call(this,_width,_height);
+//            Circle.call(this,_width/2);
+            this.color=_color;
+
+        }
+        RectBox.prototype.constructor=RectBox;
+        RectBox.prototype.getArea=function () {
+//           this.constructor.prototype.getArea.call(this);
+
+            console.log(this.width,this.height,"___2");
+
+            return (this.width*this.height)/2;
+        }
+        /*function mixin(subClassProto,OtherClassProto) {
+            var list=Object.getOwnPropertyNames(OtherClassProto);
+            for(var i=0;i<list.length;i++){
+                if(!(list[i] in subClassProto)){
+                    var pro=Object.getOwnPropertyDescriptor(OtherClassProto,list[i]);
+                    Object.defineProperty(subClassProto,list[i],{
+                        value:pro.value,
+                        configurable:pro.configurable,
+                        enumerable:pro.enumerable,
+                        writable:pro.writable
+                    })
+                }
+            }
+        }*/
+
+        RectBox.prototype=Object.create(Box.prototype);
+//        mixin(RectBox.prototype,Circle.prototype);
+        var box=new RectBox(300,300,"#FF0000");
+//        var box1=new Box(300,300);
+       console.log(box.width,box.height,RectBox.prototype.constructor);
+        box.getArea();
+//        console.log(box.getArea(),box1.getArea())
+    </script>
+</body>
+</html>

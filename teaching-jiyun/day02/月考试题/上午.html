@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        #div0{width: 200px;height: 100px;border: 1px solid #000000;margin: auto;margin-top: 100px;}
+        #div1{width: 100px;height: 30px;border: 1px solid #000000;margin: auto;text-align:center;line-height: 30px ;}
+        #div2{margin: auto;text-align:center;height: 30px; line-height: 30px;}
+         #input1{margin-left: 60px;}
+    </style>
+</head>
+<body>
+     <div id="div0">
+         <br>
+         <!--建立一个大div-->
+         <div id="div1"></div>
+         <!--建立一个盛放数字的div-->
+         <div id="div2"></div>
+         <!--建立一个放时间的div-->
+         <input type="button" value="开始" id="input1">
+         <!--建立一个开始按钮-->
+         <input type="button" value="停止">
+         <!--创建一个结束按钮-->
+     </div>
+
+</body>
+    <script>
+
+        var div0 = document.getElementById("div0");
+//        引用div0
+        var div1= document.getElementById("div1");
+        //        引用div1
+        var div2 = document.getElementById("div2");
+        //        引用div2
+       var kaiShi  = document.getElementsByTagName("input")[0];
+        //        引用开始按钮
+        var tingZhi = document.getElementsByTagName("input")[1];
+        //        引用结束按钮
+         kaiShi.addEventListener("click",clickHander);
+        //        给开始按钮加侦听时间
+        tingZhi.addEventListener("click",clickHanders);
+        //        给结束按钮加侦听时间
+        var sum=0;
+//        创建一个sum变量
+        var id;
+//        给定时器加一个名称
+        var times=0;
+//        创建一个times变量
+        /*
+        * 开始函数控制定时器
+        * 当开始时开始执行定时器，并将各类要求一一执行
+        * */
+        function clickHander(e){
+              if(!e){
+                  e=window.event;
+              }
+            var arr;
+//            创建一个空数组用来盛放20个随机数
+            id = setInterval(bianHuan,500);
+//            循环定时器每0.5秒执行一次，
+                function bianHuan(){
+                    sum++;
+//                    每执行一次让sum加1
+                    arr=[];
+                    times+=0.5;
+//                    没执行一次让times加0.5
+                    for(var i=0;i<20;i++){
+                        var shuzi = Math.floor(Math.random()*900+100);
+                        arr.push(shuzi);
+                    }
+//                    循环获取到二十个随机数
+                    if(sum==20){
+                        sum=0;
+                    }
+//                    当sum达到20时让其从头开始循环
+                    div1.textContent=arr[sum];
+//                    当循环的数字为奇数时让div0的背景色为红色
+//                     当循环的数字为偶数时让div0的背景色为lanse
+                    if(arr[sum]%2==0){
+                        div0.style.background="blue"
+                    }else{
+                        div0.style.background="red"
+
+                    }
+
+                }
+
+          }
+        /*
+        * 添加一个停止函数
+        * 当点击时停止定时器
+        * 将times的值填入div2中
+        * */
+    function  clickHanders(e){
+        if(!e){
+            e=window.event
+        }
+        clearInterval(id);
+        div2.textContent="已运行"+times+"s";
+    }
+    </script>
+</html>

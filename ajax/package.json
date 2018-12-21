@@ -1,0 +1,11 @@
+{
+  "name": "ajax(12)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jQuery 1.12.3.min.js",
+  "scripts": {
+      "dev": "browser-sync start --server --files \"*.*\""
+  },
+  "author": "",
+  "license": "ISC"
+}

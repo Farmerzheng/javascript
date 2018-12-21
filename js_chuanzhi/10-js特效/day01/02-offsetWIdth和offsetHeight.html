@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            padding:10px;
+            border:10px solid #000;
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    // offset  偏移量
+    var box = document.getElementById('box');
+    // offsetWidth  :   width + padding + border
+    // offsetHeight :   height + padding + border
+    console.log( box.offsetWidth );
+    console.log( box.offsetHeight );
+
+</script>
+</body>
+</html>

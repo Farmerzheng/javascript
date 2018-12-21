@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<br>
+<br>
+<input type="text">
+<br>
+<br>
+<input type="text">
+<br>
+<br>
+<input type="text">
+<br>
+<br>
+<input type="text">
+<br>
+<br>
+<input type="text">
+<br>
+<br>
+<button>赋值</button>
+<button>取值</button>
+<script>
+    //1.获取所需要的标签
+    var inputs = document.getElementsByTagName('input');
+    var buttons = document.getElementsByTagName('button');
+    //2.书写事件
+    buttons[0].onclick = function () {
+        //通过遍历索引，来实现遍历数组
+        //
+        for( var i = 0; i < inputs.length; i++ ){
+            inputs[i].value = i;
+        }
+    }
+    //点击第二个按钮，获取表单中的值，然后组成一个字符串
+    buttons[1].onclick = function () {
+        var arr = [  ];
+        for( var i = 0; i < inputs.length; i++ ){
+            arr.push( inputs[i].value );
+        }
+        //console.log( arr );
+        // 将数组中的值，组合成字符串
+        console.log( arr.join('') );
+    }
+</script>
+</body>
+</html>

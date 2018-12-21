@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            margin:10px;
+            border:10px solid red;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">这是一个盒子,这是一个盒子,这是一个盒子</div>
+<script>
+    // client  offset   scroll
+    var box = document.getElementById('box');
+//    console.log( box.clientWidth );
+    //  client   height + padding
+    //  offset   height + padding + border
+    //  scroll   height + padding  (内容过多，高度就是内容的高度)
+//    console.log( 'client---' + box.clientHeight );
+//    console.log( 'offset---' + box.offsetHeight );
+//    console.log( 'scroll---' + box.scrollHeight );
+</script>
+</body>
+</html>

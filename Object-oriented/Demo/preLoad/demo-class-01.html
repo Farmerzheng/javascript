@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <img dataSrc="http://image.fanhuan.com/goods/2018-01-24/530542339390.jpg!300.300?v=1516942512">
+  <img dataSrc="http://image.fanhuan.com/goods/2018-01-08/553712882794.jpg!300.300?v=1516942512">
+  <img dataSrc="http://image.fanhuan.com/goods/2018-01-19/539828715663.jpg!300.300?v=1516942512">
+  <!-- <script src="reload-class.js"></script> -->
+  <script src="reload-class-ES6.js"></script>
+  <script type="text/javascript">
+
+
+  //拿到所有的图片对象
+  var imgArr = document.querySelectorAll("img");
+  // 创建一个新数组，用来存放所有的图片链接地址
+  var imgSrcList = [];
+  var imgArrLength = imgArr.length;
+  // 遍历所有的图片对象
+  for (var i = 0; i < imgArrLength; i++) {
+    // 将图片的地址链接放入imgSrcList当中
+    imgSrcList.push(imgArr[i].getAttribute("dataSrc"));
+  }
+
+  //什么时候显示图片？----> 所有图片下载完成后显示图片--->显示图片的方法？----->让所有图片的dataSrc属性值换成src
+
+
+  var reload  = new Reload(imgSrcList, function() {
+    //所有图片下载完成后会执行此函数
+
+    // 显示图片
+    for (var i = 0; i < imgArrLength; i++) {
+      // 给图片对象的src属性赋值
+      imgArr[i].src = imgSrcList[i]
+      // 删除图片对象的dataSrc属性
+      imgArr[i].removeAttribute("dataSrc");
+    }
+  })
+
+  reload.init();
+
+
+
+  console.log(imgSrcList);
+  </script>
+</body>
+
+</html>

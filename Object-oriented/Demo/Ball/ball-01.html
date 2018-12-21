@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ballGame</title>
+</head>
+<style>
+.box {
+  width: 600px;
+  height: 400px;
+  border: 1px solid red;
+  margin: 0 auto;
+  position: relative;
+}
+</style>
+
+<body>
+  <div class="box"></div>
+</body>
+<script>
+var box = document.querySelector(".box");
+
+function Ball(container, speed) {
+  this.container = container;
+  this.speed = speed;
+  this.score = 0;
+  this.moveBoolean = true;
+}
+Ball.prototype = {
+  init: function() {
+    this.createBall();
+    this.createBar();
+  },
+  createBall: function() {
+    //动态创建小球 
+    this.ball = document.createElement("div");
+    this.ball.style.cssText = "width:50px;height:50px;background-color:yellow;border-radius:50%;position:absolute;left:0;top:0;line-height:50px;text-align:center;font-size:20px;color:red";
+    this.container.appendChild(this.ball);
+  },
+  createBar: function() {
+    //动态创建小球 
+    this.bar = document.createElement("div");
+    this.bar.style.cssText = "width:150px;height:10px;background-color:pink;position:absolute;bottom:0;left:" + (this.container.offsetWidth / 2 - 75) + "px";
+    this.container.appendChild(this.bar);
+    var self = this;
+    // 事件挂接的覆盖问题？
+    // 事件处理函数以赋值的形式赋给事件名称的时候会存在事件覆盖（例如on方法）
+    // 事件处理函数以参数的形式传递给事件名称不会存在覆盖（例如addEventListener 方法）
+    // 作用域链 ？ 当试图访问某个变量或者函数的时候，先在自身的作用域内查找，如果找不到，跳出自身的作用域，到外层的作用域去查找，如果最外面的全局作用域也找不到，报错
+
+    // 两个模板没有同时移动的原因？
+    document.addEventListener("keydown", keydown);
+    document.addEventListener("keyup",keyup)
+
+    var direction = { left: false, right: false }; //左右
+    setInterval(function() {
+      if (direction.left) {
+        self.bar.style.left = self.bar.offsetLeft - 10 + 'px';
+      } else if (direction.right) {
+        self.bar.style.left = self.bar.offsetLeft + 10 + 'px';
+      }
+    }, 16);
+
+    function keydown(e) {
+      var e = e || event;
+      var code = e.keyCode || e.which || e.charCode;
+      // console.log(e.keyCode)
+      switch (code) {
+        case 37:
+          direction.left = true;
+          break;
+        case 39:
+          direction.right = true;
+          break;
+        default:
+          return;
+      }
+
+    }
+
+    function keyup(){
+    	direction = {left: false, right: false};
+    }
+  },
+  update: function() {
+    //改变小球的位置
+    this.ball.style.left = this.ball.offsetLeft + this.speed.x + "px";
+    this.ball.style.top = this.ball.offsetTop + this.speed.y + "px";
+
+    //判断盒子是否碰到边框
+    //下边线
+    if (this.ball.offsetTop + this.ball.offsetHeight > this.container.offsetHeight) {
+
+      //判断球的位置和模板的位置关系
+      if (this.ball.offsetTop + this.ball.offsetHeight >= this.bar.offsetTop && this.ball.offsetLeft + this.ball.offsetWidth / 2 > this.bar.offsetLeft && this.ball.offsetLeft + this.ball.offsetWidth / 2 < this.bar.offsetLeft + this.bar.offsetWidth) {
+        //如果球吃进模板，让球回到板面
+        this.ball.style.top = this.bar.offsetTop - this.ball.offsetHeight + "px";
+        this.score++;
+        this.speed.y = -this.speed.y;
+        this.ball.innerText = this.score;
+      } else {
+        this.ball.style.top = this.container.offsetHeight - this.ball.offsetHeight - 3 + "px";
+        console.log(1)
+        this.moveBoolean = false;
+
+
+        // alert("gameOver");
+        // this.speed.y = -this.speed.y;
+      }
+    }
+
+
+
+    //右边线
+    if (this.ball.offsetLeft + this.ball.offsetWidth > this.container.offsetWidth) {
+      this.speed.x = -this.speed.x;
+    }
+    // 上边线
+    if (this.ball.offsetTop <= 0) {
+      this.speed.y = -this.speed.y;
+    }
+    //左边线
+    if (this.ball.offsetLeft <= 0) {
+      this.speed.x = -this.speed.x;
+    }
+
+
+
+
+
+  }
+}
+//将小球所属的盒子作为参数传入，那么这样类的扩展性就增强了
+// 函数的参数越多，函数的扩展性和复用性就越强
+var ball1 = new Ball(box, { x: 2, y: 3 });
+ball1.init();
+
+var ball2 = new Ball(box, { x: 3, y: 2 });
+ball2.init();
+// setInterval(function() {
+// ball.update();
+// }, 16)
+
+animation();
+
+function animation() {
+  requestAnimationFrame(animation);
+  // 动画的停止或者运动用boolean变量去完成，不要清空定时器
+  if (ball1.moveBoolean == false || ball2.moveBoolean == false) return;
+  ball1.update();
+  ball2.update();
+}
+</script>
+
+</html>

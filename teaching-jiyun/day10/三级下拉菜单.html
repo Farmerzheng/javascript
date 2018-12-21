@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	ul,li{
+		list-style: none;
+	}
+	.province{
+		/*display: none;*/
+		background-color: pink
+	}
+	.province li{
+		display: none;
+		background-color: yellow;
+	}
+</style>
+<body>
+	<ul id = "china">
+	    中国
+		<ul class="province" style = "display: none">
+		    山西省
+			<li style = "display: none">运城市</li>
+			<li style = "display: none">太原市</li>
+			<li style = "display: none">临汾市</li>
+			<li style = "display: none">大同市</li>
+		</ul>
+		<ul class="province" style = "display: none">
+		    黑龙江省
+			<li style = "display: none">哈尔滨市</li>
+			<li style = "display: none">大庆市</li>
+			<li style = "display: none">牡丹江市</li>
+			<li style = "display: none">齐齐哈尔市</li>
+		</ul>
+		<ul class="province" style="display: none">
+		    内蒙古自治区
+			<li style = "display: none">呼和浩特</li>
+			<li style = "display: none">通辽市</li>
+			<li style = "display: none">赤峰市</li>
+			<li style = "display: none">乌海市</li>
+		</ul>
+	</ul>
+	<script>
+		var china = document.getElementById("china");
+		var provinceArr = document.getElementsByClassName("province");
+		//为中国添加点击事件
+		china.addEventListener("click",function(){
+
+            if(provinceArr[0].style.display == "none"){
+
+            	for(var i = 0 ; i < provinceArr.length ; i++){
+                  provinceArr[i].style.display = "block";
+                }
+
+            }else{
+            	for(var i = 0 ; i < provinceArr.length ; i++){
+                  provinceArr[i].style.display = "none";
+                }
+            }
+         
+
+		});
+
+		//为省份循环添加点击事件
+		for(var i = 0 ; i < provinceArr.length ; i++){
+
+			provinceArr[i].addEventListener("click",function(e){
+                   var event = e || window.event;
+                   event.stopPropagation();
+				//  取到省份下面的所有城市
+				var liArr = this.getElementsByTagName("li");
+
+				if(liArr[0].style.display == "none"){
+					//让对应省份下面的城市显示出来
+					for(var j = 0 ; j < liArr.length ; j++){
+						liArr[j].style.display = "block";
+					}
+				}else{
+	                //让对应省份下面的城市隐藏
+					for(var j = 0 ; j < liArr.length ; j++){
+						liArr[j].style.display = "none";
+					}
+				}
+
+			})
+		}
+	</script>
+</body>
+</html>

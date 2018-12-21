@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	function flower(){
+		
+		for(var i=100;i<1000;i++){
+          
+		  var a=i.toString().split("");
+
+		  var a1=parseInt(a[0]);
+		  var a2=parseInt(a[1]);
+		  var a3=parseInt(a[2]);
+
+
+		  // var b=parseInt((i/10)%10);
+
+		  // var c=parseInt((i/100));
+
+		  var s=a1*a1*a1+a2*a2*a2+a3*a3*a3;
+
+		  if(i===s)
+		  {
+		   document.write(i+",");
+		  }
+
+		}
+
+	}
+
+	flower();
+</script>
+	
+
+
+
+</body>
+</html>

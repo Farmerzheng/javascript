@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log( this );
+    // this 返回值  window 对象
+    // 默认这些变量都是窗口下的变量
+    var a = 5;
+    var b = 4;
+
+
+
+    function fn(){
+        // this不是指当前函数
+        var a = 1;
+        return this;
+    }
+
+    function Bar(){
+        this.a = 2;
+    }
+    console.log( fn() );
+    var p = new Bar();
+</script>
+</body>
+</html>

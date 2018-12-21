@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	 *{
+    	margin:0;
+    	padding:0;
+    }
+	#father{
+		width:200px;
+		height:300px;
+		border:1px solid red;
+		float:left;
+        overflow: hidden;
+	}
+	#father #child{
+      position:absolute;
+      top:0;
+      left:0;
+      width:200px;
+	}
+	#bar{
+		width:20px;
+		height:300px;
+		float: left;
+		border:1px solid yellow;
+		position:relative;
+    
+	}
+	#bar #scroll{
+		width:20px;
+		height:20px;
+		background-color: red;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+</style>
+<body>
+   <div id="father">
+		<div id="child">
+			啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦
+		</div>
+	</div>
+	<div id = "bar">
+		<div id="scroll"></div>
+	</div>
+	<script type="text/javascript">
+	    var scroll = document.getElementById("scroll");
+    	var bar = document.getElementById("bar");
+    	var child = document.getElementById("child");
+    	var father = document.getElementById("father");
+
+
+    	scroll.addEventListener("mousedown",mousedownHandler);
+
+    	function mousedownHandler(e){
+          var event = e || window.event;
+          // console.log(event);
+          scroll.divY = event.clientY - this.offsetTop;
+          document.addEventListener("mousemove",mousemoveHandler);
+    	}
+
+    	function mousemoveHandler(e){
+             var event = e || window.event;
+
+             scroll.style.top = event.clientY - scroll.divY + "px";
+
+             //禁止滚动条溢出
+             if(scroll.offsetTop <= 0 ){
+             	scroll.style.top = 0 + "px"
+             }
+
+             if( scroll.offsetTop > bar.offsetHeight - scroll.offsetHeight){
+             	scroll.style.top = bar.offsetHeight - scroll.offsetHeight + "px"
+             }  
+
+             //让内容区跟随滑块滚动
+             // child.style.top = - scroll.offsetTop/bar.offsetHeight*father.offsetHeight + "px"; 
+
+             //内容区能够滚动的距离
+             //child.offsetHeight - father.offsetHeight
+
+             //滚动条能够滚动的距离
+              //bar.offsetHeight - scroll.offsetHeight
+
+              //滚动条滚过去的距离/滚动条能够滚动的距离 = 内容区滚过去的距离/ 内容区能够滚动的距离
+
+               child.style.top = -scroll.offsetTop*(child.offsetHeight-father.offsetHeight)/( bar.offsetHeight - scroll.offsetHeight) + "px"    
+    	}
+
+    	document.addEventListener("mouseup",mouseupHandler);
+
+    	function mouseupHandler(){
+    		//通过哪种方式挂接的事件就通过哪种方式移除
+    		// document.onmousemove = null;
+    		document.removeEventListener("mousemove",mousemoveHandler);
+    	}
+
+
+	</script>
+</body>
+</html>

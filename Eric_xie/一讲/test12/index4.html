@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        img
+        {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="img/a.jpeg">
+    </div>
+  <input type="text" id="texts" value="诸葛亮">
+<script>
+    var img=document.querySelector("img");
+    var texts=document.querySelector("#texts");
+    if(navigator.userAgent.indexOf("Firefox")>-1){
+        img.addEventListener("DOMMouseScroll",wheelHandler)
+    }else{
+        img.addEventListener("mousewheel",wheelHandler);
+    }
+    function wheelHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        e.preventDefault();
+        var detail=0;
+        if(e.type=="DOMMouseScroll"){
+            detail=e.detail;
+        }else if(e.type=="mousewheel"){
+            detail=parseInt(e.deltaY/42)
+        }
+        img.style.top=img.offsetTop-detail+"px"
+
+    }
+
+    texts.addEventListener("focus",focusHandler)
+    texts.addEventListener("blur",focusHandler)
+    function focusHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        if(e.type=="focus"){
+            texts.value="";
+        }else if(e.type=="blur"){
+            if(texts.value.length<1){
+                texts.value="诸葛亮"
+            }
+        }
+    }
+</script>
+</body>
+</html>

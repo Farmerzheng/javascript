@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		/*body,html{
+			width: 100%;
+		}*/
+		#wrap{
+			width: 100%;
+			border: 2px solid red;
+			margin: 0 auto;
+			box-sizing: border-box;
+
+		}
+		#wrap ul{
+			list-style: none;
+			float: left;
+			width: 25%;
+			border: 2px solid green;
+			box-sizing: border-box;
+		}
+		#wrap li{
+			width: 94%;
+			margin: 10px 3%;
+			background: #ccc;
+			font-size: 50px;
+			border: 2px solid red;
+			/*list-style: none;*/
+		}
+		#wrap li img{
+			float: left;
+			width: 100%;
+			height: 100%;
+			border: 2px solid green;
+
+		}
+		.clear:after{
+			display: block;
+			content:'';
+			clear: both;
+			/*visibility: hidden;
+			height: 0;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap" class="clear">
+		<ul>
+			
+		</ul>
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+</body>
+<script type="text/javascript">
+	var uls = document.querySelectorAll('#wrap ul');
+	
+	function create(n){
+		for(var i = 0; i < n; i++){
+			console.log(uls)
+			var li = document.createElement('li');
+			li.innerHTML = '<img src="'+(i + 1)+'.jpg">';
+			li.className = 'clear';
+
+			li.firstElementChild.onload = function(){
+				var ulsHeight = [];
+				for(var j = 0; j < uls.length; j++){
+					ulsHeight.push(uls[j].offsetHeight);
+				}
+				console.log(ulsHeight)
+				var minHeight = ulsHeight[0];
+				var minIndex = 0;
+				for(var k = 0; k < ulsHeight.length; k++){
+					if(minHeight > ulsHeight[k]){
+						minHeight = ulsHeight[k];
+						minIndex = k;
+					}
+				}
+				uls[minIndex].appendChild(this.parentNode);
+				// uls[minIndex].appendChild(li);
+			}
+				
+		}
+	}
+		
+	create(39);
+</script>
+</html>

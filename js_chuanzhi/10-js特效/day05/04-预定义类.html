@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 把 I后边单引号 ，转义称为普通字符
+//    console.log( ' I\'m \nda\tvid  ' );
+    //字符类
+    //1. \d 验证为数字   0-9
+    console.log( /\d/.test('dsdfdsf$5^%$@#$@jlk') );
+    // 2.\D 验证为非数字a-a A-Z .....
+    console.log( /\D/.test('32432432') );
+    console.log( /\D/.test('dfdsfsdjfs') );
+
+    //3. \s 验证为不可见字符（\n  \t   \r   \v  \f）
+    console.log( /\s/.test('24  353 4645dsdsdf') );
+    //4. \S验证了非不可见字符
+    console.log( /\S/.test('4324343') );
+
+    //5. 单词字符 \w a-z A-Z 0-9 _
+    console.log( /\w/.test('!%^%$^ % $^') );
+    console.log(/\w/.test('%&^%$#@$@#e4r'));
+
+    //6. 非单词字符 \W
+    console.log( /\W/.test('234324234dsf') );
+    console.log( /\W/.test('hhll-34324') );
+</script>
+</body>
+</html>

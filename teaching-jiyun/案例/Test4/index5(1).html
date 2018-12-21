@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #div0
+        {
+            width:1080px ;
+            height: 380px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #div1
+        {
+            width: 5400px;
+            height: 380px;
+            font-size: 0px;
+            position: absolute;
+            /*background-image: url("images/a.jpeg");*/
+            transition: all 1.5s ease-in 0s;
+        }
+        #div1 img
+        {
+            width: 1080px;
+            height: 380px;
+        }
+        #leftBn
+        {
+            position: absolute;
+            top: 160px;
+
+        }
+        #rightBn
+        {
+            position: absolute;
+            top: 160px;
+            left: 1050px;
+        }
+        i{
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            border: 2px solid #FFFF00;
+            background-color: rgba(0,0,0,0);
+            display: block;
+            float: left;
+            margin-right: 15px;
+        }
+        #circleDiv
+        {
+            position: absolute;
+            left: 500px;
+            top: 350px;
+        }
+    </style>
+</head>
+<body>
+<div id="div0">
+    <div id="div1">
+        <img src="images/a.jpeg">
+        <img src="images/b.jpeg">
+        <img src="images/c.jpeg">
+        <img src="images/d.jpeg">
+        <img src="images/e.jpeg">
+    </div>
+    <img src="images/left.png" id="leftBn" onclick="leftClickHandler()">
+    <img src="images/right.png" id="rightBn" onclick="rightClickHandler()">
+    <div id="circleDiv"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+<script>
+    var arr=["url(images/a.jpeg)","url(images/b.jpeg)","url(images/c.jpeg)","url(images/d.jpeg)","url(images/e.jpeg)"]
+    var postion=0;
+    var div1=document.getElementById("div1")
+    var circleDiv=document.getElementById("circleDiv");
+    var lis=circleDiv.getElementsByTagName("i");
+    div1.style.left="0px";
+
+
+     for(var i=0;i<lis.length;i++){
+        lis[i].addEventListener("click",clickHandler);
+     }
+
+     function clickHandler(e) {
+        for(var i=0;i<lis.length;i++){
+            if(e.target==lis[i]){
+                postion=i;
+             }
+        }
+        playImage();
+     }
+
+
+
+    function playImage() {
+        div1.style.left=-postion*1080+"px";
+//        div1.style.backgroundImage=arr[postion];
+        for(var i=0;i<lis.length;i++){
+            lis[i].style.borderColor="#FFFF00"
+            lis[i].style.backgroundColor="rgba(0,0,0,0)";
+        }
+        lis[postion].style.backgroundColor="#FFFF00";
+        lis[postion].style.borderColor="rgba(0,0,0,0)"
+    }
+    
+    function leftClickHandler() {
+        postion--;
+        if(postion<0){
+            postion=4;
+        }
+        playImage();
+    }
+    
+    function rightClickHandler() {
+        postion++;
+        if(postion>4){
+            postion=0;
+        }
+        playImage();
+    }
+</script>
+</body>
+</html>

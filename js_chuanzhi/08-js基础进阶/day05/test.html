@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //递归求斐波那契数列
+    function fibonacci( n ){
+        if( n === 1 || n === 2 ){
+            return 1;
+        }else{
+            return fibonacci( n - 1 ) + fibonacci( n - 2 );
+        }
+    }
+    console.log( fibonacci( 12 ) );
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function Box() {
+            this.x=2;
+            this.y=2;
+        }
+        Box.prototype.move=function (x,y) {
+            this.x+=x;
+            this.y+=y;
+        };
+
+        function BoxSon() {
+            Box.call(this);
+        }
+
+        BoxSon.prototype=Object.create(Box.prototype);
+        BoxSon.prototype.move=function (x,y) {
+            this.constructor.prototype.move.call(this,x,y);
+            this.x*=x;
+            this.y*=y;
+        };
+        var box1=new Box();
+        box1.move(10,10);
+        console.log(box1.x,box1.y)
+        var box=new BoxSon();
+        box.move(10,10);
+        console.log(box.x,box.y)
+
+        var box2=new Box();
+        box2.move(10,10);
+        console.log(box2.x,box2.y)
+    </script>
+</body>
+</html>

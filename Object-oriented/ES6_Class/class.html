@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+</body>
+<script>
+// 创建一个 Person 类, 它有 name, age, 和 gender 属性, 还有一个说话的方法 sayHello
+class Person {
+
+// ES5的构造函数Person,对应ES6的Person类的构造方法
+// constructor方法是类的构造函数是默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法
+  constructor(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
+  // 前面不需要加上function这个关键字,直接把函数定义放进去了就可以了
+  sayHello() {
+    // 打印一句话, 自我介绍
+    console.log('你好, 我是 ' + this.name + ', 我今年 ' + this.age + ' 岁了, 我是 ' + this.gender + '.');
+  }
+
+  set age(value){
+   console.log("设置age属性")
+  }
+
+  get age(){
+    console.log("获取age属性")
+  }
+}
+
+var p = new Person('jim', 19, '男');
+
+console.log(p);
+</script>
+
+</html>

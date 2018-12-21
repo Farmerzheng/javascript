@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+		<div>
+			<label for="email">邮箱</label>
+			<input type="text" name="email" id = "email">
+			<span id = "emailSpan"></span>
+			   <textarea  rows="10"  cols="10"  name="" wrap="off">
+                </textarea>
+		</div>
+		<div>
+			<label for = "password">密码</label>
+			<input type="password" name="password" id = "password">
+			<span id = "passwordSpan"></span>
+		</div>
+		<div>
+			<label for = "passwordAgain">重新输入密码</label>
+			<input type="passwordAgain" name="passwordAgain" id = "passwordAgain">
+			<span id = "passwordAgainSpan"></span>
+		</div>
+		<div>
+			<label for = "username">姓名</label>
+			<input type="text" name="username" id = "username">
+			<span id = "nameSpan"></span>
+		</div>
+		<div>
+			<input type="button" name="login" value="注册">
+		</div>
+	</form>	
+	<script type="text/javascript">
+
+		var email = document.getElementsByName("email")[0];
+		var password = document.getElementsByName("password")[0];
+		var passwordAgain = document.getElementsByName("passwordAgain")[0];
+		var username = document.getElementsByName("username")[0];
+		var loginBtn = document.getElementsByName("login")[0];
+		var emailSpan = document.getElementById("emailSpan");
+		var passwordSpan = document.getElementById("passwordSpan");
+		var passwordAgainSpan = document.getElementById("passwordAgainSpan");
+		var nameSpan = document.getElementById("nameSpan");
+		var loginBoolean = true;
+
+		loginBtn.addEventListener("click",loginClickHandler);
+
+		function loginClickHandler(){
+			//验证邮箱
+			var emailText = email.value;
+			var emailReg = /^\w+@[0-9A-z]{2,4}\.[A-z]{2,4}$/;
+			var emailBoolean = emailReg.test(emailText);
+			if(emailBoolean){			  
+			   emailSpan.innerHTML = "格式正确";	
+			   emailSpan.style.color = "green";		 
+			}else{
+			   emailSpan.innerHTML = "邮箱格式错误";
+			   emailSpan.style.color = "red";
+			   loginBoolean = false;
+			}
+			//验证密码
+            var passwordText = password.value;
+            var passwordReg = /^\w{6,8}$/;
+            var passwordBoolean = passwordReg.test(passwordText);
+            if(passwordBoolean){
+            	passwordSpan.innerHTML = "密码格式正确";
+            	passwordSpan.style.color = "green";
+            }else{
+            	passwordSpan.innerHTML = "密码格式错误，密码格式为字母数字下划线6-8位";
+            	passwordSpan.style.color = "red";
+            	loginBoolean = false;
+            }
+
+			//验证两次密码是否一致
+            var passwordAgainText = passwordAgain.value;
+            if(passwordAgainText != passwordText){
+               passwordAgainSpan.innerHTML = "两次密码输入不一致";
+               passwordAgainSpan.style.color = "red";
+               loginBoolean = false;
+            }else{
+               passwordAgainSpan.innerHTML = "";
+            }
+
+			//验证用户名
+            var nameText = username.value;
+            var nameReg = /^[A-z0-9]{8,20}$/;
+            var nameBoolean = nameReg.test(nameText);
+            if(nameBoolean){
+               nameSpan.innerHTML = "";
+            }else{
+            	nameSpan.innerHTML = "姓名格式不正确";
+            	nameSpan.style.color = "red";
+            	loginBoolean = false;
+            }
+
+            if(loginBoolean){
+            	window.location.href = " 注册成功.html";
+            }
+
+		}
+
+
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+    img{
+    	border: none
+    }
+	#container{
+		width:600px;
+		height:600px;
+		margin:0 auto;
+		/*border:1px solid red;*/
+	}
+</style>
+<body>
+    <div id="container"></div>
+	<script type="text/javascript">
+
+	      var container = document.getElementById("container");
+		//进入页面创建16张图片
+
+		//循环嵌套
+         
+          var n = 4;
+
+		  function createImg(n){
+			  	 //创建多行图片
+	          
+	           //一共有n*n张图片
+	           //randomNum 是 0 到 n*n 之间的一个随机数
+			   var randomNum = randomFn(n*n,0);
+
+			  
+			  for(var i = 0 ; i < n ; i++){
+
+	               //创建一行图片
+	               for( var j = 0 ; j < n ; j++){
+	                  
+	                  var img = new Image();
+	                  img.style.width = container.offsetWidth/n + "px";
+	                  img.style.height = container.offsetHeight/n + "px";
+	                  img.src = "1.png";
+	                  container.appendChild(img);
+	               }
+
+			  }
+
+	          //创建一张随机的图片
+			  for(var  i = 0 ; i < n*n ; i++){
+			  	  if( i == randomNum){
+	                var imgArr = document.getElementsByTagName("img");
+	                imgArr[i].src = "2.png";
+	                 //随机的图片能够点击
+	                 imgArr[i].addEventListener("click",function(){
+	                 	// console.log(1);
+	                 	//递归 （在函数内部调用函数本身）
+	                 	//图片数量增加
+	                 	n++;
+	                 	container.innerHTML = "";
+	                 	createImg(n);
+	                 })
+			  	  }
+			  }
+
+		  };
+
+		  //进入页面默认创建16张图片
+		  createImg(n);
+
+
+		  //随机函数
+		  function randomFn(max,min){
+		  	return parseInt(Math.random()*(max-min))+min;
+		  }
+
+		 
+
+	</script>
+</body>
+</html>	

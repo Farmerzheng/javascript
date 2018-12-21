@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+        //当页面的所有资源加载完成后会触发load事件
+        //load事件是挂接在window上面的
+        // 
+	    window.onload = function(){
+	        var box = document.getElementById("box");
+			box.onclick = function(){
+				console.log(1);
+			}
+	    }
+
+	    //为什么把脚本写在最下面呢？
+	      //1、提高网页的加载速度
+          //2、不用讲脚本代码写在load方法当中了
+	
+
+	</script>
+	<div id="box" style = "width:100px;height:100px;background-color: red">		
+	</div>
+     
+</body>
+</html>

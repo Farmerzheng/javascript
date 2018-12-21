@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<!--<script src="2.txt"></script>-->
+<script>
+
+//	JSONP : JSON with Padding  //内填充
+
+//全局函数/变量是window的属性
+	function fn(data) {
+		alert(data);
+	}
+
+window.onload = function() {
+
+	var oBtn = document.getElementById('btn');
+	
+	oBtn.onclick = function() {
+
+		//用script标签加载资源是没有跨域问题的(例如cdn远程加载)
+
+		/*
+		 CDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度。
+		 */
+
+		/*
+		在资源加载进来之前定义好一个函数，这个函数接收一个参数（数据），在需要的时候通过script标签加载对应远程文件资源，当远程的文件资源被加载进来的时候，就会去执行我们前面定义好的函数，并且把数据当作这个函数的参数传入进去
+		* */
+		var oScript = document.createElement('script');
+
+		//计算机识别文件的实质内容，和文件的后缀名本身没有关系，返回的内容是合法的js就
+		oScript.src = '2.txt';
+
+		document.body.appendChild(oScript);
+
+		//删除这个标签？
+		
+	}
+}
+
+</script>
+</head>
+
+<body>
+	<input type="button" id="btn" value="按钮" />
+
+</body>
+</html>

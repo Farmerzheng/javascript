@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div0
+        {
+            width: 400px;
+            height: 20px;
+            position:relative;
+            background-color: #FF0000;
+
+        }
+        input
+        {
+            position: absolute;
+        }
+        #div1
+        {
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="div0"></div>
+    <input type="button" value="开始">
+    <div id="div1"></div>
+    <script>
+        var div0=document.getElementById("div0");
+        var div1=document.getElementById("div1");
+        var bn=document.getElementsByTagName("input")[0];
+        bn.addEventListener("click",clickHandler);
+        var divlist=[];
+       div0.style.width="400px";
+        div0.style.left=(document.documentElement.clientWidth-div0.offsetWidth)/2+"px";
+        bn.style.left=div0.offsetWidth+div0.offsetLeft+"px";
+        bn.style.top=div0.offsetTop+"px";
+        div1.style.left=bn.offsetLeft+bn.offsetWidth+"px";
+        div1.style.top=div0.offsetTop+"px";
+        var bool=false;
+
+
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            bool=true;
+        }
+        var times=0;
+        var sum=0;
+        var randomTime=Math.floor(Math.random()*20+10);
+        setInterval(randomCreateDiv,16);
+        function randomCreateDiv() {
+            if(!bool || parseFloat(div0.style.width)<=0) return;
+
+            randomTime--;
+            if(randomTime<=0){
+                createDiv();
+                randomTime=Math.floor(Math.random()*10+5);
+            }
+
+            div0.style.width=parseFloat(div0.style.width)-0.05+"px";
+
+            if(new Date().getTime()-times>1000){
+                times=new Date().getTime();
+                sum++;
+            }
+            bn.style.left=div0.offsetWidth+div0.offsetLeft+"px";
+            div1.style.left=bn.offsetLeft+bn.offsetWidth+"px";
+            div1.textContent=sum;
+
+            for(var i=0;i<divlist.length;i++){
+                var lift=parseInt(divlist[i].getAttribute("lift"));
+                divlist[i].setAttribute("lift",lift-1);
+                console.log(lift)
+                if(lift-1<=0){
+                    divlist[i].remove();
+                    divlist.splice(i,1);
+                }
+            }
+            if(parseFloat(div0.style.width)<=0){
+                bool=false;
+            }
+        }
+
+        function createDiv() {
+            var div=document.createElement("div");
+            div.style.backgroundColor=randomColor();
+            var obj=randomPoint();
+            div.style.left=obj.x+"px";
+            div.style.top=obj.y+"px";
+            div.style.position="absolute";
+            div.style.width="50px";
+            div.style.height="50px";
+            div.setAttribute("lift",Math.floor(Math.random()*150)+150);
+            div.addEventListener("click",deleteDivHandler);
+            document.body.appendChild(div);
+            divlist.push(div)
+        }
+        function deleteDivHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            var index=divlist.indexOf(this);
+            this.remove();
+            divlist.splice(index,1);
+        }
+
+        function randomColor() {
+            return "#"+Math.floor(Math.random()*0xFFFFFF).toString(16);
+        }
+
+        function randomPoint() {
+            var obj={};
+            obj.x=Math.random()*(document.documentElement.clientWidth-50);
+            obj.y=Math.random()*(document.documentElement.clientHeight-50);
+            return obj;
+        }
+    </script>
+</body>
+</html>

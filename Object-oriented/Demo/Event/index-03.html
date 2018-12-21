@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">点击</button>
+  <script src="event-class.js"></script>
+  <script>
+  var btn = document.getElementById("btn");
+
+  // Event.addEvent = function(DOM,EventName,callBack)
+
+  Event.addEvent(btn, "click", clickHandler);
+
+  function clickHandler(e) {
+    var e = e || window.event;
+    alert("btn")
+    // Event.removeEvent(btn, "click", clickHandler)
+    Event.stopBubble(e);
+  }
+  Event.addEvent(document.body, "click", bodyClickHandler);
+
+  function bodyClickHandler() {
+    alert("body")
+  }
+  </script>
+</body>
+
+</html>

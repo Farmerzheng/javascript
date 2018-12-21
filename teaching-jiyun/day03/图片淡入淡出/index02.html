@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="nature1.jpg" id = "img">
+	<div id="div1" style = "background-color: red;width:100px;height:100px;"></div>
+	<!-- <script type="text/javascript" src = "../无缝滚动/requetAnimationFrame.js"></script> -->
+	<script type="text/javascript" src = "Fade.js"></script>
+	<script type="text/javascript">
+
+		var img = document.getElementById("img");
+        var div1 = document.getElementById("div1");
+
+        var fade=new Fade(img);
+        
+        animation()        
+        function animation()
+        {
+        	requestAnimationFrame(animation);
+        	fade.update();
+        }
+
+
+	</script>
+</body>
+</html>

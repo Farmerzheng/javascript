@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var shopingInfo=[{storeName:"天猫超市",storeId:100001,goodsId:20001,goodsImg:"images/icon_a.jpeg",goodsInfo:"【天猫超市】楼兰蜜枣Q枣100g新疆特产干果小红枣玉枣子灰枣",price:20,weight:0.1,nums:1}
+        ,{storeName:"Viviromar旗舰店",storeId:100002,goodsId:20002,goodsImg:"images/icon_b.jpeg",goodsInfo:"生巧克力可可脂VIVI手工松露抹茶生巧克力零食礼盒情人节生日礼物",price:68,weight:0,nums:1}
+        ,{storeName:"欧莉典雅旗舰店",storeId:100003,goodsId:20003,goodsImg:"images/icon_c.jpeg",goodsInfo:"欧莉典雅 efg冻干粉祛痘印痘坑微针修护敏感收毛孔正品 5ml*5对装",price:129,weight:0,nums:1}
+        ,{storeName:"天猫超市",storeId:100001,goodsId:20004,goodsImg:"images/icon_d.jpeg",goodsInfo:"【天猫超市】楼兰蜜枣Q枣300g",price:60,weight:0.3,nums:1}
+        ,{storeName:"Viviromar旗舰店",storeId:100002,goodsId:20005,goodsImg:"images/icon_e.jpeg",goodsInfo:"生巧克力可可脂VIVI手工松露抹茶",price:136,weight:0,nums:2}]
+    </script>
+</head>
+<body>
+
+<script>
+       for(var i=0;i<shopingInfo.length;i++){
+           var div=createInstanceDiv(shopingInfo[i])
+           document.body.appendChild(div);
+       }
+        function createInstanceDiv(obj) {
+            var div=document.createElement("div");
+            div.style.width="400px";
+            div.style.height="250px";
+            div.style.border="1px solid #000000";
+            var checkbox=document.createElement("input");
+            checkbox.type="checkbox";
+            div.appendChild(checkbox);
+            var label=document.createElement("label");
+            label.textContent=obj.storeName;
+            div.appendChild(label);
+            var a=document.createElement("a");
+            a.href="#";
+            a.textContent="删除";
+            a.style.float="right";
+            a.addEventListener("click",clickHandler)
+            div.appendChild(a);
+            var br=document.createElement("br");
+            div.appendChild(br);
+            var br1=document.createElement("br");
+            div.appendChild(br1);
+            var img=new Image();
+            img.src=obj.goodsImg;
+            img.style.float="left";
+            img.style.width="150px";
+            img.style.height="100px";
+            div.appendChild(img);
+            var span=document.createElement("span");
+            span.textContent=obj.goodsInfo;
+            span.style.width="200px";
+            span.style.float="left";
+            div.appendChild(span);
+            return div;
+        }
+
+    function clickHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        this.parentElement.remove();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="row row-try-it">
+    <div class="column large-4 medium-6 small-12">
+        <div class="demo-box-wrap">
+            <h2>Swipe</h2>
+            <div class="demo-box swipe"
+                 style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <img class="active" src="img/pano-1.jpg">
+                <img src="img/pano-2.jpg">
+                <img src="img/pano-3.jpg">
+                <div class="page-num">
+                    <span class="active">1</span>
+                    <span>2</span>
+                    <span>3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column large-4 medium-6 small-12">
+        <div class="demo-box-wrap">
+            <h2>Pan</h2>
+            <div class="demo-box pan"
+                 style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <img class="active" src="img/pano-1.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="column large-4 medium-6 small-12">
+        <div class="demo-box-wrap">
+            <h2>Tap</h2>
+            <div class="demo-box tap"
+                 style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <img class="active" src="img/pano-1.jpg">
+                <img src="img/pano-2.jpg">
+                <img src="img/pano-3.jpg">
+                <div class="page-num">
+                    <span class="active">1</span>
+                    <span>2</span>
+                    <span>3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column large-4 medium-6 small-12">
+        <div class="demo-box-wrap">
+            <h2>Press</h2>
+            <div class="demo-box press"
+                 style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <img class="active" src="img/pano-1.jpg">
+                <div class="demo-overlay">
+                    <img src="img/circle-check.svg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column large-4 medium-6 small-12">
+        <div class="demo-box-wrap">
+            <h2>Rotate</h2>
+            <div class="demo-box rotate"
+                 style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <img class="active" src="img/pano-1.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="column large-4 medium-6 small-12">
+        <div class="demo-box-wrap">
+            <h2>Pinch / Zoom</h2>
+            <div class="demo-box pinch"
+                 style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <img class="active" src="img/pano-1.jpg">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jQuery.js"></script>
+<script src="js/hammer.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

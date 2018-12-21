@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#ul0{
+			list-style:none;
+		}
+		#ul0 li
+		{
+			background-image:url('bj.gif'); 
+			background-repeat:no-repeat;
+		}
+		#ul1{
+			list-style:none;
+			margin-left:-40px;
+		}
+		#ul2{
+			list-style:none;
+			margin-left:-40px;
+		}
+		#ula{
+			list-style:none;
+			margin-left:-40px;
+		}
+		#ulb{
+			list-style:none;
+			margin-left:-40px;
+		}
+		#span0{
+			display:none;
+			
+		}
+		#span1{
+			display:none;
+		}
+		#span2{
+			display:none;
+		}
+		#ul1 li
+		{
+			background:gold;
+			width:300px;
+			border:1px solid black;
+		}
+		#ul2 li
+		{
+			background:gold;
+			width:300px;
+			border:1px solid black;
+		}
+		#ula li
+		{
+			background:blue;
+			width:300px;
+			border:1px solid black;
+		}
+		#ulb li
+		{
+			background:blue;
+			width:300px;
+			border:1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul0">
+		<li>&nbsp;&nbsp;一级菜单A</li>
+		<span id="span0">
+			<ul id="ul1">
+				<li id="li1">&nbsp;&nbsp;文管产品</li>
+			</ul>
+				<span id="span1">
+					<ul id="ula">
+						<li>&nbsp;&nbsp;&nbsp;asd</li>
+						<li>&nbsp;&nbsp;&nbsp;asd</li>
+						<li>&nbsp;&nbsp;&nbsp;asd</li>
+					</ul>
+				</span>
+			<ul id="ul2">
+				<li id="li2">&nbsp;&nbsp;桌面工具</li>
+			</ul>
+				<span id="span2">
+					<ul id="ulb">
+						<li>&nbsp;&nbsp;&nbsp;asd</li>
+						<li>&nbsp;&nbsp;&nbsp;asd</li>
+						<li>&nbsp;&nbsp;&nbsp;asd</li>
+					</ul>
+				</span>
+		</span>
+		<li>&nbsp;&nbsp;一级菜单B</li>
+		<li>&nbsp;&nbsp;一级菜单C</li>
+	</ul>
+</body>
+<script>
+	var ul0=document.getElementById('ul0');
+	var lis=ul0.getElementsByTagName('li');
+	s=0;
+	lis[0].addEventListener('click',clickHandler);
+	function clickHandler(e){
+		if(!e){
+			e=window.event;
+		}
+		s++;
+		if(s%2==1){
+		span0.style.display='block';
+		}else{
+			span0.style.display='none';
+		}
+	}
+	var li1=document.getElementById('li1');
+	var li2=document.getElementById('li2');
+	li1.addEventListener('click',clickHandler1);
+	li2.addEventListener('click',clickHandler2);
+	function clickHandler1(e){
+		if(!e){
+			e=window.event;
+		}
+		s++;
+		if(s%2==0){
+		span1.style.display='block';
+		}else{
+			span1.style.display='none';
+		}
+	}
+	function clickHandler2(e){
+		if(!e){
+			e=window.event;
+		}
+		s++;
+		if(s%2==0){
+		span2.style.display='block';
+		}else{
+			span2.style.display='none';
+		}
+	}
+</script>
+</html>

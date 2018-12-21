@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>aaa</div>
+  <script>
+
+  	// ReferenceError是引用一个不存在的变量时发生的错误。
+    // try \catch 关键
+    //首先尝试执行try后面的代码，如果执行的过程中没有错误，catch后面的代码不会执行，如果有错误，就会执行catch后面的代码
+    // catch 后面小括号里面的形参就是捕获到的错误信息
+
+    // if(e.stopPropagation){
+    //    e.stopPropagation()
+    // }else{
+    //    e.cancelBubble = true;
+    // }
+
+    // try{
+    //   e.stopPropagation();
+    // }catch(){
+    //   e.cancelBubble = true; 
+    // }
+
+    // 能用if解决的问题就不用try
+    // try……catch 能够捕获到错误信息，if不能
+
+  try {
+    console.log(a)
+  } catch (err) {
+    console.log(err)//referenceError : a is not defined
+    console.log(err.name)//referenceError
+    console.log(err.message)// a is not defined
+  }
+  </script>
+</body>
+
+</html>

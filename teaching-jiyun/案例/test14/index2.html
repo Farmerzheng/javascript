@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<input type="password">
+<input type="button" value="存储">
+    <script>
+        var inputs=document.getElementsByTagName("input");
+        inputs[2].addEventListener("click",clickHandler);
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(inputs[0].length==0){
+                alert("请输入正确的用户名");
+                return;
+            }
+            if(inputs[1].length==0){
+                alert("请不要输入空密码");
+                return;
+            }
+            document.cookie="name="+inputs[0].value;
+            document.cookie="password="+inputs[1].value;
+        }
+        if(document.cookie.indexOf(";")>-1){
+            var arr=document.cookie.split(";");
+            if(arr.length>=2 && arr[0].indexOf("=")>-1 && arr[1].indexOf("=")>-1){
+                inputs[0].value=arr[0].split("=")[1];
+                inputs[1].value=arr[1].split("=")[1];
+            }
+
+        }
+
+    </script>
+</body>
+</html>

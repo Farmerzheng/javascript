@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: bisque;
+            position: absolute;
+            left:300px;
+            top:300px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <input type="button" id="bn" value="播放">
+    <script>
+        var div0=document.querySelector("div");
+        var bn=document.querySelector("#bn");
+        var record=false;
+        var playBool=false;
+        var num=0;
+        var arr=[];
+        div0.addEventListener("mousedown",mouseHandler);
+        window.addEventListener("mousedown",windowHandler);
+        bn.addEventListener("click",playHandler)
+        var point={};
+        function mouseHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.type=="mousedown"){
+                this.addEventListener("mousemove",mouseHandler);
+                this.addEventListener("mouseup",mouseHandler);
+                this.addEventListener("mouseleave",mouseHandler);
+                point.x=e.offsetX;
+                point.y=e.offsetY;
+                record=true;
+                var len=arr.length
+                for(var i=0;i<len;i++){
+                    arr[0]=null;
+                    arr.shift();
+                }
+                arr.length=0;
+            }else if(e.type=="mousemove"){
+                this.style.left=(e.x-point.x)+"px"
+                this.style.top=(e.y-point.y)+"px"
+            }else if(e.type=="mouseup" || e.type=="mouseleave"){
+                this.removeEventListener("mousemove",mouseHandler);
+                this.removeEventListener("mouseup",mouseHandler);
+                this.removeEventListener("mouseleave",mouseHandler);
+                record=false;
+                num=arr.length-1;
+            }
+        }
+        function windowHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            e.preventDefault();
+        }
+
+        function playHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            playBool=!playBool
+            if(playBool){
+                bn.value="停止"
+            }else{
+                bn.value="开始"
+            }
+        }
+
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            if(record){
+                var obj={};
+                obj.x=div0.offsetLeft;
+                obj.y=div0.offsetTop;
+                arr.push(obj);
+            }
+            if(playBool){
+                div0.removeEventListener("mousedown",mouseHandler);
+                if(num<=0){
+                    playBool=false;
+                    return;
+                }
+                div0.style.left=arr[num].x+"px";
+                div0.style.top=arr[num].y+"px";
+                num--;
+            }
+        }
+    </script>
+</body>
+</html>

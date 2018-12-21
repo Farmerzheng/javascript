@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+<script>
+//    function jia1(){
+//        alert( 1+1 );
+//    }
+//    function jia2(){
+//        alert(2+2);
+//    }
+//    jia1();
+//    jia2();
+//    参数： 参考数值
+//    分为形参和实参
+//    1.形参： 它只是形式上的参数，负责占位    创建时候的参数
+//    2.实参： 它是实际的参数，负责程序中的值; 调用的时候的参数
+      //3. 实参的数量可以大于形参的数量，不应该少于形参的数量
+    function cal( a , b ){
+        alert( a+b );
+    }
+    function getDiv( box ){
+        document.getElementById( box).innerHTML = 123;
+    }
+    // 在调用的时候，就会把实参的值，赋值给形参
+    cal( 1,2,3,4,5,6 );
+
+//    cal(  );// 没有给形参赋值，此时的a和b都是undefined
+//
+//    getDiv( 'box' );
+//    getDiv(  );
+</script>
+</body>
+</html>

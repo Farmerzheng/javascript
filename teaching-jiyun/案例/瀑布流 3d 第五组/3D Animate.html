@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding:0;
+		}
+		#warp{
+			width: 100%;
+			height:527px;
+			background: rgba(0,0,0,.8);
+		}
+		#cont{
+			width: 1024px;
+			height:100%;
+			margin:auto;
+			position: relative;
+		}
+		#start{
+			position: absolute;
+			left:0;
+			right:0;
+			top:0;
+			bottom: 0;
+			margin:auto;
+		}
+		#di{
+			width: 100%;
+			height:90px;
+			background: black;
+			opacity: 0.6;
+			color:#e3e3e3;
+			font-size: 20px;
+			line-height: 90px;
+			text-align: center;
+			position: absolute;
+			top: 450px;
+		}
+		#quan{
+			width: 1200px;
+			margin:auto;
+			margin-top: 20px;
+		}
+		dl{
+			list-style: none;
+			width: 369px;
+			margin:auto;
+			margin:0 15px;
+			float: left;
+			position: relative;
+		}
+		dt{
+			height:219px;
+		}
+		dd{
+			
+			height:100px;
+			line-height: 100px;
+			text-align: center;
+			color:#ccc;
+			font-size: 16px;
+		}
+		.pic{
+			position:absolute;
+			left: 0;
+			right:0;
+			top:0;
+			bottom:0;
+			margin:auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<div id="cont">
+			<img src="img/3d/2-150Z2105915292.jpg" alt="">
+			<img src="img/3d/play.png" alt="" id="start">
+		</div>
+		<div id="di">Sichuan Province-Commercial Rea</div>
+	</div>
+	<div id="quan">
+		<dl>
+			<dt><img src="img/3d/1-1510121R410H3.jpg" alt=""></dt>
+			<dd>Commercial Real Eslate-2014-10</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>	
+			<dt><img src="img/3d/1-1510121SHX34.jpg" alt=""></dt>
+			<dd>Commercial Real Eslate-2014-10</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>
+			<dt><img src="img/3d/1-1510121T91XV.jpg" alt=""></dt>
+			<dd>Commercial Real Eslate-2014-10</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>
+			<dt><img src="img/3d/1-1510121TP0U1.jpg" alt=""></dt>
+			<dd>Chongqing City-Read Eslate-2013</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>
+			<dt><img src="img/3d/1-1510121TTOc.jpg" alt=""></dt>
+			<dd>Commercial Real Eslate-2013-9</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>
+			<dt><img src="img/3d/1-1510121U04XL.jpg" alt=""></dt>
+			<dd>Commercial Real Eslate-2014-10</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>
+			<dt><img src="img/3d/1-1510121U33Ic.jpg" alt=""></dt>
+			<dd>Huzhou City Commercial Est</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>
+			<dt><img src="img/3d/1-1510121U004292.jpg" alt=""></dt>
+			<dd>Qingdao Lake Real Estate</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+		<dl>
+			<dt><img src="img/3d/1-1510121U305330.jpg" alt=""></dt>
+			<dd>Sichuan Province-Commercial Rea</dd>
+			<img src="img/3d/play_small_h.png" alt="" class="pic">
+		</dl>
+	</div>	
+</body>
+	<script type="text/javascript">
+	var dt=document.querySelectorAll("dt");
+	var imgs=document.querySelectorAll(".pic")
+	var index=0;
+		for(var i=0;i<dt.length;i++){
+			dt[i].index=i;
+			dt[i].addEventListener("mouseover",mouseHander);
+			dt[i].addEventListener("mouseleave",mouseHander)
+		}
+		function mouseHander(e){
+			if(!e){
+				e=window.event;
+			}
+			for(var i=0;i<imgs.length;i++){
+				imgs[i].src="img/3d/play_small_h.png";
+			}
+			if(e.type=="mouseover"){
+				imgs[this.index].src="img/3d/play_small_b.png";
+			}
+			 if(e.type=="mousseleave"){
+				imgs[this.index].src="img/3d/play_small_h.png";
+			}
+		}
+	</script>
+</html>

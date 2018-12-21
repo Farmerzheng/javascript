@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="tween.js"></script>
+</head>
+<style>
+#target {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+}
+</style>
+
+<body>
+  <div id="target"></div>
+  <script>
+  let position = { x: 0, y: 0, rotation: 0 };
+  let target = document.getElementById('target');
+
+
+  init();
+
+  function init() {
+
+    let tween = new TWEEN.Tween(position)
+      .to({ x: 700, y: 200, rotation: 359 }, 2000)
+      .delay(1000)
+      .easing(TWEEN.Easing.Elastic.InOut)
+      .onUpdate(update);
+
+    tween.start(); //tween动画的开始
+
+  }
+
+  animate();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    TWEEN.update();
+  }
+
+  function update() {
+    // console.log(position)
+    target.style.webkitTransform = 'translate(' + position.x + 'px' + ',' + position.y + 'px' + ')' + 'rotate(' + Math.floor(position.rotation) + 'deg)';
+
+  }
+  </script>
+</body>
+
+</html>

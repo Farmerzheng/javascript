@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table{background: #999}
+   .right_btn input{width: 35px;}
+</style>
+<body>
+  <table border="1px">
+      <caption>计算器</caption>
+      <tr>
+          <td>第一个数</td>
+          <td><input class="first" type="text"></td>
+      </tr>
+      <tr>
+          <td>第二个数</td>
+          <td><input class="second" type="text"></td>
+      </tr>
+      <tr>
+          <td style="font-weight: bold;">计算结果</td>
+          <td><input class="result"  type="text"></td>
+      </tr>
+      <tr class="right_btn">
+          <td>计算</td>
+          <td>
+              <input class="add" type="button" value="+" >
+              <input class="substract" type="button" value="-">
+              <input class="multiply" type="button" value="*">
+              <input class="divide" type="button" value="/">
+          </td>
+      </tr>
+  </table>
+<script>
+    var first=document.getElementsByClassName('first');
+    var second=document.getElementsByClassName('second');
+    var results=document.getElementsByClassName('result');
+    var addBtn=document.getElementsByClassName('add');
+    var substractBtn=document.getElementsByClassName('substract');
+    var multiplyBtn=document.getElementsByClassName('multiply');
+    var divideBtn=document.getElementsByClassName('divide');
+    addBtn[0].onclick=function(){
+        results[0].value=parseFloat(first[0].value)+parseFloat(second[0].value);
+    }
+    substractBtn[0].onclick=function(){results[0].value=parseFloat(first[0].value)-parseFloat(second[0].value);}
+    multiplyBtn[0].onclick=function(){results[0].value=parseFloat(first[0].value)*parseFloat(second[0].value);}
+    divideBtn[0].onclick=function(){results[0].value=parseFloat(first[0].value)/parseFloat(second[0].value);}
+</script>
+</body>
+</html>

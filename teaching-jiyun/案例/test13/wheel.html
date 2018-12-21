@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <input type="submit" id="bn" value="确定">
+</form>
+<input type="text" id="names">
+<!--<input type="button" id="bn" value="确定">-->
+    <script>
+     /*   window.addEventListener("mousewheel",mouseWheelHandler);
+        window.addEventListener("dblclick",mouseWheelHandler)
+        function mouseWheelHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            console.log(e);
+        }*/
+        var names=document.getElementById("names");
+         var bn=document.getElementById("bn");
+        bn.addEventListener("submit",inputHandler);
+        names.addEventListener("change",inputHandler);
+        function inputHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            console.log(e)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>
+    <input type="checkbox" name="" id="" class="carCheck">
+    <span class="good">牛奶</span>
+    <span class="minus">-</span>
+    <span class="num">0</span>
+    <span class="plus">+</span>
+    <span class="price">10</span><span>元</span>
+  </p>
+  <p>总价<span class="totalPrice"></span>元</p>
+  <script>
+  var minusBtn = document.querySelector(".minus");
+  var plusBtn = document.querySelector(".plus");
+  var numDiv = document.querySelector(".num");
+  var checkbox = document.querySelector(".carCheck");
+  var totalPriceDiv = document.querySelector(".totalPrice");
+  var num = 0;
+  var price = 10;
+  var checked = false;
+  minusBtn.addEventListener("click", minusClickHandler);
+  plusBtn.addEventListener("click", plusClickHandler);
+  checkbox.addEventListener("click", checkHandler);
+
+  function minusClickHandler() {
+    // if后面的语句如果只有一行，{}可以省略
+    if (num == 0) return;
+    num--;
+    numDiv.innerText = num;
+    renderTotalPrice()
+  }
+
+  function plusClickHandler() {
+    num++;
+    numDiv.innerText = num;
+    renderTotalPrice();
+  }
+
+  function checkHandler() {
+    checked = this.checked;
+    renderTotalPrice()
+  }
+
+  function renderTotalPrice() {
+    if (checked) {
+      totalPriceDiv.innerText = num * price;
+    } else {
+      totalPriceDiv.innerText = 0;
+    }
+  }
+  </script>
+</body>
+
+</html>

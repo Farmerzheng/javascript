@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<button>验证</button>
+<script>
+     /*
+      需求:
+            1：纯数字且第一位不为0
+            2：4到11位
+      例如：799806110
+      */
+    var oInput=document.getElementsByTagName("input")[0];
+     var oBtn=document.getElementsByTagName("button")[0];
+      oBtn.onclick=function(){
+          var value=oInput.value;
+          value=value.toString();
+          var patt1=/^[1-9][0-9]{3,10}$/g;
+          console.log(patt1.test(value))
+      }
+
+
+
+
+
+
+</script>
+</body>
+</html>

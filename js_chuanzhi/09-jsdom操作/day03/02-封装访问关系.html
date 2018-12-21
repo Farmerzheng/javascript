@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 500px;
+            margin:100px auto;
+        }
+        li{
+            width: 100px;
+            height: 30px;
+            background: #ccc;
+            border:1px solid #ddd;
+            float: left;
+            margin-left:20px;
+        }
+        .current{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="current">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script src="dom.js"></script>
+<script>
+//console.log( getId('box') );
+//getPreviousSibling( getId('box')).style.color = 'red';
+    //点击任何一个li，让当前的li添加类current，其它的兄弟都移除类
+    var lis = document.getElementsByTagName('li');
+    for( var i = 0; i < lis.length; i++ ){
+        lis[i].onclick = function(){
+            this.className = 'current';
+            // 获取其它的兄弟
+            var siblings = getAllSilings( this );
+            for( var i = 0;i < siblings.length; i++ ){
+                siblings[i].className = '';
+            }
+        }3
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <img src="image/bird0.png" id="bird">
+<script>
+    const BIRD_DEFAULT_STATE="bird_default_state";
+    const BIRD_UP_STATE="bird_up_state";
+    const BIRD_DOWN_STATE="bird_down_state";
+    var bird=document.getElementById("bird");
+    bird.addEventListener("mouseover",mouseHandler);
+    bird.addEventListener("mouseout",mouseHandler);
+    bird.addEventListener("mousedown",mouseHandler);
+
+    var state;
+    state=BIRD_DEFAULT_STATE;
+    var time=10;
+    animation();
+    function animation() {
+        requestAnimationFrame(animation);
+        if(time==0){
+            time=10;
+        }else{
+            time--;
+            return;
+        }
+        switch (state)
+        {
+            case BIRD_DEFAULT_STATE:
+                bird.src="image/bird"+(bird.src.indexOf("0")>-1 ? 1 : 0)+".png";
+                break;
+            case BIRD_UP_STATE:
+                bird.src="image/up_bird"+(~bird.src.indexOf("0") ? 1 : 0)+".png";
+                break;
+            case BIRD_DOWN_STATE:
+                bird.src="image/down_bird"+(~bird.src.indexOf("0") ? 1 : 0)+".png";
+                break;
+        }
+    }
+
+    function mouseHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        switch(e.type){
+            case "mouseover":
+                    state=BIRD_UP_STATE;
+                break;
+            case "mousedown":
+                    state=BIRD_DOWN_STATE;
+                break;
+            case "mouseout":
+                    state=BIRD_DEFAULT_STATE;
+                break;
+        }
+    }
+</script>
+</body>
+</html>

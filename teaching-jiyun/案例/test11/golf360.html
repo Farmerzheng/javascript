@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img
+        {
+            position: absolute;
+        }
+    </style>
+    <script src="js/Loadimg.js"></script>
+
+</head>
+<body>
+     <script>
+         var arr=[];
+
+         for(var i=0;i<72;i++){
+             arr.push("img/golf/golf"+i+".jpg");
+         }
+
+         var sum=0;
+
+         new LoadImg(arr,callBackHandler);
+
+         function callBackHandler(list){
+             arr.length=0;
+             arr=list;
+             //console.log("aaa")
+             if(list.length==0) return;
+            document.body.appendChild(arr[0]);
+             arr[0].style.left=(document.documentElement.clientWidth-arr[0].offsetWidth)/2+"px"
+             arr[0].addEventListener("mousedown",mouseHandler);
+         }
+
+         var prex=0;
+
+         function mouseHandler(e) {
+             if(!e){
+                 e=window.event;
+             }
+             if(e.type=="mousedown"){
+                 this.addEventListener("mouseup",mouseHandler);
+                 this.addEventListener("mousemove",mouseHandler);
+                 this.addEventListener("mouseout",mouseHandler);
+             }else if(e.type=="mouseup"){
+                 this.removeEventListener("mouseup",mouseHandler);
+                 this.removeEventListener("mousemove",mouseHandler);
+                 this.removeEventListener("mouseout",mouseHandler);
+             }else if(e.type=="mouseout"){
+                 this.removeEventListener("mouseup",mouseHandler);
+                 this.removeEventListener("mousemove",mouseHandler);
+                 this.removeEventListener("mouseout",mouseHandler);
+             }else if(e.type=="mousemove"){
+                 e.preventDefault();
+                 if(prex==0){
+                     prex=e.clientX;
+                     return;
+                 }
+                 sum+=(e.clientX-prex);
+                 prex=e.clientX;
+
+                 if(sum>71){
+                     sum=0;
+                 }
+                 if(sum<0){
+                     sum=71
+                 }
+                 this.src="img/golf/golf"+sum+".jpg"
+             }
+         }
+     </script>
+</body>
+</html>

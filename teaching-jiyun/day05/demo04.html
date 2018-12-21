@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.father{
+		width:100px;
+		height:100px;
+		border:1px solid red;
+		overflow: auto;
+	}
+	.child{
+		width:200px;
+		height:200px;
+		background-color: yellow
+	}
+</style>
+<body>
+    <div class="father">
+    	<div class="child">
+    		I am a handsome man 
+    			I am a handsome man 
+    				I am a handsome man 
+    					I am a handsome man 
+    						I am a handsome man 
+    							I am a handsome man 
+    			I am a handsome man 
+    				I am a handsome man 
+    					I am a handsome man 
+    						I am a handsome man 
+    							I am a handsome man 
+    		
+    	</div>
+    </div>
+	<script type="text/javascript">
+		var father = document.getElementsByClassName("father")[0];
+		var child = document.getElementsByClassName("child")[0];
+		console.log(
+			father.offsetHeight,
+			father.offsetWidth,
+			father.scrollHeight,
+			father.scrollWidth
+			)
+		father.onscroll = function(){
+			console.log(this.scrollTop)
+		}
+	</script>
+</body>
+</html>

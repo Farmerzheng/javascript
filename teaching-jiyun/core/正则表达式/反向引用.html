@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var myReg = /(\d)(\d)\2\1/gi;
+		var str = "1221哈哈哈3443哈哈哈3344";
+		var myStr = myReg.exec(str);
+		
+		while(myStr){
+			console.log(myStr[0]);//1221  3443
+			myStr = myReg.exec(str);
+		}
+
+	</script>
+</body>
+</html>	

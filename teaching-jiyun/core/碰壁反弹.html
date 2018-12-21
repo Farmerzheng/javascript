@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript" src="动画封装/tween.js"></script>
+<!-- <script type="text/javascript" src="lib/jquery-3.1.0.js"></script> -->
+<style type="text/css">
+      *{
+      	margin:0;
+      	padding:0;
+      }
+	.box{		
+		width:500px;
+		height:500px;
+		position:relative;
+		left:0px;
+		top:0px;
+		border:1px solid red;
+	}
+	.box .ball{
+        position:absolute;
+        width:30px;
+        height:30px;
+        left:0;
+        top:0;
+        border-radius: 15px;
+        background-color: yellow
+	}
+</style>
+<body>
+	<div class="box">
+		<div class="ball"></div>
+	</div>
+	<script type="text/javascript">
+       var ball = document.getElementsByClassName("ball")[0];
+
+       var position = {
+       	x:0,
+       	y:0
+       }
+       
+       var speed = {
+       	 x:3,
+       	 y:5
+       }
+
+
+       requestAnimationFrame(step);
+
+       function step(){
+
+            position.x += speed.x;
+            position.y += speed.y;
+          
+
+            if(position.x > 500 || position.x < 0){
+
+            	speed.x = -speed.x;
+
+            }else if(position.y > 500 || position.y < 0){
+
+	            speed.y = -speed.y;
+            }
+
+            ball.style.left = position.x+"px";
+            ball.style.top = position.y+"px";
+
+            requestAnimationFrame(step);
+       }
+        
+
+	</script>
+</body>
+</html>	

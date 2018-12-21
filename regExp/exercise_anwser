@@ -1,0 +1,42 @@
+
+
+答案
+1、str.replace(/\s/g, '')
+2、/^[1-9]\d{4,10}$/
+3、str.replace(/文艺青年/g, '码农')
+4、str.replace(/(^\s*)|(\s*$)/g, '')
+5、/^1[34578]\d{9}$/
+6、/^[a-zA-Z0-9_]+@[a-zA-Z0-9]{2,4}\.[a-zA-Z]{2,4}$/
+7、str.match(/\d+/g)
+8、/[\u4e00-\u9fa5]/g
+9、true
+10、papa
+11、/\d/.test(str)
+12、str.search(/b/)
+13、var str = "我爱北京天安门，天安门上太阳升。";
+    var re = /北京|天安门/g; // 找到北京 或者天安门 全局匹配
+    var str2 = str.replace(re,function(str){
+    alert(str); //用来测试：函数的第一个参数代表每次搜索到的符合正则的字符，所以第一次str指的是北京 第二次str是天安门 第三次str是天安门
+    var result = '';
+    for(var i=0;i<str.length;i++){
+    result += '*';
+    } 
+    return result; //所以搜索到了几个字就返回几个* 
+    });
+    alert(str2) //我爱*****，***上太阳升
+
+14、str.replace(/-/g, '.')
+15、/\w/g 
+16、str.replace(/(\w+)\s(\w+)/, "$2, $1")  
+17、function isDigit(s){ 
+        var patrn=/^[0-9]{1,20}$/; 
+        if (!patrn.exec(s)) return false 
+        return true 
+    }  
+
+18、 /^[a-zA-Z]{1}([a-zA-Z0-9]|[\._]){4,19}$/
+19、 /^[a-zA-Z]{1,30}$/
+20、 /^(\w){6,20}$/
+21、/^<[a-zA-Z]+>$/ 
+22、/^w{3}\.[\w]+\.[a-zA-Z]{2,4}$/ig   
+23、/^(http|https):\/\/w{3}\.[\w]+(\.[a-zA-Z]{2,4})$/ig

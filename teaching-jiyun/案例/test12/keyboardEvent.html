@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+    <script>
+        window.addEventListener("keydown",keyboardHandler);
+        var div0=document.getElementsByTagName("div")[0];
+        function keyboardHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            switch (e.keyCode){
+                case 37:
+                    div0.style.left=div0.offsetLeft-5+"px";
+                    if(div0.offsetLeft<=0){
+                        div0.style.left="0px";
+                    }
+                    break;
+                case 38:
+                        div0.style.top=div0.offsetTop-5+"px";
+                        if(div0.offsetTop<=0){
+                            div0.style.top="0px";
+                        }
+                    break;
+                case 39:
+                        div0.style.left=div0.offsetLeft+5+"px";
+                        if(div0.offsetLeft>=document.documentElement.clientWidth-div0.offsetWidth){
+                            div0.style.left=document.documentElement.clientWidth-div0.offsetWidth+"px"
+                        }
+                    break;
+                case 40:
+                        div0.style.top=div0.offsetTop+5+"px";
+                    if(div0.offsetTop>=document.documentElement.clientHeight-div0.offsetHeight){
+                        div0.style.top=document.documentElement.clientHeight-div0.offsetHeight+"px"
+                    }
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

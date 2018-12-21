@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text"><br>
+<input type="text"><br>
+<input type="text"><br>
+<input type="text"><br>
+<input type="text"><br>
+<input type="text"><br>
+<script>
+    //通过for循环给6个input添加键盘事件
+    var inputs = document.getElementsByTagName('input');
+    for ( var i = 0; i < inputs.length; i++ ){
+        inputs[i].onkeyup = function ( event ) {
+            var e = event || window.event;
+            //判断用户按下的键盘值，如果键盘值 13
+            if ( e.keyCode === 13 ){
+//                alert('按下回车');
+                //进入下一个input中
+//                console.log(  );
+                var nextInput = this.nextElementSibling.nextElementSibling;
+                // focus() 获取光标
+                nextInput.focus();
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

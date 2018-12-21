@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*function Ball() {
+            this.a=3;
+        }
+        function createObj(obj) {
+            if(!obj) return;
+            function F() {}
+            F.prototype=obj;
+            return new F();
+        }
+        var obj=new Ball();
+        var obj1=createObj(obj);
+        console.log(obj1.a)*/
+
+        function Ball(_age) {
+            console.log("Balls_2")
+            this.age=_age;
+            this.run=function () {
+                console.log("run")
+            }
+        }
+        function Balls(_age) {
+            console.log("Balls_1")
+            Ball.call(this,_age);
+        }
+
+        function extendsTo(subClass,superClass) {
+           function F(){}
+            F.prototype=superClass.prototype;
+            subClass.prototype=new F();
+            subClass.prototype.constructor=subClass;
+            subClass.superClass=superClass.prototype;
+            if(superClass.prototype.constructor==Object.prototype.constructor){
+                superClass.prototype.constructor=superClass;
+            }
+        }
+
+        extendsTo(Balls,Ball);
+        var ball=new Ball(30);
+    </script>
+</body>
+</html>

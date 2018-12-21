@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <style type="text/css">
+         ul{}
+         li{width: 300px;height: 30px;list-style: none;line-height: 30px;border: 1px solid #000000;text-indent: 30px;}
+         .a{width: 300px;height: 30px;background: url("img/bj.gif") 0 0/100% 100%;text-indent: 30px;list-style: none;line-height: 30px;border: 1px solid #000000;}
+         .b{display: none;}
+         .z{display: none;}
+      .yi{display: none;}
+     </style>
+</head>
+<body>
+<ul>
+    <li class="a">一级菜单A</li>
+    <li class="b">文管产品</li>
+    <li class="yi">123213</li>
+    <li class="yi">123213</li>
+    <li class="yi">123213</li>
+    <li class="yi"><a href="#">123213</a></li>
+    <li class="b">桌面文具</li>
+    <li class="z">123213</li>
+    <li class="z">123213</li>
+    <li class="z"><a href="#">123213</a></li>
+    <li  class="a">一级菜单B</li>
+    <li  class="a">一级菜单C</li>
+</ul>
+     <script>
+       var blue = false;
+       var blues = false;
+       var bluess = false;
+
+         var yiji=document.getElementsByClassName("a")[0];
+         var yi=document.getElementsByClassName("yi");
+         var b=document.getElementsByClassName("b");
+       var zhuo=document.getElementsByClassName("z");
+       var yi1=document.getElementsByClassName("a")[1];
+       var yi2=document.getElementsByClassName("a")[2];
+
+       yiji.addEventListener("click",clickHandler);
+      yi1.addEventListener("click",clickHandlerss);
+     yi2.addEventListener("click",clickHandlerss);
+
+       b[0].addEventListener("click",bclickHandler);
+       b[1].addEventListener("click",BbclickHandler);
+     function  clickHandler(){
+         if(!blue){
+             b[0].style.display="block";
+             b[1].style.display="block";
+             blue=true;
+         }else{
+             b[0].style.display="none";
+             b[1].style.display="none";
+             blue=false;
+         }
+           for(var n=0;n<6;n++){
+               yi[n].style.display="none";
+               zhuo[n].style.display="none";
+           }
+     }
+     function bclickHandler(e){
+         if(!e){
+             e=window.event;
+         }
+//         e.stopPropagation();
+         if(!blues){
+             for(var i=0;i<yi.length;i++){
+            yi[i].style.display="block";
+                 blues=true;
+             }
+
+
+         }else{
+             for(var q=0;q<yi.length;q++){
+                 yi[q].style.display="none";
+                 blues=false;
+             }
+         }
+     }
+       function BbclickHandler(e){
+           if(!e){
+               e=window.event;
+           }
+           e.stopPropagation();
+           if(!bluess){
+               for(var i=0;i<yi.length;i++){
+                   zhuo[i].style.display="block";
+                   bluess=true;
+               }
+
+
+           }else{
+               for(var q=0;q<yi.length;q++){
+                   zhuo[q].style.display="none";
+                   bluess=false;
+               }
+           }
+       }
+       function  clickHandlerss(){
+           for(var q=0;q<yi.length;q++){
+               yi[q].style.display="none";
+
+           }
+           for(var q=0;q<yi.length;q++){
+               zhuo[q].style.display="none";
+
+           }
+
+       }
+
+
+     </script>
+
+
+
+</body>
+</html>

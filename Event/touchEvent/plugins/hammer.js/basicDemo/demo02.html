@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/hammer.js"></script>
+</head>
+<style>
+    #myElement {
+        background: silver;
+        height: 300px;
+        text-align: center;
+        font: 30px/300px Helvetica, Arial, sans-serif;
+    }
+</style>
+<body>
+<div id="myElement"></div>
+</body>
+<script>
+    var myElement = document.getElementById('myElement');
+
+    // create a simple instance
+    // by default, it only adds horizontal recognizers
+    var mc = new Hammer(myElement);
+
+    // let the pan gesture support all directions.
+    // this will block the vertical scrolling on a touch-device while on the element
+    mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+
+    // listen to events...
+    mc.on("panleft panright panup pandown tap press", function(ev) {
+        myElement.textContent = ev.type +" gesture detected.";
+    });
+</script>
+</html>

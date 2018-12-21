@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+
+    </style>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+<script>
+     var divs=document.getElementsByTagName("div");
+     var arr=[];
+    for(var i=0;i<divs.length;i++){
+        arr.push(new MoveDiv(divs[i],i));
+    }
+     animation();
+  function animation() {
+        requestAnimationFrame(animation);
+      for(var i=0;i<arr.length;i++){
+          arr[i].update();
+      }
+  }
+
+</script>
+</body>
+</html>

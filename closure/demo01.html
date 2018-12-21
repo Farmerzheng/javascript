@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    变量：全局变量、局部变量
+    //    函数内部可以直接读取全局变量。
+    //    var n=999;
+    //    function f1(){
+    //        alert(n);
+    //    }
+    //    f1(); //right
+    //   函数外部自然无法读取函数内的局部变量。
+    //          function f1() {
+    //             var n = 999;
+    //         }
+    //         alert(n); // error
+    //   局部变量和全局变量变量名相同时，局部变量会将全局变量覆盖
+    //              var n=1;
+    //              function f1() {
+    //                 var n = 999;
+    //                  alert(n); // error
+    //              }
+    //              f1();
+    //    Javascript语言特有的“链式作用域”结构（chain scope）,子函数会一级一级地向上寻找所有父函数的变量。父对象的所有变量，对子对象都是可见的，反之则不成立
+    //    function f1(){
+    //        n=999;
+    //        function f2(){
+    //            alert(n); // 999
+    //        }
+    //        f2();
+    //    }
+    //    f1();
+</script>
+</body>
+</html>

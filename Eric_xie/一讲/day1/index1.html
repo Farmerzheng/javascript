@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+<div></div>
+<br>
+<br>
+<br>
+<br>
+<input type="button" value="停止" id="bn">
+    <script>
+        var div0=document.getElementsByTagName("div")[0];
+        var bn=document.getElementById("bn");
+        var bool=false;
+        bn.addEventListener("click",clickHandler);
+        div0.style.left="0px";
+        /*setInterval(divMove,16);
+        function divMove()
+        {
+            div0.style.left=parseFloat(div0.style.left)+1+"px";
+        }*/
+        divMove();
+        var id;
+        function divMove() {
+            id= requestAnimationFrame(divMove);
+            if(bool) return;
+            div0.style.left=parseFloat(div0.style.left)+1+"px";
+//            cancelAnimationFrame(id)
+        }
+
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            bool=!bool;
+            if(bool){
+                bn.value="开始";
+            }else{
+                bn.value="停止";
+            }
+        }
+    </script>
+</body>
+</html>

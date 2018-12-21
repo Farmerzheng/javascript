@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function(){
+            //1.字符串拼接方法  （应用广泛）
+            var ul = document.querySelector('ul');
+            var str  = '';
+            str += '<li>'+ '这是新来的' +'</li>';
+            ul.innerHTML = str;
+            //2.节点操作（也很广泛）
+            // 创建节点
+            // 插入
+
+            //3. 直接写入到页面
+            // 写在head之间，会把页面中的内容清空
+            document.write( '<ol><li>123</li></ol>' );
+        }
+    </script>
+</head>
+<body>
+<ul>
+
+</ul>
+
+</body>
+</html>

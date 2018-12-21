@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width:100px;
+            height: 100px;
+            background-color:blueviolet;
+            position: absolute;
+
+
+        }
+        #div1
+        {
+            top:120px;
+        }
+        </style>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<div></div>
+<div id="div1"></div>
+<input type="button" value="确定">
+    <script>
+
+        $("div").eq(0).animate({left:"100px"});
+
+        $("div").eq(1).animate({top:"200px"});
+        $("div").animate({top:"100px"});
+       /* $("div").animate({top:"100px"})
+        $("div").animate({left:"0px"})
+        $("div").animate({top:"0px"})*/
+        $(":button").click(function () {
+            $("div").stop(true);
+        })
+        /*$("div").animate({left:"100px"},function () {
+           $(this).animate({top:"100px"},function () {
+               $(this).animate({left:"0px"},function () {
+                   $(this).animate({top:"0px"})
+               })
+           })
+        })*/
+       /* $("div").animate({height:"0px"},1000)
+        $("div").animate({height:"100px"},1000)*/
+//        $("div").animate({display:"block"},1000)
+//        $("div").animate({display:"block"},1000)
+       /* $('div').slideUp('slow').slideDown('slow').queue(function(next){
+            $(this).css('background','orange');
+            next();
+        }).hide('slow');*/
+//        $("div").animate({width:"100px"})
+
+    </script>
+</body>
+</html>

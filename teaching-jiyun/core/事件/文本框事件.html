@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.red{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" name=""  placeholder="请输入姓名" value="abc"><span>请输入用户名，长度不得少于6位</span><br>
+	<textarea></textarea><span>您还可以输入10字</span>
+	<select id="se">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+	</select>
+</body>
+<script type="text/javascript">
+	var input = document.querySelector('input');
+	var txt = document.querySelector('textarea');
+	var se = document.querySelector('#se');
+
+	// 得到焦点、聚焦
+	input.onfocus = function() {
+		// this.value = '';
+		this.style.backgroundColor = '#eee';
+	}
+
+	// 失去焦点、失焦
+	input.onblur = function(){
+		if(this.value.length < 6){
+			this.nextElementSibling.innerHTML = '长度不符合';
+			this.nextElementSibling.className = 'red';
+		} else {
+			this.nextElementSibling.innerHTML = '符合';
+			this.nextElementSibling.className = '';
+		}
+	}
+
+	//实时触发
+	txt.oninput = function(){
+		var n = 10 - this.value.length;
+		if(n <= 0){
+			n = 0;
+			// alert('不能再次输入');
+			this.value = this.value.substr(0,10);
+		}
+		this.nextElementSibling.innerHTML = '您还可以输入' + n + '字';
+	} 
+
+	// 内容改变，在失去焦点时触发
+	input.onchange = function(){
+		this.value = this.value.toUpperCase();
+	}
+
+	se.onchange = function() {
+		// alert(1);
+	}
+
+
+</script>
+</html>

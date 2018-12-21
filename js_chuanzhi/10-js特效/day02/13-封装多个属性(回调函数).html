@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            position: absolute;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+
+    button.onclick = function () {
+        animate( div,{ 'width' : 400,'height' : 400 },function(){
+            animate( div,{ 'width':200,'height':200 },function (){
+                animate( div,{'width':400,'height':400} );
+            } );
+        } );
+    }
+    function animate( element,styles,callback ){
+        clearInterval( element.timer );
+        element.timer = setInterval( function () {
+            //加入默认都已经到位了  到位 true  不到false
+            var isDone = true;
+            //多个属性之间都需要处理步长
+            for( var key in styles){
+                //用到1.运动的属性  2.目标值
+                var attr = key;
+                var target = styles[key];
+                //  透明度
+                if( attr === 'opacity' ){
+                    //乘以100，便于计算
+                    //目标值和当前值都要乘以100
+                    target = target * 100;
+                    var leader = getStyle(element,attr)*100;
+
+                    var step = (target - leader) / 10;
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    element.style[attr] = (leader + step)/100;
+
+                }else{
+                    var leader =  parseInt( getStyle(element,attr) );
+                    var step = ( target - leader  ) / 10;
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    element.style[attr] = leader + step + 'px';
+                }
+
+                if( target !== leader ){
+                    isDone = false;
+                }
+                console.log(1);
+            }
+            //如果都到位了，这时候才可以清除定时器
+            if( isDone ) {
+                clearInterval( element.timer );
+                //在这个位置执行回调函数
+                //判断是否有回调函数，如果有再执行
+                if( callback ) {
+                    callback();
+                }
+            }
+        },15 );
+    }
+    function getStyle( obj,attr ){
+        if( window.getComputedStyle ){
+            return window.getComputedStyle(obj,null)[attr];
+        }else{
+            return obj.currentStyle[attr];
+        }
+    }
+
+</script>
+</body>
+</html>

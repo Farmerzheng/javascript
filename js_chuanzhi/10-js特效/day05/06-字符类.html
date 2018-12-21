@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // [abc] ---->  a|b|c
+    console.log( /[abc]/.test('244a546') );
+    // \d \w 0-9  a-z A-Z _
+    // [  ]  - 设定范围
+    console.log( /[0-5]/.test('8999aab') );
+    console.log( /[a-z]/.test('3434A324') );
+    console.log( /[a-zA-Z]/.test('45n546') );
+    console.log( /[0-9a-zA-Z_]/.test('#@$%^%_&*^%$#$#') );
+    //非 \D \W
+    // [^0-9] 非数字  \D
+    console.log( /[^0-9]/.test('32432s432') );
+    console.log( /[^0-9a-zA-Z_]/ )
+</script>
+</body>
+</html>

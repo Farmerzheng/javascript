@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	//非火狐浏览器
+	document.addEventListener("mousewheel",function(e){
+
+		var ev = e || window.event;
+		console.log(ev.wheelDelta);
+		// 非火狐，向上为正
+		if(ev.wheelDelta > 0){
+			console.log('向上滚');
+		} else {
+			console.log('向下滚');
+		}
+	
+	})
+    
+    //火狐浏览器
+	// document.addEventListener('DOMMouseScroll', function(e){
+	// 	var ev = e || window.event;
+	// 	console.log(ev.detail);
+		// if (ev.detail < 0) {
+		// 	console.log('向上滚');
+		// } else {
+		// 	console.log('向下滚');
+		// }
+
+	// }, false);
+	</script>
+</body>
+</html>	

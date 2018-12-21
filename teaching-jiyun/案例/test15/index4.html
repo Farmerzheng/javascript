@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <script>
+         var phone="18613805510";
+         var reg=/^(\d{3})(\d{4})(\d{4})$/;
+         console.log(phone.replace(reg,"$1****$3"));
+
+       String.prototype={
+
+           trim:function () {
+               var reg=/^(\s*)(.*)(\s*)$/;
+               return this.replace(reg,"$2");
+           },
+           trimLeft:function () {
+               var reg=/^(\s*)(.*)(\s*)$/;
+               return this.replace(reg,"$2$3");
+           },
+           trimRight:function () {
+               var reg=/^(\s*)(.*)(\s*)$/;
+               return this.replace(reg,"$1$2");
+           }
+       };
+         var str="    xie tian  ";
+        
+         
+         function Box(width,height) {
+             this.width=width;
+             this.height=height;
+         }
+         Box.prototype={
+             constructor:Box,
+             setWH:function (width,height) {
+                 this.width=width;
+                 this.height=height;
+             },
+             scale:function (scale) {
+                 this.width=this.width*scale;
+                 this.height=this.height*scale;
+             }
+         };
+          function Boxs(width,height) {
+               this.constructor(width,height)
+          }
+         Boxs.prototype={
+             constructor:Box,
+             setWH:function (width,height) {
+                 Box.apply(this,[width,height]);
+             },
+             scaleX:function (scale) {
+                 this.width=this.width*scale;
+             },
+             scaleY:function (scale) {
+                 this.height=this.height*scale;
+             },
+             scale:function (scale) {
+                 this.width=this.width*scale+1;
+                 this.height=this.height*scale+1;
+             }
+         };
+         var box=new Boxs(300,200);
+         box.scale(0.5);
+         box.setWH(500,200)
+        console.log(box.width,box.height)
+     </script>
+</body>
+</html>

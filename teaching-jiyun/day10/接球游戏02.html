@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#box{
+		width:600px;
+		height:500px;
+		outline:1px solid red;		 
+		margin:0 auto;
+		position:relative;
+	}
+	#box #ball{
+		width:50px;
+		height:50px;
+		border-radius: 100%;
+		background-color: yellow;
+		position:absolute;
+        left:0;
+        top:0;
+	}
+	#box #bar{
+		width:150px;
+		height:10px;
+		background-color:gold;	
+		position: absolute;
+		left:225px;
+		bottom:0;	
+	}
+</style>
+<body>
+	<div id="box">
+		<div id="ball"></div>
+		<div id="bar"></div>
+	</div>
+	<script>
+	    var ball = document.getElementById("ball");
+	    var bar = document.getElementById("bar");
+	    var ballMoveBoolean = true;
+		//球动 
+		var speed = {x : 5 , y : 6};
+
+		//让木板移动
+		// 为左右按键挂接事件
+       document.onkeydown = function (e){
+           var event = e || window.event;
+           // console.log(e);
+           switch (e.code){
+              case "ArrowLeft":
+              // console.log("1");
+              if(bar.offsetLeft <= 0)return;
+              bar.style.left = bar.offsetLeft - 10 + "px";
+              break;
+              case "ArrowRight":
+              // console.log(2);
+              if(bar.offsetLeft >= 450)return;
+              bar.style.left = bar.offsetLeft + 10 + "px";
+              // break  最后一个break可以省略
+           }
+       }
+
+		animation();
+		function animation(){
+		    if(ballMoveBoolean == false)return;
+			requestAnimationFrame(animation);
+			updateBall();
+		}
+
+       
+
+		function updateBall(){
+
+		 if(ballMoveBoolean == false)return;
+
+
+          ball.style.left = ball.offsetLeft + speed.x +"px";
+          ball.style.top = ball.offsetTop + speed.y + "px";
+		 
+		  //判断球与盒子的位置关系
+
+		   //下边框
+		  if(ball.offsetTop >= 440){
+	
+
+		  	//判断球与木板的水平位置关系
+           
+             
+		  	if(ball.offsetLeft > bar.offsetLeft-ball.offsetWidth
+		  		/2&& ball.offsetLeft < bar.offsetLeft+bar.offsetWidth+ball.offsetWidth/2){
+		  	   speed.y = -speed.y;
+		  	}else{
+		  		ballMoveBoolean = false;
+		  		alert("game over");
+
+		  	}
+
+		  }
+
+		  //上边框
+		  if(ball.offsetTop < 0){
+		  	speed.y = -speed.y;
+		  }
+		  //左边框
+		  if(ball.offsetLeft < 0){
+		  	speed.x = -speed.x;
+		  }
+
+		  //有边框
+		  if(ball.offsetLeft >= 550){
+		  	speed.x = -speed.x;
+
+
+		  }
+
+
+		}
+	</script>
+</body>
+</html>

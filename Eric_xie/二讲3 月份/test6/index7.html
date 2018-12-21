@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <style>
+        table
+        {
+            width: 600px;
+            border-collapse: collapse;
+        }
+        td
+        {
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+  <table></table>
+    <script>
+        var data=[
+            {name:"商品1",price:"30",num:1},
+            {name:"商品2",price:"40",num:1},
+            {name:"商品3",price:"50",num:1},
+            {name:"商品4",price:"60",num:1},
+            {name:"商品5",price:"70",num:1},
+            {name:"商品6",price:"80",num:1}
+        ];
+        $.each(data,function (index,item) {
+            var tr=$("<tr></tr>");
+            $("table").append(tr);
+            $.each(item,function (str,value) {
+                var td=$("<td>"+value+"</td>");
+               tr.append(td);
+                td.css("textAlign","center");
+            })
+        });
+        $("tr:nth-child(2n)").css("backgroundColor","rgba(0,255,0,0.3)");
+    </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+     *{
+     	margin:0;
+     	padding:0;
+     }
+     ul,li{
+     	list-style: none
+     }
+	.container{
+		width:500px;
+		height:300px;
+		margin:0 auto;
+		position: relative;
+		border: 1px solid red;
+		overflow: hidden;
+	}
+	.container .item{
+		width:500px;
+		height:300px;
+		position:absolute;
+		left:-500px;
+		top:0;
+	}
+	.container li img{
+		width:100%;
+		height:100%;
+	}
+	.container .dotList{
+		width:160px;
+		height:20px;
+		position:absolute;
+		left:170px;
+		top:250px;
+	}
+	.container .dotList .dot{
+		width:20px;
+		height:20px;
+		border-radius: 100%;
+		background-color: pink;
+		margin:0 10px;
+		float: left;
+	}
+	.container .btn{
+		position:absolute;
+		left:0;
+		top:50%;
+		width:500px;
+		height:40px;
+		margin-top:-20px;
+	}
+	.container .btn button{
+		width:40px;
+		height:40px;
+		border:none;
+	}
+	.container .btn #leftBtn{
+         float: left
+	}
+	.container .btn #rightBtn{
+         float: right
+	}
+
+</style>
+<body>
+	<ul class="container">
+		<li class="item" style = "left:0"><img src="img/nature1.jpg" alt=""></li>
+		<li class="item"><img src="img/nature2.jpg" alt=""></li>
+		<li class="item"><img src="img/nature3.jpg" alt=""></li>
+		<li class="item"><img src="img/nature4.jpg" alt=""></li>	
+		<ul class="dotList">
+			<li class="dot"></li>
+			<li class="dot"></li>
+			<li class="dot"></li>
+			<li class="dot"></li>
+	    </ul>
+	    <div class="btn">
+		    <button id = "leftBtn">左</button>
+		    <button id = "rightBtn">右</button>
+	    </div>
+	</ul>
+
+	<script type="text/javascript" src=" js/tween.js"></script>
+	<script type="text/javascript" src = "js/move.js"></script>
+	<script type="text/javascript">
+
+		/*
+		 obj  需要移动的盒子
+		 beginTime  开始的时间 ，一般为零
+		 beginPos  开始移动的位置
+		 iTarget  终止的位置
+		 duration  动画的执行时间
+		 */
+
+		var stopBoolean = false;
+		
+		function move(obj,beginTime,beginPos,iTarget,duration){
+
+
+			var animation;
+			//防止重复点击加速
+			cancelAnimationFrame(animation);
+
+			//让浏览器刷新的时候执行step函数
+			animation = requestAnimationFrame(step);
+
+			var t = beginTime;//起始时间一般为零
+			var d = duration;//终止时间越小速度越快
+			var b = beginPos;//起始位置
+			var c = iTarget - beginPos;//位置的增加量
+
+			function step(){
+
+				t++;//时间不断增加
+
+				var x;
+
+				if(t < d){  //没有到达终点的判断条件
+					//对应t时间物体的位置
+					// 1s  10m
+					// 2s  15m
+					// 3s  22m
+					// 4s  30m
+					x = Tween.Cubic.easeOut(t,b,c,d);
+
+					// console.log(x);
+
+					obj.style.left = x +"px";
+				}
+
+				animation = requestAnimationFrame(step);
+
+				if(t == d){
+					//防止重复点击加速
+					obj.style.left = iTarget +"px";
+                    stopBoolean = false;
+					console.log(1);
+					// console.log(iTarget)
+
+					cancelAnimationFrame(animation);
+				}
+
+
+			}
+		}
+
+
+		var container = document.getElementsByClassName("container")[0];
+	    var imgList = document.getElementsByTagName("li");
+	    var dotList = document.getElementsByClassName("dot");
+   
+	    var index = 0;
+	    var timer;
+	    var leftMoveBoolean = true;
+        changeDot();
+
+        function showImage(dotIndex){
+
+                if(stopBoolean == true)return;
+
+        	    if(leftMoveBoolean == true){
+
+                    //左移
+	        	    move(imgList[index],0,0,-500,50);
+			    	index++;
+			    	if(index == 4){
+			    		index = 0;
+			    	}
+
+			    	if(dotIndex == 0 || dotIndex){
+			    		move(imgList[dotIndex],0,500,0,50);
+			    		index = dotIndex;
+			    	}else{
+			    		move(imgList[index],0,500,0,50);
+			    	}
+
+				
+		            
+			    	
+        	    }else{
+
+        	    	//右移
+        	        move(imgList[index],0,0,500,50);
+
+			    	if(index == 0){
+			    		index = 4;
+			    	}
+			    	index--;
+
+			    	if(dotIndex == 0 || dotIndex){
+	                    move(imgList[dotIndex],0,-500,0,50);
+	                    index = dotIndex;
+			    	}else{
+			    		move(imgList[index],0,-500,0,50);
+			    	}
+				
+			    	
+        	    }     
+
+        }
+
+        function autoPlay(){
+             leftMoveBoolean = true;
+	         timer = setInterval(function(){
+				 stopBoolean = false;
+                showImage()
+		    
+		    },2000)
+        }
+        
+        autoPlay();	
+
+
+	    function changeDot(){
+
+	    	if(stopBoolean == true)return;
+
+	    	for(var i = 0 ; i < dotList.length ; i++){
+	    		dotList[i].style.backgroundColor = "pink"
+	    	}
+	    	dotList[index].style.backgroundColor = "red";
+
+	    }
+
+	    addEvent(container,"mouseover",function(){
+           clearInterval(timer);
+	    })
+
+	    addEvent(container,"mouseout",function(){
+           autoPlay();
+	    })
+
+	    addEvent(leftBtn,"click",function(){
+              
+	    	   leftMoveBoolean = true;
+               showImage();
+	            changeDot();
+			   stopBoolean = true;
+	    })
+
+	    addEvent(rightBtn,"click",function(){
+
+	    	   leftMoveBoolean = false;
+               showImage();               
+	            changeDot();
+			   stopBoolean = true;
+	    })
+        
+        //位小圆点天机鼠标移入事件
+	    for(var i = 0 ; i < dotList.length ; i++){
+
+            dotList[i].dotIndex = i;
+
+	    	addEvent(dotList[i],"mouseover",function(){
+
+	    		//this.dotIndex > index  //左移动
+                //this.dotIndex < index  //右移动
+                if(stopBoolean == true){
+                	return;
+                }
+
+                if(this.dotIndex > index){
+                	 //左移
+                	 leftMoveBoolean = true;
+                	 //展示图片
+                	 showImage(this.dotIndex);
+                	 changeDot();
+                }else{
+                	//右移
+                	 leftMoveBoolean = false;
+                	 //展示图片
+                	 showImage(this.dotIndex);
+                	 changeDot();
+                }
+
+                stopBoolean = true;
+	    	})
+	    	
+	    }
+        
+        function addEvent(obj,event,func){
+        	if(obj.addEventListener){
+        		obj.addEventListener(event,func);
+        	}else{
+        		obj.attachEvent("on"+event,func);
+        	}
+        }
+
+
+
+
+
+         
+
+	  
+
+	</script>
+</body>
+</html>

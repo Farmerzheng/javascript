@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 350px;
+            float: left;
+            border: solid 1px #000000;
+        }
+        img
+        {
+            position: absolute;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        var divs=document.getElementsByTagName("div");
+        var heightArr=[0,0,0,0];
+        var num=1;
+
+        insertImage();
+
+        function insertImage() {
+            for(var i=0;i<divs.length;i++){
+                if(divs[i].lastElementChild){
+                    heightArr[i]=divs[i].lastElementChild.offsetTop+divs[i].lastElementChild.offsetHeight
+                }
+
+            }
+           var min=heightArr[0];
+            for(var j=0;j<heightArr.length;j++){
+                min=Math.min(heightArr[j],min);
+            }
+            var index=heightArr.indexOf(min);
+
+            var img=new Image();
+            img.src="images/waterfall/"+num+"-.jpg";
+
+            divs[index].appendChild(img);
+            img.style.top=heightArr[index]+divs[index].offsetTop+"px";
+            img.addEventListener("load",loadHandler)
+
+        }
+        function loadHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            this.style.height=this.offsetHeight+"px";
+            num++;
+            if(num<80){
+                insertImage();
+            }
+        }
+    </script>
+</body>
+</html>

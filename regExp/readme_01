@@ -1,0 +1,57 @@
+什么是正则表达式？
+规则、模式
+强大的字符串匹配工具
+是一种正常人类很难读懂的文字
+
+为什么要用正则表达式？
+更简便的操作字符串
+
+如何创建正则表达式？
+
+1./正则表达式/[flags] （ 简写方法 推荐使用 性能更好）
+例如：var reg = /a/i; 
+2.new RegExp('正则表达式'[,flags]);（RegExp对象。参数就是我们想要制定的规则）
+例如：var reg = new RegExp('a','i'); 
+flags:匹配规则：
+
+g表示对字符串所有部分起作用，没设置则只匹配最开始匹配到的子串。 坑：声明了g模式的正则表达式实例会内部维护一个index的值，该值会在匹配一次后更新为匹配字符串起始下标，下次再匹配会从这个下标开始扫描（即使不是原来的字符串），而前面的字符不再匹配。重置方法：更改正则对象的lastIndex为0即可，regInstace.lastIndex = 0。
+
+i表示忽略大小写
+
+m表示匹配多行。此时^/$还可以和每一行的行首/行尾匹配，没设置则只能匹配整个字符串的首/尾
+
+
+1、正则表达式的常用方法（test、exec）
+
+regExpInstance.test(): 返回boolean类型，判断参数字符串是否匹配正则表达式
+
+        let reg = /a/;
+        console.log(reg.test("abc"));//true
+
+regExpInstance.exec():返回一个数组对象，第一个元素为匹配成功的子串（从左往右匹配的第一个），如果有分组，则数组后面的元素为每个分组匹配到的子串，此外该数组对象还有两个属性index（子串起始下标），input(原始字符串)。
+
+        let reg = /a/;
+        console.log(reg.test("abc"));
+        //["a", index: 0, input: "abc", groups: undefined]
+
+2、String提供的与正则表达式相关的函数
+
+str.search(parttern) ：返回找到的第一个子串的下标，不受g模式影响
+
+        let str = 'abc';
+        console.log(str.search(/c/)) //2
+
+str.replace(parttern， newStr) : 替换匹配的子串。受g模式影响，使用g模式替换所有符合要求的子串
+
+        let str = '1b4b7b'
+        str = str.replace(/b/g, '111')
+        console.log(str); //111141117111        
+
+str.match(parttern):如果非g模式，则结果与regInstance.exec一样，如果为g模式，则返回所有符合的子串数组，并且不携带额外属性。
+
+        let str = '12b42b72b'
+        let arr = str.match(/\d{2}/g)
+        console.log(arr);//["12", "42", "72"]
+
+
+

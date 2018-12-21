@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+     <!-- 同步与异步？ -->
+     <!-- 同步会产生阻塞，异步不会缠身阻塞 -->
+     <!-- img标签当中的图片是异步下载的 -->
+     <!-- dataSrc是我们为图片自定义的属性，属性值是图片的连接地址 -->
+	 <img dataSrc="img/nature1.jpg">
+	 <img dataSrc="img/nature2.jpg">
+	 <img dataSrc="img/nature3.jpg">
+	 <img dataSrc="img/nature4.jpg">
+	 <script type="text/javascript" src="reload.js"></script>
+    <script type="text/javascript">
+       //获取图片链接
+       var imgList = document.getElementsByTagName("img");
+       var imgSrcList = [];
+       for(var i = 0 ; i < imgList.length; i++){
+           imgSrcList.push(imgList[i].getAttribute("dataSrc"));
+       }
+       // console.log(imgSrcList)
+    	//加载所有的图片
+    	//此对象能够加载所有的图片，加载完成后会通知我们
+        var reloadImg = new ReloadImg(imgSrcList,callBack);
+        //让对象初始化
+        reloadImg.init();
+        // reloadImg.init();
+        
+        //图片加载完成后执行此函数
+        //callBack为我们定义的回调函数
+        function callBack(){
+        	//执行有些的js逻辑
+        	// console.log(1);
+        	alert("加载完成")
+        }
+
+        alert(2);
+
+    	
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.box{
+		width:500px;
+		height:500px;
+		margin:0 auto;
+		position: relative;
+		border:1px solid red;
+	}
+
+</style>
+<body>
+	<div class="box">
+	
+	</div>
+	<script type="text/javascript">
+//大盒子
+var box = document.getElementsByClassName("box")[0];
+//通过构造函数创建对象
+ function Ball(speed){
+    //self和this 指是指向这个对象所占内存的变量
+ 	var self = this;            
+    //球的身体
+ 	this.body = document.createElement("div");            
+    //球长什么样子
+    this.body.style.cssText = "width:50px;height:50px;background-color:yellow;position:absolute;left:0;top:0;border-radius:100%";            
+    //将球添加到页面
+    box.appendChild(this.body);             
+     //球的位置 
+    this.position = {left : 0  , top : 0};             
+     //球的速度
+    this.speed = speed || {x : 4 , y : 6};              
+     //球要运动
+    this.move = function(){
+      self.position.left += self.speed.x;
+	  self.position.top += self.speed.y;
+	  if(self.position.left > 500 - self.body.offsetWidth || self.position.left < 0){
+	  	  self.speed.x = -self.speed.x;
+	  }
+      if(self.position.top > 500 - self.body.offsetHeight || self.position.top < 0){
+           self.speed.y = -self.speed.y;
+	  }
+	  self.body.style.left = self.position.left + "px";
+	  self.body.style.top = self.position.top + "px";          
+    }
+
+ }
+
+ var ball1= new Ball({x : 10 , y : 15});  
+
+ var ball2 = new Ball({x : 20 , y : 15});       
+
+ animation();
+ function animation(){
+    requestAnimationFrame(animation);
+    ball1.move();
+    ball2.move();
+ }
+
+     
+
+        
+
+	</script>
+</body>
+</html>

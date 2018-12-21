@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position: absolute;
+            left:0;
+            top:35px;
+        }
+    </style>
+</head>
+<body>
+<button>动画</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+    //
+    button.onclick = function () {
+//        alert('1');
+        animate( div,403 );
+    }
+
+    function animate( element,target ) {
+        clearInterval(element.timer);
+        element.timer = setInterval( function () {
+            //在当前的基础之上不断加
+            //步伐
+            var step = target > element.offsetLeft ? 10 : -10;
+            element.style.left = element.offsetLeft + step + 'px';
+            //清除定时器
+            if(  Math.abs(target - element.offsetLeft) < Math.abs(step)  ){
+                element.style.left = target + 'px';
+                clearInterval( element.timer );
+            }
+        },15 );
+    }
+</script>
+</body>
+</html>

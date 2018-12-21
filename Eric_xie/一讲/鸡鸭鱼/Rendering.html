@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/nav.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/rendering.css" />
+		<link rel="stylesheet" type="text/css" href="css/footer.css" />
+		<style type="text/css">
+			body {
+				width: 100%;
+			}
+
+			.swiper-container {
+				width: 100%;
+				margin-top: 70px;
+			}
+
+			.swiper-container img {
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--上边nav-->
+		<nav>
+			<div class="title">
+				<img src="img/home/shininglogo.png" />
+				<ul id="firstUl">
+					<li><a href="home.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="Rendering.html">Rendering</a></li>
+					<li><a href="3DAnimation.html">3D Animation</a></li>
+					<li><a href="Bim.html">Bim</a></li>
+					<li><a href="Contact.html">Contact</a></li>
+				</ul>
+				<ul id="lastUl">
+					<li><a href="home.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="Rendering.html">Rendering</a></li>
+					<li><a href="3DAnimation.html">3D Animation</a></li>
+					<li><a href="Bim.html">Bim</a></li>
+					<li><a href="Contact.html">Contact</a></li>
+				</ul>
+				<img id="imgRight" src="img/home/right.png" />
+			</div>
+		</nav>
+
+		<!--content-->
+		<!--大图滚动-->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="img/rendering/Z.jpg" /></div>
+				<div class="swiper-slide"><img src="img/rendering/Z-1.jpg" /></div>
+				<div class="swiper-slide"><img src="img/rendering/Z-2.jpg" /></div>
+			</div>
+			<!-- 分页器 -->
+			<div class="swiper-pagination"></div>
+		</div>
+
+		<!--瀑布流-->
+		<section id="waterfall">
+			<ul id="firstUl"></ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			<div><img src="#"/></div>
+		</section>
+
+		<!--footer-->
+		<footer>
+			<div class="footerWrap">
+				<img id="first" src="img/home/mail.jpg" />
+				<img src="img/home/linkedln.jpg" />
+				<img src="img/home/youtube.jpg" />
+				<img src="img/home/linkedln.jpg" />
+				<img src="img/home/twitter.jpg" />
+				<p>Copyright © 1998-2015 shining Group</p>
+			</div>
+		</footer>
+	</body>
+	<script src="js/jquery-2.2.3.js"></script>
+	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/waterfall.js"></script>
+	<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/footer.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var mySwiper = new Swiper('.swiper-container', {
+			direction: 'horizontal',
+			loop: true,
+			autoplay: 3000,
+			speed: 300,
+			// 分页器
+			pagination: '.swiper-pagination',
+			calculateHeight: true,
+
+			effect: 'fade',
+			// fade: {
+			//   crossFade: true,
+			// },
+			pagination: '.swiper-pagination',
+			paginationClickable: '.swiper-pagination',
+			// spaceBetween: 30,
+			centeredSlides: true,
+			autoplay: 3000,
+			// autoplayDisableOnInteraction: false,
+			loop: true,
+		})
+	</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //死循环求和
+    // 计算1~100 之间的和
+//    var i = 1;
+//    var sum = 0;
+//    while( true ){
+//        //某个情况下，可以终止循环
+//        if( i > 100 ){
+//            break;
+//        }
+//        //console.log(123);
+//        sum = sum+i;
+//        i++;
+//    }
+//    console.log( sum );
+    //今天你要嫁给我
+    // confirm 返回值是布尔型的
+
+    //console.log( bool );
+
+    do{
+        var bool = confirm('求求你，嫁给我吧！！');
+        //只有同意，才会终止循环，不同意，继续循环
+        if( bool ){
+            alert( '听说最近马尔代夫在搞活动，我们可以去那里' );
+            break;
+        }
+    }while( !bool );
+</script>
+</body>
+</html>

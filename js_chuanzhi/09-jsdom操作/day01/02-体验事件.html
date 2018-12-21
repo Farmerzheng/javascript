@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+        span{
+            width: 150px;
+            height: 150px;
+            background: orange;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<span id="box1"></span>
+
+<script>
+    // 给div增加点击事件
+    // 1. 获取标签元素
+    // 2. 增加事件
+    // 3. 书写事件驱动程序
+
+    //获取标签，以id的形式  可以作为事件源
+    var box = document.getElementById( 'box' );
+    console.log( box );
+    // 添加事件  事件三要素
+    // 事件源   事件触发所要操作的元素
+    // 事件类型  事件的触发方式（点击、鼠标滑过、鼠标离开） js中 以on开头
+    // 事件指令程序   事件触发后，所执行的内容
+    // 三者之间的关系（格式）
+    //事件源 . 事件类型 = 事件指令
+    box.onclick = function(){
+        //具体驱动程序
+        alert( 123 );
+    }
+</script>
+</body>
+</html>

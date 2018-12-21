@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //求一组数中的最大值
+    // 要求：需要提供一个数组，从中取出最大值
+    // 1. 参数 是一个数组   2. 返回值为 数值
+//    function getMax( array ){
+//        // 假设数组中的第一个值为最大值
+//        var maxValue = array[0];
+//        for( var i = 1; i < array.length; i++ ){
+//            //如果maxValue小于任何一项，直接替换到maxValue
+//            if( maxValue < array[ i ] ){
+//                maxValue = array[ i ];
+//            }
+//        }
+//        //返回一个数值
+//        return maxValue;
+//    }
+//    console.log( getMax(  [ 20,67,18,45,53 ]  ) );
+//    console.log( getMax(  [ 28,17,80,93,102,15 ] ) );
+//    // 求一组数中的最小值
+//    function getMin( array ){
+//        //获取array中最小值
+//        var minValue = array[ 0 ];
+//        for( var i = 1; i < array.length; i++ ){
+//            // 如果前边的数，大于后边的数，用后边的数字替换minvalue
+//            if( minValue > array[ i ] ){
+//                minValue = array[ i ];
+//            }
+//        }
+//        return minValue;
+//    }
+//    console.log(  getMin( [ 3,5,9,20,-3 ] )  );
+//
+//    // 翻转数组，返回一个新数组
+//    // 参数  是一个数组   返回  还是数组
+//    function reverse( array ){
+////        var newArr = [  ];
+////        for( var i = array.length - 1; i >= 0; i-- ){
+////            newArr[ newArr.length ] = array[ i ];
+////        }
+////        //把新数组返回
+////        return newArr;
+////        var newArr = [  ];
+////        for( var i = 0; i < array.length; i++ ){
+////            newArr[ newArr.length ] = array[ array.length - 1 - i ];
+////        }
+////        return newArr;
+//        // 操作原数组，返回原数组
+//        for( var i = 0; i < array.length/2; i++ ){
+//            //通过前边来找到后边，然后交换值
+//            //array[i]  和  array[ array.length - 1 - i ]
+//            var tmp = array[ i ];
+//            array[ i ] = array[ array.length - 1 - i ];
+//            array[ array.length - 1 - i ] = tmp;
+//        }
+//        return array;
+//    }
+//    console.log( reverse( [ '张飞','关羽','赵云','曹操','孙权' ] ) );
+    //对数组排序，从小到大
+    // 函数： 参数  数组   返回值  数组
+    function bubble( array ){
+        for( var i = 0; i < array.length - 1; i++ ){
+            //
+            var issort = true;
+            for( var j = 0; j < array.length - 1 - i; j++ ){
+                if( array[ j ] > array[ j + 1 ] ){
+                    issort = false;
+                    var tmp = array[ j ];
+                    array[ j ] = array[ j + 1 ];
+                    array[ j + 1 ] = tmp;
+                }
+            }
+            if( issort ){
+                break;
+            }
+        }
+        return array;
+    }
+    console.log( bubble(  [ 8, 5 , 20, 15, -6]  ) );
+
+
+//    var arr = [ 20,24,18,46,60,80 ];
+//    var count = 0;
+//    // 第一层循环，控制比较的趟数
+//    for( var i = 0; i < arr.length - 1; i++ ){
+//        count++;
+//        //假如没有数据交换
+//        var issort = true;
+//        // 第二层循环，控制两两比较的次数
+//        for( var j = 0; j < arr.length - 1 - i; j++ ){
+//            // 两两比较，把大的数往后移动
+//            if( arr[ j ] > arr[ j + 1 ] ){
+//                //一旦执行数据交换，说明没有结束
+//                issort = false;
+//                //如果前边的数，大于后边的，交换位置
+//                var tmp = arr[ j ];
+//                arr[ j ] = arr[ j + 1 ];
+//                arr[ j + 1 ] = tmp;
+//            }
+//            count++;
+//        }
+//        // 判断是否有数据交换，说明排序没结束，继续排
+//        if( issort ){
+//            break;
+//        }
+//    }
+//    console.log( arr );
+//    console.log( count );
+</script>
+</body>
+</html>

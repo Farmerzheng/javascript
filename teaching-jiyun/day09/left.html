@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#div1{
+		width:100px;
+		height:100px;
+		background-color: red;
+		border:5px solid yellow;
+		position: absolute;
+		left:200px;
+		top:200px;
+	}
+</style>
+<body>
+	<div id="div1"></div>
+	<script type="text/javascript">
+	var div1 = document.getElementById("div1");
+
+	console.log(div1.offsetLeft);//200 数值类型、没有像素值
+	console.log(div1.style.left)//只能设置(只能设置像素值)，不能读取
+	// div1.offsetLeft = 1000; offsetLeft 只能读取，不能赋值
+
+	animation();
+	function animation(){
+		requestAnimationFrame(animation);
+		div1.style.left = div1.offsetLeft + 1 + "px";
+	}
+
+	console.log(div1.clientHeight,div1.offsetHeight);
+
+	</script>
+</body>
+</html>

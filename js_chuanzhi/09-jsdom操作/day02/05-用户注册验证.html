@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 400px;
+            margin:100px auto;
+        }
+        *{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="myform">
+    用户：<input type="text">
+    <span></span>
+    <br><br>
+    密码：<input type="password">
+    <span></span>
+</div>
+<script>
+    var myform = document.getElementById('myform');
+    var inputs = myform.getElementsByTagName('input');
+    var span = myform.getElementsByTagName('span');
+    //失去光标的时候进行验证
+    /*inputs[0].onblur = function () {
+        //如果6位一下，说明格式错误，否则格式正确
+        // 错误：边框红色的，同时后边span中文字要有提示
+        // 正确：边框绿色的，同时后边span中的文字也有提示
+        if( this.value.length >= 6 ){
+            this.style.border = '1px solid green';
+            //对应的span
+            span[0].innerHTML = '格式正确';
+            span[0].style.color = 'green';
+        }else{
+            this.style.border = '1px solid red';
+            span[0].innerHTML = '格式错误';
+            span[0].style.color = 'red';
+        }
+    }*/
+    //oninput   当表单中输入值的时候触发
+    //onkeyup onkeydown
+    inputs[0].oninput = function () {
+        //如果6位一下，说明格式错误，否则格式正确
+        // 错误：边框红色的，同时后边span中文字要有提示
+        // 正确：边框绿色的，同时后边span中的文字也有提示
+        if( this.value.length >= 6 ){
+            this.style.border = '1px solid green';
+            //对应的span
+            span[0].innerHTML = '格式正确';
+            span[0].style.color = 'green';
+        }else{
+            this.style.border = '1px solid red';
+            span[0].innerHTML = '格式错误';
+            span[0].style.color = 'red';
+        }
+    }
+</script>
+</body>
+</html>

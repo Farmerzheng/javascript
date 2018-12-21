@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		document.addEventListener("contextmenu",function(e){
+			var event = e || window.event;
+			//阻止默认事件
+			event.preventDefault();
+			console.log(1);
+		})
+	</script>
+</body>
+</html>	

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="index-01.html" id="link">跳转页面</a>
+  <script src="event-class.js"></script>
+  <script>
+  var link = document.getElementById("link");
+  Event.addEvent(link, "click", clickHandler)
+
+  function clickHandler(e) {
+    // console.log(1);
+    var e = e || window.event;
+    //阻止a链接的默认行为
+    // e.preventDefault();
+    // e.returnValue = false;
+    Event.stopPrevent(e);
+  }
+  </script>
+</body>
+
+</html>

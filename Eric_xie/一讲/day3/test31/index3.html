@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 400px;
+            height: 60px;
+            background-color: rgba(0,0,0,0.6);
+            position: fixed;
+            line-height: 60px;
+            bottom: 0px;
+            right: -370px;
+        }
+    </style>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/Tween.js"></script>
+    <script src="js/TweenGuest.js"></script>
+</head>
+<body>
+    <div><img src="image/left.png" align="center" id="imgbn">&nbsp;&nbsp;&nbsp;&nbsp;广告征招中。。。</div>
+<script>
+        var imgbn=document.getElementById("imgbn");
+        var div0=document.getElementsByTagName("div")[0];
+        imgbn.addEventListener("click",clickHandler);
+        var bool=false;
+    function clickHandler(e) {
+        if(!e){
+            e=window.event
+        }
+        if(bool) return;
+        bool=true
+        Tweens.to(div0,{right:-370},{right:0},1000,TWEEN.Easing.Bounce.Out,true);
+    }
+
+    animation();
+    function animation() {
+        requestAnimationFrame(animation);
+        TWEEN.update();
+        if(div0.style.right=="-370px"){
+            bool=false;
+        }
+    }
+        div0.callback=function () {
+            Tweens.to(div0,{right:0},{right:-370},1000,TWEEN.Easing.Bounce.In,false,3000);
+
+        }
+</script>
+</body>
+</html>

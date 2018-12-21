@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+    </style>
+    <script src="js/RequestAnimationFrame.js"></script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    var divs=document.getElementsByTagName("div");
+    var arr=[];
+    for(var i=0;i<divs.length;i++){
+        divs[i].style.top="0px";
+        divs[i].style.left=Math.random()*950+"px";
+        divs[i].speed=5;
+        divs[i].speedY=0.5;
+    }
+
+    animation();
+    function animation(time) {
+        requestAnimationFrame(animation);
+        // console.log(time);
+        // var t=parseInt(time/2000);
+        // console.log(t)
+        // if(arr.length==t && t<divs.length){
+        //     arr.push(divs[t]);
+        // }
+        // for(var i=0;i<divs.length;i++){
+            divMove(divs[0]);
+        // }
+    }
+
+
+
+    function divMove(div) {
+        if(div.speedY>3) return;
+        div.speed+=div.speedY;
+        if(div.speed==10){
+            div.speed=10;
+        }
+        div.style.top=parseInt(div.style.top)+div.speed+"px";
+        if(parseInt(div.style.top)>300){
+            div.speed=-div.speed;
+            div.speedY+=0.1;
+        }
+    }
+</script>
+</body>
+</html>

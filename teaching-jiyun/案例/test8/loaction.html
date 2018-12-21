@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div1
+        {
+            width:100px;
+        }
+    </style>
+</head>
+<body>
+<a href="index1.html" target="_self">链接</a>
+    <script>
+//           console.log(document.styleSheets);
+//        console.log(screen.width,screen.height)
+//        console.log(location.hostname,location.port,location.pathname)
+        /*JSON转换对象*/
+//        var str=location.hash.substr(1,location.hash.length);
+//        var obj=JSON.parse(str);
+
+
+
+        /*字符串转换对象*/
+       var obj= getHash(location.hash)
+
+        function getHash(hash) {
+            if(hash.length==0) return null;
+            var str=hash.substr(1,hash.length);
+            console.log(str)
+            var arr=str.split("|");
+            console.log(arr);
+            var obj={};
+            for(var i=0;i<arr.length;i++){
+                var arrs=arr[i].split("=");
+                var names=arrs[0]
+                obj[names]=arrs[1];
+            }
+            console.log(obj);
+            return obj;
+        }
+//        console.log(obj)
+
+    </script>
+</body>
+</html>

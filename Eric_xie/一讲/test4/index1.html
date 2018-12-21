@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+    <script src="js/RollImage.js"></script>
+</head>
+<body>
+    <script>
+            var roll=new RollImage(["image/a.jpeg","image/b.jpeg","image/c.jpeg","image/d.jpeg","image/e.jpeg"],540,180,["image/left.png","image/right.png"]);
+            document.body.appendChild(roll.createRoll());
+//            roll.autoRoll=true;
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            if(roll){
+                roll.update();
+            }
+
+        }
+    </script>
+</body>
+</html>

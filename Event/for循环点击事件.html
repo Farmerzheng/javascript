@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul{
+        background: red;
+    }
+    li{
+        float: left;
+        list-style: none;
+        width: 50px;
+        height:30px;
+        background: yellow;
+        text-align: center;
+        line-height: 30px;
+        margin-left:10px;
+        cursor:pointer
+    }
+</style>
+<body>
+<ul>
+    <li>按钮1</li>
+    <li>按钮2</li>
+    <li>按钮3</li>
+    <li>按钮4</li>
+    <li>按钮5</li>
+</ul>
+<script src="jQuery%201.12.3.min.js"></script>
+<script>
+    var liArr=document.getElementsByTagName('li');
+
+//    for(var i=0;i<liArr.length;i++){
+//
+//        liArr[i].onclick=(function(number){
+//
+//            return function(){
+//                console.log(number);
+//            }
+//
+//        })(i)
+//
+//    }
+
+    //对取得的DOM对象数组进行遍历
+    for(var i=0;i<liArr.length;i++){
+
+        console.log($(liArr[i]).index());
+
+        liArr[i].onclick=function(){
+            //打印出该对象的索引值
+                console.log($(this).index());
+
+        }
+    }
+</script>
+</body>
+</html>

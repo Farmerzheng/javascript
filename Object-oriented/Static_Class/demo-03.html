@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function Person(name) {
+    //非静态属性
+    this.name = name;
+    //非静态方法
+    this.show = function() {
+      alert('My name is' + this.name + '.');
+    }
+  }
+  //添加静态属性，人都是一张嘴
+  Person.mouth = 1;
+  //添加静态方法，哇哇大哭
+  Person.cry = function() {
+    alert('Wa wa wa…');
+  };
+  //使用prototype关键字添加非静态属性，每个人的牙可能不一样多
+  Person.prototype.teeth = 32;
+
+  //非静态方法必须通过类的实例来访问
+  var me = new Person('Zhangsan');
+  //使用非静态方法、属性
+  me.show();
+  alert('I have' + me.teeth + 'teeth.');
+  //使用静态方法、属性
+  Person.cry();
+  alert('I have' + Person.mouth + 'mouth.');
+  </script>
+</body>
+
+</html>

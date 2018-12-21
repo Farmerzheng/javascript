@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/DomCreate.js"></script>
+</head>
+<body>
+
+    <script>
+      /*  DomCreate.createElement("label",document.body,{},{textContent:"晚会类型"});
+        DomCreate.createElement("input",document.body,{},{type:"text",placeholder:"春节晚会"});
+        DomCreate.createElement("br",document.body);
+        DomCreate.createElement("label",document.body,{},{textContent:"晚会地点"});
+        DomCreate.createElement("input",document.body,{},{type:"text",placeholder:"央视大楼"});
+        DomCreate.createElement("br",document.body);*/
+
+
+
+      var input1=DomCreate.createInput("晚会类型：",document.body,"春节晚会");
+      var input2=DomCreate.createInput("晚会地点：",document.body,"央视大楼");
+      var input3=DomCreate.createInput("门票价格：",document.body,"免费");
+
+      var bn=DomCreate.createElement("input",document.body,{},{type:"button",value:"添加信息"});
+      var delBn=DomCreate.createElement("input",document.body,{marginLeft:"10px"},{type:"button",value:"全部删除"});
+      DomCreate.createElement("br",document.body);
+      bn.addEventListener("click",clickHandler);
+      delBn.addEventListener("click",delClickHandler)
+      var table=DomCreate.createElement("table",document.body,{borderCollapse:"collapse",textAlign:"center"})
+      var arr=["晚会类型","晚会地点","门票价格"];
+      DomCreate.createTr(table,arr);
+        function delClickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+           var trs=table.getElementsByTagName("tr");
+            var len=trs.length
+            for(var i=1;i<len;i++){
+                trs[1].remove();
+            }
+        }
+      var sum=0;
+      function clickHandler(e) {
+          if(!e){
+              e=window.event;
+          }
+          sum++
+          var list=[];
+          list.push(input1.value);
+          list.push(input2.value);
+          list.push(input3.value);
+          if(sum%2==0){
+              DomCreate.createTr(table,list,"#FF0000");
+          }else{
+              DomCreate.createTr(table,list,"#00FF00");
+          }
+
+      }
+
+    </script>
+</body>
+</html>

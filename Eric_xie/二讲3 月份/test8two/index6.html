@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 25px;
+            height:200px;
+            float: left;
+            text-align: center;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+<script>
+    $("div").first().animate({width:"50px"},500);
+    $("div").css("backgroundColor",function (index) {
+            return randomColor();
+    });
+
+    $("div").hover(function () {
+        $(this).animate({width:"50px"},500);
+//        $(this).css("width","50px")
+    },function () {
+        $(this).animate({width:"25px"},500);
+//        $(this).css("width","25px")
+    })
+    function randomColor() {
+        var str="#";
+        for(var i=0;i<3;i++){
+            var color=Math.floor(Math.random()*256).toString(16);
+            if(color.length<2){
+                color="0"+color;
+            }
+            str+=color;
+        }
+        return str;
+    }
+</script>
+</body>
+</html>

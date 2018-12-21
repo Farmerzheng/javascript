@@ -1,0 +1,163 @@
+
+1）力王（LYW）D15无线耳机插
+卡耳麦  运动蓝牙游戏电脑...
+颜色：炫酷黑+8G内存卡  选服务
+
+￥89.00
+""
+
+
+
+2）山水（SANSUI）A38s蓝牙小音
+箱 迷你音响 便携式插卡音...
+
+重量：0.22kg 颜色A38S...选服务
+￥49.90
+
+
+3）喜富康（Safconn）HDM1线2.0版
+3D数字高清线2K*4K  笔记...
+重量：0.1kg  颜色：灰色 版本：2M
+
+￥17.90
+
+4)SEEL使徒 101  i3-7100/技嘉H110M/120G  组装
+电脑主...
+重量：8.25kg   颜色：[i3 选服务
+￥1799.00
+
+5.AOC  1236OSD 23英寸宽屏LED背光IPS广视角液晶显示器（...）;
+  重量：5kg   尺寸：[性价比...] 
+  ￥739.00
+
+6.华硕（Asus）u*300 有线蓝光鼠标  黑色  电竞鼠标  游戏鼠标
+  重量：0.19kg   颜色：u*300...
+   ￥39.90
+
+7.罗技（Logitech）MI85 无线鼠标 黑色灰边
+  重量：0.1kg  颜色：灰色...
+  ￥59.00
+
+8.酷我（kuwo）KI侧入耳运动耳翼耳帽
+ 重量：0.002kg
+  ￥6.00
+
+9.Libratone （小鸟音响）TOO便携无线音箱/智能音响/蓝... 
+
+重量：1.15kg 颜色：水绿...  选服务
+
+￥899.00
+
+
+10.幻响（i-mu）C7 便携蓝牙音箱 小资文艺范 无线免提通话... 
+
+重量：0.405kg   颜色：C7蓝... 选服务
+
+￥129.00
+
+11.洛克ROCK iphonebspaus全屏膜苹果6S plus全屏钢化膜/... 
+
+重量：0.1kg 颜色：（5.5英寸）高清...
+
+￥19.90
+
+12.亿色（ESR）iphone 7 Plus/6Plus/6s Plus钢化膜  苹果7Plu...
+
+重量：0.09kg 颜色：（5.5英寸）...
+
+￥19.90
+
+13   亿色（SER）苹果iphonebs Plus/6 Plus手机壳/保护套  硅...
+
+重量：0.065kg  颜色：5.5英寸一本...      ""    
+
+￥20.90    
+
+
+
+    加价购 购满119.00元.即可换购商品   去凑单>
+
+ 14    三星（SAMSUNG）960  PRO  512G
+
+M.2NVMe 固态硬盘
+
+重量：0.06kg  颜色：960 P...  选服务
+
+￥2399.00
+
+
+
+15   满减 购满50.00元. 可减46.33元   去凑单>
+
+先马（SAMA）坦克 游戏鼠标垫（天然橡胶/70CM宽度/紧...
+
+重量：0.55kg  颜色：坦克...    选服务
+
+￥49.90
+
+
+
+16 先马（SAMA）塞恩5豪华版 电脑机箱
+双面钢化玻璃/紧···
+重量：7.6kg             选服务
+
+￥259.00
+
+
+17 Bang & Olufsen BeoSound I
+便携式无线扬声器系统   银色
+重量：3.96kg 颜色：银色        版本:···  
+
+￥9995.00
+
+
+18 追风者（PHANTEKS）M4机箱LED灯
+带7色可调RGB电脑机箱装···
+重量：0.046kg   颜色：40CM/多彩RGB···  
+
+￥20.00
+
+
+19 酷冷至尊（Cooler  Master）V8GTS
+CPU散热器 （支持19 206···
+重量：1.1714kg  颜色：V8GTS      选服务
+
+￥499.00
+
+
+20 拉卡拉 跨界手环 跨界歌王明星同款 
+智能手环 运动手环···
+重量：0.06kg  颜色：拉卡···   选服务
+￥149.00
+
+21 华硕（ASUS）顽石四代FL5700U
+15.6英寸笔记本电脑（i7-75···
+重量：2.58kg  颜色：【7代···  选服务
+白条6期免息
+
+￥3999.00
+
+
+ var shoppingCart=[
+	    {name:"力王（LYW）D15无线耳机插 卡耳麦  运动蓝牙游戏电脑...",weight:"",corlor:"颜色：炫酷黑+8G内存卡",serve:"选服务",price:"￥89.00",num:1},
+            {name:"山水（SANSUI）A38s蓝牙小音箱 迷你音响 便携式插卡音...",weight:"重量：0.22kg",corlor:"颜色:A38S...",serve:"选服务",price:"￥49.90",num:1},
+	    {name:"喜富康（Safconn）HDM1线2.0版3D数字高清线2K*4K  笔记...",weight:"重量：0.1kg",corlor:" 颜色：灰色",serve:"版本：2M",price:"￥17.90",num:1},
+	    {name:"SEEL使徒 101  i3-7100/技嘉H110M/120G  组装电脑主...",weight:"重量：8.25kg",corlor:" 颜色：[i3",serve:"选服务",price:"￥1799.00",num:1},
+	    {name:"AOC  1236OSD 23英寸宽屏LED背光IPS广视角液晶显示器（...)",weight:"重量：5kg",corlor:" 尺寸：[性价比...]",serve:"选服务",price:"￥739.00",num:1},
+	    {name:"华硕（Asus）u*300 有线蓝光鼠标  黑色  电竞鼠标  游戏鼠标",weight:"重量：0.19kg",corlor:" 颜色：u*300...",serve:"选服务",price:"￥39.90",num:1},
+	    {name:"罗技（Logitech）MI85 无线鼠标 黑色灰边",weight:"重量：0.1kg",corlor:" 颜色：灰色 ...",serve:"选服务",price:"￥59.00",num:1},
+	    {name:"酷我（kuwo）KI侧入耳运动耳翼耳帽",weight:"重量：0.002kg",corlor:" ",serve:"",price:"￥6.00",num:1},
+	    {name:"Libratone （小鸟音响）TOO便携无线音箱/智能音响/蓝... ",weight:"重量：0.405kg",corlor:"颜色：水绿...",serve:"选服务",price:"￥899.00",num:1},
+ 	    {name:"幻响（i-mu）C7 便携蓝牙音箱 小资文艺范 无线免提通话... ",weight:"重量：0.405kg",corlor:"颜色：C7蓝..",serve:"选服务",price:"￥129.00",num:1},
+ 	    {name:"洛克ROCK iphonebspaus全屏膜苹果6S plus全屏钢化膜/...",weight:"重量：0.1kg",corlor:"颜色：（5.5英寸）高清...",serve:"",price:"￥19.90",num:1},
+ 	    {name:"亿色（ESR）iphone 7 Plus/6Plus/6s Plus钢化膜  苹果7Plu...",weight:"重量：0.09kg",corlor:"颜色：（5.5英寸）...",serve:"",price:"￥19.90",num:1},
+	    {name:"亿色（SER）苹果iphonebs Plus/6 Plus手机壳/保护套  硅...",weight:"重量：0.065kg",corlor:"颜色：5.5英寸一本...",serve:"",price:"￥20.90",num:1},
+	    {name:"三星（SAMSUNG）960  PRO  512GM.2NVMe 固态硬盘",weight:"重量：0.06kg",corlor:"颜色：960 P...",serve:"选服务",price:"￥2399.00",num:1},
+	    {name:"先马（SAMA）坦克 游戏鼠标垫（天然橡胶/70CM宽度/紧...",weight:"重量：0.55kg",corlor:"颜色：坦克...",serve:"选服务",price:"￥49.90",num:1},
+	    {name:" 先马（SAMA）塞恩5豪华版 电脑机箱双面钢化玻璃/紧...",weight:"重量：7.6kg",corlor:"",serve:"选服务",price:"￥259.00",num:1},
+	    {name:"Bang &  Olufsen BeoSound/便携式无线扬声器系统  银色",weight:"重量：3.96kg",corlor:"颜色：银色",serve:"版本：...",price:"￥9995.00",num:1},
+	    {name:"追风者（PHANTEKS）M4机箱LED灯带7色可调RGB电脑机箱装...",weight:"重量：0.046kg",corlor:"颜色：40CM/多彩RGB...",serve:"",price:"￥20.00",num:1},
+	    {name:"酷冷至尊（Cooler  Master）V8GTSCPU散热器 （支持19 206...",weight:"重量：1.1714kg",corlor:"颜色：V8GTS",serve:"选服务",price:"￥499.00",num:1},
+	    {name:"拉卡拉 跨界手环 跨界歌王明星同款 智能手环 运动手环...",weight:"重量：0.06kg",corlor:"颜色：拉卡...",serve:"选服务",price:"￥149.00",num:1},
+            {name:"华硕（ASUS) 顽石四代FL5700U 15.6英寸笔记本电脑（i7-75...",weight:"重量：2.58kg",corlor:"颜色：【7代..",serve:"选服务",price:"￥3999.00",num:1}
+        ]

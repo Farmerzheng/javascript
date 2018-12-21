@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>打开</button>
+<script>
+    //  DOM   document  object  model
+    //  BOM   browser   object model  浏览器对象模型
+    // 最大的bom  window
+//    console.log( window );
+    //  window对象是最大对象
+//    window.alert();  // 弹出警示窗口
+//    var bool = window.confirm('你确定关闭当前的页面吗');
+//    if( bool ){
+//        // 关闭当前的页面
+//        window.close();
+//    }
+    console.log( window.open );
+    document.getElementsByTagName('button')[0].onclick = function(){
+        window.open('http://www.baidu.com','','width=300,height=200,resizable=no,toolbar=0,scrollbars=no,location=no');
+    }
+
+</script>
+</body>
+</html>

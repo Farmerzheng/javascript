@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<button>验证</button>
+<script>
+    /*
+     需求:
+     1：@前面字母数字下划线
+     2：@后面.前面字母或者数字,2-4位
+     3：.后面字母2-4位
+     例如：lishijie_002@sina.com
+     */
+    var oInput=document.getElementsByTagName("input")[0];
+    var oBtn=document.getElementsByTagName("button")[0];
+
+    oBtn.onclick=function(){
+
+        var value=oInput.value;
+
+        value=value.toString();
+
+        var patt1=/^[a-zA-Z0-9_]+@{1}[a-zA-Z0-9_]{2,4}\.[a-zA-Z]{2,4}$/g;
+
+        console.log(patt1.test(value))
+    }
+
+</script>
+</body>
+</html>

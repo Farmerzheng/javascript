@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //对象----> 一组 属性 和 方法的集合
+    // 对象中的属性称为  成员属性；
+    // 对象中的方法称为  成员方法
+    // 成员属性和成员方法之间的相互访问。
+    // 在对象中，this 代表的是当前的对象
+    // 通过内置的构造函数创建对象
+    var haDog = new Object();  // 这只是一个空对象
+    // 往对象中添加成员属性
+    haDog.color = 'white&black';
+    haDog.weight = '30kg';
+    haDog.name = ' 二哈 ';
+    // 往对象中添加成员方法
+    haDog.say = function(){
+        // 通过成员方法来访问成员属性
+        // 如果在成员方法中访问成员属性是通过this
+        return '我叫' + this.name;
+    }
+
+
+    //console.log( haDog );
+    // 访问成员属性
+    console.log( haDog.color );
+    //访问成员方法
+    console.log( haDog.say() );
+</script>
+</body>
+</html>

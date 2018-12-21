@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+    li,ul{
+    	list-style: none
+    }
+	.container{
+		margin:0 auto;
+		width:600px;
+	}
+	.hot{
+		background-color: green;
+	}
+	table td {
+		width:200px;
+		text-align: center
+	}
+	.container #user{
+		width:600px;
+		height:50px;
+		position: relative;
+		/*overflow: hidden*/
+	}
+	.container #user #input{
+		height:100%;
+        width:600px;
+        position:absolute;
+        left: 0;
+        top:0;
+	}
+	.container #user #input input[type="text"]{
+		height:50px;
+		width:300px;
+		float: left;
+	}
+	.container #user #input input[type = "button"]{
+		height:50px;
+		width:60px;
+		float: left;
+	}
+	.container #user #list{
+		background-color: #fff;
+        width:400px;
+        position: absolute;
+        left: 0;
+        top:50px;
+        border:1px solid #333;
+        display: none
+	}
+	.container #user #list ul{
+        width:100%;
+        height:100%;
+	}
+	.container #user #list ul li{
+        width:100%;
+        height:50px;
+        border-bottom:1px dotted #999;
+	}
+	.container #user #list ul li span:first-child{
+          float: left;
+          height:50px;
+          line-height: 50px;
+          margin:0 20px;
+	}
+	.container #user #list ul li span:last-child{
+          float: right;
+          height:50px;
+          line-height: 50px;
+          margin:0 20px;
+	}
+</style>
+<body>
+    <div class="container">
+            <div id="user">
+                  <div id="input">
+                  	 <input type="text" name="userInput">
+		             <input type="button" name="add" value="添加">
+                  </div>            	 
+		          <div id="list">
+		          	<ul>
+		          		<li class = "city">
+		          			<span>北京</span>
+		          			<span>110110</span>
+		          		</li>
+		          	    <li class = "city hot">
+		          			<span>上海</span>
+		          			<span>110110</span>
+		          		</li>
+		          		<li class = "city">
+		          			<span>广州</span>
+		          			<span>110110</span>
+		          		</li>
+		          		<li class = "city hot">
+		          			<span>深圳</span>
+		          			<span>110110</span>
+		          		</li>
+		          		<li class = "city">
+		          			<span>厦门</span>
+		          			<span>110110</span>
+		          		</li>
+		          	</ul>
+		          </div>
+            </div>
+    	  
+		    <table id="city" border= "1"></table>
+    </div>
+   
+	<script type="text/javascript">
+	     var table = document.getElementById("city");
+	     var addBtn = document.getElementsByName("add")[0];
+	     var userInput = document.getElementsByName("userInput")[0];
+	     var list = document.getElementById("list");
+	     var cityList = document.getElementsByClassName("city");
+	   
+
+		var dataArr = [
+			{cityno:110100,cityname:"北京",hot:"是"},
+		    {cityno:110100,cityname:"北京",hot:"否"},
+		    {cityno:110100,cityname:"北京",hot:"是"}
+		];
+
+		//将数据展示到页面上
+		   //声明一个空字符串，里面存放table标签内的所有标签
+		   var tableInnerHtml = "<tr><th>城市编号</th><th>城市名字</th><th>是否热门</th></tr>";
+		  //遍历数组
+		  for(var i = 0 ; i < dataArr.length ; i++){
+               
+               var dataTr = dataArr[i];
+
+               if(dataTr.hot == "是"){
+
+               tableInnerHtml += "<tr class='hot'>"+"<td>"+dataTr.cityno+"</td>"+"<td>"+dataTr.cityname+"</td>"+"<td>"+dataTr.hot+"</td>"+"</tr>";
+	           }else{
+	           tableInnerHtml += "<tr>"+"<td>"+dataTr.cityno+"</td>"+"<td>"+dataTr.cityname+"</td>"+"<td>"+dataTr.hot+"</td>"+"</tr>";
+	           }
+
+		  }
+
+		  table.innerHTML = tableInnerHtml;
+
+		  //输入框获取焦点
+		  userInput.addEventListener("focus",function(){
+              list.style.display = "block";
+         
+		  });
+	      
+
+	      //输入框失去焦点
+		  userInput.addEventListener("blur",blurFunc);
+
+		  function blurFunc(){
+			  		
+              list.style.display = "none";
+		  
+		  }
+
+		  //鼠标移入列表,移除失去焦点的事件
+		  list.onmouseenter = function(){
+		  	//移除挂接的事件
+		  	//参数 事件名称 事件处理函数名（要和挂接事件的函数名一致）
+		  	console.log(1);
+		  	userInput.removeEventListener("blur",blurFunc)
+		  }
+
+		  // 鼠标移出列表，将失去焦点的事件重新添加到输入框
+		  list.onmouseleave = function(){
+		  	console.log(2);
+		  	userInput.addEventListener("blur",blurFunc)
+		  }
+
+
+  		  //为城市列表中的每一项添加点击事件
+		  for(var i = 0 ; i <cityList.length ; i++){
+
+		  	cityList[i].onclick = function(e){
+                // console.log(1);
+                // e.stopPropagation();
+                console.log(this.className);
+
+                if(this.className.indexOf("hot") != -1){
+	                userInput.value = this.firstElementChild.innerHTML +","+
+	                this.lastElementChild.innerHTML+","+"true";
+                }else{
+	                userInput.value = this.firstElementChild.innerHTML +","+
+	                this.lastElementChild.innerHTML+","+"false";
+                }
+            
+
+                this.parentNode.parentNode.style.display = "none"
+		  	}
+
+		  };
+
+		  //为添加按钮添加点击事件
+		  addBtn.onclick = function(){
+            
+            //获取输入框的内容
+		  	var inputText = userInput.value;
+		  	//把字符串分割成数组
+		  	var inputArr = inputText.split(",");
+
+		  	//将数组中的数据展示到页面上
+            var tr = document.createElement("tr");
+
+		  	if(inputArr[2] == "true"){
+		  	    tr.className = "hot";
+		  	    inputArr[2] = "是";
+		  	}else{
+		  		inputArr[2] = "否";
+		  	}
+
+		  	var trInnerHtml = "<td>"+inputArr[1]+"</td>"+"<td>"+inputArr[0]+"</td>"+"<td>"+inputArr[2]+"</td>";
+
+		  	
+		  	tr.innerHTML = trInnerHtml;
+
+		  	table.appendChild(tr);
+
+		  }
+
+	
+	</script>
+</body>
+</html>

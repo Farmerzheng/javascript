@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .banner{
+            width: 490px;
+            height: 170px;
+            margin:100px auto;
+            border:1px solid #ccc;
+            padding:10px;
+        }
+        .banner div{
+            width:490px;
+            height: 170px;
+            overflow: hidden;
+            position:relative;
+        }
+        .banner ul {
+            width: 5000px;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        .banner ul li{
+            float: left;
+        }
+        .banner ol{
+            width: 150px;
+            height: 20px;
+            position: absolute;
+            right:10px;
+            bottom:10px;
+        }
+        .banner ol li{
+            width: 18px;
+            height: 18px;
+            border:1px solid #ccc;
+            float: left;
+            margin-left:10px;
+            background: #fff;
+            text-align: center;
+            line-height:18px;
+            cursor: pointer;
+        }
+        .banner ol .current{
+            background: orange;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner" id="banner">
+        <div>
+            <ul>
+                <li><img src="images/01.jpg" alt=""></li>
+                <li><img src="images/02.jpg" alt=""></li>
+                <li><img src="images/03.jpg" alt=""></li>
+                <li><img src="images/04.jpg" alt=""></li>
+                <li><img src="images/05.jpg" alt=""></li>
+            </ul>
+            <ol>
+                <li class="current">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+        </div>
+    </div>
+    <script src="animate.js"></script>
+    <script>
+        //获取dom元素
+        var banner = document.getElementById('banner');
+        var bannerBox = banner.children[0];
+        var ul = bannerBox.children[0];
+        console.log(ul);
+        var ol = bannerBox.children[1];
+        var olLi = ol.getElementsByTagName('li');
+        //给ol下的每一个li添加点击事件
+        for( var i = 0; i < olLi.length; i++ ){
+            // 给每一个li添加索引值index
+            olLi[i].index = i;
+            olLi[i].onclick = function () {
+                //alert(2);
+                // 排它，排除所有的，确立自身
+                for( var i = 0; i < olLi.length; i++ ){
+                    olLi[i].className = '';
+                }
+                //确立自身
+                this.className = 'current';
+                // 整个一组ul动
+                // ul 的  left： -索引值 * 一个宽度
+                //alert( this.index );
+                //ul.style.left = -this.index*490+'px';
+                animate( ul,-this.index*490 );
+            }
+        }
+    </script>
+</body>
+</html>

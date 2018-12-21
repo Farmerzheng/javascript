@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calm</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <style>
+        *{
+            margin:0 auto;
+            padding: 0;
+        }
+        #big{
+            width: 1900px;
+            height: 2400px;
+            background-color: #34495E;
+        }
+        nav{
+            height: 80px;
+            background-color: #FFFFFF;
+            color: #BDC3C7;
+        }
+        span{
+            float: left;
+            margin: 23px 20px;
+            padding-left: 350px;
+            font-size: 13px;
+        }
+        nav #nav{
+            float: right;
+        }
+        nav ul{
+            padding-right:370px;
+        }
+        nav ul li{
+            float: left;
+            list-style-type: none;
+            margin: 30px 20px;
+            font-size: 14px;
+        }
+        #logo{
+            height: 281px;
+            /*background: url("img/psd9802_02.png");*/
+            background-repeat: no-repeat;
+            color: #FFFFFF;
+        }
+        #logo h1{
+            padding: 79px 0 0 370px;
+        }
+        #logo p{
+            padding: 10px 0 0 370px;
+        }
+        #content{
+            width: 1170px;
+            height: 1610px;
+            background-color: #FFFFFF;
+            margin-top: -100px;
+            border-radius: 10px;
+        }
+        #left{
+            width:66%;
+            height:1590px;
+            float: left;
+            margin: 15px 15px;
+        }
+        #right{
+            width: 28%;
+            height:1590px;
+            float: right;
+            margin: 15px 15px;
+        }
+        .left_tu{
+            height: 60px;
+            font-size: 12px;
+            margin: 20px 15px 20px 0;
+        }
+         .tu,.wenzi{
+            float: left;
+        }
+        .zi{
+            float: right;
+            margin-top: 35px;
+        }
+        .wenzi{
+            margin-left: 20px;
+        }
+        .wenzi b{
+            font-size: 17px;
+            line-height: 35px;
+        }
+        #left p{
+            color: #D0D3D7;
+            padding-top: 10px;
+            font-size: 15px;
+        }
+        #r{
+            width:120px ;
+            height:40px ;
+            background-color: #1ABC9C;
+            color: #FFFFFF;
+            float: left;
+            line-height: 40px;
+            text-align: center;
+            margin: 30px 0 50px 0;
+        }
+        #there{
+            float: left;
+            margin-top:60px;
+            height: 160px;
+            width:100% ;
+            background-color: #1ABC9C;
+            padding-top: 30px;
+            color: #FFFFFF;
+        }
+        #there img{
+            float: left;
+            margin-left: 20px;
+        }
+        #there p{
+            padding-left: 70px;
+            color: #FFFFFF;
+            padding-top: 20px;
+            margin-left: 20px;
+        }
+
+        #shu ul{
+            list-style: none;
+            text-align: center;
+            height: 32px;
+        }
+        #shu ul li{
+            float: left;
+            width:40px ;
+            line-height: 32px;
+            background-color: #1ABC9C;
+            margin: 50px 5px 0 0;
+            color: #FFFFFF;
+        }
+        #shu .tp{
+            float: right;
+            margin-top: 50px;
+        }
+        #shu .se{
+            background-color: #ECF0F1;
+            color: #34495E;
+        }
+        #right #tupian{
+            width: 100%;
+            height: 75px;
+            list-style: none;
+        }
+        #right #tupian li{
+            float: left;
+            margin: 0 21px 15px 0;
+            padding-bottom: -5px;
+        }
+        #right h4{
+            height: 13px;
+            padding-bottom: 13px;
+            margin-top: 10px;
+            width: 310px;
+            line-height:13px ;
+            border-left: solid 2px #1ABC9C;
+            border-bottom: solid 1px #D0D3D7;
+        }
+        #categories{
+            width: 100%;
+            height: 170px;
+            font-size: 13px;
+            text-align: center;
+            margin-bottom:22px;
+        }
+        #categories .cate_1,#categories .cate_2{
+            float: left;
+        }
+        #categories .cate_1 p,#categories .cate_2 p{
+            width:30%;
+            line-height:35px;
+            font-weight: bolder;
+        }
+        #categories .cate_1 p{
+            margin: 10px 30px 8px 0;
+        }
+        #categories .cate_2 p{
+            margin: 10px 0px 10px 27px;
+        }
+        #categories .cate_1 b,#categories .cate_2 b{
+           border-bottom: solid 1px #D0D3D7;
+            padding-bottom: 8px;
+        }
+        #nav1{
+            width: 100%;
+            height: 40px;
+            border-bottom: solid 2px #1ABC9C;
+            font-size: 13px;
+        }
+        #nav1 ul li{
+            float: left;
+            list-style: none;
+            background-color:#1ABC9C;
+            line-height: 30px;
+            padding: 5px 15px;
+            margin-right:5px;
+        }
+        #nav1 .nav{
+            padding: 5px 16px 5px 16px;
+            margin-right:0 ;
+        }
+        #nav1 .nav,#nav1 .nav_1{
+            background-color: #D0D3D7;
+        }
+        .tuwen{
+            width: 100%;
+            height:70px ;
+        }
+        .tuwen .tuwen_1,.tuwen .tuwen_2{
+            float: left;
+            margin: 10px 12px 0px 0;
+            line-height: 25px;
+        }
+        .tuwen .tuwen_2 p{
+            font-size: 12px;
+         }
+        #tags{
+            width: 100%;
+            height:120px ;
+            font-size: 13px;
+            margin-top: 10px;
+            margin-bottom:10px;
+        }
+        #tags .tags_1{
+            line-height:40px ;
+        }
+        #tags ul li{
+            list-style: none;
+            float: left;
+            line-height:22px ;
+            padding: 5px 11px;
+            background-color: gainsboro;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+        #right input{
+            width: 95%;
+            height:40px ;
+            margin: 10px 0 5px 5px;
+            text-indent: 2em;
+        }
+        #right #SUBSCRIBE{
+            width:110px ;
+            line-height:35px ;
+            background-color: #1ABC9C;
+            text-align: center;
+            color: #FFFFFF;
+            float: right;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+        #di{
+            width: 1900px;
+            height: 480px;
+            background-color: #FFFFFF;
+            margin-top: 49px;
+            color: #D0D3D7;
+        }
+        #di h5{
+            line-height: 35px;
+            margin-bottom:20px ;
+        }
+        #di p{
+            margin-bottom: 20px;
+            font-size: 11px;
+         }
+        #di #g p{
+            background-color: #BDC3C7;
+            padding: 10px 15px;
+           line-height:15px ;
+        }
+        #di #tuwen img{
+            margin: 0px 15px 15px 0px;
+            border: solid 1px #D0D3D7;
+        }
+        #tuwen{
+            padding-left: 40px;
+        }
+        #foot{
+            border-top: solid 1px #D0D3D7;
+            padding-top: 45px;
+        }
+        #foot p{
+            float: left;
+        }
+        #foot .foot{
+            float: right;
+        }
+        #foot .foot li{
+            float: left;
+            list-style: none;
+            font-size: 13px;
+            margin: 0 0 0 30px;
+        }
+    </style>
+</head>
+<body>
+      <div id="big">
+            <nav>
+                <span><img src="img/3_06.png"/>&nbsp;&nbsp;Free Creative Simple Portfolio </span>
+                <ul id="nav">
+                    <li>HOME</li>
+                    <li>ABOUT</li>
+                    <li>PORTFOLIO</li>
+                    <li>BLOG</li>
+                    <li>CONTACT</li>
+                    <li><img src="img/search.png"></li>
+                </ul>
+            </nav>
+            <div id="logo">
+                 <h1>BLOG</h1>
+                <P>What we Think,latest news</P>
+            </div>
+            <div id="content">
+                <div id="left">
+                    <img src="img/hualishu_03.png"/>
+                    <div class="left_tu">
+                        <div class="tu"><img src="img/2017-06-15_201011.png"></div>
+                        <div class="wenzi"><b>A good old Standard Post for Computer Clusters</b>
+                            <br>
+                        <img src="img/hualishu_39.png">&nbsp;&nbsp;June3,2013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/hualishu_41.png">&nbsp;&nbsp;12 Comments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/hualishu_43.png"/>&nbsp;&nbsp;Public,News&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/hualishu_45.png">&nbsp;&nbsp;124Views </div>
+                        <div class="zi"><font color="red" size="3"><b>♥</b></font>18</div>
+                    </div>
+                    <p>The components of a cluster are usually connected to each other htrough fast local area networks
+                    <br>
+                    ("LAN"),wiht each node ( computer used as a server ) running its own instabce of operating system.
+                    <br>
+                    Computer clusters emerged as a result of convergence of a umber of computing trends including
+                    <br>
+                    the availability of low cost microprocessors,high speed networks,and software for high perfor-
+                    <br>
+                    mance distributed computing.</p>
+                    <div id="r">
+                        Read More
+                    </div>
+                    <img src="img/hualishu_26.png"/>
+                    <div class="left_tu">
+                        <div class="tu"><img src="img/hualishu_30.png"></div>
+                        <div class="wenzi"><b>The Cure-Disintegration</b>
+                        <br>
+                        <img src="img/hualishu_39.png">&nbsp;&nbsp;June3,2013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/hualishu_41.png">&nbsp;&nbsp;12 Comments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/hualishu_43.png"/>&nbsp;&nbsp;Public,News&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/hualishu_45.png">&nbsp;&nbsp;124Views </div>
+                        <div class="zi"><font color="red" size="3"><b>♥</b></font>18</div>
+                    </div>
+                    <p>The components of a cluster are usually connected to each other htrough fast local area networks
+                    <br>
+                    ("LAN"),wiht each node ( computer used as a server ) running its own instabce of operating system.
+                    <br>
+                    Computer clusters emerged as a result of convergence.</p>
+                    <div id="there">
+                        <img src="img/1_03.png"/>There are two ways to be rich:One is by acquiring much,<br>and the other is by desiring littie<br>
+                        <br>
+                        <p>-Jackie French Koller</p>
+                    </div>
+                    <div id="shu">
+                        <ul>
+                            <li>1</li>
+                            <li class="se">2</li>
+                            <li class="se">3</li>
+                            <li class="se">4</li>
+                            <li class="se">5</li>
+                        </ul>
+                        <div class="tp">
+                        <img src="img/hualishu_65.png"><img src="img/hualishu_66.png">
+                        </div>
+                    </div>
+                </div>
+                <div id="right">
+                    <ul id="tupian">
+                         <li><img src="img/hualishu_05.png"></li>
+                         <li><img src="img/hualishu_07.png"></li>
+                         <li><img src="img/hualishu_09.png"></li>
+                         <li><img src="img/hualishu_11.png"></li>
+                    </ul>
+                    <h4>Categories</h4>
+                    <div id="categories">
+                        <div class="cate_1">
+                           <p> <b>Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                               <b>Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                               <b>Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                               <b>Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                               Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</p>
+                        </div>
+                        <div class="cate_2">
+                            <p><b> Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                                <b>Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                                <b>Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                                <b>Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</b><br>
+                                Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(25)</p>
+                        </div>
+                    </div>
+                    <div id="nav1">
+                            <ul>
+                                <li>Popular</li>
+                                <li class="nav_1">Recent</li>
+                                <li class="nav_1">Comments</li>
+                                <li class="nav">Tags</li>
+                            </ul>
+                    </div>
+                    <div class="tuwen">
+                        <div class="tuwen_1">
+                            <img src="img/hualishu_18.png"/>
+                        </div>
+                        <div class="tuwen_2">
+                            <h5>Standard Post wiht The blog.</h5>
+                            <p>21 March 2013</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tuwen">
+                        <div class="tuwen_1">
+                            <img src="img/hualishu_20.png"/>
+                        </div>
+                        <div class="tuwen_2">
+                            <h5>Standard Post wiht The blog.</h5>
+                            <p>21 March 2013</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tuwen">
+                        <div class="tuwen_1">
+                            <img src="img/hualishu_22.png"/>
+                        </div>
+                        <div class="tuwen_2">
+                            <h5>Standard Post wiht The blog.</h5>
+                            <p>21 March 2013</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tuwen">
+                        <div class="tuwen_1">
+                            <img src="img/hualishu_24.png"/>
+                        </div>
+                        <div class="tuwen_2">
+                            <h5>Standard Post wiht The blog.</h5>
+                            <p>21 March 2013</p>
+                        </div>
+                    </div>
+                    <br>
+                    <h4>Ads 125x125</h4>
+                    <table cellspacing="25px" valign="top">
+                        <tr bgcolor="#dcdcdc">
+                            <td width="125px" height="125px">&nbsp;</td>
+                            <td width="125px" height="125px">&nbsp;</td>
+                        </tr>
+                        <tr bgcolor="#dcdcdc">
+                            <td width="125px" height="125px">&nbsp;</td>
+                            <td width="125px" height="125px">&nbsp;</td>
+                        </tr>
+                    </table>
+                    <h4>Flickr Images</h4>
+                    <table cellspacing="10px">
+                        <tr>
+                            <td><img src="img/hualishu_32.png"/></td>
+                            <td><img src="img/hualishu_34.png"/></td>
+                            <td><img src="img/hualishu_35.png"/></td>
+                            <td><img src="img/hualishu_37.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/hualishu_56.png"/></td>
+                            <td><img src="img/hualishu_57.png"/></td>
+                            <td><img src="img/hualishu_58.png"/></td>
+                            <td><img src="img/hualishu_59.png"/></td>
+                        </tr>
+                    </table>
+                    <h4>Tags</h4>
+                    <div id="tags">
+                        <ul class="tags_1">
+                                <li>Art</li>
+                                <li>Awesome</li>
+                                <li>Classic</li>
+                                <li>Photo</li>
+                        </ul>
+                        <ul class="tags_1">
+                                <li>Wordpress</li>
+                                <li>Videos</li>
+                                <li>Standard</li>
+                                <li>Gaming</li>
+                        </ul>
+                        <ul class="tags_1">
+                                <li>Art</li>
+                                <li>Awesome</li>
+                                <li>Music</li>
+                                <li>Data</li>
+                        </ul>
+                    </div>
+                    <h4>Newsletter</h4>
+                    <input type="text" placeholder="Your email address">
+                    <p id="SUBSCRIBE">SUBSCRIBE</p>
+                </div>
+            </div>
+            <div id="di">
+                <table width="1170" valign="middle" cellspacing="20px">
+                    <tr align="center">
+                        <td height="400px" align="left">
+                            <h5>ABOUTS</h5>
+                            <P>Duis id eros ac eros cursus gravide a non magna.<br>
+                            Sed vitae nisi diam,non sollicitudin mi.In dui arcu,<br>
+                            rhoncus ac consequat eget,cursus sit amet risus.</P>
+                            <p>Address:Street 9890,New Something 1234,<br>Country
+                            Telephong:12345678<br>
+                            Fax:98765432</p>
+                            <img src="img/hualishu_98.png"/> <img src="img/hualishu_99.png"/> <img src="img/hualishu_100.png"/> <img src="img/hualishu_102.png"/> <img src="img/hualishu_104.png"/>
+                        </td>
+                        <td align="left">
+                            <h5>LATEST POSTS</h5>
+                            <h6>Curabitur pharetra,ante!</h6>
+                            <p>25 April 2013</p>
+                            <h6>Gentle Marimba by Alastair Cameron</h6>
+                            <p>01 May 2013</p>
+                            <h6>Curabitur pharetra,ante!</h6>
+                            <p>25 April 2013</p>
+                            <h6>Gentle Marimba by Alastair Cameron</h6>
+                            <p>01 May 2013</p>
+                        </td>
+                        <td id="g" align="left">
+                            <h5>LATEST COMMENTS</h5>
+                            <P>Dann Petty Curabitur phare,ante<br>
+                               lobortis dictum.</P>
+                            <P>Dann Petty Curabitur phare,ante<br>
+                                lobortis dictum.</P>
+                            <P>Dann Petty Curabitur phare,ante<br>
+                                lobortis dictum.</P>
+                        </td>
+                        <td id="tuwen">
+                            <h5>FLICKR PHOTOSTREAM</h5>
+                            <img src="img/hualishu_72.png"><img src="img/hualishu_69.png"><img src="img/hualishu_75.png"><img src="img/hualishu_77.png">
+                            <br>
+                            <img src="img/hualishu_83.png"><img src="img/hualishu_85.png"><img src="img/hualishu_87.png"><img src="img/hualishu_88.png">
+                            <br>
+                            <img src="img/hualishu_93.png"><img src="img/hualishu_94.png"><img src="img/hualishu_95.png"><img src="img/hualishu_96.png">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" height="90px">
+                            <div id="foot">
+                                <p>Copyright 2013 Calm.All Right Reserved</p>
+                                <ul class="foot">
+                                    <li>HOME</li>
+                                    <li>ABOUT</li>
+                                    <li>PORTFOLIO</li>
+                                    <li>BLOG</li>
+                                    <li>Features</li>
+                                    <li>CONTACT</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+      </div>
+
+<script>
+   console.log($("#tupian li img[src!='img/hualishu_05.png']"))
+</script>
+</body>
+</html>

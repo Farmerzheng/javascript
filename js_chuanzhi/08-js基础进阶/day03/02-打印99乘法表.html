@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//输出一个9行9列的表格
+    document.write('<table border="1" align="center" width="500">');
+    //第一层for循环，输出了9个tr
+    for( var i = 1; i <= 9; i++ ){
+        document.write('<tr>');
+        //第二层for循环，输出9个td
+        for( var j = 1; j <= i; j++ ){
+            document.write( '<td>' );
+            document.write( j + '*' + i  + '=' + i*j);
+            document.write( '</td>' );
+        }
+        document.write('</tr>');
+    }
+
+    document.write('</table>');
+</script>
+</body>
+</html>

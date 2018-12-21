@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body
+        {
+            background-color: aqua;
+        }
+        #topDiv
+        {
+            width: 1510px;
+            height: 80px;
+            background-color: white;
+            line-height: 80px;
+        }
+        #bgimg {
+            width: 300px;
+            height: 45px;
+            background-image: url(img/header.png);
+            background-repeat: no-repeat;
+            background-size: 200px;
+
+        }
+        #spaceDiv
+        {
+           width: 300px;
+            height: 18px;
+        }
+        .menuUl li {
+            float: left;
+            width: 90px;
+            margin-top: -10px;
+            height: 70px;
+            background-color: #FFFFFF;
+            text-align: center
+        }
+        #indexLi
+        {
+            background-color: #FF9d00;
+            margin-top: -15px;
+            border-top: solid 5px #FF9d00;
+            border-bottom: solid 5px #FF9d00;
+        }
+        .menuUl {
+            list-style: none;
+            float: left;
+        }
+        #logo
+        {
+            width: 140px;
+            height: 65px;
+            float: left;
+            margin-left: 290px;
+        }
+        .menuUl li i
+        {
+            border-top:5px solid #000000;
+            border-left:5px solid rgba(0,0,0,0);
+            border-right:5px solid rgba(0,0,0,0);
+            display: inline-block;
+        }
+        #freeShopMenu
+        {
+            list-style: none;
+            height:0px;
+            display: none;
+        }
+        ul#freeShopMenu li {
+            width: 90px;
+            margin-left: -40px;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <div id="topDiv">
+        <div id="logo">
+            <div id="spaceDiv"></div>
+            <div id="bgimg"></div>
+        </div>
+
+        <ul class="menuUl">
+            <li id="indexLi">首页</li>
+            <li name="menuli">目的地</li>
+            <li name="menuli">旅游攻略</li>
+            <li name="menuli">自由行商城<i></i>
+                <ul id="freeShopMenu">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </li>
+            <li name="menuli">酒店</li>
+            <li name="menuli">社区<i></i></li>
+            <li name="menuli">APP</li>
+        </ul>
+    </div>
+<script>
+    var lis=document.getElementsByName("menuli");
+    var menu=document.getElementById("freeShopMenu");
+    for(var i=0;i<lis.length;i++){
+        lis[i].addEventListener("mouseover",mouseHandler);
+    }
+    function mouseHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        for(var i=0;i<lis.length;i++){
+            if(this==lis[i]){
+                if(this.innerHTML.indexOf("自由行商城" )>-1|| this.innerHTML.indexOf("社区" )>-1 ){
+                    this.style.borderTop="solid 5px #FF9d00"
+                    this.style. marginTop="-15px";
+
+                }else{
+                    this.style.borderBottom="solid 5px #FF9d00"
+                }
+
+            }else{
+                lis[i].style.borderBottom="none"
+                lis[i].style.borderTop="none"
+                lis[i].style. marginTop="-10px";
+            }
+        }
+    }
+//    $("#freeShopMenu")
+
+       $("li[name='menuli']").eq(2).on("mouseover",mouseoverHandler)
+        function mouseoverHandler(e) {
+            if(e.type=="mouseover"){
+                $(this).off("mouseover",mouseoverHandler);
+                $("#freeShopMenu").css("display","block");
+                $("#freeShopMenu").animate({height:"350px"},500,function () {
+                    $(this).on("mouseout",mouseoverHandler);
+                    $(this).parent().on("mouseout",mouseoverHandler);
+                })
+
+            }else {
+                $("#freeShopMenu").off("mouseout",mouseoverHandler);
+                $("li[name='menuli']").off("mouseout",mouseoverHandler);
+                $("#freeShopMenu").animate({height: "0px"}, 500, function () {
+                    $("#freeShopMenu").css("display", "none");
+                    $("li[name='menuli']").eq(2).on("mouseover",mouseoverHandler);
+                })
+            }
+        }
+
+</script>
+</body>
+</html>

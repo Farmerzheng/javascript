@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div0
+        {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            margin: auto;
+        }
+        #div1
+        {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="div0"><div id="div1"></div></div>
+    <script>
+        var div0=document.getElementsByTagName("div")[0];
+        div0.addEventListener("click",clickHandler);
+//        div0.addEventListener("mouseover",clickHandler);
+//        div0.addEventListener("mouseout",clickHandler);
+//        div0.addEventListener("mousemove",clickHandler);
+        div0.addEventListener("mousedown",clickHandler);
+        div0.addEventListener("mouseup",clickHandler);
+        div0.addEventListener("dblclick",clickHandler);
+        div0.addEventListener("contextmenu",clickHandler);
+//        div0.addEventListener("mouseenter",clickHandler);
+//        div0.addEventListener("mouseleave",clickHandler);
+
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            e.stopPropagation();
+            e.preventDefault();
+            console.log(e,e.type,this,e.target,e.currentTarget)
+        }
+    </script>
+</body>
+</html>

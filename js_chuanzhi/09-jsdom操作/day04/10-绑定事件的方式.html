@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+
+//    button.onclick = function(){
+//        div.style.background = 'orange';
+//    }
+//    button.onclick = function(){
+//        div.style.border = '10px solid red';
+//    }
+    // 换一种绑定方式  针对 谷歌，狐火，欧朋。。。
+//    addEventListener 添加事件监听
+    // 另一种  针对于 ie
+    // attacheEvent
+//    button.addEventListener( 'click',function(){
+//        div.style.background = 'orange';
+//    } );
+//    button.addEventListener( 'click',function(){
+//        div.style.border = '10px solid red';
+//    } );
+    // ie低版本的使用
+    button.attachEvent( 'onclick' , function(){
+        div.style.background = 'orange';
+    } );
+    button.attachEvent( 'onclick' , function(){
+        div.style.border = '10px solid red';
+    } );
+</script>
+</body>
+</html>

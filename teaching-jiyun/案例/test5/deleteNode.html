@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 100px;
+            height: 40px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+        }
+        #bn
+        {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <!--<ul></ul>-->
+    <input type="button" id="bn" value="添加">
+<script>
+//        var ul=document.getElementsByTagName("ul")[0];
+        var bn=document.getElementById("bn");
+        var sum=0;
+        bn.addEventListener("click",addDiv);
+        function addDiv(e) {
+            if(!e){
+                e=window.event;
+            }
+            var div=document.createElement("div");
+            var bns=document.createElement("input");
+            bns.type="button";
+            bns.value="删除";
+            bns.addEventListener("click",deletHandler);
+            document.body.appendChild(div);
+            div.style.backgroundColor=randomColor();
+            div.appendChild(bns);
+
+        }
+//        bn.addEventListener("click",addLi);
+       /* function addLi(e) {
+            if(!e){
+                e=window.event;
+            }
+            sum++;
+            var li=document.createElement("li");
+            li.textContent=sum;
+            ul.appendChild(li);
+            createHref(li);
+        }
+
+        function createHref(parent) {
+            var a=document.createElement("a");
+            a.href="#";
+            a.textContent="删除";
+            parent.appendChild(a);
+            a.addEventListener("click",deletHandler);
+        }*/
+
+    function deletHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        this.removeEventListener("click",deletHandler);
+        this.parentElement.remove();
+    }
+    function randomColor() {
+        return "#"+Math.floor(Math.random()*0xFFFFFF).toString(16);
+    }
+</script>
+</body>
+</html>

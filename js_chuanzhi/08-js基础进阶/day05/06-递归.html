@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 递归是一种编程思想
+    // 递归：原理就是函数内部调用自身
+    //  例如之前说的  开闭原则( 节流阀 )
+//    var bool = true;
+//
+//    if( n > 8){
+//        bool = flase;
+//    }
+//    if(bool){
+//        alert();
+//    }
+    // 递归中需要有跳出的条件，否则就是一个死循环
+    //从前有座庙，庙里有个老和尚
+    var i = 0;
+    function fn(){
+        alert('从前有座山，山上有座庙，庙里有个老和尚在讲故事 ' + i);
+        i++;
+        // 当i值在3以下，会继续执行自身
+        if( i <=  3){
+            fn();
+        }
+    }
+    fn();
+
+</script>
+</body>
+</html>

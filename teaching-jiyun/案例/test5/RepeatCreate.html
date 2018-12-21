@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            /*border: 1px solid #000000;*/
+            position: absolute;
+        }
+    </style>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/Tween.js"></script>
+    <script src="js/TweenGuest.js"></script>
+</head>
+<body>
+    <script>
+        var arr=[];
+        for(var i=0;i<50;i++){
+            arr[i]=[];
+            for(var j=0;j<40;j++){
+                arr[i][j]=createDiv();
+                arr[i][j].style.left=i*10+"px";
+                arr[i][j].style.top=j*10+"px";
+            }
+        }
+       var id= setInterval(downDiv,16);
+
+        var col=arr.length-1;
+        var row=arr[col].length-1;
+
+        function downDiv() {
+
+            TweenGuset.tweenAB(arr[col][row],{top:parseInt(arr[col][row].style.top),opacity:1},{top:500,opacity:0},300)
+            col--;
+            if(col<0){
+                row--;
+                col=arr.length-1;
+            }
+            if(row<0 && col<0){
+                clearInterval(id);
+            }
+        }
+
+
+        function createDiv() {
+            var div=document.createElement("div");
+            document.body.appendChild(div);
+            return div;
+        }
+    </script>
+</body>
+</html>

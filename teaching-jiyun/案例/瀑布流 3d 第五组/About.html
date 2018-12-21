@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>about</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #divs
+        {
+            width: 1366px;
+            height: 584px;
+            margin: auto;
+            position: relative;
+            background-color: #e3e3e3;
+            background-image: url("img/about/world_map.png");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        p{
+            width: 492px;
+            margin: 27px 0px 10px 170px;
+        }
+        h1{
+            padding: 106px 0px 0px 170px;
+        }
+    </style>
+</head>
+<body>
+    <div id="divs">
+        <h1>About Us</h1>
+        <p>Shanghai Shining is a creative corporation which focuses on helping architects and owners turn their construction which is still in design stage into visual images or videos, perfectly showing the essence of construction.</p>
+        <p>Since the year of 1998, we have finished more than 20000 3D visualization creativities of all Kinds of architecture for nearly 2000 architect firms both at home and abroad. We have used 3D technology, shooting, drawing and architectonic to provide
+            the clients with the services of CG images, CG animations, BIM and 3D products finally</p>
+    </div>
+    <script>
+        var divs=document.getElementById("divs");
+        var arr=["aedas.png","bdp.png","benoy.png","ch2mhill.png","edsa.png","gensler.png","kpf.png","sasaki.png"];
+        for(var i=0;i<arr.length;i++){
+            var img=new Image();
+            img.src="img/about/"+arr[i];
+            img.style.position="absolute";
+            img.style.top="450px";
+            img.style.left=170+120*i+"px";
+            divs.appendChild(img)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>向对象添加属性和方法</title>
+</head>
+<body>
+<script>
+
+    //示例一
+
+    //创建一个employee类
+    function employee(name,job,born){
+        this.name=name;
+        this.job=job;
+        this.born=born;
+    }
+
+    //为对象添加新的属性
+    employee.prototype.salary=null;
+
+    //创建一个wangzheng对象
+    var wangZheng=new employee('wangZheng','software engineer','1990.11.02');
+
+    //为wangzheng对象的salary属性赋值
+    wangZheng.salary=10000;
+
+    document.write(wangZheng.born+'<br>');
+
+
+    //实例二（为数组对象添加一个方法，该方法的功能为输出数组的所有元素）
+    function print(){
+        for(var i=0;i<this.length;i++){
+            document.write(this[i]+'<br/>');
+        }
+    }
+    Array.prototype.print=print;
+    var arr=['wangzheng','wangyao','wangyuan'];
+    arr.print();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="container">
+		<a href="">a</a>
+	</div>
+	<script type="text/javascript">
+	    var container = document.getElementById("container");
+	    var a = document.getElementsByTagName("a")[0];
+		//向container当中添加一个 p
+		var p = document.createElement("p");
+        container.appendChild(p);
+
+        var li = document.createElement("li");
+        container.insertBefore(li,a);
+
+        // container.removeChild(a);
+        // a.remove();
+        // p.remove();
+
+
+	</script>
+</body>
+</html>

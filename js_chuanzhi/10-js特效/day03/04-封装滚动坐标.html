@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            width: 5000px;
+            height: 5000px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    //如何判断是否声明了文档dtd，
+    //声明了文档dtd，标准模式，未声明混杂（怪异）模式
+    //alert( document.compatMode );
+    //没有声明 返回值 BackCompat
+    // 声明  CSS1Compat
+    window.onscroll = function () {
+        console.log( scroll().top );
+    }
+    function scroll(  ){
+        //判断是否为主流浏览器
+//        var top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+//        var left = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+//        return {
+//            left : left,
+//            top : top
+//        }
+        return {
+            left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+            top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        }
+    }
+</script>
+</body>
+</html>

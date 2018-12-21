@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+  <style type="text/css">
+  	#box{
+  		width:100px;
+  		height:100px;
+  		background-color: red;
+  		position: absolute;
+  		left:0;
+  		top:100px;
+  	}
+  	#box2{
+  		width:100px;
+  		height:100px;
+  		background-color:yellow;
+  		position: absolute;
+  		left:0;
+  		top:100px;
+  	}
+  </style>
+<body>
+
+	<div id="box"></div>
+	<div id="box2"></div>
+	<!-- 有的浏览器不支持requestAnimationFrame方法 -->
+	<script type="text/javascript" src = "requetAnimationFrame.js"></script>
+	<script type="text/javascript">
+        var box = document.getElementById("box");
+        var box2 = document.getElementById("box2");
+        
+
+	   //创建一个永动机(一个永动机负责处理所有的动画)
+		animation();
+		function animation(){
+			requestAnimationFrame(animation);
+			//updateBox函数每隔16mms执行一次
+            updateBox();
+
+            updateBox2();
+		}
+           
+        function updateBox(){
+        	//让盒子的left值等于原来的left值再加上5
+        	box.style.left = box.offsetLeft + 5 + "px";
+        }   
+
+	    function updateBox2(){
+	        	
+	        box2.style.top = box2.offsetTop + 5 + "px";
+	    }   
+	</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 32px;
+            height: 33px;
+            background-image: url(img/Actor01-Braver03.png);
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+
+    <script>
+
+        var div0=document.querySelector("div");
+        const UP="up";
+        const DOWN="down";
+        const LEFT="left";
+        const RIGHT="right";
+        var state="";
+        var time=0;
+        var num=0;
+        var speed=5;
+        var speedY=0;
+        var bool=false;
+        var speeds=1;
+        div0.style.top="200px"
+        window.addEventListener("keydown",keyDownHandler);
+        window.addEventListener("keyup",keyDownHandler);
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+
+            if(!bool)
+            {
+                div0.style.backgroundPositionX="0px";
+                return;
+            }
+            time++;
+            if(time%8==0){
+                time=0;
+                div0.style.backgroundPositionX=-num*32+"px";
+                switch (state)
+                {
+                    case LEFT:
+                        div0.style.left=div0.offsetLeft-speed+"px";
+                        break;
+                    case UP:
+                        div0.style.top=div0.offsetTop-speed+"px";
+                        break;
+                    case RIGHT:
+                        div0.style.left=div0.offsetLeft+speed+"px";
+                        break;
+                    case DOWN:
+                        div0.style.top=div0.offsetTop+speed+"px";
+                        break;
+                }
+                num++;
+                if(num==4){
+                    num=0;
+                }
+            }
+        }
+
+        function keyDownHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+
+            if(e.type=="keydown"){
+                bool=true;
+            }else if(e.type=="keyup"){
+                bool=false;
+            }
+            switch (e.keyCode)
+            {
+                case 37:
+//                        left
+                if(state==LEFT) return;
+                    state=LEFT;
+                    div0.style.backgroundPositionY="-33px";
+                    break;
+                case 38:
+//                        up
+
+                    if(state==UP) return;
+                    state=UP;
+                    div0.style.backgroundPositionY="-99px";
+                    break;
+                case 39:
+//                        right
+
+                    if(state==RIGHT) return;
+                    state=RIGHT;
+                    div0.style.backgroundPositionY="-66px";
+                    break;
+                case 40:
+//                        down
+                    if(state==DOWN) return;
+                    state=DOWN;
+                    div0.style.backgroundPositionY="0px";
+                    break
+            }
+
+        }
+    </script>
+</body>
+</html>

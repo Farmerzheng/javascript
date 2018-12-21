@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#father{
+		width:200px;
+		height:200px;
+		background-color: red;
+	}
+	#father #child{
+		width:100px;
+		height:100px;
+		background-color:yellow;
+	}
+</style>
+<body>
+
+	<div id="father">
+		<div id="child"></div>
+	</div>
+	<script type="text/javascript">
+	//不论鼠标指针穿过被选元素或其子元素，都会触发 mouseover 事件。对应mouseout
+//只有在鼠标指针穿过被选元素时，才会触发 mouseenter 事件。对应mouseleave
+
+		var father = document.getElementById("father");
+		var child = document.getElementById("child");
+		father.addEventListener("mouseenter",function(){
+			console.log(1);
+		})
+	</script>
+</body>
+</html>

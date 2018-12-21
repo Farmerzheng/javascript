@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box1">
+    <div class="box2">222</div>
+    <div class="box3">333</div>
+    <div class="box4">444</div>
+    <div class="box5">555</div>
+    <div class="box6">666</div>
+</div>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li id="list"></li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script>
+
+    var box1 = document.getElementsByClassName('box1')[0];
+//    var box2 = document.getElementsByClassName('box2')[0];
+//    var box4 = document.getElementsByClassName('box4')[0];
+    //通过box2 来找父级
+    //找父级  parentNode
+    //console.log( box2.parentNode );
+
+    // 找兄弟,找box2下一个兄弟
+    // nextElementSibling  下一个兄弟节点,如果找不到，就会返回null
+    //console.log( box2.nextElementSibling );
+
+    //上一个兄弟节点 ,如果找不到，就会返回null
+    //console.log( box4.previousElementSibling );
+
+    // 找子级
+    // children    只是找标签
+    // childNodes  找的结果，是包含有空格，回车等
+    //找父级下边的第一个子标签 firstElementChild
+//    console.log( box1.childNodes );
+//    console.log( box1.children );
+    //var nodes = box1.children;
+
+    console.log( box1.firstElementChild );
+//    //nodes[0].style.fontSize = '25px';
+//    for( var i = 0; i < nodes.length; i++ ){
+//        nodes[ i ].style.fontSize = '30px';
+//    }
+    // 写一个函数，通过这个函数可以返回所有的兄弟节点
+    // 1. 参数，提供一个节点
+    // 2. 返回值：一组节点（数组）
+    function getSiblings( element ){
+        //通过当前的节点 来找父节点
+        var parent = element.parentNode;
+        //需要找到所有子节点
+        var nodes = parent.children;
+        var arr = [];
+        for( var i = 0; i < nodes.length; i++ ){
+            //排除自身
+            if( nodes[i] === element ){
+                continue;
+            }
+            arr.push(nodes[i])
+        }
+        return arr;
+    }
+
+    var box3 = document.getElementsByClassName('box3')[0];
+    //console.log( getSiblings( box3 ) );
+
+    var list = document.getElementById('list');
+    console.log( getSiblings( list ) );
+
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	#container{
+		width:500px;
+		height:650px;
+		margin:0 auto;
+		background-color: pink;
+
+	}
+	#container #btn{
+       width:100px;
+       height:50px;
+	}
+	#container .team{
+		height:100px;
+		line-height: 100px;
+		text-align: center;
+		width:500px;
+	}
+
+
+
+</style>
+<body>
+	<div id = "container">
+		<button id = "btn">选择</button>
+		<div class="team">legendary</div>
+		<div class="team">Beyond</div>
+		<div class="team">God</div>
+		<div class="team">开黑小分队</div>
+		<div class="team">goodLuck</div>
+		<div class="team">海阔天空</div>
+	</div>
+	<script type="text/javascript">
+		 var btn = document.getElementById("btn");
+		 var stopBtn = document.getElementById("stop");
+		 var team = document.getElementsByClassName("team");
+		    
+	     var flag = false;
+	 
+	     var index = 0;
+
+	     function randomNum(max,min){
+             return parseInt(Math.random()*(max-min+1))+min
+	     }
+
+		btn.onclick = function(){
+			flag = !flag;
+			speed = randomNum(10,40);
+			index = 0;	        
+		}
+    
+
+         animation();
+         function animation(time){
+         	requestAnimationFrame(animation);
+            step();
+          
+         }     
+
+         // var speed = 20;
+	     var increase = 0;
+
+         function step(){
+
+         	// console.log(speed);
+         	if(flag == false)return;
+         	
+         	if(speed == 0){
+                flag = !flag;
+                alert("恭喜"+team[index].innerText+"!");
+         	// 	return; 
+         	} 
+
+	         // console.log(speed);
+
+            if(increase >= 50){
+            	increase = 0;            	
+            	speed -= 1;
+
+            	index++;
+            	if(index == 6){
+            		index = 0;
+            	}
+
+            	 for(var i = 0 ; i <team.length ; i++){
+	             	team[i].style.backgroundColor = "pink";
+	             }
+
+             	 team[index].style.backgroundColor = "red";
+            }
+
+            increase += speed;
+         }
+		 
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="texts">
+<input type="button" value="确定" id="bn0">
+<input type="button" value="取消" id="bn1">
+
+        <script>
+            var texts=document.getElementById("texts");
+            var bn0=document.getElementById("bn0");
+            var bn1=document.getElementById("bn1");
+            bn0.addEventListener("click",bnClickHandler);
+            bn1.addEventListener("click",bnClickHandler);
+            bn0.addEventListener("mouseover",bnClickHandler);
+
+            function bnClickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                console.log(e.type)
+                if(e.target==bn0)
+                {
+                    console.log("确定")
+                }else if(e.target==bn1){
+                    console.log("取消")
+                }
+                switch(parseInt(texts.value/10)){
+                    case 9:
+                        console.log("A");
+                        break;
+                    case 8:
+                        console.log("B");
+                        break;
+                    case 7:
+                        console.log("C");
+                        break;
+                    case 6:
+                        console.log("D");
+                        break;
+                    default:
+                        console.log("E");
+                        break;
+                }
+            }
+
+        </script>
+</body>
+</html>

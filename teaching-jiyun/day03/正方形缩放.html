@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#box{
+		width:200px;
+		height:200px;
+		background-color: yellow;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-100px;
+		margin-top:-100px;
+	}
+</style>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+
+	    var box = document.getElementById("box");
+	    var clickBoolean = false;
+	     var width = 200;
+		animation();
+		function animation(){
+		   boxScale();
+           requestAnimationFrame(animation);
+		}
+		function boxScale(){
+          if(clickBoolean == false)return;
+          width++;          
+          box.style.width = width + "px";
+          box.style.height = width + "px";  
+          box.style.marginLeft = -width/2 +"px";
+          box.style.marginTop = -width/2 + "px";        
+		}
+		box.addEventListener("click",function(){
+			clickBoolean = !clickBoolean;
+		})
+	</script>
+</body>
+</html>

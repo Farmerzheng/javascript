@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #container{width: 600px;
+            height:600px;
+            border:1px solid #000;
+            margin:0 auto;
+            text-align: center;}
+        #btn{width:500px;
+            height:40px;
+            padding:15px;
+            margin:0 auto;}
+        #btn input{height:35px;}
+        #mytable{width:500px;
+            text-align: center;
+            margin: 0 auto;
+            border:1px solid #ccc;}
+        #mytable td{height:30px;
+            border:1px solid #000;}
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="btn">
+        <input type="button" value="增加行" id="addrow"/>
+        <input type="button" value="删除行" id="delrow"/>
+        <input type="button" value="修改背景颜色" id="changecolor"/>
+        <input type="button" value="复制行" id="copyrow"/>
+        <input type="button" value="粘贴行" id="paste"/>
+        <input type="button" value="排序" id="rank"/>
+        <input type="button" value="插入数据" id="insdata"/>
+    </div>
+    <table id="mytable">
+        <tr id="first">
+            <td><input type="checkbox" value="全选" id="all">全选</td>
+            <td>员工ID</td>
+            <td>姓名</td>
+            <td>所在部门</td>
+            <td>工资</td>
+        </tr>
+    </table>
+</div>
+<script>
+    var add=document.getElementById("addrow");
+    var del=document.getElementById("delrow");
+    var cha=document.getElementById("changecolor");
+    var cop=document.getElementById("copyrow");
+    var pas=document.getElementById("paste");
+    var ran=document.getElementById("rank");
+    var ins=document.getElementById("insdata");
+    var mytable_1=document.getElementById("mytable");
+    var all_1=document.getElementById("all");
+    var children_1=document.getElementsByClassName("children");
+    var mytr=document.getElementsByClassName("mytr");
+    var td2=document.getElementsByClassName("td2");
+    var td3=document.getElementsByClassName("td3");
+    var td4=document.getElementsByClassName("td4");
+    var td5=document.getElementsByClassName("td5");
+
+    //插入行
+    add.onclick=function(){
+        var mytr=document.createElement("tr");
+        mytable_1.appendChild(mytr)
+        mytr.setAttribute("class","mytr");
+
+        var td1=document.createElement("td");
+        mytr.appendChild(td1);
+        td1.setAttribute("class","td1");
+        td1.innerHTML="<input type='checkbox' class='children' value='' >";
+
+        var td2=document.createElement("td");
+        mytr.appendChild(td2);
+        td2.setAttribute("class","td2");
+
+        var td3=document.createElement("td");
+        mytr.appendChild(td3);
+        td3.setAttribute("class","td3");
+
+        var td4=document.createElement("td");
+        mytr.appendChild(td4);
+        td4.setAttribute("class","td4");
+
+        var td5=document.createElement("td");
+        mytr.appendChild(td5);
+        td5.setAttribute("class","td5");
+    }
+
+    //全选框
+    all_1.onclick=function(){
+        for(i=0;i<children_1.length;i++){
+            children_1[i].checked=all_1.checked;
+        }
+    }
+
+    //删除行
+    del.onclick=function(){
+        for(i=0;i<children_1.length;i++){
+            if(children_1[i].checked){
+                mytable_1.removeChild(children_1[i].parentNode.parentNode)
+                i=-1;
+            }
+        }
+    }
+    //改变颜色
+    cha.onclick=function(){
+        for(i=0;i<children_1.length;i++){
+            if(children_1[i].checked){
+                children_1[i].parentNode.parentNode.bgColor="green";
+            }
+            else{
+                children_1[i].parentNode.parentNode.bgColor="white";
+            }
+        }
+    }
+    //输入数据
+
+    ins.onclick=function(){
+        for(i=0;i<children_1.length;i++){
+            if(children_1[i].checked){
+                var a=prompt("输入员工ID","")
+                td2[i].innerHTML=a;
+                var b=prompt("输入员工姓名","")
+                td3[i].innerHTML=b;
+                var c=prompt("输入所在部门","")
+                td4[i].innerHTML=c;
+                var d=prompt("输入工资","")
+                td5[i].innerHTML=d;
+            }
+        }
+    }
+    //复制行
+    var c;
+    cop.onclick=function(){
+        for(i=0;i<children_1.length;i++){
+            if(children_1[i].checked){
+                c=mytr[i].innerHTML;
+            }
+        }
+    }
+    // 粘贴行
+    pas.onclick=function(){
+        for(i=0;i<children_1.length;i++){
+            if(children_1[i].checked){
+                mytr[i].innerHTML=c;
+            }
+        }
+    }
+    //排序
+    var temp;
+    ran.onclick=function(){
+        for(i=0;i<td5.length;i++){
+            for(j=i;j<td5.length;j++){
+                if((td5[i].innerHTML/1)<(td5[j].innerHTML/1)){
+                    temp=mytr[i].innerHTML;
+                    mytr[i].innerHTML=mytr[j].innerHTML;
+                    mytr[j].innerHTML=temp;
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

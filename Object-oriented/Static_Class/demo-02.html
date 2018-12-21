@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /****************************************
+   * 方法一
+   * 类、方法、属性都为静态类型
+   * 不能创建实例
+   *****************************************/
+  var Time = {
+    today: '2009 - 3 - 8',
+    weather: 'rain',
+    show: function() {
+      alert('Today is' + this.today);
+    }
+  }
+
+  //静态对象可直接使用，无需创建实例
+  alert('It is' + Time.weather +'today');
+  Time.show();
+  </script>
+</body>
+
+</html>

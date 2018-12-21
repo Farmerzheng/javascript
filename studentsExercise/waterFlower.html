@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function waterFlower(num) {
+    var arr = num.toString().split("");
+    var length = arr.length;
+    var sum = 0;
+    for (var i = 0; i < length; i++) {
+      sum += arr[i] * arr[i] * arr[i];
+    }
+    if (sum == num) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  console.log(waterFlower(153))
+  </script>
+</body>
+
+</html>

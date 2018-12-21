@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.container{
+		width:600px;
+		height:600px;
+		margin:0 auto;
+		background-color: gree
+		n;
+	}
+</style>
+<body>
+    <div class="container">
+    	
+    </div>
+	<script type="text/javascript">
+	
+		var container = document.getElementsByClassName("container")[0];
+
+		var wrapWidth = container.offsetWidth;
+
+		var wrapHeight = container.offsetHeight;
+
+		console.log(wrapWidth);	
+
+		function randomFn( max , min ){
+
+			return  parseInt(Math.random()*(max-min+1)+min)
+
+		}
+
+	    var n = 4;
+
+		//创建n个房祖名
+
+		function createFangZuMing( n ){
+
+			 for( var i = 0 ; i < n ; i++){			
+		              
+		              for(var j = 0 ; j < n ; j++){
+
+			               var img = document.createElement("img");
+		                   img.style.width = wrapWidth/n + "px";
+		                   img.style.height = wrapHeight/n +"px";
+		                   img.style.backgroundColor = "red";
+		                   img.className = "fangZuMing";	                 
+		                   img.src = "1.png";	                  
+                           container.appendChild(img);
+		              }
+
+		              // document.write("<br>")
+		         }
+
+
+		}
+
+			// container.innerHTML = "";
+
+		createFangZuMing(n);
+
+	   
+
+
+		
+
+	
+
+		function click(){
+
+               var fangZuMingArr = document.getElementsByClassName("fangZuMing");
+
+               var randomNum = randomFn(n*n,0);
+              	
+               fangZuMingArr[randomNum].src = "2.png";
+
+             //为房租名添加点击事件
+
+			 for(var i = 0 ; i < fangZuMingArr.length ; i++){
+
+				fangZuMingArr[i].onclick = function(){
+
+					var imgSrc = this.getAttribute("src");
+
+					if(imgSrc == "2.png"){
+
+						n++;
+						// console.log(n)
+
+						container.innerHTML = "";
+
+		                createFangZuMing(n);
+
+			            click();
+					}
+				}
+			}
+		}
+
+		click();
+
+		
+
+
+
+
+	
+	</script>
+</body>
+</html>

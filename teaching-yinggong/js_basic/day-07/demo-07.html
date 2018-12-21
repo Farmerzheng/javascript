@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function Counter() {
+    this.sum = 0;
+    this.count = 0;
+  }
+
+  // studentArr
+  Counter.prototype.add = function(array) {
+    array.forEach(function(item) {
+      this.sum += item;
+      ++this.count;
+      // console.log(this);
+    },this);
+    // ^---- Note
+  };
+
+  const obj = new Counter();
+  obj.add([2, 5, 9]);
+  // obj.count;
+  // 3 
+  // obj.sum;
+  // 16
+  </script>
+</body>
+
+</html>

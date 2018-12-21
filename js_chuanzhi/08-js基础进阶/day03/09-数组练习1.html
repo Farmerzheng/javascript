@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    把1-100之间所有的奇数，放到数组中
+    //第一种方法
+//    var arr = [];
+//    for( var i = 1; i <= 100; i++ ){
+//        //i 是否 为奇数
+//        if( i % 2 === 1 ){
+//            arr[ i ] = i;
+//        }
+//    }
+    //第二种方法
+//    var arr = [];
+//    // 表示arr的索引值
+//    var n = 0;
+//    for( var i = 1; i <= 100; i++ ){
+//        //i 是否 为奇数
+//        if( i % 2 === 1 ){
+//            arr[ n ] = i;
+//            // 每次使用完之后，n加1
+//            n++;
+//        }
+//    }
+    // 第三种方法
+//    var arr = [  ];
+//    for( var i = 1; i <= 100; i++ ){
+//        if( i % 2 === 1){
+//            // 用 arr 当前的长度作为索引
+//            // 每次找到一个，长度自动加1
+//            arr[ arr.length ] = i;
+//        }
+//    }
+//
+//    console.log( arr );
+    //1-100之间能被3整数的数字，存到数组中
+    var arr = [  ];
+    for( var i = 1; i <= 100; i++ ){
+        //找能被3整除
+        if( i % 3 === 0 ) {
+            arr[ arr.length ] = i;
+        }
+    }
+    console.log( arr );
+</script>
+</body>
+</html>

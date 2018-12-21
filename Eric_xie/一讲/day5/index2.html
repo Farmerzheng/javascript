@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+            var bn=document.createElement("input");
+            document.body.appendChild(bn);
+            var ul =document.createElement("ul");
+            document.body.appendChild(ul);
+
+            bn.type="button";
+            bn.value="添加";
+
+            bn.addEventListener("click",clickHandler);
+
+            var i=1;
+     function clickHandler (e) {
+            if (!e){
+                e=window.event;
+            }
+            var li = document.createElement("li");
+            li.textContent+="列表li"+i;
+            var a =document.createElement("a");
+            a.textContent="删除";
+            a.href="#";
+            a.addEventListener("click",deleteHandler);
+
+            li.appendChild(a);
+            i++;
+            ul.appendChild(li);
+
+        }
+            function deleteHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+
+                this.removeEventListener("click",deleteHandler);
+                this.parentElement.remove();
+            }
+
+</script>
+</body>
+</html>

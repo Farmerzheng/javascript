@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/RequestAnimationFrame.js"></script>
+</head>
+<body>
+    <script>
+        var id=setInterval(showImage,16);
+        var i=0;
+        function showImage() {
+            i++
+
+            if(i>50){
+                clearInterval(id);
+            }
+
+        }
+
+        var ids;
+        var j=0
+        showImages();
+        function showImages() {
+            ids=requestAnimationFrame(showImages)
+            j++;
+
+            if(j>50){
+                cancelAnimationFrame(ids);
+            }
+        }
+
+        var id1;
+        var k=0;
+        showImage1();
+        function showImage1(time) {
+            id1=requestAnimationFrame(showImage1)
+            k++;
+            console.log(time)
+            if(k>50){
+                cancelAnimationFrame(id1);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <script>
+  /*  	判断滚动条到底部，需要用到DOM的三个属性值，即scrollTop、clientHeight、scrollHeight。
+
+            scrollTop为滚动条在Y轴上的滚动距离。
+
+            clientHeight为内容可视区域的高度。
+
+            scrollHeight为内容可视区域的高度加上溢出（滚动）的距离。
+
+            从这个三个属性的介绍就可以看出来，滚动条到底部的条件即为scrollTop + clientHeight == scrollHeight。
+            */
+
+
+
+
+  var InBottom = {
+    test: function(callback) {
+      let self = this;
+      window.onscroll = function() {　　
+        if (self.getScrollTop() + self.getWindowHeight() == self.getScrollHeight()) {　　　　
+          callback();
+        }
+      };
+    },
+    //滚动条在Y轴上的滚动距离
+    getScrollTop: function() {
+      var scrollTop = 0,
+        bodyScrollTop = 0,
+        documentScrollTop = 0;　　
+      if (document.body) {　　　　 bodyScrollTop = document.body.scrollTop;　　 }　　
+      if (document.documentElement) {　　　　 documentScrollTop = document.documentElement.scrollTop;　　 }　　 scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;　　
+      return scrollTop;
+    },
+    //文档的总高度
+    getScrollHeight: function() {
+      var scrollHeight = 0,
+        bodyScrollHeight = 0,
+        documentScrollHeight = 0;　　
+      if (document.body) {　　　　 bodyScrollHeight = document.body.scrollHeight;　　 }　　
+      if (document.documentElement) {　　　　 documentScrollHeight = document.documentElement.scrollHeight;　　 }　　 scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;　　
+      return scrollHeight;
+    },
+    //浏览器视口的高度
+    getWindowHeight: function() {
+      var windowHeight = 0;　　
+      if (document.compatMode == "CSS1Compat") {　　　　 windowHeight = document.documentElement.clientHeight;　　 } else {　　　　 windowHeight = document.body.clientHeight;　　 }　　
+      return windowHeight;
+    }
+  }
+  InBottom.test(function(){
+  	console.log('到达底部')
+  })
+  </script>
+</body>
+
+</html>

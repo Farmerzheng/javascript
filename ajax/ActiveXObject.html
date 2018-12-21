@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //判断浏览器是否支持XMLHTTPTequest对象 , IE5/6不支持
+    if(window.XMLHttpRequest===undefined){
+
+          //如果没有xmlhttprequest属性
+
+            try{
+                //使用activeX对象的最新版本
+                    window.XMLHttpRequest=new ActiveXObject("Msxml2.XMLHTTP.6.0");
+
+            }catch(e1){
+
+                try{
+                    //否则，会退到较旧的版本
+                    window.XMLHttpRequest=new ActiveXObject("Msxml2.XMLHTTP.3.0");
+                }catch(e2){
+
+                    //否则，拋错
+                    window.XMLHttpRequest=new Error('ActiveXObject is not supported');
+                }
+            }
+    }
+
+    console.log(window.XMLHttpRequest);
+</script>
+</body>
+</html>

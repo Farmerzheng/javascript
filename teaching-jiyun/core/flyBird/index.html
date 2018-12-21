@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#container{
+		width:320px;
+		height:480px;
+		background-image: url(img/bg.jpg);
+		background-size: 100% 100%;
+		position:relative;
+		overflow: hidden
+	}
+	#container #bird{
+		position:absolute;
+		top:0;
+		left:50px;
+		z-index: 1000;
+	}
+	#container #score{
+		position:absolute;
+		left:50%;
+		width:100px;
+		height:50px;
+        margin-left:-50px;
+        top:80px;
+        text-align:center;
+        font-size: 50px; 
+	}
+
+</style>
+<body>
+    <div id="container">
+    	<img id="bird" src="img/down_bird0.png">
+    	<div id="score">0</div>
+    </div>
+	<script type="text/javascript">
+
+	    var birdContainer = document.getElementById("container");
+
+		//创建小鸟
+		var bird = document.getElementById("bird");
+
+		//总分数
+		var score = 0;
+		var scoreDiv = document.getElementById("score");
+
+        //小鸟运动
+
+        
+
+        bird.speed = 5;
+
+       
+
+         
+
+		bird.birdMoveTimer = setInterval(function(){
+
+			     bird.speed += 1;
+
+			     if(bird.speed >=0 ){
+			     	bird.src = "img/bird0.png"
+			     }		
+
+	            bird.style.top = bird.offsetTop + bird.speed  +"px";
+               
+               //小鸟到达底部，清空所有定时器
+	            if(bird.offsetTop >= 400){
+
+	            	clearInterval(bird.birdMoveTimer);
+	            	clearInterval(createPipesTimer);
+	            	var pipeArr = document.getElementsByClassName("pipe"); 
+                    for(var i = 0 ; i < pipeArr.length ; i++){
+                    	clearInterval(pipeArr[i].pipeMoveTimer);
+                    	clearInterval(pipeArr[i].detectionTimer);
+                    }  
+
+	            }
+
+			},50)
+        
+
+        
+
+               //点击屏幕，让小鸟向上运动
+         document.clickFlag = true;
+         document.addEventListener("click",function(){
+
+	         if(document.clickFlag == true){
+
+	              bird.speed = -7;
+	              bird.src = "img/up_bird0.png";
+
+	             if(bird.offsetTop <=0){
+		            	bird.style.top = "0px";
+		            }
+	         }               
+	           
+         })
+
+
+         //创建管道
+
+      function creatPipe(speed,left){
+
+         var pipe = document.createElement("div");
+
+         pipe.style.height = "425px";
+         pipe.style.width = "62px";
+         pipe.style.position = "absolute";
+         pipe.style.top = "0px";
+         pipe.style.left = left+"px";
+         pipe.className = "pipe";
+
+         var pipeTopHeight = randomFn(60,260);
+         var pipeBottomHeight = 425 - pipeTopHeight-100;
+        
+		  pipe.innerHTML = "<div style =' width:100%;position:absolute;top:0;left:0;height:"+pipeTopHeight+"px;"+"background:url(img/up_mod.png) repeat-y'"+">"+"<img src = 'img/up_pipe.png' style = 'position:absolute;bottom:0;width:100%;height:60px'>"+"</div>"+"<div style =' width:100%;position:absolute;bottom:0;left:0;height:"+pipeBottomHeight+"px;"+"background:url(img/down_mod.png) repeat-y'"+">"+"<img src = 'img/down_pipe.png' style = 'position:absolute;top:0;width:100%;height:60px'>"+"</div>"; 
+
+	      function randomFn(max,min){
+	         	return parseInt(Math.random()*(max-min)+min)
+	        }
+
+	         //移动管道           
+          pipe.pipeMoveTimer = setInterval(function(){
+
+              if(pipe.offsetLeft == -62){
+
+                clearInterval(pipe.pipeMoveTimer);
+
+                clearInterval(pipe.detectionTimer);
+
+                pipe.remove();
+
+              }
+           	  pipe.style.left = pipe.offsetLeft -speed +"px";
+
+           },10)
+
+         
+
+          //判断管道与小鸟是否发生碰撞
+          pipe.pipeTop = pipe.getElementsByTagName("div")[0];
+          pipe.pipeBottom = pipe.getElementsByTagName("div")[1];
+
+          pipe.flag = true;
+
+		  //碰撞检测 
+		          
+		  pipe.detectionTimer = setInterval(function(){
+
+          	var flag1 = collisionDetection(bird, pipe.pipeTop);
+			var flag2 = collisionDetection(bird, pipe.pipeBottom);
+
+	           if(pipe.offsetLeft <= 90 && ((flag1 == true) || (flag2 == true))){          	  
+
+	            // console.log("发生碰撞");
+	          	clearInterval(pipe.detectionTimer);
+	          	clearInterval(createPipesTimer);
+	          	clearInterval(pipe.pipeMoveTimer);
+	          	document.clickFlag = false;
+
+	          	setTimeout(function(){
+	          		clearInterval(bird.birdMoveTimer);
+	          	},4000)
+	          	
+
+	           }
+
+		      if(pipe.offsetLeft <= -12 && (pipe.flag == true && flag1 == false && flag2 == false )){          
+
+		      	score += 10;
+		        scoreDiv.innerHTML = score;
+		        pipe.flag = false;
+		    
+		      }          
+	      },100)
+          
+          //将创建好的管道添加到界面
+		   birdContainer.appendChild(pipe);
+         
+       }
+
+
+
+
+         //创建多个管道
+         var createPipesTimer = setInterval(function(){
+
+             creatPipe(1,320); 
+
+         },3000)
+
+        
+
+
+
+         //碰撞检测
+
+         function collisionDetection(objOne,objTwo){
+           
+           var objOneLeft = objOne.offsetLeft;
+           var objOneRight = objOneLeft+objOne.offsetWidth;
+           var objOneTop = objOne.offsetTop;
+           var objOneBottom = objOneTop+objOne.offsetHeight;
+
+           var objTwoLeft = objTwo.parentNode.offsetLeft;
+           var objTwoRight = objTwoLeft+objTwo.offsetWidth;
+           var objTwoTop = objTwo.offsetTop;
+           var objTwoBottom = objTwoTop+objTwo.offsetHeight;    
+
+           if(objOneRight >= objTwoLeft && objOneBottom >= objTwoTop && objOneLeft <= objTwoRight && objOneTop <= objTwoBottom){
+		        // 已经发生碰撞
+		        return true;
+		    }else{
+		        // 没有碰撞
+		        return false;
+		    }
+
+         }      
+
+
+	</script>
+</body>
+</html>
+
+

@@ -1,0 +1,47 @@
+*{
+    margin:0;
+    padding:0
+}
+li{
+    list-style: none;
+}
+html,body{
+    width:100%;
+}
+#container{
+    width:100%;
+    height:250px;
+    background: red;
+    position:relative;
+}
+#container #img-list{
+    height:100%;
+    width:400%;
+    position:absolute;
+    left: 0;
+    top:0
+}
+#container #img-list li{
+    height:100%;
+    width:25%;
+    float: left;
+
+}
+#container #img-list li img{
+    width:100%;
+    height:100%
+}
+#container #dot-list{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+
+#container ul .dot{
+    width:10px;
+    height:10px;
+    background: #fff;
+    border-radius: 10px;
+    float: left;
+    margin:5px;
+}

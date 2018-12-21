@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 600px;
+            height: 600px;
+            margin: auto;
+            border: solid 1px #000000;
+            position: relative;
+        }
+        img
+        {
+            position: absolute;
+        }
+    </style>
+    <script src="js/LoadImage.js"></script>
+</head>
+<body>
+<div></div>
+    <script>
+        var div0=document.querySelector("div");
+        var list=[];
+        var gameList=[];
+        var num=2;
+        LoadImage.load(["image/1.png","image/2.png"],init);
+        function init(_list) {
+            list=_list;
+            createDiv(num);
+        }
+        function createDiv(num) {
+            var row=Math.floor(Math.random()*num);
+            var col=Math.floor(Math.random()*num);
+            for(var i=0;i<num;i++){
+                gameList[i]=[];
+                for(var j=0;j<num;j++){
+                    if(i==row && col==j){
+                        gameList[i][j]=list[0].cloneNode(false);
+                    }else{
+                        gameList[i][j]=list[1].cloneNode(false);
+                    }
+                    gameList[i][j].style.width=600/num+"px";
+                    gameList[i][j].style.height=600/num+"px";
+                    gameList[i][j].style.left=j*(600/num)+"px";
+                    gameList[i][j].style.top=i*(600/num)+"px";
+                    div0.appendChild(gameList[i][j]);
+                    gameList[i][j].addEventListener("click",clickHandler)
+                }
+            }
+        }
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(~this.src.indexOf("1.png")){
+                num++;
+                clearImage();
+                createDiv(num);
+            }else{
+                alert("你点错了")
+            }
+        }
+        
+        function clearImage() {
+            for(var i=0;i<gameList.length;i++){
+                for(var j=0;j<gameList[i].length;j++){
+                    gameList[i][j].removeEventListener("click",clickHandler);
+                    gameList[i][j].remove();
+                    gameList[i][j]=null;
+                }
+                gameList[i].length=0;
+            }
+            gameList.length=0;
+        }
+    </script>
+</body>
+</html>

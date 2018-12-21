@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" name="name">
+	<script type="text/javascript">
+		var input = document.getElementsByName("name")[0];
+		input.addEventListener("select",function(){
+			console.log(1)
+		})
+		input.addEventListener("change",function(){
+			console.log(2)
+		})
+	</script>
+</body>
+</html>

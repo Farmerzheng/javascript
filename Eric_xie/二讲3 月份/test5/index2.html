@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <script>
+        function StepNumber() {
+            this.stepNumber=null;
+            this._data=0;
+            this.input=null;
+            this.step=1;
+            this.STEP_NUMBER_CHANGE="step_Number_Change"
+        }
+        StepNumber.prototype={
+            constructor:StepNumber,
+            creates:function () {
+                if(this.stepNumber) return this.stepNumber;
+                this.stepNumber=document.createElement("div");
+                function setStyle(elem,width,height,border) {
+                   /* elem.style.width=width+"px";
+                    elem.style.height=height+"px";
+                    elem.style.float="left";
+                    elem.style.lineHeight="30px";
+                    elem.style.textAlign="center";
+                    if(border){
+                        elem.style.border="1px solid #000000"
+                    }*/
+                    $(elem).css("width",width+"px")
+                            .css("height",height+"px")
+                            .css("float","left")
+                            .css("lineHeight","30px")
+                            .css("textAlign","center");
+                    if(border){
+                        $(elem).css("border","1px solid #000000")
+                    }
+                }
+                function createElem(type,textContent) {
+                    var elem=document.createElement(type);
+                    if(type=="input"){
+                        elem.type="text";
+                        setStyle(elem,30,28,true);
+                    }else{
+                        elem.textContent=textContent;
+                        setStyle(elem,30,30,true);
+                    }
+
+                    return elem;
+                }
+                var removeBn=createElem("div","-");
+                removeBn.addEventListener("click",this.clickHandler.bind(this));
+                this.stepNumber.appendChild(removeBn);
+                this.input=createElem("input");
+                this.input.addEventListener("input",this.inputHandler.bind(this));
+                this.stepNumber.appendChild(this.input);
+                this.data=0;
+                var addBn=createElem("div","+");
+                this.stepNumber.appendChild(addBn);
+                addBn.addEventListener("click",this.clickHandler.bind(this));
+                return this.stepNumber;
+            },
+            inputHandler:function (e) {
+                if(!e){
+                    e=window.event;
+                }
+                e.preventDefault();
+                this.data=e.target.value;
+            },
+            clickHandler:function (e) {
+                if(!e){
+                    e=window.event;
+                }
+                if(e.target.textContent=="+"){
+                    this.data=Number(this.data)+this.step;
+                }else if(e.target.textContent=="-"){
+                    this.data=Number(this.data)-this.step;
+                }
+            },
+            set data(value){
+               this.input.value=value;
+                if(!Number(this.input.value) || Number(this.input.value)<0){
+                    value="0";
+                }else{
+                    value=(Number(this.input.value)).toString()
+                }
+                this.input.value=value;
+                this._data=value;
+                var event=new Event(this.STEP_NUMBER_CHANGE);
+                event.data=value;
+                this.stepNumber.dispatchEvent(event);
+            },
+            get data(){
+                return this._data;
+            }
+        };
+
+
+        var step=new StepNumber();
+        document.body.appendChild(step.creates());
+        step.step=3;
+        step.stepNumber.addEventListener(step.STEP_NUMBER_CHANGE,changDataHandler);
+        function changDataHandler(e) {
+            console.log(e.data)
+        }
+    </script>
+</body>
+</html>

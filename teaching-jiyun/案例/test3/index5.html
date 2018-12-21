@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div0
+        {
+            width: 172px;
+            height: 172px;
+            overflow: hidden;
+            position: relative;
+
+        }
+        img
+        {
+            position: absolute;
+        }
+    </style>
+    <script src="js/Tween.js"></script>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/TweenGuest.js"></script>
+</head>
+<body>
+    <div id="div0"><img src="img/sprite.png"></div>x
+<script>
+    var img=document.querySelector("img");
+    var div0=document.getElementById("div0")
+    img.style.left="0px";
+    var i=0;
+//    var speed=0;
+//    showImage();
+    setInterval(showImage,100)
+    function showImage() {
+       /* requestAnimationFrame(showImage);
+        speed++;
+      if(speed%10!=0){
+        console.log(speed%10)
+          return;
+      }*/
+        if(i>=8){
+            i=0;
+        }
+
+        img.style.left=-i*172+"px"
+        i++;
+
+    }
+    // TweenGuset.tweenAB(div0,{left:parseInt(div0.style.left),top:parseInt(div0.style.top),opacity:1},{left:500,top:300,opacity:0},4000)
+</script>
+</body>
+</html>

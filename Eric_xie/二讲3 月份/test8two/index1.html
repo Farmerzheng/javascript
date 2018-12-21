@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        #div0
+        {
+            width:300px;
+            height: 300px;
+            background-color: bisque;
+
+        }
+        #div1
+        {
+            width:200px;
+            height: 200px;
+            background-color:royalblue;
+
+        }
+        #div2
+        {
+            width:100px;
+            height: 100px;
+            background-color:blueviolet;
+
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<div id="div0">
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+</div>
+<div id="div3"></div>
+<input type="button" value="隐藏">
+    <script>
+
+        $(":button").on("click",clickHandler);
+        function clickHandler(e) {
+           $("div").first().hide(3000,function hideDiv() {
+               if($(this).children().length>0){
+                   $(this).children().first().hide(3000,hideDiv)
+               }
+           })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="userInput">
+	<script type="text/javascript">
+		var userInput = document.getElementById("userInput");
+		//change事件 文本框内容改变且失去焦点的时候会触发change事件
+		
+		userInput.addEventListener("change",function(){
+			console.log(this.value);
+		})
+	</script>
+</body>
+</html>

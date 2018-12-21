@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id = "btn">点击</button>
+	<script type="text/javascript">
+	
+		var btn = document.getElementById("btn");
+
+		function addEvent(element,event,func){
+
+			if(element.addEventListener){
+				element.addEventListener(event,func)
+			}else{
+				element.attachEvent("on"+event,func)
+			}
+
+		}
+
+		addEvent(btn,"click",function(){
+			alert(1);
+		})
+
+	</script>
+</body>
+</html>

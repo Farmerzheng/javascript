@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+对象序列化(serialization)：将对象转换为字符串
+ECMAScript5 提供了内置函数 JSON.parse()和JSON.stringfy();
+JSON全称：javascript Object Notation     javascript对象表示法
+
+<script src="json2.js"></script>
+<script>
+
+    //定义对象
+    var person={name:'zhangsan',age:18};
+
+    //将对象转化为字符串
+    var personStr=JSON.stringify(person);
+    alert(typeof(personStr));
+
+    //将字符串还原为对象
+    var person2=JSON.parse(personStr);
+//    console.log(typeof(person2));
+
+    //测试浏览器兼容
+</script>
+</body>
+
+</html>

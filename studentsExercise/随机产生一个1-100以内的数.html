@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    function a(){
+        var randomNum=Math.round(100*Math.random());
+        if(randomNum>=0&&randomNum<=20){randomNum='A';}
+        if(randomNum>20&&randomNum<=40){randomNum='B';}
+        if(randomNum>40&&randomNum<=60){randomNum='C';}
+        if(randomNum>60&&randomNum<=80){randomNum='D';}
+        if(randomNum>80&&randomNum<=100){randomNum='E';}
+        switch (randomNum){
+            case 'A':document.write('A');
+                break;
+            case 'B':document.write('B');
+                break;
+            case 'C':document.write('C');
+                break;
+            case 'D':document.write('D');
+                break;
+            case 'E':document.write('E');
+                break;
+        }
+    }
+
+    a();
+</script>
+</body>
+</html>

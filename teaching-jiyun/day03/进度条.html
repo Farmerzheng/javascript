@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+     *{
+     	margin:0;
+     	padding:0;
+     }
+	#bar{
+		/*margin-top:100px;*/
+		width:300px;
+		height:10px;
+		background-color: red;
+		/*margin:100px auto;*/
+	}
+</style>
+<body>
+	<div id="bar"></div>
+	<button id = "start">开始</button>
+	<button id = "stop">结束</button>
+	<script type="text/javascript">
+
+		var startBtn = document.getElementById("start");
+
+		var stopBtn = document.getElementById("stop");
+
+		var bar = document.getElementById("bar");
+
+		var stopBoolean = true;
+
+		var width = 300;
+
+		//程序加载完成后，就让浏览器刷新执行animation函数
+		animation();
+
+	 	function animation(){
+
+	 	   changeWidth();
+
+	 	   // fadeIn();
+
+           requestAnimationFrame(animation);           
+
+	    }
+        
+        //浏览器刷新的时候会执行此函数
+	    function changeWidth(){
+
+	       if(stopBoolean == true)return;
+           if(width <= 0 )return;
+
+           width -= 1;
+           bar.style.width = width + "px";        
+
+           
+	    }
+
+
+		startBtn.onclick = function(){
+             stopBoolean = false;         
+        }
+
+		stopBtn.onclick = function(){
+            stopBoolean = true;          
+		}
+
+	
+	</script>
+</body>
+</html>	

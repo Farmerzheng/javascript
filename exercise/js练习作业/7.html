@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7</title>
+</head>
+<body>
+<input id="input" type="text" >
+<input id="button" type="button" value="反序">
+<input id="output" type="text" >
+<script>
+    window.onload=function() {
+
+        var input=document.getElementById('input');
+        var output=document.getElementById('output');
+        var button=document.getElementById('button');
+
+        function reverse(str) {
+
+            var a = 0;
+            var newStr = [];
+            var arrStr = str.split('');
+
+            for (a = arrStr.length - 1; a >= 0; a--) {
+                newStr.push(arrStr[a]);
+            }
+
+
+            output.value=newStr.toString().replace(/,/g,'');
+        }
+
+        button.onclick=function(){
+            reverse(input.value);
+        }
+
+    }
+</script>
+</body>
+</html>

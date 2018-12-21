@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #img1{
+
+    }
+</style>
+<body>
+<img id="img1" src="computer_3.jpg" style="opacity:0.3;filter:alpha(opacity=30)">
+</body>
+<script>
+    var oImg=document.getElementById('img1');
+
+
+    oImg.onmouseover=function(){
+
+        //图片淡入
+        fadeInOut(oImg,0.1,1);
+
+    };
+
+    oImg.onmouseout=function(){
+
+        //图片淡出
+        fadeInOut(-0.1,0.3);
+    };
+
+    function fadeInOut(oimg,iSpeed,target){
+
+        var oPacity=oimg.style.opacity;
+
+        clearInterval(timer);
+
+        var timer=setInterval(function(){
+
+            if(oPacity>=target){
+                clearInterval(timer);//图片全部显示的时候
+            }else{
+                //图片没有全部显示
+                oPacity+=iSpeed;
+                oImg.style.opacity=oPacity;
+                oImg.style.filter='alpha(opacity='+oPacity*100+')';
+            }
+
+        },30)
+    }
+</script>
+</html>

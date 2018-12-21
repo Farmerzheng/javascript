@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+		// function random(max,min){
+		// 	return parseInt(Math.random()*(max-min))+min;
+		// }
+
+		// function randomFn(){
+
+		// 	var arr = [];	
+
+			
+  //            while(arr.length<5){
+
+  //                 var flag = true;
+
+		// 		  var randomNum = random(15,10);
+
+		// 		  for(var i = 0 ; i < arr.length ; i++){
+
+	 //            	if(randomNum ==arr[i] ){
+
+		//             		flag = false
+		//             	}
+		//             }
+
+	 //            if(flag == true){
+
+	 //            	arr.push(randomNum);
+	 //            }
+
+		// 	}
+
+  //           return arr;       
+
+			
+		// }
+
+		// var a = randomFn()
+
+		// console.log(a)
+
+       // var randomNum = Math.random();
+
+       // console.log(randomNum);
+
+       //定义一个函数，这个函数能够返回10到15之间的一个随机整数
+
+       function randomFn(){
+
+         return parseInt(Math.random()*5)+10;
+
+       }
+       
+       // console.log(randomFn())
+
+       //返回一个数组，数组长度5，数组里面存放着10-14这五个数，且不重复
+
+       function randomArr(){
+
+       	    //创建了一个空数组
+            var arr = [];
+
+            //
+            while(arr.length<5){
+              
+
+	            	var randomNum = randomFn();
+
+	            	var flag = true;
+
+	            	for(var i=0;i<arr.length;i++){
+
+	            		if(arr[i] == randomNum){
+
+                          flag =false;
+	            		}
+
+	            	}
+
+                    if(flag == true){
+
+                       	arr.push(randomNum)
+                    }              
+                 
+
+            }  
+            
+           //将创建的数组返回
+         	return arr
+       }
+
+       console.log(randomArr())
+
+
+
+	</script>
+</body>
+</html>

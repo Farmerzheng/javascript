@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div0
+        {
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            background-color: antiquewhite;
+        }
+        #div1
+        {
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+<div id="div0">
+    <div id="div1"></div>
+</div>
+        <script>
+            var div0=document.getElementById("div0");
+            var div1=document.getElementById("div1");
+            div0.addEventListener("mouseover",mouseHandler);
+            div0.addEventListener("mouseout",mouseHandler);
+            div0.addEventListener("mouseenter",mouseHandler);
+            div0.addEventListener("mouseleave",mouseHandler);
+
+            function mouseHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                switch (e.type)
+                {
+                    case "mouseover":
+                            console.log("mouseover")
+                        break;
+                    case "mouseout":
+                        console.log("mouseout")
+                        break;
+                    case "mouseenter":
+                        console.log("mouseenter")
+                        break;
+                    case "mouseleave":
+                        console.log("mouseleave")
+                        break;
+                }
+            }
+        </script>
+</body>
+</html>

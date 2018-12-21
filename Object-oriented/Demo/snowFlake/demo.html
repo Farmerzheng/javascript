@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+    background: url(img/bg.jpg) center center no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  }
+  </style>
+</head>
+
+<body>
+  <script type="text/javascript">
+  //获得浏览器宽高
+  var screenWidth = document.documentElement.offsetWidth || document.body.offsetWidth;
+  var screenHeight = document.documentElement.offsetHeight || document.body.offsetHeight;
+  var oBody = document.getElementsByTagName("body")[0];
+
+  var oMath = oMath || (function() {
+    return {
+      getRan: function(num1, num2) {
+        return (parseInt(Math.random() * (num2 - num1)) + num1)
+      }
+    }
+  })()
+
+  function getStyle(oDiv, attr) {
+
+    //无法取到复合样式
+    if (oDiv.currentStyle) {
+      //IE
+      return oDiv.currentStyle[attr];
+    } else {
+      //FF
+      return getComputedStyle(oDiv, false)[attr];
+    }
+  }
+
+  //创建雪花构造函数
+  function SnowFlake(container, screenWidth, screenHeight) {
+    this.container = container;
+    this.screenWidth = screenWidth;
+    this.screenHeight = screenHeight;
+    this.createFlake();
+  }
+
+  //创建雪花成员变量
+  SnowFlake.prototype.createFlake = function() {
+    this.duration = oMath.getRan(5, 10);
+    this.wid = oMath.getRan(20, 30);
+    this.maxL = this.screenWidth - this.wid;
+    this.ele = document.createElement("img");
+    this.ele.src = "img/snowflake.png";
+    this.ele.style.cssText = "position:absolute;left:" + oMath.getRan(0, this.maxL) + "px;top:" + (-this.wid) + "px;width:" + this.wid + "px;-webkit-transition: all " + this.duration + "s;-moz-transition: all " + this.duration + "s;-ms-transition: all " + this.duration + "s;-o-transition: all " + this.duration + "s;transition: all " + this.duration + "s;";
+    this.container.appendChild(this.ele);
+    this.fall();
+  }
+  //控制雪花成员下落方法
+  SnowFlake.prototype.fall = function() {
+    var that = this;
+    (function(that) {
+
+      setTimeout(function() {
+        that.ele.style.top = that.screenHeight + "px";
+      }, 10);
+
+      that.timer = setInterval(function() {
+        var nowTop = parseInt(getStyle(that.ele, "top"));
+
+        if (nowTop >= that.screenHeight) {
+          clearInterval(that.timer);
+          //移除雪花
+          that.container.removeChild(that.ele);
+        }
+      }, 100)
+
+    })(that);
+  }
+  //定时器创建对象
+  setInterval(function() {
+    for (var i = 0; i < oMath.getRan(5, 10); i++) {
+      var newFlake = new SnowFlake(oBody, screenWidth, screenHeight);
+    }
+  }, 1000)
+  </script>
+</body>
+
+</html>

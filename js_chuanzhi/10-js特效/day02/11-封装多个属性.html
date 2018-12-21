@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            position: absolute;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+
+    button.onclick = function () {
+        animate( div,{ 'width' : 300,'height' : 430, 'left' : 1250 } );
+    }
+    function animate( element,styles ){
+        clearInterval( element.timer );
+        element.timer = setInterval( function () {
+            //加入默认都已经到位了  到位 true  不到false
+            var isDone = true;
+            //多个属性之间都需要处理步长
+            for( var key in styles){
+                //用到1.运动的属性  2.目标值
+                var attr = key;
+                var target = styles[key];
+                //处理步长  目标值- 当前的位置（取整）
+                var leader =  parseInt( getStyle(element,attr) );
+                var step = ( target - leader  ) / 10;
+                //二次处理步长
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                element.style[attr] = leader + step + 'px';
+                //如果目标值和当前的位置，不相同，说明不到位
+                if( target !== leader ){
+                    isDone = false;
+                }
+                console.log(1);
+            }
+            //如果都到位了，这时候才可以清除定时器
+            if( isDone ) {
+                clearInterval( element.timer );
+            }
+        },15 );
+    }
+    function getStyle( obj,attr ){
+        if( window.getComputedStyle ){
+            return window.getComputedStyle(obj,null)[attr];
+        }else{
+            return obj.currentStyle[attr];
+        }
+    }
+
+</script>
+</body>
+</html>

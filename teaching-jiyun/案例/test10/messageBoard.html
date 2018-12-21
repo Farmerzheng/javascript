@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body
+        {
+            background-color: #000000;
+        }
+        #div0
+        {
+            width: 500px;
+            height: 500px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            margin: auto;
+        }
+        p
+        {
+            margin-left: 30px;
+             line-height: 40px;
+        }
+        li{
+            width: 420px;
+            height: 50px;
+
+        }
+    </style>
+    <script src="js/Loadimg.js"></script>
+    <script src="js/DomCreate.js"></script>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/Tween.js"></script>
+    <script src="js/TweenGuest.js"></script>
+</head>
+<body>
+<div id="div0">
+    <p>来，说说你在做什么，想什么</p>
+
+</div>
+
+        <script>
+            var arr=[];
+            var div0=document.getElementById("div0");
+            for(var i=0;i<9;i++){
+                arr.push("images/face"+i+".gif")
+            }
+            var load=new LoadImg(arr,callBack);
+            var listImg;
+            var input;
+            var textAear;
+            var labels;
+            var bn;
+            var ul;
+            var selectIndex=0;
+
+            function callBack(list) {
+                listImg=list;
+                init();
+            }
+            function init() {
+                input=DomCreate.createElement("input",div0,{marginLeft:"30px",borderRadius:"5px"});
+                for(var i=0;i<listImg.length;i++){
+                    div0.appendChild(listImg[i]);
+                    listImg[i].style.width="30px";
+                    listImg[i].style.height="30px";
+                    listImg[i].style.marginLeft="6px";
+                    listImg[i].style.border="1px #FFFFFF solid";
+                    listImg[i].style.opacity="0.5";
+                    listImg[i].addEventListener("click",imgClickHandler)
+                    listImg[i].addEventListener("mouseover",imgClickHandler);
+                    listImg[i].addEventListener("mouseout",imgClickHandler);
+                }
+                DomCreate.createElement("br",div0);
+                DomCreate.createElement("br",div0);
+                textAear=DomCreate.createElement("textarea",div0,{width:"430px",height:"100px",marginLeft:"30px"});
+                textAear.addEventListener("input",inputHandler);
+                bn=DomCreate.createElement("input",div0,{backgroundColor:"pink",borderRadius:"5px",color:"#FFFFFF",marginRight:"30px",float:"right"},{type:"button",value:"发送"});
+                bn.addEventListener("click",sendHandler)
+                 labels=DomCreate.createElement("label",div0,{color:"#CCCCCC",float:"right"},{textContent:"还能输入140个字"});
+                DomCreate.createElement("br",div0);
+                DomCreate.createElement("br",div0);
+                DomCreate.createElement("br",div0);
+                var div1=DomCreate.createElement("div",div0,{marginLeft:"30px",width:"430px",height:"40px",backgroundColor:"#999999"});
+                DomCreate.createElement("div",div1,{width:"90px",heigth:"30px",marginLeft:"10px",backgroundColor:"#FFFFFF",textAlign:"center"},{textContent:"大家在说"});
+                ul=DomCreate.createElement("ul",div0,{listStyle:"none"});
+
+            }
+
+            function imgClickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                if(e.type=="click"){
+                    /*  for(var i=0;i<listImg.length;i++){
+                     listImg[i].style.borderColor="#FFFFFF";
+                     }*/
+                    listImg[selectIndex].style.borderColor="#FFFFFF";
+                    listImg[selectIndex].style.opacity="0.5";
+                    selectIndex=listImg.indexOf(this);
+                    this.style.opacity="1";
+                    listImg[selectIndex].style.borderColor="#FF0000"
+                }else if(e.type=="mouseover"){
+                    this.style.opacity="1";
+                }else if(e.type=="mouseout"){
+                    if(listImg[selectIndex]!=this){
+                        this.style.opacity="0.5";
+                    }
+
+                }
+
+            }
+
+            function sendHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                var li=DomCreate.createElement("li",ul);
+                var img=listImg[selectIndex].cloneNode(false);
+                img.style.border="none";
+                img.style.width="50px";
+                img.style.height="50px";
+                img.style.float="left";
+                li.appendChild(img);
+                var label=DomCreate.createElement("label",li,{float:"left",width:"300px",height:"30px",textOverflow:"ellipsis"});
+                label.textContent=textAear.value;
+                var a=DomCreate.createElement("a",li,{float:"right"},{textContent:"删除",href:"#"});
+                a.addEventListener("click",removeLIHandler)
+                label.style.whiteSpace="nowrap";
+                label.style.overflow="hidden";
+            }
+
+            function removeLIHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                this.parentElement.addEventListener("TweenComplete",completeHandler)
+                TweenGuset.tweenAB(this.parentElement,{opacity:1},{opacity:0},2000);
+            }
+
+            function completeHandler(e) {
+                this.remove();
+            }
+            var str;
+            function inputHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                if(140-this.value.length>=0){
+                    labels.textContent="还能输入"+(140-this.value.length)+"个字";
+                    str=this.value;
+                }else{
+                    this.value=str;
+                }
+            }
+
+        </script>
+</body>
+</html>

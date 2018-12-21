@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    form .second_option{display: none;}
+    form .active{display: inline-block;}
+</style>
+<body>
+<form id="form1">
+    <select id="city">
+        <option id="beijing" value="北京">北京</option>
+        <option id="hebei" value="河北">河北</option>
+        <option id="langfang" value="廊坊">廊坊</option>
+    </select>
+</form>
+ <script>
+
+     //选取对象
+     var oForm=document.getElementById('form1');
+     var oCity=document.getElementById('city');
+     var oBJ=document.getElementById('beijing');
+     var oHB=document.getElementById('hebei');
+     var  oLF=document.getElementById('langfang');
+
+     //创建二级列表数组
+     var bjArr=['西城','东城','海淀'];
+     var hbArr=['沧州','衡水','邯郸'];
+     var lfArr=['固安','永清','霸州'];
+
+     //默认二级列表显示北京
+      var oSelect=select(bjArr);
+      oForm.appendChild(oSelect);
+
+     //改变一级选项，二级列表自动切换
+     oCity.onchange=function(){
+
+         switch (oCity.value){
+
+             case '北京':
+                      var oSelect=select(bjArr);  //创建select对象
+                      oForm.removeChild(oForm.lastChild);  //移出from表单中的最后一个对象
+                      oForm.appendChild(oSelect);  //将select对象添加到表单
+                 break;
+
+             case '河北':
+                      var oSelect=select(hbArr);
+                      oForm.removeChild(oForm.lastChild);
+                      oForm.appendChild(oSelect);
+                 break;
+
+             case '廊坊':
+                     var oSelect=select(lfArr);
+                     oForm.removeChild(oForm.lastChild);
+                     oForm.appendChild(oSelect);
+                 break;
+         }
+       }
+
+     //传入数组数据，返回select对象
+     function select(secondArr){
+         var oSelect=document.createElement('select');
+         var str;
+         for(var i=0;i<secondArr.length;i++){
+             str+='<option'+' value='+secondArr[i]+'>'+secondArr[i]+'</option>'
+         }
+
+         oSelect.innerHTML=str;
+         return oSelect;
+     }
+ </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jsonp原理</title>
+</head>
+<body>
+<!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="http://apps.bdimg.com/libs/jquery/a.js"></script>
+<script>
+     //客户端 b.js
+    function queryData(data) {
+        //客户端的回掉函数
+        console.log(data);
+    }
+     //服务器端js文件 a.js
+    queryData({"name":"zhangsan","height":"180cm"});
+
+</script>
+</body>
+</html>

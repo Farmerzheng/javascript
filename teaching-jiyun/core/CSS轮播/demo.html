@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	.container{
+		width:300px;
+		height:200px;
+		position:relative;
+		overflow: hidden;
+	}
+	.container .list{
+		width:1500px;
+		height:200px;
+		position:absolute;
+		left:0;
+		top:0;
+		animation:flip 12s infinite ease-in;
+	}
+	.container .list li{
+		width:300px;
+		height:200px;
+		float: left;
+	}
+	.container .list li img{
+		width:300px;
+		height:200px;
+	}
+	@keyframes flip{
+
+        0%{
+            left:0px;
+        }
+
+        2.5%,24%{
+            left:-300px;
+        }
+
+        27%,48.5%{
+            left:-600px;
+        }
+
+         51.5%,73%{
+            left:-900px;
+        }
+
+         76%,97.5%{
+            left:-1200px;
+        }
+
+        100%{
+           left:-1500px;
+        }
+
+	}
+</style>
+<body>
+	<div class="container">
+		<ul class="list">
+			<!-- <li><img src="../img/nature4.jpg" alt=""></li> -->
+			<li><img src="../img/nature1.jpg" alt=""></li>
+			<li><img src="../img/nature2.jpg" alt=""></li>
+			<li><img src="../img/nature3.jpg" alt=""></li>
+			<li><img src="../img/nature4.jpg" alt=""></li>
+			<li><img src="../img/nature1.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>		

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+
+            var divArr=[];
+            document.addEventListener("click",clickHandler);
+            function clickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                var div=createDiv();
+                div.style.left=e.x-25+"px";
+                div.style.top=e.y-25+"px";
+                divArr.push(div);
+                document.body.appendChild(div);
+
+            }
+            function createDiv() {
+                var div=document.createElement("div");
+                div.style.width="50px";
+                div.style.height="50px";
+                div.style.position="absolute";
+                div.style.backgroundColor="#"+Math.floor(Math.random()*0xffffff).toString(16);
+                div.style.opacity=1;
+                div.setAttribute("lift",Math.floor(Math.random()*120+180).toString());
+                return div;
+            }
+
+            setInterval(showImage,16);
+            var arr=[];
+            function showImage() {
+                for(var i=0;i<divArr.length;i++){
+                    var lift=parseInt(divArr[i].getAttribute("lift"));
+                    if(lift>0){
+                        divArr[i].setAttribute("lift",(lift-1).toString());
+                        arr.push(divArr[i]);
+                        continue;
+                    }
+                    divArr[i].style.top=parseInt(divArr[i].style.top)+2+"px";
+                    divArr[i].style.opacity=parseFloat(divArr[i].style.opacity)-0.01;
+                    if(divArr[i].style.opacity==0){
+                        divArr[i].remove();
+                        divArr[i]=null;
+                    }else{
+                        arr.push(divArr[i]);
+                    }
+                }
+                divArr=arr.concat();
+                arr.length=0;
+            }
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 300px;
+            height: 300px;
+            background-color: #1ABC9C;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div0" data="3"></div>
+<script>
+    var div=document.querySelector("div");
+    var i=10;
+    div.setAttribute("data",i.toString());
+//    console.log(parseFloat(div.getAttribute("data"))+1);
+    console.log(getComputedStyle(div,null).left)
+</script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+*{
+    margin: 0;
+    padding:0;
+    -webkit-user-select: none;
+}
+html,body{
+    width: 100%;
+    max-width: 430px;
+    height:100%;
+}
+#loading_page{
+    background: #333;
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    height:100%;
+}
+.progress{
+    width: 80%;
+    max-width: 400px;
+    height: 8px;
+    border:1px solid red;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;top: 0;right: 0;bottom: 0;
+    margin:auto;
+}
+.progress img{
+    width: 100px;
+    height:29px;
+    position: absolute;
+    left: -100px;
+    top: -32px;
+}
+.progressbar{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: yellow;
+    border-radius: 5px;
+    /*-webkit-transition:width ease-in 200ms;*/
+}
+.progresstext{
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+#start_page{
+    background: url("../resource/assets/start/startBg.png");
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    height:100%;
+}
+#start_page .logo{
+    position:absolute;
+    right: 0;
+    top: 10px;
+    width: 100px;
+    height: 29px;
+    background: url("../resource/assets/start/logo.png");
+}
+#start_page .startBtn{
+    position: absolute;
+    bottom: 10%;
+    /* left: 10%; */
+    width: 100%;
+    height: 295px;
+    background: url("../resource/assets/start/startBtn.png") no-repeat center;
+    margin-bottom: 0;
+}
+#start_page .ruleBtn{
+    position: absolute;
+    top: 150px;
+    left: 0px;
+    width: 40px;
+    height: 128px;
+    background: url("../resource/assets/start/ruleBtn.png");
+    -webkit-animation: smallToBig 0.5s ease 1s 1 forwards;
+    animation: smallToBig 0.5s ease 1s 1 forwards;
+}
+#start_page .rule_bg{
+    width:100%;
+    height: 100%;
+    background: #999;
+    opacity: 0.8;
+    z-index: 10;
+}
+#start_page .bgImg{
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    height: 80%;
+    background: url("../resource/assets/start/bgImg.png");
+    z-index: 40;
+    opacity: 0;
+    -webkit-animation: smallToBig 0.5s ease 1 forwards;
+    animation: smallToBig 0.5s ease 1 forwards;
+}
+@-webkit-keyframes smallToBig{
+    0% {
+        -webkit-opacity: 1;
+        -webkit-transform: scale(0.6);
+    }
+    80% {
+        -webkit-opacity: 1;
+        -webkit-transform: scale(1.2);
+    }
+    90% {
+        -webkit-opacity: 1;
+        -webkit-transform: scale(0.8);
+    }
+    100% {
+        -webkit-opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
+@keyframes smallToBig{
+    0% {
+        opacity: 1;
+        transform: scale(0.6);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    90% {
+        opacity: 1;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/*弹性按钮动画*/
+@keyframes elastic {
+
+    0% {
+        /*scale(x,y) 	定义 2D 缩放转换。*/
+        transform: scale(0.7, 0.7);
+    }
+
+    50% {
+        transform: scale(1.1, 1.1);
+    }
+    75% {
+        transform: scale(0.9, 0.9);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+@-webkit-keyframes elastic {
+
+    0% {
+        /*scale(x,y) 	定义 2D 缩放转换。*/
+        -webkit-transform: scale(0.7, 0.7);
+    }
+
+    50% {
+        -webkit-transform: scale(1.1, 1.1);
+    }
+    75% {
+        -webkit-transform: scale(0.9, 0.9);
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+    }
+}
+
+#start_page  .bgImg .titleImg{
+    position: absolute;
+    top:-10%;
+    left: 20%;
+    width: 60%;
+    height: 20%;
+    background: url("../resource/assets/start/titleImg.png") no-repeat;
+    background-size: 100%;
+    z-index: 50;
+}
+#start_page  .bgImg .sureBtn{
+    position: absolute;
+    top:-10%;
+    left: 83%;
+    width: 15%;
+    height: 13%;
+    background: url("../resource/assets/start/sureBtn.png") no-repeat;
+    background-size: 100%;
+    z-index: 50;
+}
+#start_page  .bgImg .text{
+    position: absolute;
+    padding:10px;
+    top:15%;
+    left: 0;
+    font-size: 1.5rem;
+}
+
+#game_page{
+    background: url("../resource/assets/game/gameBg.png");
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    height: 100%;
+    display: none;
+    overflow: hidden;
+}
+#game_page .score{
+    width: 30%;
+    height: 12%;
+    background: url("../resource/assets/game/scoreBg.png") no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-indent: 18%;
+}
+#game_page .score span{
+    /* margin-top: 30%; */
+    float: right;
+    margin-top: 15%;
+    margin-right: 18%;
+}
+#game_page .time{
+    width: 30%;
+    height: 12%;
+    background: url("../resource/assets/game/clock.png") no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+#game_page .time span{
+    float: right;
+    margin-top: 15%;
+    margin-right: 18%;
+}
+#game_page .rope_wrap{
+    position: absolute;
+    width: 30%;
+    height: 75%;
+    left: 35%;
+    bottom: 35px;
+    overflow: hidden;
+}
+#game_page .rope{
+    position: absolute;
+    width: 100%;
+    height: 380px;
+    left: 0;
+    bottom: -270px;
+}
+#game_page .pushBtn{
+    position: absolute;
+    width: 40%;
+    height: 70px;
+    left: 30%;
+    bottom: 10px;
+}
+#game_page .pushBtn img{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+}
+/*#game_page .pushBtn:active{*/
+    /*animation: elastic 1s 1;*/
+    /*-webkit-animation: elastic 0.5s cubic-bezier(0.25,0.1,0.25,1) 1;*/
+/*}*/
+#game_page .cow_wrap{
+    position: absolute;
+    bottom:200px;
+    width: 100%;
+    height:170px;
+}
+.cow{
+    position: absolute;
+    display: block;
+    top: 0;
+    border:none;
+}
+
+
+#over_page{
+    background: url("../resource/assets/over/gameOverBg.png");
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    height: 100%;
+    display: none;
+}
+#over_page .myScore{
+    position: absolute;
+    top: 2%;
+    left: 3%;
+    width: 94%;
+    height: 46%;
+    background: url("../resource/assets/over/overScore.png") no-repeat;
+    background-size: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+}
+#over_page .myScore span{
+    float: left;
+    width: 100%;
+    margin-top: 54%;
+    font-size: 1.5rem;
+    color: white;
+}
+#over_page .rule{
+    position: absolute;
+    top: 40%;
+    left: 0px;
+    width: 15%;
+    height: 22%;
+    background: url("../resource/assets/start/ruleBtn.png")no-repeat;
+    background-size: 70%;
+}
+#over_page .tryAgain{
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    left: 30%;
+    bottom: 25%;
+    background: url("../resource/assets/over/trymore.png") no-repeat;
+    background-size: 100%;
+
+}
+
+#single_score{
+    display: none;
+    width:12%;
+    height:38px;
+    position: absolute;
+    z-index: 1000;
+    left: 0;top: 0;right: 0;bottom: 0;
+    margin:auto;
+    color:yellowgreen;
+    text-shadow: 0 0 1px #fff;
+    font-size:35px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+

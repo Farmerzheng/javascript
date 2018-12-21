@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var obj={a:1,b:2};
+      /*  Object.defineProperties(obj,{
+            "c":{
+                value:3,
+                writable:true
+            }
+        });
+        obj.c=5;
+        obj.a=6;
+
+        for(var str in obj){
+            console.log(obj[str])
+        }*/
+
+      /*  Object.defineProperty(obj,"c",{
+            value:3,
+            writable:false,
+            configurable:false,
+            enumerable:false
+        });*/
+       /* var o=Object.freeze(obj)
+        for(var str in obj){
+            console.log(str,obj[str])
+        }*/
+      /*for(var str in obj){
+          var pro=Object.getOwnPropertyDescriptor(obj,str);
+          console.log(str,pro.writable);
+      }*/
+
+        /*var arr=Object.getOwnPropertyNames(obj);
+        for(let i=0;i<arr.length;i++){
+            var pro=Object.getOwnPropertyDescriptor(obj,arr[i]);
+            console.log(arr[i],pro.enumerable)
+        }*/
+        /*var obj2={a:1,b:2};
+       var bool= Object.is(obj,obj2);
+         console.log(bool)*/
+      /*  Object.freeze(obj)
+        console.log(Object.isFrozen(obj))*/
+    </script>
+</body>
+</html>

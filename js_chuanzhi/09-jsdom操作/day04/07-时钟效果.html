@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 500px;
+            height: 100px;
+            margin:100px auto;
+            background: pink;
+            font-size: 26px;
+            text-align: center;
+            line-height:100px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+
+    var div = document.getElementsByTagName('div')[0];
+    // 在开始的时候，也需要先显示出来
+    getDate();
+    // 每隔1秒钟，自动获取时间对象，然后再次写入到div中
+    setInterval( getDate , 1000 );
+
+    function getDate(){
+        //获取当前的时间对象
+        var now = new Date();
+        // 获取年月日，时分秒
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        var day = now.getDay(); // 0 ~ 6
+
+        //判断单个数值，前需要添加前导0
+        if( seconds < 10 ){
+            seconds = '0' + seconds;
+        }
+//        if( month < 10 ){
+//            month = '0' + month;
+//        }
+        //三目运算符
+        month = month < 10 ? '0'+month : month;
+
+        var dayArr = [ '星期日','星期一','星期二','星期三','星期四','星期五','星期六' ];
+
+
+        //把这组时间拼成一个字符串
+//    2018年01月12日 14:30:00
+        var str = '';
+        str += year + '年' + month + '月' + date + '日 ' + hours + ':' + minutes + ':' + seconds + '  ' + dayArr[ day ];
+        div.innerHTML = str;
+    }
+</script>
+</body>
+</html>

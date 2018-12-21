@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <table id = "score" border = "1">
+    	
+    </table >
+    <div>
+	    <input type="text" name="" id = "addInput">
+        <button id = "add">添加</button>
+    </div>
+    <div>
+	    <input type="text" name="" id = "searchInput">
+        <button id = "search">查询</button>
+    </div>
+
+
+	<script type="text/javascript">
+		// var dataArr = ["张三","李四","王五","张三丰","张无忌"];
+
+		// var nameArr = [];
+
+        var searchBtn = document.getElementById("search");
+
+        var searchInput = document.getElementById("searchInput");
+
+        var addBtn = document.getElementById("add");
+
+        var addInput = document.getElementById("addInput");
+
+        var scoreTb = document.getElementById("score");
+      
+        addBtn.addEventListener("click",addClickHandler);
+        // searchBtn.addEventListener("click",searchClickHandler);
+        searchInput.addEventListener("input",searchClickHandler);
+
+        function addClickHandler(){
+        	var addText = addInput.value;
+
+            var inputArr = addText.split("，");
+
+            // nameArr.push(inputArr[0]);
+
+            var tr = document.createElement("tr");
+
+         
+        // tr.innerHTML = "<td>"+inputArr[0]+"</td>"+
+        //                "<td>"+inputArr[1]+"</td>"+
+        //                "<td>"+inputArr[2]+"</td>"+
+        //                "<td>"+inputArr[3]+"</td>";
+
+             for(var i = 0 ; i< inputArr.length ; i++){    
+                 var td = document.createElement("td");
+                 td.innerHTML = inputArr[i];
+                 tr.appendChild(td);        
+            }
+
+            scoreTb.appendChild(tr);
+
+        }
+
+        function searchClickHandler(){
+            var userInputText = searchInput.value;
+
+            //将用户输入的值和数组当中的其他值比较 
+             var trArr = scoreTb.getElementsByTagName("tr");
+
+             for(var i = 0 ; i < trArr.length ; i++){
+
+             	if(trArr[i].firstElementChild.innerHTML.indexOf(userInputText) != -1&&trArr[i].firstElementChild.innerHTML != ""){
+             		trArr[i].style.background = "red";
+             	}
+
+             	if(userInputText == ""){
+             		 for(var i = 0 ; i < trArr.length ; i++){
+             		 	trArr[i].style.background = "white";
+             		 }
+             	}
+
+             }
+        }
+	</script>
+</body>
+</html>	

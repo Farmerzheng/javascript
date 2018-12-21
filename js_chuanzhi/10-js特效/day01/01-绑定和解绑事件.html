@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <script>
+        var button = document.getElementsByTagName('button')[0];
+        var button2 = document.getElementsByTagName('button')[1];
+
+        function fn() {
+            alert(1);
+        }
+        //    button.onclick = fn;
+        //
+        //    button2.onclick =function(){
+        //        // 设置某一个事件值是null，解绑
+        //        button.onclick = null;
+        //    }
+
+        //    button.onclick = function(){
+        //        alert(2);
+        //    }
+        //addEventListener  添加一个事件监听
+        //        button.addEventListener( 'click' , fn );
+        //
+        //        button2.onclick = function(){
+        //            //解绑事件
+        //            button.removeEventListener( 'click',fn );
+        //            alert('解绑成功')
+        //        }
+        //
+        //    button.addEventListener( 'click' ,function(){
+        //        alert( 2 );
+        //    } );
+        button.attachEvent('onclick', fn);
+        button2.onclick = function() {
+                // IE,8以下的解绑方式
+                button.detachEvent('onclick', fn);
+                alert('解绑成功');
+            }
+            //
+            //    button.attachEvent( 'onclick',function(){
+            //        alert(2);
+            //    } );
+
+        //总结：
+        btn.onclick = fn;
+        btn.onclick = null;
+
+        //w3c标准的浏览器  谷歌，火狐，IE9
+        btn.addEventListener('click', fn);
+        btn.removeEventListener('click', fn);
+
+        //ie8以下
+        btn.attachEvent('onclick', fn);
+        btn.detachEvent('onclick', fn);
+    </script>
+</body>
+
+</html>

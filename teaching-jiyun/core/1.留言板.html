@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #wrap {
+        border: 1px solid #ccc;
+        width: 400px;
+        margin: 10px auto;
+        background-color: #eee;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    #txtTitle {
+        width: 330px;
+        height: 25px;
+        font-size: 20px;
+    }
+
+    #txtContent {
+        width: 320px;
+        height: 150px;
+        padding: 5px;
+        margin-top: 10px;
+        font-size: 20px;
+        resize: none;
+    }
+
+    #btn {
+        width: 80px;
+        height: 30px;
+        border: none;
+        margin-top: 10px;
+        margin-left: 50px;
+    }
+
+    h3 {
+        margin-top: 10px;
+    }
+
+    #ul1 {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    #ul1 .p1 {
+        background-color: #ccc;
+        height: 40px;
+        width: 395px;
+        line-height: 40px;
+        border-bottom: 1px solid #666;
+    }
+
+    #ul1 .p2 {
+        width: 395px;
+        /*height: 40px;*/
+        border-bottom: 1px solid #666;
+        line-height: 40px;
+        overflow: hidden;
+    }
+
+    #ul1 a {
+        float: right;
+    }
+
+    li {
+        transition: all 1s ease;
+    }
+</style>
+</head>
+<body>
+
+
+    <div id="wrap">
+        <div id="top">
+            标题:<input type="text" name="" id="txtTitle" value="" /> 内容:
+            <textarea name="" rows="" cols="" id="txtContent"></textarea>
+            <input type="button" name="btn" id="btn" value="提交" />
+        </div>
+        <h3>显示留言</h3>
+        <ul id="ul1">
+            <!--  <li>
+                <p class="p1">张三</p><p class="p2">真逗啊<a href="###">删除</a></p>
+            </li> -->
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        // 1:获取元素
+        // 标题
+        var title = document.querySelector("#txtTitle");
+        // 内容
+        var content = document.querySelector("#txtContent");
+        // 按钮
+        var btn = document.querySelector("#btn");
+        // 获取uls
+        var uls = document.querySelector("#ul1");
+
+        // 给提交按钮添加点击事件
+        btn.onclick = function(){
+            // 需求:
+            // 点击按钮之后，获取用户输入的标题和内容
+            if(title.value == '' || content.value == ''){
+                alert("标题或者内容不能为空");
+                return;
+            }
+            // 创建li
+            var li = document.createElement("li");
+            // 给li设置内容
+            // li.innerHTML = ;
+
+            // <p class="p1">张三</p><p class="p2">真逗啊<a href="###">删除</a></p>
+            // 创建标题标签
+            var titleP = document.createElement("p");
+            // 添加类名：className
+            titleP.className = "p1";
+            titleP.innerHTML = title.value;
+
+            // 创建内容标签
+            var contentP = document.createElement("p");
+            contentP.className = "p2";
+            contentP.innerHTML = content.value;
+
+            // 创建a标签
+            var a = document.createElement("a");
+            a.href = "javascript:void(0)";
+            a.innerHTML = "删除";
+            // 删除事件
+            a.onclick = function(){
+                uls.removeChild(this.parentNode.parentNode);
+            }
+            // 标题插入到li标签里面
+            li.appendChild(titleP);
+            // 内容插入到li标签里面
+            li.appendChild(contentP);
+            // 把删除按钮插入到p2标签里面
+            contentP.appendChild(a);
+            // 把li标签插入到uls里面
+            uls.insertBefore(li,uls.firstElementChild);
+
+            // 把标题和内容清空
+            title.value = "";
+            content.value = "";
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

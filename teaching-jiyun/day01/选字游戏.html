@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	.container{
+		width:400px;
+		height:500px;
+		margin:0 auto;
+		border:1px solid red;
+	}
+	.container .header{
+		width:100%;
+		height:60px;		
+	}
+	.container .header #time{
+		width:50%;
+		height:100%;
+		float: left;
+		line-height: 60px;
+		text-align: center;
+	}
+	.container .header #score{
+		width:50%;
+		height:100%;
+		float: right;
+		line-height: 60px;
+		text-align: center;
+	}
+	.container #color{
+		height:300px;
+		width:100%;
+		text-align: center;
+		line-height: 300px;
+		font-size: 50px;
+	}
+	.container .text{
+		text-align: center;
+		width:100%;
+		background-color: red;
+		height:60px;
+		line-height: 60px;
+	}
+	.container .button{
+		width:100%;
+		height:80px;
+	}
+	.container .button .btn{
+		width:20%;
+		height:80px;
+		float: left;
+		border-radius:40px;
+		box-shadow:2px 2px 2px black;
+		text-align: center;
+		line-height: 80px;
+		font-size: 50px
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="header">
+			<div id="time">时间</div>
+			<div id="score">得分</div>
+		</div>
+		<div id="color"></div>
+		<div class="text">
+			根据字体的颜色选出与其颜色对应的中文描述
+		</div>
+		<div class="button">
+			<button class="btn"></button>
+			<button class="btn"></button>
+			<button class="btn"></button>
+			<button class="btn"></button>
+			<button class="btn"></button>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+	var colorDiv = document.getElementById("color");
+	var btnArr = document.getElementsByTagName("button");
+	var timeDiv = document.getElementById("time");
+	var scoreDiv = document.getElementById("score");
+	var score = 0;
+
+    
+    var textArr = ["红","黄","蓝","绿","黑"];
+    var colorArr = ["red","yellow","blue","black","green"];
+    
+    //初始化页面
+    function init(){
+        
+        //改变中间的文字和颜色
+    	changeMiddleText();
+        
+        //改变按钮的文字和颜色
+        changeBtnText();
+    }
+    
+    init();
+
+   //改变中间的文字和颜色
+    function changeMiddleText(){    	
+    		colorDiv.innerHTML = textArr[randomFn(0,4)];
+	        colorDiv.style.color = colorArr[randomFn(0,4)];
+    }
+
+   
+
+      //改变按钮的文本和颜色
+    function changeBtnText(){
+        
+	    var randomArray = randomArr();
+
+	    for(var i = 0 ; i < btnArr.length ; i++){
+
+	    	btnArr[i].innerHTML = textArr[randomArray[i]];
+
+	    	btnArr[i].style.color = colorArr[randomArray[i]];
+	    }
+    }
+
+
+ 
+    
+    //循环为按钮添加点击事件
+    for(var i = 0 ; i < btnArr.length ; i++){
+    
+             addEvent(btnArr[i],"click",function(){
+    		// console.log(this.index)
+             
+             //获得按钮内的文本内容
+             var text = this.innerHTML;
+             
+             //获得中间的文本的颜色
+             var color = colorDiv.style.color;
+             
+             //将按钮的中文转化成英文
+             switch (text){
+
+             	case "红":
+             	 text = "red";
+             	break;
+             	case "黄":
+             	 text = "yellow";
+             	break;
+             	case "黑":
+             	 text = "black";
+             	break;
+             	case "蓝":
+             	 text = "blue";
+             	break;
+             	case "绿":
+             	 text = "green"
+             	break;
+
+             }
+             
+             //判断是否点击正确
+             if(text == color){
+
+             	//点击正确，加分
+                score += 10;
+                
+                //将数据渲染到页面上
+                scoreDiv.innerHTML = "得分" + score;
+             }else{
+             	//点击错误，减分	
+                score -= 10;
+                //将数据渲染到页面上
+                scoreDiv.innerHTML = "得分" + score;
+             }
+
+
+                //改变中间的文字和颜色
+             changeMiddleText();
+              //改变按钮的文字和颜色
+             changeBtnText();
+
+    	})
+
+ 
+
+    	
+
+    }
+
+   
+
+         //生成max 到 min 之间的随机整数，包括 max 和 min 本身
+		function randomFn(min,max){
+			return  parseInt(Math.random()*(max-min+1))+min
+
+		}
+        
+        //定义函数 ，此函数会返回一个数组，数组里面放着五个不同的数(0 1 2 3 4)
+        function randomArr(){        	
+        	var arr =[];                
+                //循环次数不确定的时候用while循环
+        		while(arr.length < 5){
+	                var randomNum = randomFn(0,4);
+	                var flag = true;
+	                //将生成的随机数和数组里面其他的数作比较
+	                for( var j = 0 ; j <= arr.length ; j++){
+	                	if(randomNum == arr[j]){
+                           //判断数组当中是否存在生成的这个随机数
+	                		flag = false;
+	                	}
+	                }
+	                if(flag){
+	                	//数组当中没有这个随机数
+	                	arr.push(randomNum);
+	                }
+        		}
+        	return arr;
+        }
+
+
+		/*
+		* obj 挂接对象
+		  event 事件名称
+		  func 事件处理函数
+		*
+		*/
+       function addEvent(obj,event,func){
+
+    	    if(obj.addEventListener){
+    			obj.addEventListener(event,func);
+    		}else{
+    			obj.attachEvent("on"+event,func);
+    		}  
+    	}
+
+
+	</script>
+</body>
+</html>	

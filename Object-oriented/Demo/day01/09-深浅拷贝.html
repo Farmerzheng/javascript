@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+</body>
+<script>
+
+function deepClone(obj) {
+  var o = {};
+  for (var k in obj) {
+    if (typeof obj[k] == 'object') {
+      o[k] = deepClone(obj[k]);
+    } else {
+      o[k] = obj[k];
+    }
+  }
+  return o;
+}
+
+
+var p = {
+  name: 'jim',
+  car: {
+    name: '法拉利'
+  }
+}
+
+var p1 = deepClone(p);
+
+console.log(p1,p1==p);
+
+
+</script>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="text" name="" id = "QQ">
+<button id = "btn">匹配</button>
+	<script type="text/javascript">
+	    //将字符串中的空格全部删除掉
+		var str = "Visit W3School"; 
+		// \s 匹配空格    
+        var patt1 = /\s/g;
+        var newStr = str.replace(patt1,"");
+        console.log(newStr);//VisitW3School
+       
+       // var btn = document.getElementById("btn");
+       // var input = document.getElementById("QQ");
+       // //匹配QQ号
+       // var myReg = /^[1-9]\d{4,10}$/;
+       // btn.onclick = function(){
+       //  var text = input.value;
+       //  var a = myReg.test(text);
+       //  console.log(a);        
+       // }
+
+       var btn = document.getElementById("btn");
+       var input = document.getElementById("QQ");
+       //匹配QQ号
+       var myReg = /(^\s*)|(\s*$)/g;
+       btn.onclick = function(){
+        var text = "         inputvalue         ";
+        var newText = text.replace(myReg,"");
+        console.log(newText);        
+       }
+
+
+	</script>
+</body>
+</html>	

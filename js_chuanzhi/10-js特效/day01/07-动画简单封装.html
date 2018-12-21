@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            position: absolute;
+            left:0;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+<button>动画400</button>
+<button>动画600</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var button2 = document.getElementsByTagName('button')[1];
+    var div = document.getElementsByTagName('div')[0];
+    var timer = null;
+
+    // 动画封装
+    // 参数  target 目标的位置
+    function animate( target ){
+        //每次在开启新的之前，先清除之前定时器
+        clearInterval(timer);
+        timer = setInterval( function () {
+            // 目标值大于当前的位置 10 ，否则-10
+            var step = target >= div.offsetLeft ? 10 : -10;
+            //每次运动10像素
+            div.style.left = div.offsetLeft+step+'px';
+            //何时清除定时器
+            //目标值和当前的位置，相同的时候，清除定时器
+            if( target === div.offsetLeft ){
+                clearInterval(timer);
+            }
+        } ,15 );
+    }
+
+    button.onclick = function(){
+        animate(403);
+    }
+    button2.onclick = function(){
+        animate(600);
+    }
+
+//    button.onclick = function () {
+//        //让div动起来,运动到400，就表示让div的left变化到400
+//        //div.style.left = '400px';
+//
+//        timer = setInterval( function () {
+//            //让div盒子在原来的基础值上 增加10
+//            div.style.left = div.offsetLeft + 10 + 'px';
+//
+//            //如果div当前的位置是否到了400，停止，清除定时器
+//            if( div.offsetLeft >= 400 ){
+//                // 如果大于400，就停留在400
+//                div.style.left = '400px';
+//                clearInterval( timer );
+//            }
+//        } , 15 );
+//    }
+//    button2.onclick = function () {
+//        //让div动起来,运动到400，就表示让div的left变化到400
+//        //div.style.left = '400px';
+//
+//        timer = setInterval( function () {
+//            //让div盒子在原来的基础值上 增加10
+//            div.style.left = div.offsetLeft + 10 + 'px';
+//
+//            //如果div当前的位置是否到了400，停止，清除定时器
+//            if( div.offsetLeft >= 600 ){
+//                // 如果大于400，就停留在400
+//                div.style.left = '600px';
+//                clearInterval( timer );
+//            }
+//        } , 15 );
+//    }
+
+
+
+
+</script>
+</body>
+</html>

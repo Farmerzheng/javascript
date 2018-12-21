@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing:border-box;
+        }
+        nav{
+            width: 902px;
+            height: 40px;
+            overflow: hidden;
+            margin:100px auto;
+            color:#333;
+            font:16px/40px "微软雅黑";
+            border:1px solid #ccc;
+        }
+        nav li{
+            width: 100px;
+            float: left;
+            text-align: center;
+            border-right:1px solid #ccc;
+            position: relative;
+        }
+        nav a{
+            color:#333;
+            text-decoration: none;
+        }
+        nav span{
+            position: absolute;
+            left:0;
+            top:40px;
+            width: 100%;
+            height: 100%;
+            background: pink;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="#">推荐网站</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">新闻头条</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">电 视 剧</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">最新电影</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">小 游 戏</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">小说大全</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">旅游度假</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">网上购物</a>
+                <span></span>
+            </li>
+            <li>
+                <a href="#">娱乐八卦</a>
+                <span></span>
+            </li>
+        </ul>
+    </nav>
+    <audio src="music/1.ogg"></audio>
+    <audio src="music/2.ogg"></audio>
+    <audio src="music/3.ogg"></audio>
+    <audio src="music/4.ogg"></audio>
+    <audio src="music/5.ogg"></audio>
+    <audio src="music/6.ogg"></audio>
+    <audio src="music/7.ogg"></audio>
+    <audio src="music/8.ogg"></audio>
+    <audio src="music/9.ogg"></audio>
+    <script>
+        //找到一组span
+        var audios = document.getElementsByTagName('audio');
+        var lis = document.getElementsByTagName('li');
+        var spans = document.getElementsByTagName('span');
+        var colors = [ 'pink','orange','lightblue','purple','lightgreen','red','lightsalmon','tomato','darkgreen' ];
+        //遍历span
+        for( var i = 0; i < spans.length; i++ ){
+            spans[i].style.background = colors[i];
+            lis[i].onmouseover = function () {
+                //鼠标滑过li，通过li找子标签span
+                animate( this.children[1],{'top' : 0} );
+            }
+            lis[i].onmouseout = function () {
+                animate( this.children[1],{'top' : 40} );
+            }
+        }
+        //键盘事件
+        document.onkeydown = function (event) {
+            var e = event || window.event;
+            //判断当前所触发的键盘码
+            // 49 ~57
+            // 0~ 8
+            var code = e.keyCode;
+            if( code >= 49 && code <= 57 ){
+                code = code-49;
+                console.log( code );
+                //通过code来找span中对应的，让它滑动到上边
+                for( var i = 0; i < spans.length; i++ ){
+                    if( i === code){
+                        //找到的 spans[i]
+                        animate(spans[i],{'top' : 0});
+                        audios[i].play();
+                    }
+                }
+
+            }
+        }
+
+        document.onkeyup = function ( event ) {
+            var e = event || window.event;
+            //判断当前所触发的键盘码
+            // 49 ~57
+            // 0~ 8
+            var code = e.keyCode;
+            if( code >= 49 && code <= 57 ){
+                code = code-49;
+                console.log( code );
+                //通过code来找span中对应的，让它滑动到上边
+                for( var i = 0; i < spans.length; i++ ){
+                    if( i === code){
+                        //找到的 spans[i]
+                        animate(spans[i],{'top' : 40});
+                    }
+                }
+
+            }
+        }
+
+
+
+
+
+
+        function animate( element,styles,callback ){
+            clearInterval( element.timer );
+            element.timer = setInterval( function () {
+                var isDone = true;
+                for( var key in styles){
+                    var attr = key;
+                    var target = styles[key];
+                    if( attr === 'opacity' ){
+                        target = target * 100;
+                        var leader = getStyle(element,attr)*100;
+                        var step = (target - leader) / 10;
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        element.style[attr] = (leader + step)/100;
+                    }else{
+                        var leader =  parseInt( getStyle(element,attr) );
+                        var step = ( target - leader  ) / 10;
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        element.style[attr] = leader + step + 'px';
+                    }
+                    if( target !== leader ){
+                        isDone = false;
+                    }
+                    console.log(1);
+                }
+                if( isDone ) {
+                    clearInterval( element.timer );
+                    if( callback ) {
+                        callback();
+                    }
+                }
+            },5 );
+        }
+        function getStyle( obj,attr ){
+            if( window.getComputedStyle ){
+                return window.getComputedStyle(obj,null)[attr];
+            }else{
+                return obj.currentStyle[attr];
+            }
+        }
+    </script>
+</body>
+</html>

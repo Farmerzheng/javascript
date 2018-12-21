@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    <div>
+        <label for="">用户名</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label for="">密码</label>
+        <input type="password" name="password">
+    </div>
+    <div>
+        <input type="checkbox" name="check">
+        记住密码
+    </div>
+    <div>
+        <input type="button" value="提交" name="submit">
+    </div>
+</form>
+</body>
+<script>
+    var userName=document.getElementsByName("username")[0];
+    var passWord=document.getElementsByName("password")[0];
+//    var oForm=document.getElementsByTagName("form")[0];
+    var oBtn=document.getElementsByName("submit")[0];
+    var checkBox=document.getElementsByName("check")[0];
+
+    oBtn.onclick=function(){
+//        console.log(1);
+//        console.log(userName.value)
+
+//        if(userName.value==""||passWord.value==""){
+//            alert("用户名或密码不能为空")
+//        }else if(userName.value=="1612A"&&passWord.value=="888888"){
+//            console.log(userName.value,passWord.value)
+//            window.location.href="index2.html"
+//        }else{
+//            alert("填写错误")
+//        }
+
+//        console.log(checkBox.checked)
+        if(checkBox.checked=="true"){
+            setCookie("username",userName.value,10);
+        }
+
+
+    }
+
+
+    function setCookie(c_name,value,expiredays)
+    {
+        var exdate=new Date();
+
+        exdate.setDate(exdate.getDate()+expiredays);
+
+        document.cookie=c_name+ "=" +escape(value)+
+                ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+    }
+
+</script>
+</html>

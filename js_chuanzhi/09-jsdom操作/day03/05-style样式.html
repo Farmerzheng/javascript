@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:300px;
+            height: 200px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="box" style="border:10px solid #9f9;text-align: center;line-height:200px;font-size:30px;">WEB前端</div>
+<script>
+    var box = document.getElementsByClassName('box')[0];
+    //box也是对象  box.style也是对象
+    //获取标签的样式
+    console.log( typeof box.style );
+    //在style对象下，里边只能获取行内样式
+    console.log( box.style.border );
+    console.log( box.style.width );
+    // 获取style对象下所有的样式--- cssText
+    console.log( box.style.cssText );
+    // 获取连词  line-height   lineHeight
+    console.log( box.style.lineHeight );
+
+</script>
+</body>
+</html>

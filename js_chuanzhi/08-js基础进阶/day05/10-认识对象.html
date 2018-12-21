@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function aa(){}
+//    var fn = function(){}
+    // 认识对象： 万物皆对象，只具体的某一个东西
+    //  一个人，一个电脑，一个手机
+    // 对象里边有属性 和 功能
+
+    //  游戏： 英雄 的属性： 服装，兵器，男（女）
+    //技能：开枪，跑（跳）
+    // 球星：    属性-> 发型   胖瘦   肤色                  名词（不动）
+//               技能-> 满场飞奔、倒挂金钩、远程重炮手       动词（动起来）
+    //  手机的属性：  颜色  屏幕大小   形状    品牌
+    //  手机的功能：   上网  玩游戏   打电话  发短信   聊天视频
+    // 创建对象  object
+    var person = new Object();
+    //  对象下 有 属性  和  方法
+    // 为创建好的对象添加属性
+    person.name = 'David';
+    person.age = 20;
+    person.gender = '男';
+    //  为创建好的对象添加方法(函数)
+    person.say = function(){
+        console.log( '我叫....' );
+    }
+
+    console.log( person  );
+    //访问对象中的成员属性，和成员方法
+    console.log( person.name );
+    console.log( person.age );
+
+    person.say();
+</script>
+</body>
+</html>

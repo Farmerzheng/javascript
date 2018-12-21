@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/Tween.js"></script>
+    <style>
+        div
+        {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+        <script>
+            var div0=document.getElementsByTagName("div")[0];
+            div0.addEventListener("click",clickHandler)
+            var tween=new TWEEN.Tween({left:0,color:0});
+
+            tween.to({left:400,color:255},6000);
+            tween.onUpdate(update);
+            tween.easing(TWEEN.Easing.Back.Out)
+            tween.start();
+
+
+            animation()
+        function animation() {
+            requestAnimationFrame(animation)
+            TWEEN.update();
+        }
+
+        function update() {
+
+           div0.style.left=this.left+"px";
+            div0.style.backgroundColor="rgba(255,"+parseInt(this.color)+",0,1)"
+    
+        }
+            var bool=false;
+            function clickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                bool=!bool;
+                if(bool){
+                    tween.stop();
+                }else{
+                    tween.start()
+                }
+
+            }
+
+            function randomColor(type) {
+                var str;
+                if(type){
+                    str="0x"
+                }else{
+                    str="#"
+                }
+                for(var i=0;i<3;i++){
+                    var color=Math.floor(Math.random()*256).toString(16);
+                    if(color.length<2){
+                        color="0"+color;
+                    }
+                    str+=color;
+                }
+                return str;
+            }
+
+        </script>
+</body>
+</html>

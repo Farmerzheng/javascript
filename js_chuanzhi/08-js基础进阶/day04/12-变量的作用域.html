@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 变量分为全局变量 和 局部变量
+    // 全局变量在任何位置都可以访问到
+    // 局部变量只能在局部访问到
+    // 全局变量
+    var a = 1;
+
+    function fun(){
+        alert(a);
+        // 局部变量
+        var b = 2;
+    }
+    //fun();
+    //console.log( b );
+    // 变量污染
+    function fun2(){
+        // m是局部变量
+        // n 和 r 是全局变量
+        var m = n = r = 1;
+        r = 1;
+        n = 1;
+        var m = n;
+        // t没有加var 也是全局变量
+        t = 1;
+    }
+    fun2();
+    alert(n);
+    //代码块（块级作用域） ---> ECMA Script 2017
+</script>
+</body>
+</html>

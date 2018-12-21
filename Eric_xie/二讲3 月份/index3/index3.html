@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+       /* function abc(callback) {
+            callback.apply(null,[])
+        }
+        function cde(a,b) {
+            console.log("a")
+        }
+        function efg(c,d,e) {
+            console.log("b")
+        }
+        abc(cde)
+        abc(efg)*/
+
+        /*div.addEventListener("click",clickHandler);
+       function addEventListener(type,callBack) {
+           var event=new Event();
+           event.type="click";
+           callBack.call(div,event)
+       }
+
+        function clickHandler(e) {
+            this
+        }*/
+       /* var i=0;
+       abc();
+        function abc() {
+            i++;
+            if(i<10){
+                abc()
+            }else{
+                console.log(i)
+            }
+        }*/
+
+        function fun1(x) {
+            var z=fun2(x+1)
+        }
+        function fun2(s) {
+            if(s<10){
+                fun1(s+1)
+            }else{
+                console.log(s)
+            }
+        }
+        fun1(2);
+
+    </script>
+</body>
+</html>

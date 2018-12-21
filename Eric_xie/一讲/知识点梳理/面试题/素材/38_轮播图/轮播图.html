@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			width: 1130px;
+			height: 500px;
+			border: 5px solid green;
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#juan{
+			width: 9999px;
+			height: 500px;
+			background-color: pink;
+			position: absolute;
+			left: 0;
+			top:0;
+			transition: all 1s ease-out
+			
+		}
+		#juan img{
+			float: left;
+			width: 1130px;
+			height: 500px;
+		}
+		#left{
+			position: absolute;
+			left:0;
+			top:50%;
+			margin-top: -30px;
+			display: none;
+			cursor: pointer;
+		}
+		#right{
+			position: absolute;
+			right:0;
+			top:50%;
+			margin-top: -30px;
+			display: none;
+			cursor: pointer;
+		}
+		#btns li{
+			width: 40px;
+			height: 40px;
+			background-color: #ccc;
+			border-radius: 50%;
+			float: left;
+			text-align: center;
+			line-height: 40px;
+			cursor: pointer;
+		}
+		#btns{
+			list-style: none;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -80px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="juan">
+			<img src='imgs/1.jpg'>
+			<img src='imgs/2.jpg'>
+			<img src='imgs/3.jpg'>
+			<img src='imgs/4.jpg'>
+		</div>
+		<img src="imgs/left.png" id="left">
+		<img src="imgs/right.png" id="right">
+		<ul id="btns">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	var wrap = document.getElementById('wrap');
+	var left = document.getElementById('left');
+	var right = document.getElementById('right');
+	var lis = document.querySelectorAll('#btns li');
+	var juan = document.getElementById('juan');
+
+	lis[0].style.backgroundColor = 'red';
+
+	// 鼠标滑过wrap，显示与隐藏按钮
+	wrap.onmouseover = function(){
+		left.style.display = 'block';
+		right.style.display = 'block';
+		clearInterval(timer);
+	}
+	wrap.onmouseout = function(){
+		left.style.display = 'none';
+		right.style.display = 'none';
+		timer = setInterval(autoPlay,2000);
+	}
+
+	// 单击向右切换图片
+	var index = 0;
+	right.onclick = function(){
+		autoPlay();
+	}
+	// 单击向右切换图片
+	left.onclick = function(){
+		index--;
+		if(index < 0){
+			index = 3;
+		}
+		juan.style.left = - 1130 * index + 'px';
+		for(var i = 0; i < lis.length; i++){
+			lis[i].style.backgroundColor = '#ccc';
+		}
+		lis[index].style.backgroundColor = 'red';
+	}
+
+	// 自动轮播
+	function autoPlay(){
+
+		index++;
+		if(index > 3){
+			index = 0;
+		}
+		juan.style.left = - 1130 * index + 'px';
+
+		// 点变红
+		for(var i = 0; i < lis.length; i++){
+			lis[i].style.backgroundColor = '#ccc';
+		}
+		lis[index].style.backgroundColor = 'red';
+		// index = 1
+	}
+
+	var timer = setInterval(autoPlay, 2000);
+
+
+	// 给每一个li添加鼠标滑过事件
+	// lis[i]
+	for(var i = 0; i < lis.length; i++){
+		lis[i].no = i;
+		lis[i].onmouseover = function(){
+			// console.log(i);   
+			juan.style.left = -1130 * this.no + 'px';
+
+			for(var j = 0; j < lis.length; j++){
+				lis[j].style.backgroundColor = '#ccc';
+			}
+			this.style.backgroundColor = 'red';
+			//3
+			index = this.no;
+		}
+		//  3
+	}
+
+
+</script>
+</html>

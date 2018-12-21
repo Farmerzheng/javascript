@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            margin-bottom:20px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div></div>
+<div class="pox"></div>
+<div></div>
+<div class="pox"></div>
+<div></div>
+<a href="#">链接</a>
+<script>
+    //获取标签方式
+    // 以id的形式来查找标签
+//    var box = document.getElementById('box');
+//    console.log( box );
+
+    // 以标签名称形式来查找标签
+    // getElementsByTagName 返回的结果是一个伪数组
+    // 伪数组： 看上去是一个数组，也可以使用数组的访问形式
+    // 但是它不能使用数组对象中的函数
+    // 例如：reverse  sort every.....都不能在伪数组中使用
+//    var boxs = document.getElementsByTagName( 'div' );
+//    console.log( boxs[0] );
+
+    // getElementsByClassName以类名的形式查找标签元素
+    // 结果也是一个伪数组
+    // 存在兼容性问题，在ie9以下，不包括ie9的浏览器是不支持的
+    // 谷歌，火狐都支持这种用法
+//    var pox = document.getElementsByClassName('pox');
+//    console.log( pox[0] );
+//    pox[0].style.background = 'blue';
+
+    //两种查找标签的方式
+    // document.querySelector  满足条件的第一个
+    // document.querySelectorAll()   满足条件的所有的 也是一个集合（数组）
+    // 以上两种参数 是以选择器的形式   例如  div   .box   #box   div p
+    //var res = document.querySelector('div');
+//    var res = document.querySelectorAll( '.pox' );
+//    console.log(res);
+
+</script>
+</body>
+</html>

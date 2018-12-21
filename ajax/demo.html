@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p></p>
+</body>
+<script src="jQuery%201.12.1.js"></script>
+<script>
+    //        var listArr=["习近平谈抗战:勿忘国耻 奋发图强 治国理政","“九一八”重温习近平的庄严宣誓 长征路","李克强抵达纽约出席联大 传递中国声音 专题","俞正声会见台湾县市长 刘云山参加全国科普日 安全周","多省公布养老金并轨细则 年终奖等计入缴费基数"];
+
+
+    //    JSON  是一种数据格式 （ javascript object notitation ）  就是js当中的对象
+    var listArr = {
+        "title1": "习近平谈抗战:勿忘国耻 奋发图强 治国理政",
+        "title2": "“九一八”重温习近平的庄严宣誓 长征路",
+        "title3": "李克强抵达纽约出席联大 传递中国声音 专题",
+        "title4": "俞正声会见台湾县市长 刘云山参加全国科普日 安全周",
+        "title5": "多省公布养老金并轨细则 年终奖等计入缴费基数"
+    };
+    //    //驼峰命名法
+    //    var pArr = $("p");
+    //    for (var i = 0; i < pArr.length; i++) {
+    //        pArr.eq(i).text(listArr["title"+(i+1)]);
+    //    }
+
+    //访问对象当中的属性值
+//    for(var i in listArr){
+//        console.log(listArr[i]);
+//        console.log(i);
+//    }
+
+    for (var i = 0; i < 5; i++) {
+        var p = $("<p></p>");
+        p.text(listArr["title" + (i + 1)]);
+        $("body").append(p);
+    }
+</script>
+</html>

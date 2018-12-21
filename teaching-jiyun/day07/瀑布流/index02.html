@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+     *{
+     	margin:0;
+     	padding:0;
+     }
+     ul,li{
+     	list-style: none;
+     }
+	.container{
+		width:1200px;
+		margin:0 auto;
+	}
+	.list{
+		float:left;
+		width:290px;
+		margin:5px 5px;
+
+	}
+	.list li{
+		margin:5px;
+		width:100%;
+	}
+	.list li img{
+		width:100%;
+	}
+</style>
+<body>
+    <div class="container">
+    	<ul class="list"></ul>
+		<ul class="list"></ul>
+		<ul class="list"></ul>
+		<ul class="list"></ul>
+    </div>
+     <script type="text/javascript">
+
+    
+
+
+
+         var ulList = document.getElementsByClassName("list");
+
+        function  WaterFall(imgList){
+
+            var li = document.createElement("li");
+
+            var img = new Image();
+
+            img.src = imgList[0];
+
+            li.appendChild(img);
+
+            var ulHeightArr = [];
+            var minIndex = 0;
+            
+            for(var i = 0 ; i < ulList.length ; i++){
+                ulHeightArr.push(ulList[i].offsetHeight);
+            }
+            var minHeight = ulHeightArr[0];            
+
+            for(var i = 0 ; i < ulList.length ; i++){
+                if(minHeight > ulList[i].offsetHeight){
+                    minHeight = ulList[i].offsetHeight;
+                    minIndex = i;
+                }
+            }
+
+            ulList[minIndex].appendChild(li);
+
+            if(imgList.length>0){
+
+               imgList.shift();
+               WaterFall(imgList); 
+            }
+            console.log(minIndex,ulHeightArr)           
+    
+        }
+
+        var imgList = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg","img/6.jpg","img/7.jpg","img/8.jpg","img/9.jpg","img/10.jpg","img/11.jpg","img/12.jpg","img/13.jpg","img/14.jpg","img/15.jpg","img/16.jpg","img/17.jpg","img/18.jpg","img/19.jpg","img/20.jpg","img/21.jpg","img/22.jpg","img/23.jpg","img/24.jpg","img/25.jpg","img/26.jpg","img/27.jpg","img/28.jpg","img/29.jpg","img/30.jpg","img/31.jpg","img/32.jpg","img/33.jpg"];
+
+        console.log("bbb");
+
+        WaterFall(imgList);
+
+     </script>
+</body>
+</html>

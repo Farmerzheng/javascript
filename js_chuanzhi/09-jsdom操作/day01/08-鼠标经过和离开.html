@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="images/jd1.png" alt="">
+<script>
+    var img = document.getElementsByTagName('img')[ 0 ];
+    // 鼠标滑过  onmouseover
+    // 鼠标离开  onmouseout
+    img.onmouseover = function(){
+        // 改变当前img中的src路径为 jd2
+        //img.src = 'images/jd2.png';
+        // 改变当前元素的src路径
+        // this一般是在函数内部使用，指当前的对象
+        // 在这里this，同样指当前的对象
+        // 当前的对象其实就是事件源中的对象
+        this.src = 'images/jd2.png';
+    }
+    img.onmouseout = function(){
+//        img.src = 'images/jd1.png';
+        this.src = 'images/jd1.png';
+    }
+
+</script>
+</body>
+</html>

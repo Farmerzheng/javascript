@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 480px;
+            border:1px solid #f00;
+            margin:50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .content{
+            padding:15px;
+            line-height:30px;
+        }
+        .scroll {
+            height: 100%;
+            width: 30px;
+            background: #ccc;
+            position: absolute;
+            right:0;
+            top:0;
+        }
+        .bar{
+            height: 100px;
+            width: 30px;
+            background: green;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="content">
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        孩儿励志出湘关，学不成名终不还。<br>
+        埋骨何须桑梓地，人生无处不青山。<br>
+        ---------------结束----------------
+    </div>
+    <div class="scroll">
+        <div class="bar"></div>
+    </div>
+</div>
+
+<script>
+    //
+    var box = document.getElementById('box');
+    var content = box.children[0];
+    var scroll = box.children[1];
+    var bar = scroll.children[0];
+    //比例关系:  盒子的高度 / 内容的高度 = 滑块的高度 / 滚动条的高度
+    var barHeight = box.offsetHeight * scroll.offsetHeight/content.scrollHeight;
+    bar.style.height = barHeight + 'px';
+
+    //拖拽的三步
+    bar.onmousedown = function ( event ) {
+        var e = event || window.event;
+        //获取当前点击在盒子中的顶部坐标
+        var pagey = e.pageY || scroll().top + e.clientY;
+        var barTop = pagey - bar.offsetTop;
+
+        window.onmousemove = function ( event ) {
+            var e = event || window.event;
+            //获取距离顶部的值
+            var y = e.pageY || scroll().top + e.clientY;
+            y = y - barTop;
+            //如果小于最小值
+            if ( y < 0 ){
+                y = 0;
+            }
+            //如果大于最大值
+            if ( y > scroll.offsetHeight - bar.offsetHeight ) {
+                y = scroll.offsetHeight - bar.offsetHeight;
+            }
+            bar.style.top = y + 'px';
+            //设置内容往上滚动的距离
+            // 滚动的距离 / 内容的高度  =  滑块顶部的值  / 滚动条的高度
+            var contentTop = bar.offsetTop * content.scrollHeight / scroll.offsetHeight;
+            content.style.marginTop = -contentTop + 'px';
+            //禁止选中文字
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        }
+    }
+
+    window.onmouseup = function () {
+        window.onmousemove = null;
+    }
+
+    function scroll(  ){
+        return {
+            left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+            top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        }
+    }
+</script>
+</body>
+</html>

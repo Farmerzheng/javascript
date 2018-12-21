@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        body
+        {
+            width: 1080px;
+            height: 1920px;
+        }
+        #titleImg
+        {
+            position: fixed;
+            top:0px;
+            z-index: 10;
+        }
+        #footImg
+        {
+            position: fixed;
+            bottom: 0px;
+        }
+        #editBn
+        {
+            position: absolute;
+            top: 48px;
+            right: 158px;
+            font-size: 36px;
+
+        }
+        #hideDiv
+        {
+            width: 100%;
+
+            overflow: hidden;
+            position: absolute;
+            top:144px;
+        }
+        .goodsStyle
+        {
+            width:100%;
+            height: 348px;
+            border-top: 1px solid #666666;
+            border-bottom: 1px solid #666666;
+            position: relative;
+        }
+        .goodsIntroStyle
+        {
+            width: 535px;
+            height: 110px;
+            font-size: 38px;
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: absolute;
+
+        }
+        .goodsArgumentStyle{
+            width: 320px;
+            height: 40px;
+            font-size: 28px;
+            /*white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;*/
+            position: absolute;
+
+            color: #666666;
+        }
+        .goodsChooseStyle{
+            width: 180px;
+            height: 40px;
+            font-size: 28px;
+            /*white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;*/
+            position: absolute;
+
+            color: #666666;
+        }
+        .goodsPriceStyle{
+            width: 138px;
+            height: 44px;
+            font-size: 34px;
+
+            position: absolute;
+
+            color: #ff0000;
+        }
+        .reduceStyle{
+            width: 74px;
+            height: 68px;
+            font-size: 60px;
+            position: absolute;
+
+            text-align: center;
+            line-height: 68px;
+            border:1px solid #666666;
+        }
+        .addStyle{
+            width: 74px;
+            height: 68px;
+            font-size: 60px;
+            position: absolute;
+           /* right: 50px;
+            top: 250px;*/
+            text-align: center;
+            line-height: 68px;
+            border:1px solid #666666;
+        }
+        .textsStyle{
+            width: 122px;
+            height: 68px;
+            font-size: 60px;
+            position: absolute;
+          /*  right: 126px;
+            top: 250px;*/
+            text-align: center;
+            line-height: 68px;
+            border:1px solid #666666;
+        }
+    </style>
+</head>
+<body>
+<div id="titleImg"><img src="image/title_1.png" ><label id="editBn">编辑</label></div>
+    <div id="hideDiv">
+        <div id="divContent">
+
+        </div>
+    </div>
+    <img src="image/foot_1.png" id="footImg">
+<script>
+    var divContent=document.getElementById("divContent");
+    var editBn=document.getElementById("editBn");
+    var listArr=[];
+    var shoppingCart=[
+        {imgSrc:"image/img_1.png",name:"力王（LYW）D15无线耳机插 卡耳麦  运动蓝牙游戏电脑...",weight:"",corlor:"颜色：炫酷黑+8G内存卡",serve:"选服务",price:"￥89.00",num:1},
+        {imgSrc:"image/img_2.png",name:"山水（SANSUI）A38s蓝牙小音箱 迷你音响 便携式插卡音...",weight:"重量：0.22kg",corlor:"颜色:A38S...",serve:"选服务",price:"￥49.90",num:1},
+        {imgSrc:"image/img_3.png",name:"喜富康（Safconn）HDM1线2.0版3D数字高清线2K*4K  笔记...",weight:"重量：0.1kg",corlor:" 颜色：灰色",serve:"版本：2M",price:"￥17.90",num:1},
+        {imgSrc:"image/img_4.png",name:"SEEL使徒 101  i3-7100/技嘉H110M/120G  组装电脑主...",weight:"重量：8.25kg",corlor:" 颜色：[i3",serve:"选服务",price:"￥1799.00",num:1},
+        {imgSrc:"image/img_5.png",name:"AOC  1236OSD 23英寸宽屏LED背光IPS广视角液晶显示器（...)",weight:"重量：5kg",corlor:" 尺寸：[性价比...]",serve:"选服务",price:"￥739.00",num:1},
+        {imgSrc:"image/img_6.png",name:"华硕（Asus）u*300 有线蓝光鼠标  黑色  电竞鼠标  游戏鼠标",weight:"重量：0.19kg",corlor:" 颜色：u*300...",serve:"选服务",price:"￥39.90",num:1},
+        {imgSrc:"image/img_7.png",name:"罗技（Logitech）MI85 无线鼠标 黑色灰边",weight:"重量：0.1kg",corlor:" 颜色：灰色 ...",serve:"选服务",price:"￥59.00",num:1},
+        {imgSrc:"image/img_8.png",name:"酷我（kuwo）KI侧入耳运动耳翼耳帽",weight:"重量：0.002kg",corlor:" ",serve:"",price:"￥6.00",num:1},
+        {imgSrc:"image/img_9.png",name:"Libratone （小鸟音响）TOO便携无线音箱/智能音响/蓝... ",weight:"重量：0.405kg",corlor:"颜色：水绿...",serve:"选服务",price:"￥899.00",num:1},
+        {imgSrc:"image/img_10.png",name:"幻响（i-mu）C7 便携蓝牙音箱 小资文艺范 无线免提通话... ",weight:"重量：0.405kg",corlor:"颜色：C7蓝..",serve:"选服务",price:"￥129.00",num:1},
+        {imgSrc:"image/img_11.png",name:"洛克ROCK iphonebspaus全屏膜苹果6S plus全屏钢化膜/...",weight:"重量：0.1kg",corlor:"颜色：（5.5英寸）高清...",serve:"",price:"￥19.90",num:1},
+        {imgSrc:"image/img_12.png",name:"亿色（ESR）iphone 7 Plus/6Plus/6s Plus钢化膜  苹果7Plu...",weight:"重量：0.09kg",corlor:"颜色：（5.5英寸）...",serve:"",price:"￥19.90",num:1},
+        {imgSrc:"image/img_13.png",name:"亿色（SER）苹果iphonebs Plus/6 Plus手机壳/保护套  硅...",weight:"重量：0.065kg",corlor:"颜色：5.5英寸一本...",serve:"",price:"￥20.90",num:1},
+        {imgSrc:"image/img_14.png",name:"三星（SAMSUNG）960  PRO  512GM.2NVMe 固态硬盘",weight:"重量：0.06kg",corlor:"颜色：960 P...",serve:"选服务",price:"￥2399.00",num:1},
+        {imgSrc:"image/img_15.png",name:"先马（SAMA）坦克 游戏鼠标垫（天然橡胶/70CM宽度/紧...",weight:"重量：0.55kg",corlor:"颜色：坦克...",serve:"选服务",price:"￥49.90",num:1},
+        {imgSrc:"image/img_16.png",name:" 先马（SAMA）塞恩5豪华版 电脑机箱双面钢化玻璃/紧...",weight:"重量：7.6kg",corlor:"",serve:"选服务",price:"￥259.00",num:1},
+        {imgSrc:"image/img_17.png",name:"Bang &  Olufsen BeoSound/便携式无线扬声器系统  银色",weight:"重量：3.96kg",corlor:"颜色：银色",serve:"版本：...",price:"￥9995.00",num:1},
+        {imgSrc:"image/img_18.png",name:"追风者（PHANTEKS）M4机箱LED灯带7色可调RGB电脑机箱装...",weight:"重量：0.046kg",corlor:"颜色：40CM/多彩RGB...",serve:"",price:"￥20.00",num:1},
+        {imgSrc:"image/img_19.png",name:"酷冷至尊（Cooler  Master）V8GTSCPU散热器 （支持19 206...",weight:"重量：1.1714kg",corlor:"颜色：V8GTS",serve:"选服务",price:"￥499.00",num:1},
+        {imgSrc:"image/img_20.png",name:"拉卡拉 跨界手环 跨界歌王明星同款 智能手环 运动手环...",weight:"重量：0.06kg",corlor:"颜色：拉卡...",serve:"选服务",price:"￥149.00",num:1},
+        {imgSrc:"image/img_21.png",name:"华硕（ASUS) 顽石四代FL5700U 15.6英寸笔记本电脑（i7-75...",weight:"重量：2.58kg",corlor:"颜色：【7代..",serve:"选服务",price:"￥3999.00",num:1}]
+    for(var i=0;i<21;i++){
+        createGoodsBlock(shoppingCart[i]);
+    }
+
+    function createGoodsBlock(obj){
+        var arr=[];
+        var div=document.createElement("div");
+        div.className="goodsStyle";
+        var check=createCheckBox();
+        div.appendChild(check);
+        arr.push(check)
+        check.style.left="20px";
+        check.style.top=(348-100)/2+"px"
+
+
+        var goodIntro=createGoodsDiv("div",obj.name,"goodsIntroStyle");
+        div.appendChild(goodIntro);
+        goodIntro.style.top="50px"
+        arr.push(goodIntro)
+        var goodsArgument=createGoodsDiv("div",obj.corlor,"goodsArgumentStyle");
+        div.appendChild(goodsArgument);
+        arr.push(goodsArgument)
+        var goodsArgument1=createGoodsDiv("div",obj.weight,"goodsChooseStyle");
+        div.appendChild(goodsArgument1);
+        arr.push(goodsArgument1)
+        var goodsChoose=createGoodsDiv("div",obj.serve,"goodsChooseStyle");
+        div.appendChild(goodsChoose);
+        arr.push(goodsChoose)
+        var goodsPrice=createGoodsDiv("div",obj.price,"goodsPriceStyle");
+        div.appendChild(goodsPrice);
+        arr.push(goodsPrice)
+        var reduce=createGoodsDiv("div","-","reduceStyle");
+        div.appendChild(reduce);
+        arr.push(reduce)
+        var add=createGoodsDiv("div","+","addStyle");
+        div.appendChild(add);
+        arr.push(add)
+        var texts=createGoodsDiv("input",obj.num,"textsStyle");
+        div.appendChild(texts);
+        arr.push(texts)
+        divContent.appendChild(div);
+        var img=createGoodsIconImg(obj.imgSrc);
+        img.arr=arr;
+        div.appendChild(img);
+        arr.push(img);
+        listArr.push(arr);
+    }
+    
+    function createCheckBox() {
+        var check=document.createElement("input");
+        check.type="checkbox";
+        check.style.width="100px";
+        check.style.height="100px";
+        check.style.position="absolute";
+        return check;
+    }
+
+    function createGoodsIconImg(iconSrc) {
+        var img=new Image();
+        img.addEventListener("load",loadHandler)
+        img.src=iconSrc;
+        img.style.position="absolute";
+
+        return img
+    }
+
+    function createGoodsDiv(type,text,style) {
+        var div=document.createElement(type);
+        if(type=="input"){
+            div.value=text;
+        }else{
+            div.textContent=text;
+        }
+        div.className=style;
+        return div;
+    }
+    
+    function setElementPosition(element,targetElem,left,top) {
+        if(left){
+            element.style.left=(targetElem.offsetLeft+targetElem.offsetWidth+left)+"px";
+        }else if(left==0){
+            element.style.left=(targetElem.offsetLeft)+"px";
+        }
+        if(top){
+             element.style.top=(targetElem.offsetTop+targetElem.offsetHeight+top)+"px";
+        }else if(top==0){
+            element.style.top=(targetElem.offsetTop)+"px";
+        }
+    }
+    function loadHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        this.removeEventListener("load",loadHandler);
+        this.style.top=(348-this.height)/2+"px";
+        setElementPosition(this.arr[9],this.arr[0],20);
+        setElementPosition(this.arr[1],this.arr[9],80);
+        setElementPosition(this.arr[2],this.arr[1],0,5);
+        setElementPosition(this.arr[3],this.arr[2],5,0);
+        setElementPosition(this.arr[4],this.arr[3],5,0);
+        setElementPosition(this.arr[5],this.arr[2],0,40);
+        setElementPosition(this.arr[6],this.arr[5],100,0);
+        setElementPosition(this.arr[8],this.arr[6],1,0);
+        setElementPosition(this.arr[7],this.arr[8],1,0);
+
+    }
+
+</script>
+</body>
+</html>

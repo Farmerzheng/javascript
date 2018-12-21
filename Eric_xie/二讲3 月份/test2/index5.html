@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+       var StringMethod=StringMethod || (function () {
+                   var regLeft=/^(\s*)/;
+                   var regRight=/(\s*)$/;
+                   var reg=/(^\s*)|(\s*$)/g;
+                return {
+                    trimLeft:function (str) {
+                        return str.replace(regLeft,"");
+                    },
+                    trimRight:function (str) {
+                        return str.replace(regRight,"");
+                    },
+                    trim:function (str) {
+                        return str.replace(reg,"");
+                    },
+                    searchStrNum:function (str,searchItem) {
+                        var num=0;
+                        for(var i=0;i<str.length;i++){
+                            if(str[i]==searchItem){
+                                num++;
+                            }
+                        }
+                        return num;
+                    }
+                }
+               })();
+
+     
+    </script>
+</body>
+</html>

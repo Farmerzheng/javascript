@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    Object.create(proto)是原型继承的代表
+
+    //01、构造函数(能构造出对象的函数，一般首字母要大写)
+    function Simple() {
+        this.name = "zhangsan";
+        this.age = 18
+    }
+    var obj1 = new Simple();//工厂模式,批量的进行对象的生产
+
+    var obj2 = new Simple();
+    obj2.name = "lisi";
+    console.log(obj1); //用new操作符产生的对象都是互相独立的
+
+    //02、构造函数的原型
+    Simple.prototype.say=function(){
+        console.log(this.name);//构造函数中，原型上添加的方法和属性，可以被所有实例引用
+    };
+
+    //03、原型查找
+    Simple.prototype.name="lisiiii";
+    obj1.name //zhangsan 实例本身先在自己的身上找，找不到了才去原型上找
+    delete obj1.name
+    obj1.name //lisiiii
+
+    //04、原型继承（利用原型链查找的原理进行继承）
+    function Create(obj){//Object.create的内部实现
+        function Simple(){
+
+        }
+        Simple.prototype=obj;
+        var simple=new Simple();
+        return simple;
+    }
+    var obj={
+        name:"zhangsan",
+        age:18
+    };
+    var simple=Create(obj);
+//    simple.name//zhangsan
+    //    simple.age//18
+
+</script>
+</body>
+</html>

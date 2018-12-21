@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="requetAnimationFrame.js"></script>
+</head>
+<body>
+     <div id="box" style="width:200px;height:200px;background-color: red;position:absolute;left:0;top:0"></div>
+     <button id="startBtn" style="position:absolute;left:0;top:200px">
+     	运动
+     </button>
+      <button id="stopBtn" style="position:absolute;left:0;top:250px">
+     	停止
+     </button>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var startBtn = document.getElementById("startBtn");
+		var stopBtn = document.getElementById("stopBtn");
+
+		function step(){
+			var speed = 3;
+			box.style.left = box.offsetLeft+speed+"px";
+			if(box.offsetLeft <= 1200){
+               animation = requestAnimationFrame(step)
+			}
+		}
+        var animation;
+
+		startBtn.onclick = function(){	
+
+		    animation = requestAnimationFrame(step);
+		}
+
+		stopBtn.onclick = function(){
+            console.log(1)
+			cancelAnimationFrame(animation);
+		}
+
+
+	</script>
+</body>
+</html>	

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text"><br>
+<input type="text"><br>
+<input type="text"><br>
+<input type="text"><br>
+<input type="text"><br>
+<br>
+<button>设置</button>
+
+<script>
+    //点击设置(事件)，然后才为5个input添加事件
+    var button = document.getElementsByTagName('button')[0];
+    var inputs = document.getElementsByTagName('input');
+
+    button.onclick = function () {
+        // 给5input添加事件
+        for( var i = 0; i < inputs.length; i++ ){
+            inputs[i].onfocus = function () {
+                this.style.border = '2px solid red';
+            }
+            inputs[i].onblur = function () {
+                this.style.border = '2px solid #ccc';
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

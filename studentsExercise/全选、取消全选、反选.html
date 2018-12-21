@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table{margin: 0 auto;}
+    td{width: 200px;text-align: center;}
+    button{margin: 4px;}
+</style>
+<body>
+<table border="1px solid #333">
+    <tr>
+        <td>全选</td>
+        <td>发件人</td>
+        <td>邮件姓名</td>
+    </tr>
+    <tr>
+        <td ><input class="email" type="checkbox"></td>
+        <td>张三1</td>
+        <td>新的邮件</td>
+    </tr>
+    <tr>
+        <td><input class="email" type="checkbox"></td>
+        <td>张三2</td>
+        <td>新的邮件</td>
+    </tr>
+    <tr>
+        <td><input class="email" type="checkbox"></td>
+        <td>张三3</td>
+        <td>新的邮件</td>
+    </tr>
+    <tr>
+        <td><input class="email" type="checkbox"></td>
+        <td>张三4</td>
+        <td>新的邮件</td>
+    </tr>
+    <tr>
+        <td><input class="email" type="checkbox"></td>
+        <td>张三5</td>
+        <td>新的邮件</td>
+    </tr>
+    <tr>
+        <td><input class="email" type="checkbox"></td>
+        <td>张三6</td>
+        <td>新的邮件</td>
+    </tr>
+    <tr>
+        <td><input class="allEmail" type="checkbox">全选</td>
+        <td colspan="2"><button id="all">全选</button><button id="cancel">取消全选</button><button id="invert">反选</button><button id="delete">删除所选邮件</button>
+        </td>
+    </tr>
+</table>
+<script>
+    window.onload=function(){
+        var oTable=document.getElementsByTagName('table');
+        var oSelAllBtn=document.getElementById('all');
+        var oCancelBtn=document.getElementById('cancel');
+        var oInvertBtn=document.getElementById('invert');
+        var oDeleteBtn=document.getElementById('delete');
+        var emailArr=document.getElementsByClassName('email');
+        var oAllBtn=document.getElementsByClassName('allEmail');
+
+        //点击全选按钮
+        oSelAllBtn.onclick=function(){
+            for(var i=0;i<emailArr.length;i++){
+                emailArr[i].checked=true;
+            }
+        }
+
+        //点击取消全选按钮
+        oCancelBtn.onclick=function(){
+            for(var i=0;i<emailArr.length;i++){
+                emailArr[i].checked=false;
+            }
+        }
+
+        //点击反选按钮
+        oInvertBtn.onclick=function(){
+            for(var i=0;i<emailArr.length;i++){
+
+                if(emailArr[i].checked){
+                    emailArr[i].checked=false;
+                }else {
+                    emailArr[i].checked=true;
+                }
+
+            }
+        }
+
+//        删除所选邮件(方法一)
+        oDeleteBtn.onclick=function(){
+
+            for(var i=emailArr.length-1;i>=0;i--){
+
+                if(emailArr[i].checked){
+
+                    oTable[0].deleteRow(i+1);
+                }
+            }
+        }
+
+//        删除所选邮件(方法二)
+//        oDeleteBtn.onclick=function(){
+//
+//            for(var i=0;i<emailArr.length;i++){
+//
+//                if(emailArr[i].checked){
+//
+//                    oTable[0].deleteRow(i+1);
+//                    i--;
+//                    emailArr.length--;
+//                }
+//            }
+//        }
+
+        //删除所选邮件(方法三)
+//        oDeleteBtn.onclick=function(){
+//
+//            var tempArr=[];
+//            for(var i=0;i<emailArr.length;i++){
+//
+//                if(emailArr[i].checked){
+//
+//                tempArr.push();
+//
+//                }
+//            }
+//        }
+
+        //全选按钮呗选中
+//        oAllBtn[0].blur()=function(){
+//            console.log(1);
+//        }
+
+    }
+
+</script>
+</body>
+</html>

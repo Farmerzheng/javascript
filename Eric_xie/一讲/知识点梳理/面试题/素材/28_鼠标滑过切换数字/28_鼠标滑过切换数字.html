@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{ margin: 0; padding: 0; }
+		#wrap{
+			width: 600px;
+			height: 400px;
+			border: 1px solid red;
+			margin: 0 auto;
+
+		}
+		#left{
+			width: 200px;
+			height: 400px;
+			/*background: blue;*/
+			list-style:none;
+			float: left;
+		}
+		#left li{
+			height: 100px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+		#right{
+			width: 400px;
+			height: 400px;
+			/*background: pink;*/
+			float: right;
+			font-size: 120px;
+			overflow: hidden;
+		}
+		#right div{
+			width: 400px;
+			height: 400px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="left">
+			<li id="li1">1</li>
+			<li id="li2">2</li>
+			<li id="li3">3</li>
+			<li id="li4">4</li>
+		</ul>
+		<div id="right">
+			<div id="d1">1</div>
+			<div id="d2">2</div>
+			<div id="d3">3</div>
+			<div id="d4">4</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var divs = document.querySelectorAll("#right div");
+	var lis = document.querySelectorAll("#left li");
+
+	// 方法二：
+	//给每一个li添加鼠标滑过事件
+	/*for(var i = 0; i < lis.length; i++){
+		// lis[0].index = 0   lis[1].index = 1   ren1.name = '张三'  ren2.name ='李四'
+		// 
+		lis[i].index = i;   //把i保存在每一个li的index属性里
+		lis[i].onmouseover = function(){
+			for(var j = 0; j < divs.length; j++){
+
+				divs[j].style.display = 'none';
+				lis[j].style.backgroundColor = '#fff';
+			}
+			console.log(this.index);		//4?	
+			divs[this.index].style.display = 'block';
+			this.style.backgroundColor = '#ccc';
+    	}
+	}
+    */
+
+	// console.log(divs);
+
+	//方法一：
+	showDiv('li1','d1');
+	showDiv('li2','d2');
+	showDiv('li3','d3');
+	showDiv('li4','d4');
+
+	function showDiv(li, div){
+		var oLi = document.getElementById(li);
+		var oDiv = document.getElementById(div);
+		// console.log(oLi);
+		oLi.onmouseover = function(){					
+			for(var i = 0; i < divs.length; i++){
+				divs[i].style.display = 'none';
+				lis[i].style.backgroundColor = '#fff';
+			}
+						
+			oDiv.style.display = 'block';
+			this.style.backgroundColor = '#ccc';
+			
+		}
+	} 
+
+	
+
+  	
+
+</script>
+</html>

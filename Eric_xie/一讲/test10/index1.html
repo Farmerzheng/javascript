@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+        }
+    </style>
+    <script src="js/DragObj.js"></script>
+</head>
+<body>
+    <div id="div0"></div>
+    <div id="div1"></div>
+<script>
+    window.addEventListener("mousedown",mousedownHandler);
+    function mousedownHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        e.preventDefault();
+    }
+        var div0=document.getElementById("div0");
+        var div1=document.getElementById("div1");
+        div0.style.backgroundColor=randomColor();
+        div1.style.backgroundColor=randomColor();
+
+        randomPosition(div0)
+        randomPosition(div1)
+        var drag0=new DragObj(div0);
+    div0.addEventListener("mousemove",mouseMoveHandler)
+    function randomColor() {
+        var str="#";
+        for(var i=0;i<3;i++){
+            var color=Math.floor(Math.random()*256).toString(16);
+            if(color.length<2){
+                color="0"+color;
+            }
+            str+=color;
+        }
+        return str;
+    }
+
+    function randomPosition(div) {
+        div.style.left=Math.random()*(document.documentElement.clientWidth-50)+"px";
+        div.style.top=Math.random()*(document.documentElement.clientHeight-50)+"px";
+
+
+    }
+
+    function mouseMoveHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        if(!drag0.moveBool) return;
+
+           if(HitTest.to(div0,div1)){
+               randomPosition(div1);
+               div1.style.backgroundColor=randomColor();
+
+           }
+    }
+</script>
+
+</body>
+</html>

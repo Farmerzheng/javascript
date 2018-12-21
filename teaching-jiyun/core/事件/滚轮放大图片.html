@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0; padding: 0;
+		}
+		img{
+			width: 400px;
+			height: 300px;
+		}
+		
+	</style>
+</head>
+<body>
+	<img src="11.png">
+	<!-- 通过滚轮控制图片放大、缩小 -->
+</body>
+<script type="text/javascript">	
+	// 最小值：w 40    h 30
+	// 最大值：w  800   h 600
+	// 次数：20次
+	// 变化量 changex = (800 - 40)/ 20
+	//  changey = (600 - 30) / 20
+	// 滚轮事件
+	// 判断滚轮方向  
+	 // 向上 缩小
+	 // 向下 扩大 
+	 var img = document.querySelector('img');
+	 var minW = 40, minH = 30, maxW = 800, maxH = 600;
+	 var changex = (maxW - minW) / 50;
+	 var changey = (maxH - minH) / 50;
+	 console.log(changex);
+	 console.log(changey);
+
+	 // 滚轮事件
+	 document.onmousewheel = function(e){
+	 	var ev = e || window.event;
+	 	if(ev.wheelDelta > 0){
+	 		// ，满足条件，后面的事情不做了
+	 		if(img.offsetWidth <= minW || img.offsetHeight <= minH){
+	 			return;   //结束函数的执行
+	 		}
+	 		img.style.width = img.offsetWidth - changex + 'px';
+	 		img.style.height = img.offsetHeight - changey + 'px';
+	 		// 当图片的宽<= minW  ||  高 <= minH  不变
+	 	} else if(ev.wheelDelta < 0){
+	 		if(img.offsetWidth >= maxW || img.offsetHeight >= maxH){
+	 			return;   //结束函数的执行
+	 		}
+	 		img.style.width = img.offsetWidth + changex + 'px';
+	 		img.style.height = img.offsetHeight + changey + 'px';
+	 	}
+	 }
+
+
+
+	
+
+	
+</script>
+</html>

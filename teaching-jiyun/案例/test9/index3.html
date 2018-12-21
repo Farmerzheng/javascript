@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <script>
+//         var img=new Image();
+//         img.addEventListener("load",loadHandler)
+//         img.src="img/golf0.jpg";
+//         document.body.appendChild(img);
+//       function loadHandler(e) {
+//           if(!e){
+//               e=window.event;
+//           }
+//        console.log(e)
+//       }
+
+      /*  var sum=0;
+        var arr=[];
+        loadImage();
+         function loadImage() {
+             for(var i=0;i<72;i++){
+                 var img=new Image();
+                 img.onload=function () {
+                     arr.push(this)
+                     sum++
+                     if(sum>71){
+                         console.log("完成")
+                     }
+                 }
+                 img.src="img/golf"+i+".jpg";
+             }
+         }*/
+
+        var sum=0;
+         var img=new Image();
+         img.addEventListener("load",loadHandler);
+         img.src="img/golf0.jpg";
+         var arr=[];
+         function loadHandler(e) {
+             if(!e){
+                 e=window.event;
+             }
+             arr.push(img);
+             if(sum==71){
+                 img.removeEventListener("load",loadHandler);
+                 console.log("完成")
+             }else{
+                 sum++;
+                 img.src="img/golf"+sum+".jpg";
+             }
+         }
+     </script>
+</body>
+</html>

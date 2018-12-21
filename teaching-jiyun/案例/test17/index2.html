@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            background-color: aqua;
+        }
+
+    </style>
+</head>
+<body>
+<!--<div id="div0"></div>
+<div id="div1"></div>
+<br>
+<br>
+<br>
+<br>
+<input type="button" value="开关" id="input0">-->
+<div id="div0" lift="3">1</div>
+        <script>
+            /*var s=0;
+
+            function abc() {
+              if(s>20) return;
+                s++;
+                console.log(new Date().getTime());
+                abc();//递归
+            }
+           abc();
+            for(var i=0;i<20;i++){
+                s++
+                console.log(new Date().getTime())
+            }
+            console.log(s)
+            do{
+                s++
+                console.log(new Date().getTime())
+            }while (s<20)*/
+           /* var obj={
+                a:3,
+                c:4,
+                d:function () {
+                    return 5;
+                }
+            };
+            var obj={};
+            obj.a=3;
+            obj.c=4;
+            obj.d=abc;
+            function abc() {
+                return 5;
+            }*/
+
+
+      /*  obj={a:1,b:2,c:3,d:4,e:5,f:6,g:7}
+            for(var str in obj){
+                for(var i=0;i<tds.length;i++){
+                    tds[i].textContent=obj[str];
+                }
+            }*///错误
+      /*  var div0=document.getElementById("div0");
+            var texts=document.getElementById("input0");
+            var obj={
+                _phone:0,
+                set phone(value)
+                {
+                    div0.textContent=value;
+                    this._phone=value;
+                },
+                get phone()
+                {
+                    return this._phone;
+                }
+            };
+            texts.addEventListener("input",inputHandler);
+            function inputHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                obj.phone=parseInt(this.value);
+                console.log(obj.phone)
+            }*/
+           /* var arr=[];
+            for(var i=10;i<20;i++){
+                arr[i]=[];
+                for(var j=0;j<10;j++){
+                    arr[i][j]=i*j;
+                }
+            }
+            var table=document.createElement("table");
+            document.body.appendChild(table);
+            for(var i=10;i<20;i++){
+                var tr=document.createElement("tr");
+                table.appendChild(tr);
+                for(var j=0;j<10;j++){
+                    var td=document.createElement("td");
+                    tr.appendChild(td);
+                    td.textContent=arr[i][j];
+                }
+            }
+            console.log(arr)*/
+
+            /*var arr=[1,2,3,4,5];
+            arr.a=3;
+            delete arr[3]
+            for(var str in arr){
+                console.log(arr[str]);
+            }*/
+
+           /* var table=document.createElement("table");
+            document.body.appendChild(table);
+            var obj={a:3,b:4};
+            var obj1={a:4,b:5}
+            var arr=[obj,obj1]
+
+            for(var str in arr){
+                var tr=document.createElement("tr");
+                table.appendChild(tr);
+                for(var str1 in arr[str]){
+                    var td=document.createElement("td");
+                    tr.appendChild(td);
+                    td.textContent=arr[str][str1];
+                }
+            }*/
+           /* var div0=document.getElementById("div0");
+            var arr=[0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+            arr.sort(function () {
+                return Math.random()-0.5;
+            })
+            div0.textContent=arr[0].toString()+arr[1].toString()+arr[2].toString()+arr[3].toString();
+            div0.style.width="100px";
+            div0.style.height="40px";
+            div0.style.textAlign="center";
+            div0.style.backgroundColor="rgba(255,255,0,0.5)";*/
+
+            /*var arr=[1,2,3,4];
+//            var arr1=arr.splice(0,0,1,2);
+            var sum=0;
+            arr.forEach(function (value) {
+                sum+=value;
+            });
+
+            for(var i=0;i<arr.length;i++){
+                sum+=arr[i];
+            }
+            console.log(sum)*/
+            /*var str="12345";
+            console.log(str.charAt(2))*/
+
+
+          /*  var div0=document.getElementById("div0");
+            var texts=document.getElementById("input0");
+
+
+            texts.addEventListener("click",clickHandler);
+            var bool=false
+            var arr=[false,false,false,false,false,false];
+            function clickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                bool=!bool;
+                if(div0.value.length>0){
+                    arr[0]=true;
+                }else{
+
+                }
+                if(arr.indexOf(false)==-1){
+
+                }
+            }*/
+
+          /*  var a=3;
+            function abc() {
+                console.log(a);
+                var a=4;
+                console.log(a);
+            }
+            abc();
+            console.log(a)*/
+
+
+          /*  var bn=document.getElementById("input0");
+            var div0=document.getElementById("div0");
+            var div1=document.getElementById("div1");
+            bn.addEventListener("click",clickHandler);
+            var zhangbool=false;
+            function clickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                zhangbool=!zhangbool;
+            }
+          setInterval(animation,16);
+            function animation() {
+                zhangupdata();
+                liupdata();
+
+            }
+            function zhangupdata() {
+               if(!zhangbool) return;
+                div0.style.left=div0.offsetLeft+1+"px";
+                div0.style.top=10+"px";
+            }
+            function liupdata() {
+                if(zhangbool) return;
+                div1.style.left=div1.offsetLeft+1+"px";
+                div1.style.top=60+"px";
+            }*/
+           /* var div0=document.getElementById("div0");
+            div0.style.backgroundImage="url(img/Actor01-Braver01.png)";
+            div0.style.width="32px";
+            div0.style.height="32px"
+            const DOWN_STATE="Down_State";
+            const UP_STATE="Up_State";
+            const LEFT_STATE="Left_State";
+            const RIGHT_STATE="Right_State";
+            const STOP_STATE="Stop_State";
+            var state;
+            var step=0;
+            var sum=0;
+            setInterval(animation,16);
+            function animation() {
+                sum++;
+                if(sum%25!=0) return;
+                switch (state)
+                {
+                    case STOP_STATE:
+                        div0.style.backgroundPositionX="0px";
+                            return;
+                        break;
+                    case DOWN_STATE:
+                        div0.style.backgroundPositionY="0px";
+                        break;
+                    case UP_STATE:
+                        div0.style.backgroundPositionY="-99px";
+                        break;
+                    case LEFT_STATE:
+                        div0.style.backgroundPositionY="-33px";
+                        break;
+                    case RIGHT_STATE:
+                        div0.style.backgroundPositionY="-66px";
+                        break;
+                }
+                step++
+                if(step>3){
+                    step=0;
+                }
+                div0.style.backgroundPositionX=-step*32+"px"
+            }
+            window.addEventListener("keydown",keydownHandler);
+            window.addEventListener("keyup",keydownHandler);
+            function keydownHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                if(e.type=="keyup"){
+                    state=STOP_STATE;
+                    return;
+                }
+                switch (e.keyCode)
+                {
+                    case 37:
+                            state=LEFT_STATE;
+                        break;
+                    case 38:
+                        state=UP_STATE;
+                        break;
+                    case 39:
+                        state=RIGHT_STATE;
+                        break;
+                    case 40:
+                        state=DOWN_STATE;
+                        break;
+                }
+            }*/
+          /*  var div0=document.getElementById("div0");
+            div0.lift=0;
+            var id=setInterval(animation,16);
+            function animation() {
+                divLift();
+            }
+            function divLift() {
+                div0.lift=div0.lift-1;
+                if(div0.lift>0) return;
+                div0.lift=Math.random()*50+20;
+                div0.style.backgroundColor="#"+Math.floor(Math.random()*0xFFFFFF).toString(16);
+                div0.style.left=(Math.random()*document.documentElement.clientWidth-div0.clientWidth)+"px"
+                div0.style.top=(Math.random()*document.documentElement.clientHeight-div0.clientHeight)+"px"
+            }*/
+           /* animation();
+             function animation() {
+             requestAnimationFrame(animation)
+             }*/
+
+          /*  var div0=document.getElementById("div0");
+           var id=setTimeout(divLift,200);
+            function divLift() {
+
+                clearTimeout(id);
+                id=setTimeout(divLift,Math.floor(Math.random()*100+20));
+                div0.style.backgroundColor="#"+Math.floor(Math.random()*0xFFFFFF).toString(16);
+                div0.style.left=(Math.random()*document.documentElement.clientWidth-div0.clientWidth)+"px"
+                div0.style.top=(Math.random()*document.documentElement.clientHeight-div0.clientHeight)+"px"
+            }*/
+        /*    var div0=document.getElementById("div0");
+//
+////            console.log(div0.getAttribute("lift"))
+//            console.log(div0.attributes);
+            var div1=document.createElement("div");
+            document.body.insertBefore(div1,div0)*/
+
+            var div0=document.getElementById("div0");
+            window.addEventListener("storage",storageHandler);
+            function storageHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                console.log(e)
+                div0.textContent=localStorage.a;
+            }
+        </script>
+</body>
+
+</html>

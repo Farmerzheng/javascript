@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        #loginDiv
+        {
+        /*    width:300px;
+            height:150px;*/
+            background-color: beige;
+            text-align: center;
+            line-height: 40px;
+            padding-top: 20px;
+            position: absolute;
+            display: none;
+        }
+      
+        #bn
+        {
+            position: absolute;
+        }
+    </style>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/Tween.js"></script>
+    <script src="js/TweenGuest.js"></script>
+</head>
+<body>
+    <input type="button" value="打开窗口" id="bn">
+    <div id="maskDiv"></div>
+    <div id="loginDiv">
+        用户名：<input type="text">
+        <br>
+        密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password">
+        <br>
+        <input type="button" value="登陆">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="注册">
+    </div>
+    <script>
+        var bn=document.getElementById("bn");
+        var maskDiv=document.getElementById("maskDiv");
+        var loginDiv=document.getElementById("loginDiv");
+//        var tween=new　TWEEN.Tween({left:0,top:0,width:0,height:0})
+        bn.addEventListener("click",clickHandler);
+        maskDiv.addEventListener("click",clickHandler);
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(this==maskDiv){
+                maskDiv.style.display="none";
+                loginDiv.style.display="none";
+                return;
+            }
+            maskDiv.style.display="block";
+            maskDiv.style.width=window.innerWidth+"px";
+            maskDiv.style.height=window.innerHeight+"px";
+            loginDiv.style.display="block";
+            Tweens.to(loginDiv,{left:(window.innerWidth-300)/2,top:(window.innerHeight-150)/2,
+                width:300,height:150},{left:(window.innerWidth-500)/2,top:(window.innerHeight-200)/2,
+                width:500,height:200},2000,TWEEN.Easing.Bounce.Out);
+
+        }
+
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            TWEEN.update();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>前进</button>
+<button>后退</button>
+<button>前进2步</button>
+<button>后退2步</button>
+<span>进入百度</span>
+
+<select name="" id="sel">
+    <option value="">请选择链接</option>
+    <option value="http://www.baidu.com">百度</option>
+    <option value="http://www.sina.com.cn">新浪</option>
+    <option value="http://www.taobao.com">淘宝</option>
+</select>
+<script>
+    // 如果定义一个变量，这个变量自动就属于window对象
+    var a = 1;  //window.a
+    window.b = 2;
+//    console.log( window.a );
+//    console.log( b );
+    // history
+    // window对象下还有好多个对象  location   history
+//    console.log( window.history );
+    var buttons = document.getElementsByTagName('button');
+    buttons[0].onclick = function () {
+        history.forward();
+    }
+    buttons[1].onclick = function (){
+        history.back();
+    }
+    buttons[2].onclick = function(){
+        //前进或者后退
+        history.go(3);
+    }
+    buttons[3].onclick = function(){
+        //前进或者后退
+        history.go(-2);
+    }
+    // location 对象
+//    console.log( window.location );
+//    var span = document.getElementsByTagName('span')[0];
+//    span.onclick = function(){
+//        //location.href = 'http://www.baidu.com';
+//        console.log( location.pathname );
+//    }
+    // 跳转链接
+    // 切换选项 事件
+    var sel = document.getElementById('sel');
+    sel.onchange = function(){
+        //alert(1)
+        // 获取对应选项中的value值
+        //alert( this.value );
+        location.href = this.value;
+    }
+</script>
+</body>
+</html>

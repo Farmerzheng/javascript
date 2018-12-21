@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 逻辑运算符   返回一个布尔型的值
+    *  只有三个    或   且    非
+    *  或者 ： 两者满足其一     ||
+    *  并且 ： 两者都要满足     &&
+    *   非：   反向，逆向
+    * */
+//    var a = 0;
+//    //!!a
+//    var num = 71;
+//    console.log( num >= 80 && num < 90 );
+//
+//    console.log(  !(1 < 0) );
+//
+//    var age = 66;
+//    console.log( age >= 60 || age < 18 );
+//     逻辑中断
+
+    // 在一组运算符中，如果有 并且，或者； 先执行并且。
+    var a = 2 || 3 || 0;
+    var b = 5 && 9 && 0;
+    var c = 5 && 0 && 9;
+    var d = 2 || 3 && 1;
+    console.log( a );
+    console.log( b );
+    console.log( c );
+    console.log( d );
+</script>
+</body>
+</html>

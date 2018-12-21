@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<button>验证</button>
+<script>
+    /*
+     需求:
+     1：www开头
+     2：中间以字母或者数字或者下划线
+     3：后缀是2-4个字母
+     4：不区分大小写
+     例如www.baidu.com
+     */
+    var oInput=document.getElementsByTagName("input")[0];
+    var oBtn=document.getElementsByTagName("button")[0];
+
+    oBtn.onclick=function(){
+
+        var value=oInput.value;
+
+        value=value.toString();
+
+        var patt1=/^w{3}\.+[\w]+\.[a-zA-Z]{2,4}$/ig;
+
+        console.log(patt1.test(value))
+
+    }
+
+</script>
+</body>
+</html>

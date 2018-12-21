@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<input type="button" value="确定">
+    <script>
+     /*  var obj={a:1,b:3};
+        $(":button").bind("mouseover mouseout click",obj,clickHandler);
+        function clickHandler(e) {
+            console.log(e.type)
+            $(":button").unbind("mouseover");
+        }*/
+      /*$(":button").bind({
+          "mouseover":function () {
+              
+          },
+          "mouseout":function () {
+              
+          }
+      })*/
+       /* $(":button").click(function () {
+            console.log("aaa")
+        })*/
+     var list=[];
+    var i=0
+     var img=$("<img>");
+     img.ready(readyHandler);
+     img.attr("src","img/golf0.jpg");
+     function readyHandler() {
+         list.push(img.clone());
+         if(i<71){
+             i++;
+             img.ready(readyHandler);
+             img.attr("src","img/golf"+i+".jpg")
+         }else{
+             console.log(list)
+         }
+     }
+
+        $("body").append(img)
+    </script>
+</body>
+</html>

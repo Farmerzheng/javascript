@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+    </style>
+    <script src="js/RequestAnimationFrame.js"></script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+
+    /*
+    * 1、获取div列表
+    * 2、设置所有的div的距左、距顶位置
+    * 3、建立数组，并填入第一个元素
+    * 4、建立一个函数，用来执行函数中塞入的div的移动
+    * 5、创建动画时间轴
+    * 6、根据动画时间轴的当前运行时间给数组插入元素
+    * 7、循环数组中所有元素做div移动
+    * */
+
+    var divs=document.getElementsByTagName("div");
+    for(var i=0;i<divs.length;i++){
+        divs[i].style.left="0px";
+        divs[i].style.top="0px";
+    }
+
+
+
+    var arr=[];
+    arr.push(divs[0]);
+
+    showImage()
+    function showImage(time) {
+        requestAnimationFrame(showImage);
+        if(arr.length==parseInt(time/1000) && parseInt(time/1000)<divs.length){
+            arr.push(divs[parseInt(time/1000)])
+        }
+        for(var i=0;i<arr.length;i++){
+            divMoveChange(arr[i]);
+
+        }
+
+    }
+
+
+    function divMoveChange(div) {
+        if(parseInt(div.style.left)>=500){
+            div.speedX=-1;
+        }
+        if(parseInt(div.style.left)<=0){
+            div.speedX=1;
+        }
+        if(parseInt(div.style.top)>=300){
+            div.speedY=-1;
+        }
+        if(parseInt(div.style.top)<=0){
+            div.speedY=1;
+        }
+        div.style.left=parseInt(div.style.left)+5*div.speedX+"px";
+        div.style.top=parseInt(div.style.top)+5*div.speedY+"px";
+
+    }
+    </script>
+</body>
+</html>

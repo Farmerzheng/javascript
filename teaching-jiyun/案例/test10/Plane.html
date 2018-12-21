@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img
+        {
+            position: absolute;
+        }
+    </style>
+    <script src="js/HitTest.js"></script>
+</head>
+<body>
+<div></div>
+    <script>
+        var div0=document.getElementsByTagName("div")[0];
+        var img=new Image();
+        img.addEventListener("load",loadImage);
+        img.src="images/feiji.png";
+        var enemyList=[];
+        var speed=5;
+        var times;
+        var arr=[];
+        var count=3;
+        var bool=false;
+        var second=0;
+        var plane=new Image();
+        randomTime();
+        setInterval(enemyPlanePlay,16);
+        function loadImage(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(img.src.indexOf("feiji")>-1){
+                img.src="images/001.png";
+            }else{
+                img.removeEventListener("load",loadImage);
+                init();
+            }
+        }
+
+        function init() {
+            plane.src="images/feiji.png";
+            document.body.appendChild(plane);
+            window.addEventListener("mousemove",planePlayHandler);
+        }
+
+        function planePlayHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            plane.style.left=e.clientX-plane.offsetWidth/2+"px";
+            plane.style.top=e.clientY-plane.offsetHeight/2+"px"
+        }
+
+
+        function randomTime() {
+            times= Math.floor(Math.random()*30+20);
+        }
+
+
+        function enemyPlanePlay() {
+            if(bool) return;
+            second++;
+            div0.textContent=Math.floor(second/60);
+            speed=5+Math.floor(second/600);
+            times--;
+            if(times==0){
+                createEnemyPlane();
+                randomTime();
+            }
+            for(var i=0;i<enemyList.length;i++){
+                enemyList[i].style.top=enemyList[i].offsetTop+speed+"px";
+                if(enemyList[i].offsetTop>document.documentElement.clientHeight){
+                    enemyList[i].mark=true
+                }
+                if(HitTest.test(enemyList[i],plane)){
+                    enemyList[i].mark=true
+                    count--;
+                    if(count==0){
+                        plane.remove();
+                        bool=true;
+                    }
+                }
+            }
+            for(var j=0;j<enemyList.length;j++){
+                if(!enemyList[j].mark){
+                    arr.push(enemyList[j])
+                }else{
+                    enemyList[j].remove();
+                    enemyList[j]=null;
+                }
+            }
+
+            enemyList=arr.concat();
+            arr.length=0;
+        }
+
+        function createEnemyPlane() {
+            var img=new Image();
+            img.src="images/001.png";
+            document.body.appendChild(img);
+            img.style.left=Math.random()*(document.documentElement.clientWidth-img.offsetWidth)+"px";
+            img.style.top=-50+"px";
+            img.mark=false;
+            enemyList.push(img);
+            return img;
+        }
+    </script>
+</body>
+</html>

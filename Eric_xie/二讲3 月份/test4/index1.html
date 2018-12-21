@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function Ball(_age) {
+            this.age=_age; //this 在使用Call以后就是带入的冒充对象
+        }
+        Ball.prototype={
+            run:function () {
+                console.log("run")
+            }
+        };
+
+        function OneBall(_age) {
+            Ball.call(this,_age)//this OneBall实例化
+        }
+
+
+        OneBall.prototype=new Ball();
+        OneBall.prototype.run=function () {
+            console.log("walk")
+        };
+        var ball1=new Ball(300);
+        ball1.run();
+        var ball=new OneBall(300);
+        ball.run();
+    </script>
+</body>
+</html>

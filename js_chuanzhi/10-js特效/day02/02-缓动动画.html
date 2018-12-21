@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position: absolute;
+            left:0;
+            top:35px;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+    var timer = null;
+    button.onclick = function () {
+        //div动起来（缓动）
+        //缓动动画
+        //100   80   60  30  10  0
+        // 确定目标值
+        var target = 400;
+        timer = setInterval( function () {
+            //要运动到某一个位置 400
+            //每次所走的步长不定
+            // 每次所走的步长是两者之间距离10分之1
+            var step = ( target - div.offsetLeft )/10;
+            // 对这个步伐进行向上取整
+            //  如果是正值  向上取整
+            //  如果是负值  向下取整  Math.floor()
+            step = Math.ceil(step);
+            console.log(step);
+            //开始移动
+            div.style.left = div.offsetLeft + step + 'px';
+            //清除：当目标值和当前的位置相同
+            if( target === div.offsetLeft ){
+                clearInterval(timer);
+            }
+        },15 );
+    }
+
+    // 1   40     400
+    // 2   36     400
+    // 3   32.4   400
+    // n   396    400
+//           396  400
+//           396  400
+//    offs
+//    400-396 / 10 = 0.4
+</script>
+</body>
+</html>

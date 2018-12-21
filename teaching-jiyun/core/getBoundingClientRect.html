@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	#box{
+		width:200px;
+        height:100px;
+        background-color:red;
+        position:absolute;
+        left:100px;
+        top:400px;
+	}
+</style>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var rect = box.getBoundingClientRect();
+		console.log(rect);
+	</script>
+</body>
+</html>

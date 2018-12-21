@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    button{
+        position:fixed;
+        right:0;
+        top:600px;
+        display: none;
+    }
+</style>
+<body style = "height:3000px">
+<button>返回顶部</button>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+
+    function ScrollTop( obj , height){
+
+        var flag = true;
+        window.addEventListener("scroll",function(){
+
+            //网页卷去的高度
+            var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+
+            if(scrollTop > height && flag){
+                btn.style.display = "block";
+                flag = false;
+            }else if(scrollTop < height && flag == false){
+                btn.style.display = "none";
+                flag = true;
+            }
+        });
+
+        obj.addEventListener("click",function(){
+
+            requestAnimationFrame(step);
+
+            function step(){
+
+                var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+
+                var speed = scrollTop/8;
+
+                document.documentElement.scrollTop = document.body.scrollTop = scrollTop - speed;
+
+                var animation = requestAnimationFrame(step);
+
+                if(scrollTop == 0){
+                    cancelAnimationFrame(animation)
+                }
+            }
+        })
+    }
+
+    ScrollTop(btn,2000);
+
+</script>
+</body>
+</html>

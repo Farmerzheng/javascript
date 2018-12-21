@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+  
+
+	<script type="text/javascript">
+
+	
+	 //数据应该是从服务器上获取，但是咱们这个假数据
+	 //数据要放在对象或数组里面
+		var city = {
+		"烟台":["烟台大学文经学院","烟台大学","烟台理工大学"],
+		"青岛":["青岛大学","青岛理工大学","中国海洋大学"],
+		"北京":["北京吉利大学","北京电影学院","中央戏剧学院","二外"]
+		    };
+      
+      //将从服务器上获取的数据展示到页面上，数据一定不要写死在
+      //页面上
+
+
+       
+       //创建城市的select标签
+       var citySelect = document.createElement("select");
+       citySelect.innerHTML = "<option>请选择城市</option>";
+       citySelect.className= "city";
+       document.body.appendChild(citySelect);
+
+       	//创建大学select标签
+    	var selectUniversity = document.createElement("select");
+    	// document.body.lastElementChild.remove();
+    	document.body.appendChild(selectUniversity
+    		);
+
+		 //如何遍历对象的属性呢？
+		 //向城市的select标签当中添加选项
+		    for(var key in city){
+		    	// console.log(key);//拿到对象的键
+		    	// console.log(city[key]);//拿到对象的键对应的值
+		    	
+		    	var option = document.createElement("option");
+		    	option.innerText = key;
+		    	//appendChild() 里面的参数是DOM对象
+		    	citySelect.appendChild(option);
+
+		    }
+	
+           
+           //监听下拉菜单的改变
+		    citySelect.onchange = function(){
+		    	// console.log(1)
+		    	//判断用户选择了哪个选项
+		    	// console.log(this.selectedIndex);
+		    	// console.log();
+		    	//得到城市的名字
+		    	var cityName = this.options[this.selectedIndex].innerHTML;
+
+		    	//得到城市对应的大学
+		    	var universityArr = city[cityName];
+
+		    	//创建大学select标签
+		    	var selectUniversity = document.createElement("select");
+		    	document.body.lastElementChild.remove();
+		    	document.body.appendChild(selectUniversity
+		    		);
+
+		    	//往大学的select里面添加option
+		    	for(var i = 0 ; i < universityArr.length ; i++){
+                   
+                   var option = document.createElement("option");
+                   option.innerHTML = universityArr[i];
+                   selectUniversity.appendChild(option);
+		    	}
+
+		    }
+
+	</script>
+</body>
+</html>

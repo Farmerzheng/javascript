@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #div0{
+            width: 2000px;
+            height: 1000px;
+            margin: 15px;
+            padding: 20px;
+            background-color: #FF0000;
+            position: absolute;
+        }
+        #div1{
+            width: 30px;
+            height: 30px;
+            padding: 20px;
+            background-color: #FFFF00;
+            position:absolute;
+        }
+        input
+        {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+        <div id="div0">
+            <div id="div1"></div>
+        </div>
+        <input type="button" value="置顶" id="bn">
+<script>
+    var div0=document.getElementById("div0");
+    var div1=document.getElementById("div1")
+    var bn=document.getElementById("bn")
+    bn.onclick=function () {
+        document.body.scrollTop=0;
+        document.documentElement.scrollTop=0;
+    };
+    div0.style.width="100px";
+    div0.style.left="100px";
+    div1.style.margin="20px";
+    div1.style.left="10px";
+    console.log(document.body.scrollWidth);
+    console.log(div0.style.width)
+</script>
+</body>
+</html>

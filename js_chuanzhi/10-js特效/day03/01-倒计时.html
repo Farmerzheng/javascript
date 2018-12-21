@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 500px;
+            height: 100px;
+            margin:100px auto;
+            background: pink;
+            line-height:100px;
+            text-align: center;
+            font-size:25px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div id="time"></div>
+<script>
+    getTime();
+    setInterval(function(){
+        getTime();
+    },1000);
+function getTime(){
+    //获取时间对象
+    var now  = new Date();
+    var goHome = new Date('2018/2/10 17:30:0');
+    var time1 = now.getTime();
+    var time2 = goHome.getTime();
+//    console.log( goHome.getTime() );
+    //一共还剩多少天放假,单位毫秒
+    var time = time2-time1;
+//    console.log( time );
+//    还剩多少年，毫秒和年的转换
+    var date = time/1000/60/60/24; //总天数
+    var date1 = Math.floor(date);//整数的天数19
+    //剩余的毫秒数
+    var date2 = date-date1;
+    var hours = date2*24; // 总小时
+    var hours1 = Math.floor(hours); //整数的小时8
+    if( hours1 < 10 ){
+        hours1 = '0'+hours1;
+    }
+
+    //分钟
+    var minutes = hours - hours1; //小数的小时  0.04
+    var minutes1 =  minutes * 60 ;
+    var minutes2 = Math.floor(minutes * 60);
+    //var
+    //秒钟
+    var seconds = minutes1 - minutes2;
+    seconds = Math.floor(seconds*60);
+    document.getElementById('time').innerHTML = '距离放假还有' + date1 + '天  ' + hours1 + ':' + minutes2 + ':' + seconds;
+}
+</script>
+</body>
+</html>

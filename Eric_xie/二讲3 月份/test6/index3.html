@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <style>
+        table
+        {
+            width: 600px;
+            height: 400px;
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+
+<div>
+    <ul>
+        <li class="abc">1</li>
+        <li id="abc">2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+</div>
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+    <script>
+      $(":hidden");//隐藏元素，包括所有不可见元素
+     $(":visible");//显示的元素包括body和html
+      $("li:first-child");//li列表的第一项，要求必须有父级，并且父级不是body
+      $("ul:last-child");//ul列表的最后一项，要求必须有父级，并且父级不是body
+      $("ul:only-child");//ul列表必须是唯一一项，要求必须有父级，并且父级不是body
+      $("li:nth-child(1)");//li的第一项，注意不是下标第一项，是下标第0项，这里的index不能是0，要求必须有父级，并且父级不是body
+      $("li:nth-child(odd)")//li的所有奇数项，要求必须有父级
+      $("tr:nth-child(3n)").css("backgroundColor","#AAFFAA")//tr的偶数项
+      $("li").hasClass("abc");//判断li下是否有class=abc元素
+      $("li").is("#abc");//判断li下是否有id是abc的元素
+      $("li").slice(2,4);//截取li列表中下标是2到4的元素
+
+    </script>
+</body>
+</html>

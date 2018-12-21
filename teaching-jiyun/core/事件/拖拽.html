@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+     *{
+     	margin:0;
+     	padding:0;
+     }
+	.box{
+		width:100px;
+		height:100px;
+		background:red;
+		position:absolute;
+		left:100px;
+		top:150px;
+	}
+</style>
+<body>
+    <div class="box"></div>
+	<script type="text/javascript">
+		var box = document.getElementsByClassName("box")[0];
+		box.onmousedown = function(e){
+			// console.log(e)
+			var x = e.pageX - this.offsetLeft;
+			var y = e.pageY - this.offsetTop;
+
+			function mouseMoveFunc(e){
+				box.style.left = (e.pageX - x) + "px";
+				box.style.top = (e.pageY - y) + "px";
+		     }
+
+			document.addEventListener("mousemove",mouseMoveFunc);
+
+			document.onmouseup = function(){
+		        document.removeEventListener("mousemove",mouseMoveFunc)
+			};
+
+		}
+
+	
+	</script>
+</body>
+</html>	

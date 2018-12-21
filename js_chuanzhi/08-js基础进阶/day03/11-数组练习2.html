@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+// 1 ~ 100求和
+//var sum = 0;
+//for(var i = 1; i<= 100; i++){
+//    sum = sum + i;
+//}
+// 一、求一组数中的所有数的和 和平均值
+//var arr = [ 80,72,69,82,57,32 ];
+//var sum = 0;
+//for( var i = 0; i < arr.length; i++ ){
+//    sum = sum + arr[i];
+//}
+//console.log(sum);
+//console.log( sum/arr.length );
+// 求数组中最大值
+//    var arr = [ 28,72,65,102,47,38,90 ];
+//    var maxValue = arr[ 0 ];
+    // 遍历数组，遍历的过程中， 让maxValue 和 每一个值进行比较，如果 maxVlue值小于 数组中的值，那么就把数组中的值，放入到maxValue中
+//    for( var i = 1; i < arr.length; i++ ){
+//        if( maxValue < arr[ i ] ){
+//            //把数组中的值，放入到maxValue
+//            maxValue = arr[ i ];
+//        }
+//    }
+//    console.log( maxValue );
+
+// 二、求一组数中的最大值和最小值，以及所在位置(找索引值)
+//    var arr = [ 8,20,90,5,31 ];
+//    var maxValue = arr[ 0 ];
+//    var minValue = arr[ 0 ];
+//    var maxIndex = 0;
+//    var minIndex = 0;
+//    for( var i = 1; i < arr.length; i++ ){
+//        // 找最大值，和 对应索引
+//        if( maxValue < arr[ i ] ){
+//            maxValue = arr[ i ];
+//            //此时找到最大值以后，最大值所对应的索引就是需要最大值索引
+//            maxIndex = i;
+//        }
+//        // 找最小值，和对应索引
+//        if( minValue > arr[ i ] ){
+//            minValue = arr[ i ];
+//            minIndex = i;
+//        }
+//
+//    }
+//    console.log( maxValue,maxIndex );
+//    console.log( minValue,minIndex );
+    //三、将数组转换成字符串用 | 或其他符号分割
+//    var arr = [ '张飞','关羽','赵云','黄忠','马超' ];
+//    //  ‘张飞|关羽|赵云|黄忠|马超’
+//    var str = arr[ 0 ];
+//    for( var i = 1; i < arr.length; i++ ){
+//        str = str + '|' + arr[i];
+//    }
+//    console.log(str);
+//    // 四、将数组中值为0的去掉，不为0的存入新数组
+//    var arr = [ '张飞',0,'关羽',0,'赵云',0,'黄忠',0,'马超' ];
+//    var newArr = [  ];
+//    for( var i = 0; i < arr.length; i++ ){
+//        //不为0的存入新数组
+//        if( arr[ i ] !== 0 ){
+//            newArr[ newArr.length ] = arr[ i ];
+//        }
+//    }
+//    console.log( newArr );
+    // 五、翻转数组
+//    var arr = [ '曹操','秦琼','张飞','马超','黄忠' ];
+//    var newArr = [  ];
+//    for( var i = arr.length - 1; i >= 0; i-- ){
+//        newArr[ newArr.length ] = arr[i];
+//    }
+//    console.log( newArr );
+
+//    var arr = [ '曹操','秦琼','张飞','马超','黄忠' ];
+//    var newArr = [  ];
+//    for(var i = 0; i < arr.length; i++){
+//        // 通过当前的值，来找对应的值
+//        // arr.length - 1 - i
+//        newArr[ newArr.length ] = arr[ arr.length - 1 - i ];
+//    }
+//    console.log( newArr );
+    var arr = [ '曹操','秦琼','张飞','刘备','马超','黄忠' ];
+    // 操作原来的数组，
+    // 用数组的前半部分和后半部分交换值
+    for(var i = 0; i < arr.length/2; i++ ){
+        // 在变量前边的时候，同时需要找到后边对应的
+        // i      arr.length - 1 - i
+        // 两者交换
+        var tmp = arr[ i ];
+        arr[ i ] = arr[ arr.length - 1 - i ];
+        arr[ arr.length - 1 - i ] = tmp;
+    }
+    console.log( arr );
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="Drag.js"></script>
+  <!-- <script src="HitTest.js"></script> -->
+  <script src="HitTest-class.js"></script>
+</head>
+<style>
+body {
+  /*margin:0;*/
+  /*padding:0;*/
+}
+
+.box1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  position: absolute;
+  left: 300px;
+  top: 300px;
+}
+</style>
+
+<body>
+  <div class="box2"></div>
+  <div class="box1"></div>
+  <script>
+  var box1 = document.querySelector(".box1");
+  var box2 = document.querySelector(".box2");
+  new Drag(box1);
+
+  setInterval(function() {
+    var hitBoolean = HitTest.test(box1, box2);
+    console.log(hitBoolean);
+  }, 100);
+  </script>
+</body>
+
+</html>

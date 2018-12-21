@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<div></div>
+<div><span>2</span></div>
+<input type="button">
+<input type="button">
+<input type="button">
+    <script>
+            $("div").html();//获取div的html内容
+            $("div").html("<a href='#'></a>");//给所有div设置html内容为<a href='#'></a>
+            $("div").text();//获取div的text内容
+            $("div").text(1);//给所有div设置text内容为1
+            $("input").val();//获取input的value内容
+            $("input").val(345);//设置input的value内容为345；
+            $("input").attr("type")//获取input的type属性
+            $("input").attr("type","text")//设置input的type属性为文本
+            $("input").attr({"type":"text","value":"123"});//设置input的type属性为text，value属性为123
+            $("input").attr("type",function (index,value) {
+                if(index==1){
+                    return "text";
+                }
+            })//设置input列表中下标为1的input的type类型为text
+            /*$("input")[0].addEventListener("click",clickHandler);
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            $(this).attr({"type":"text","value":"123"});
+        }*/
+
+
+    </script>
+</body>
+</html>

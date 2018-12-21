@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<input type="button" value="提交">
+<input type="button" value="取消">
+<div>
+    <ul>
+        <li class="abc">1</li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+    <script>
+       $(":empty");//所有空元素或者不含子项的元素
+       $(":parent");//所有含有子项或者有内容的元素
+        $(":has(.abc)");//属性class值是abc的所有父级元素
+       $(":contains('1')");//内容包含字符1的元素及其所有父元素
+       $(".abc").parent();//属性class值是abc的唯一父级元素
+       $(".abc").parents();//属性class值是abc的所有父级元素
+       $(".abc").parentsUntil("body");//属性class值是abc的元素所有到body之前的父级元素
+    </script>
+</body>
+</html>

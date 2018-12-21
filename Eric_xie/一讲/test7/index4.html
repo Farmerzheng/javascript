@@ -1,0 +1,71 @@
+¡£<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul
+        {
+            width:300px;
+            float: left;
+            list-style: none;
+        }
+        img
+        {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+<script>
+   
+    var heightArr=[0,0,0,0];
+    var ul=document.getElementsByTagName("ul");
+	var num1=1;
+    createLiAndImage();
+    function createLiAndImage() {
+        var li=document.createElement("li");
+        var index=getMinHeight();
+        if(index==-1) return;
+        var img=new Image();
+        img.index=index;
+        img.addEventListener("load",loadImageHandler)
+        img.src="img/"+num1+"-.jpg";
+        li.appendChild(img);
+
+        ul[index].appendChild(li);
+    }
+
+    function loadImageHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        var height=this.height;
+        heightArr[this.index]=height+this.parentElement.offsetTop;
+        if(num1>78){
+            return;
+        }
+        num1++;
+        createLiAndImage();
+    }
+
+    function getMinHeight() {
+       /* var min=heightArr[0];
+        if(heightArr.length==0) return;
+        for(var i=0;i<heightArr.length;i++){
+            min=Math.min(min,heightArr[i]);
+        }*/
+        var min=heightArr[0];
+        if(heightArr.length==0) return;
+        heightArr.forEach(function (a) {
+            min=Math.min(min,a)
+        });
+        return heightArr.indexOf(min);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul>
+
+    </ul>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+    </ol>
+    <script>
+        // 添加标签（节点）
+        //1. 创建一个节点  createElement(  标签名称 )
+        var li = document.createElement('li');
+        // innerHTML  innerText
+        li.innerHTML = '这是一个新的列表';
+
+        //2. 把创建好的标签放到指定位置
+        // appendChild( 创建好的标签 )
+        var ul = document.getElementsByTagName('ul')[0];
+        ul.appendChild( li );
+
+        //删除标签
+        //removeChild( 要删除的子标签 )
+        var ol = document.getElementsByTagName('ol')[0];
+        ol.removeChild( ol.children[0] );
+    </script>
+</body>
+</html>

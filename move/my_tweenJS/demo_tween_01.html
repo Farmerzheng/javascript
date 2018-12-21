@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="tween.js"></script>
+</head>
+<style>
+#target {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+}
+</style>
+
+<body>
+  <div id="target"></div>
+  <script>
+  let position = { x: 100, y: 100 };
+  let target = document.getElementById('target');
+
+  init();
+
+  function init() {
+
+    let tween = new TWEEN.Tween(position)
+      .to({ x: 700, y: 200 }, 2000) //改变x的值从100到200
+      .delay(1000) //停留1s
+      .easing(TWEEN.Easing.Elastic.InOut) //缓动函数
+      .onUpdate(update);//onUpdate方法的回调函数可以监听数值变化,这个函数在每次tweens被更新时都被调用
+
+    tween.start(); //tween动画的开始
+
+  }
+
+  animate();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    // 最后为了平滑动画效果，需要在同一个循环动画中调用TWEEN.update方法
+    TWEEN.update();
+  }
+
+  function update() {
+    console.log(this);//position
+    target.style.left = position.x + "px";
+    target.style.top = position.y + "px"
+  }
+  
+  </script>
+</body>
+
+</html>

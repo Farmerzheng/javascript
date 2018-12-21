@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border = "1">
+		<tr>
+			<td colspan="2">排行榜</td>
+		</tr>
+		<tbody id = "song">
+			
+		</tbody>
+		<tr>
+			<td colspan="2">
+				<input type="checkbox" name="all">全选
+				<input type="button" name="delete" value="删除">
+			</td>
+		</tr>
+		<tr>
+		    <td colspan="2">
+		    	<input type="button" name="add" value="添加">
+			    <input type="text" name="song">
+		    </td>			
+		</tr>
+	</table>
+	<script type="text/javascript">
+		var tbody = document.getElementById("song");
+		var addBtn = document.getElementsByName("add")[0];
+		var deleteBtn = document.getElementsByName("delete")[0];
+		var selectCheckAll = document.getElementsByName("all")[0];
+		var userInput = document.getElementsByName("song")[0];
+
+		//为添加按钮挂接点击事件
+		addBtn.addEventListener("click",function(){
+			var userInputText = userInput.value;
+			var tr = document.createElement("tr");
+			tr.innerHTML = "<td><input type = 'checkbox' class = 'song'></td>"+"<td>"+userInputText+"</td>";
+			tbody.appendChild(tr);
+		});
+
+		//监听全选框的改变（为全选的复选框添加change事件）
+		selectCheckAll.addEventListener("change",function(){
+			// console.log(this.checked)
+			var songs = document.getElementsByClassName("song");
+			if(this.checked == true){
+			
+				for(var i = 0 ; i < songs.length ; i++){
+					songs[i].checked = true ;
+				}
+			}else{
+
+				for(var i = 0 ; i < songs.length ; i++){
+					songs[i].checked = false ;
+				}
+			}
+		});
+
+		//为删除按钮添加点击事件
+		deleteBtn.addEventListener("click",function(){
+			var songs = document.getElementsByClassName("song");
+			//不能循环删除数组当中的元素
+			// for(var i = 0 ; i <songs.length ; i++){
+			// 	if(songs[i].checked == true){
+			// 		songs[i].parentNode.parentNode.remove();
+			// 	}
+				
+			// }
+
+			//如果要删除数组元素，我们采用倒序的方法
+			for(var i = songs.length - 1 ; i >= 0 ; i--){
+				if(songs[i].checked == true){
+					songs[i].parentNode.parentNode.remove();
+				}
+			   
+		    }
+
+		    // tbody.remove();
+
+
+		})
+
+		//
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    #div1{
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+        padding: 15px;
+        margin-bottom: 40px;
+    }
+    #div2{
+        width: 200px;
+        height: 200px;
+        border: 1px solid pink;
+        padding: 15px;
+        margin-top:55px ;
+    }
+</style>
+<body>
+
+外边距折叠
+当2个或多个垂直关系的外边距在一起时，他们将叠加形成一个外边距。这个新形成的外边距，
+其高度为2个外边距高度的最大值。
+外边距叠加出现的场合：
+2个或多个块元素，一个放在另一个之上。或者，当一个块元素包裹在另一个块元素之内时。
+
+<div id="div1">万维网联盟创建于1994年，是Web技术领域最具权威和影响力的国际中立性技术标准机构。到目前为止，W3C已发布了200多项影响深远的Web技术标准及实施指南，如广为业界采用的超文本标记语言（标准通用标记语言下的一个应用）、可扩展标记语言（..</div>
+<div id="div2">万维网联盟创建于1994年，是Web技术领域最具权威和影响力的国际中立性技术标准机构。到目前为止，W3C已发布了200多项影响深远的Web技术标准及实施指南，如广为业界采用的超文本标记语言（标准通用标记语言下的一个应用）、可扩展标记语言（..</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="rem.js"></script>
+</head>
+<style>
+    span {
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+</style>
+<body>
+<div>
+    <p>
+        <span>牛奶</span>
+        <span id="minus">-</span>
+        <span id="num">11</span>
+        <span id="plus">+</span>
+        单价<span>2</span>元
+    </p>
+      <p>
+        <span>鲜花</span>
+        <span id="fminus">-</span>
+        <span id="fnum">5</span>
+        <span id="fplus">+</span>
+        单价<span>3</span>元
+    </p>
+    <p>总价<span id="price">15</span>元</p>
+
+</div>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    var carMilk = {
+        price: 2,
+        num: 11,
+        numDom: $("num"),
+        minusDom: $("minus"),
+        plusDom: $("plus"),
+        init: function () {
+            this.bindEvent();
+        },
+        bindEvent: function () {
+            var me = this;
+            this.minusDom.addEventListener("click", function () {
+                me.num--;
+                me.renderNum();
+                console.log(me.price);
+                priceObj .render(me.price,me.num);
+            });
+            this.plusDom.addEventListener("click", function () {
+                me.num++;
+                me.renderNum();
+                priceObj .render(me.price,me.num);
+            })
+        },
+        renderNum: function () {
+            this.numDom.innerHTML = this.num;
+        }
+    };
+    carMilk.init();
+
+    var priceObj = {
+        priceDom: $("price"),
+        init: function () {
+            this.render();
+        },
+        render: function (price,num) {
+             // console.log(price,num);
+            this.priceDom.innerHTML = price * num;
+        }
+    };
+    priceObj.init();
+
+        // js中的两大类型：基本类型（number string boolean null undefined）和引用类型（对象）
+    // example:
+    // var a=1;
+    // var b=a;
+    // b=2;
+    // console.log(a);
+
+//    var obj={name:"zhangsan"};
+//    var objSec=obj;
+//    objSec.name="lisi";
+//    console.log(obj.name);//互相引用
+
+// 继承产生的目的：让对象相互复制时能够相互独立
+
+     // var carFlower = Object.create(carMilk);
+     // carFlower.num = 5;
+	 // carFlower.price = 3;
+	 // carFlower.numDom =$("fnum");
+	 // carFlower.minusDom = $("fminus");
+	 // carFlower.plusDom = $("fplus");
+	 // carFlower.init();
+
+
+</script>
+</body>
+</html>
+
+

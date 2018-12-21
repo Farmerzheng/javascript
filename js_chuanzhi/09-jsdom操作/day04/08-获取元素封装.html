@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>111</div>
+<div class="box">222</div>
+<div id="pox">333</div>
+<script>
+    // 封装函数：可以使用 标签、类、id三种中任意一种获取元素
+    // 参数：可以是类(.box)，标签(div)，id(#pox)
+    // 返回值：返回找到标签
+    function $ ( tag ) {
+        // 判断参数，如果参数以.开头，说明是类，要使用以类名查找
+        // 获取第一个字符
+        // charAt(0)
+        var s1 = tag.charAt(0);
+        var s2 = tag.substr(1);
+        if( s1 === '.' ){
+            return document.getElementsByClassName(s2);
+        }else if ( s1 === '#' ){
+            // 如果参数以 #开头，说明是id ，使用以id形式
+            return document.getElementById(s2);
+        }else {
+            //否则只能是以标签形式
+            return document.getElementsByTagName(tag);
+        }
+    }
+//    console.log( $('.box') );
+    $('.box')[0].style.color = 'red';
+    $('div')[0].style.color = 'green';
+    $('#pox').style.color = 'blue';
+    console.log( $('div') );
+</script>
+</body>
+</html>

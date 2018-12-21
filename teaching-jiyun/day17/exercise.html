@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <table id = "table" border = "1">
+    	<tr>
+    	    <td><input type="checkbox" name="" id = "all"></td>
+    		<td>姓名</td>
+    		<td>年龄</td>
+    		<td>性别</td>
+    		<td>爱好</td>
+    		<td>时间</td>
+    		<td>价格</td>
+    		<td>总价</td>
+    	</tr>
+	    
+    </table>
+    <button id = "reverse">反选</button>
+    <div>
+	    <input type="text" name="" id = "addText">
+	    <button id="add">添加</button>
+    </div>
+    <div>
+	    <input type="text" name="" id = "addText">
+	    <button id="add">查询</button>
+    </div>
+    <div><span>总价</span><span  id = "totalPrice"></span></div>
+	<script type="text/javascript">
+	   var table = document.getElementById("table");
+	   var checkAllBtn = document.getElementById("all");
+	   var totalPriceDiv = document.getElementById("totalPrice");
+	   var reverseBtn = document.getElementById("reverse");
+	   var addBtn = document.getElementById("add");
+	   var addText = document.getElementById("addText");
+	   var totalPrice = 0;
+
+      var data=[
+      {name:"张三",age:30,sex:"男",hobby:"旅行",time:"2016/3/15",price:35.2,total:'35.20'},
+	  {name:"王三",age:32,sex:"女",hobby:"旅行，游泳",time:"2016/4/15",price:18.2,total:'18.20'},
+	  {name:"李三",age:20,sex:"男",hobby:"旅行，打球",time:"2016/5/15",price:30.2,total:'30.20'},
+	  {name:"赵三",age:26,sex:"女",hobby:"读书",time:"2016/6/15",price:24,total:'24.00'}
+			];
+	 //将数据展示到页面上
+	  for(var i = 0 ; i < data.length ; i++){
+	  	// table.innerHTML = "<tr>"+"<td></td>"+"</tr>";
+	  	//拿到每行的数据
+	  	var trData = data[i];
+	  	//创建一行
+	  	var tr = document.createElement("tr");
+	  	tr.innerHTML = "<td>"+"<input type = 'checkbox' class = 'check'>"+"</td>"+
+	  	               "<td>"+trData.name+"</td>"+
+	  	               "<td>"+trData.age+"</td>"+
+	  	               "<td>"+trData.sex+"</td>"+
+	  	               "<td>"+trData.hobby+"</td>"+
+	  	               "<td>"+trData.time+"</td>"+
+	  	               "<td>"+trData.price+"</td>"+
+	  	               "<td>"+trData.total+"</td>"+
+	  	               "<td>"+"<button class = 'minus'>-</button><input type = 'text' value = '0'><button class = 'plus'>+</button>"+
+	  	               "</td>";
+
+       var plusBtn = tr.getElementsByClassName("plus")[0];
+       var minusBtn = tr.getElementsByClassName("minus")[0];
+       plusBtn.addEventListener("click",addClickHandler);
+       minusBtn.addEventListener("click",minusClickHandler);
+	  	//把本行添加到表格当中
+	  	table.appendChild(tr);
+
+	  }		
+      
+      //给全选按钮添加点击事件
+	  checkAllBtn.addEventListener("change",allChangeHandler);
+      //给反选按钮添加点击事件
+      reverseBtn.addEventListener("click",reverseClickHandler); 
+      addBtn.addEventListener("click",addRowClickHandler);
+
+	  function addRowClickHandler(){
+	  	var inputText = addText.value;
+	  	var inputArr = inputText.split(",");
+	  	// {name:"张三",age:30,sex:"男",hobby:"旅行",time:"2016/3/15",price:35.2,total:'35.20'}
+	  	 var tr = document.createElement("tr");
+	  	 tr.innerHTML = "<td><input type = 'checkbox' class = 'check'></td>"
+	     for(var i = 0 ; i <inputArr.length ; i++){
+              var td = document.createElement("td");
+              td.innerHTML = inputArr[i];
+              tr.appendChild(td);
+	     }
+
+	     var lastTd = document.createElement("td");
+
+	     lastTd.innerHTML = "<button class = 'minus'>-</button><input type = 'text' value = '0'><button class = 'plus'>+</button>";
+
+	     lastTd.getElementsByClassName("minus")[0].addEventListener("click",minusClickHandler);
+
+	     lastTd.getElementsByClassName("plus")[0].addEventListener("click",addClickHandler);
+
+	     tr.appendChild(lastTd);
+	     
+	     table.appendChild(tr);
+
+	  	
+	  }
+	  function addClickHandler(){
+	  	this.previousElementSibling.value = parseInt(this.previousElementSibling.value)+1;	  
+	  	this.parentNode.parentNode.firstElementChild.firstElementChild.checked = true;	
+	  	//改变总价
+	  	this.parentNode.previousElementSibling.innerHTML = (parseInt(this.previousElementSibling.value)*parseFloat(this.parentNode.previousElementSibling.previousElementSibling.innerHTML)).toFixed(2);
+	  	//改变最后的总价
+	   totalPrice += parseFloat(this.parentNode.previousElementSibling.previousElementSibling.innerHTML);
+	   totalPriceDiv.innerHTML = totalPrice.toFixed(2);
+	  }
+
+	  function minusClickHandler(){ 
+	  	this.parentNode.parentNode.firstElementChild.firstElementChild.checked = true;	
+
+	  	if(parseInt(this.nextElementSibling.value) == 0){
+	  		return;
+	  	}
+	  	this.nextElementSibling.value = parseInt(this.nextElementSibling.value)-1;	
+        //改变总价
+	  	this.parentNode.previousElementSibling.innerHTML = (parseInt(this.nextElementSibling.value)*parseFloat(this.parentNode.previousElementSibling.previousElementSibling.innerHTML)).toFixed(2);
+	    //改变最后的总价
+	    totalPrice -= parseFloat(this.parentNode.previousElementSibling.previousElementSibling.innerHTML);
+	    totalPriceDiv.innerHTML = totalPrice.toFixed(2);
+
+	  }
+
+	  function allChangeHandler(){
+	  	var checkArr = document.querySelectorAll(".check");
+       
+       //判断全选按钮是否选中
+	  	if(this.checked == false){
+	  			for(var i = 0 ; i < checkArr.length ; i++){
+	  		          checkArr[i].checked = false;
+	  	         }
+	  	}else{
+	  			for(var i = 0 ; i < checkArr.length ; i++){
+	  		          checkArr[i].checked = true;
+	  	         }
+	  	}	  
+
+	  }
+
+	  function reverseClickHandler(){
+	  	var checkArr = document.querySelectorAll(".check");
+	  	for(var i = 0 ; i < checkArr.length ; i++){
+	  		// if(checkArr[i].checked == true){
+	  		// 	checkArr[i].checked = false
+	  		// }else{
+	  		// 	checkArr[i].checked = true;
+	  		// }
+	  		checkArr[i].checked = !checkArr[i].checked
+	  	}
+	  }
+
+	 
+
+
+	</script>
+</body>
+</html>

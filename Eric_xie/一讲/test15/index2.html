@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="text">
+<div></div>
+<script>
+    var text=document.querySelector("#text");
+    var div0=document.querySelector("div");
+    var reg=/ab./g;
+    text.addEventListener("input",inputHandler);
+    function inputHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+        text.value=text.value.replace(reg,"ab*");
+
+    }
+</script>
+</body>
+</html>

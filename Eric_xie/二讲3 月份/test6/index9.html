@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 50px;
+            height: 50px;
+            background-color: deepskyblue;
+            position: absolute;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <script>
+        var div0=$("<div></div>");
+        var bool=false;
+        div0.prependTo("body")
+                .css({
+                    "width":"50px",
+                    "height":"50px",
+                    "backgroundColor":"deepskyblue",
+                    "position":"absolute"
+                });
+        var bn=$("<input type='button' value='开始'>")
+        bn.insertAfter(div0)
+                .css({
+                    "position":"absolute",
+                    "top":"100px"
+                });
+        bn[0].addEventListener("click",clickHandler);
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            bool=!bool;
+            if(!bool){
+                $(this).val("开始");
+            }else{
+                $(this).val("停止");
+            }
+        }
+
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            if(!bool) return;
+            div0.css("left",div0.offset().left+1+"px");
+        }
+    </script>
+</body>
+</html>

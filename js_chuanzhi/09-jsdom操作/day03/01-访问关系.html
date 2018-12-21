@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box">
+    <div class="box1" id="box1" style="">111</div>
+    <div class="box2">222</div>
+    <div class="box3" id="box3">3333</div>
+    <div class="box4">4444</div>
+</div>
+<script>
+    //var box1 = document.getElementsByClassName('box1');
+//    var box1 = document.getElementById('box1');
+    // 查找的所有标签都是对象
+    //console.log( typeof box1 );
+    //访问父节点
+    //box1.parentNode.style.border = '1px solid red';
+    //console.log( box1.parentNode );
+//    var pnode = box1.parentNode;
+    //不存在兼容性问题，所找的都是标签
+//    var cnode = pnode.children;
+//    cnode[0].style.color = 'red';
+//    console.log( cnode );
+    //var c1node = pnode.childNodes;
+    // 在使用的时候，需要过滤掉文本节点（空格，回车）
+//    c1node[1].style.color = 'blue';
+//    console.log( c1node );
+    // 找第一个子节点和最后一个子节点
+    // firstElementChild  在ie6,7,8不兼容；
+    // 谷歌中firstChild  找的是 第一个节点（文本节点）
+    // ie中支持 firstChild,不支持  firstElementChild
+//    var  firstNode = pnode.firstElementChild || pnode.firstChild;
+//    firstNode.style.color = 'orange';
+//    var lastNode = pnode.lastElementChild || pnode.lastChild;
+//    lastNode.style.background = 'pink';
+    //
+    var box3 = document.getElementById('box3');
+
+    // 上一个兄弟
+    // 下一个兄弟
+//    box3.previousElementSibling.style.background = 'orange';
+    //box3.previousSibling.style.background = 'orange'
+//    var preSibling = box3.previousElementSibling || box3.previousSibling;
+//    preSibling.style.background='lightblue';
+//    var nexSibling = box3.nextElementSibling || box3.nextSibling;
+//    nexSibling.style.background = 'lightgreen';
+
+    //找其它的兄弟
+    function getAllSilings( element ){
+        //要找element所有的兄弟节点，并且把找到节点放到一个数组中
+        // 返回值就是找到的数组
+        var arr = [];
+        var pnode = element.parentNode;
+        var nodes = pnode.children;
+        for( var i = 0; i < nodes.length; i++ ){
+            //如果不是当前的节点element，则放入到新数组
+            if( nodes[i] !== element ){
+                arr.push( nodes[i] );
+            }
+        }
+        return arr;
+    }
+    //console.log( getAllSilings( box3 ) );
+    //需求：让box3其它所有的兄弟都变成红色字体
+    // getAllSilings( box3 )，因为返回值是数组，所以又要进行遍历
+    var newArr = getAllSilings( box3 );
+    for( var i = 0; i < newArr.length; i++ ){
+        newArr[i].style.color = 'red';
+    }
+
+</script>
+</body>
+</html>

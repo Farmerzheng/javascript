@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Renderings</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        i{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            position: absolute;
+            background-color: #9A9A9A;
+            top: 730px;
+        }
+        #divs
+        {
+            width: 1366px;
+            margin: auto;
+            position: relative;
+        }
+        #bgDiv
+        {
+            width: 1366px;
+            margin: auto;
+        }
+        #divs img
+        {
+            width: 1366px;
+        }
+        ul{
+            list-style: none;
+            float: left;
+            margin: 20px 0px 0px 20px;
+        }
+        li img
+        {
+            width: 320px;
+            margin-bottom: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="divs"></div>
+    <div id="bgDiv">
+        <ul id="ul1"></ul>
+        <ul id="ul2"></ul>
+        <ul id="ul3"></ul>
+        <ul id="ul4"></ul>
+    </div>
+
+    <script>
+        var divs=document.getElementById("divs");
+        var uls=document.getElementsByTagName("ul");
+        var topImage=["Z.jpg","Z-1.jpg","Z-2.jpg"];
+        var imgsrc="img/rendering/";
+        var s=0;
+        for(var i=0;i<3;i++){
+            var is=document.createElement("i");
+            is.style.left=640+10*i+15*i+"px";
+            is.addEventListener("click",clickHandler);
+            divs.appendChild(is)
+            
+        }
+        var iss=document.getElementsByTagName("i");
+        iss[0].style.backgroundColor="#DDFF00";
+        var img=appendImage(divs,topImage[0]);
+        var arrShow=[];
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            huanyuan();
+            for(var i=0;i<3;i++){
+                if(this==iss[i]){
+                    s=i;
+                    img.src=imgsrc+topImage[s];
+                    this.style.backgroundColor="#DDFF00"
+                }
+            }
+        }
+        function huanyuan() {
+            for(var i=0;i<3;i++){
+                iss[i].style.backgroundColor="#9A9A9A"
+            }
+        }
+        /*三张图放进去的轮播*/
+        setInterval(change,2000);
+        function change() {
+        	/*常量s递增*/
+            s++;
+            if(s>=topImage.length){
+                s=0;
+            }
+            huanyuan();
+            img.src=imgsrc+topImage[s];
+            iss[s].style.backgroundColor="#DDFF00"
+        }
+        var arrImg=[];
+        for(var i=1;i<80;i++){
+            arrImg[i]=Math.floor(Math.random()*79+1);
+            for(var k=0;k<i;k++){
+                if(arrImg[i]==arrImg[k]){
+                    i--;
+                }
+            }
+        }
+        for(var i=1;i<arrImg.length;i++){
+            var min=uls[0].offsetHeight;
+            var h=0;
+            for(var j=0;j<4;j++){
+                if(min>uls[j].offsetHeight){
+                    min=uls[j].offsetHeight;
+                    h=j;
+                }
+            }
+            var li=document.createElement("li");
+            li.addEventListener("mouseover",mouseHandler);
+            li.addEventListener("mouseout",mouseHandler);
+            li.addEventListener("click",mouseHandler);
+            li.setAttribute("name",arrImg[i]+"-.jpg");
+            uls[h].appendChild(li);
+            appendImage(li,arrImg[i]+"-.jpg");
+        }
+        function mouseHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.type=="mouseover"){
+                e.target.style.opacity=0.4;
+            }
+            if(e.type=="mouseout"){
+                e.target.style.opacity=1;
+            }
+            if(e.type=="click"){
+                if(arrShow.length>0){
+                    arrShow[0].remove();
+                    arrShow[0]="";
+                    arrShow.length=0;
+                    newImage(this);
+                }else {
+                    newImage(this);
+                }
+
+
+
+            }
+        }
+
+        function newImage(s) {
+            var names=s.getAttribute("name");
+            var img=appendImage(document.body,names);
+            img.style.width=s.firstElementChild.offsetWidth*1.5+"px";
+            img.style.position="fixed";
+            img.style.zIndex=999;
+            img.style.top=(window.innerHeight-img.offsetHeight)/2+"px";
+            img.style.left=(window.innerWidth-img.offsetWidth)/2+"px";
+            img.addEventListener("click",clickHandlers);
+            var event=new Event("FrameEvent");
+            event.imgsrc=img.src;
+            document.dispatchEvent(event)
+            arrShow.push(img);
+        }
+        function clickHandlers(e) {
+            if(!e){
+                e=window.event;
+            }
+            e.target.remove();
+        }
+        function appendImage(div,imgName) {
+            var img=new Image();
+            img.src=imgsrc+imgName;
+            div.appendChild(img);
+            return img;
+        }
+    </script>
+</body>
+</html>

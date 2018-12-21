@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var obj={
+            _a:0,
+            b:0,
+            set a(value){
+                this.b=value;
+                this._a=value;
+            },
+            get a(){
+                return this._a;
+            }
+        };
+        Object.defineProperties(obj,{
+            "a":{
+                value:10,
+                writable:true
+            }
+        });
+//        obj.a=5;
+        console.log(obj)
+    </script>
+</body>
+</html>

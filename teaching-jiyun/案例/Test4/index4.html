@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/DomCreate.js"></script>
+</head>
+<body>
+
+    <script>
+        var names=DomCreate.createInput("姓名：",document.body,"李四");
+
+        DomCreate.createElement("label",document.body,{},{textContent:"性别："});
+        var radioList=DomCreate.createRadio(document.body,["男","女","不详"],"sexs",true);
+        DomCreate.createElement("br",document.body);
+        var age=DomCreate.createInput("年龄：",document.body,25);
+        var hobby=DomCreate.createInput("爱好：",document.body,"睡觉");
+        DomCreate.createElement("label",document.body,{},{textContent:"学历："});
+        var select=DomCreate.createSelect(["本科","大专","高中"],document.body);
+        DomCreate.createElement("br",document.body);
+       var major=DomCreate.createInput("专业：",document.body,"企业管理");
+        DomCreate.createElement("label",document.body,{},{textContent:"简介："});
+        var info=DomCreate.createElement("textarea",document.body,{},{rows:4,cols:22});
+        DomCreate.createElement("br",document.body);
+       var bn=DomCreate.createElement("input",document.body,{},{type:"button",value:"添加"});
+        DomCreate.createElement("br",document.body);
+        var tables=DomCreate.createElement("table",document.body,{borderCollapse:"collapse",textAlign:"center"});
+        DomCreate.createTr(tables,["姓名","性别","年龄","爱好","学历","专业","简介"])
+        bn.addEventListener("click",clickHandler);
+        var sum=0;
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            var list=[];
+            list.push(names.value);
+            var str="";
+            for(var i=0;i<radioList.length;i++){
+                if(radioList[i].checked){
+                    str+=radioList[i].value+",";
+                }
+            }
+            str=str.substr(0,str.length-1);
+            list.push(str);
+           list.push(age.value);
+            list.push(hobby.value);
+            list.push(select.selectedOptions[0].textContent);
+            list.push(major.value);
+            list.push(info.value);
+            sum++;
+            if(sum%2==1){
+                DomCreate.createTr(tables,list,"#00FF00");
+            }else{
+                DomCreate.createTr(tables,list,"#FF0000");
+            }
+        }
+    </script>
+</body>
+</html>

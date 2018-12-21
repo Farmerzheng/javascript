@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 800px;
+            margin:50px auto;
+            background: pink;
+        }
+        .box h3{
+            height: 30px;
+            line-height:30px;
+            font-size:14px;
+            color:#fff;
+            background: darkred;
+            padding-left:15px;
+        }
+        .box ul {
+            overflow: hidden;
+            padding: 10px 0;
+        }
+        .box ul li {
+            width: 60px;
+            float: left;
+            font-size:12px;
+            margin:0 12px;
+            text-align: center;
+            margin-bottom:10px;
+        }
+        .box ul li p {
+            margin-top:5px;
+        }
+        .box ul li a {
+            color : #000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h3>当前在线用户</h3>
+    <ul>
+       <!--
+        <li>
+            <a href="#">
+            <img src="images/noavatar_small.gif" alt="">
+            <p>沉眠楚人</p>
+            </a>
+        </li>
+        -->
+    </ul>
+</div>
+<script>
+    //后台会有一个接口
+    // 假如后台提供的接口是一个json数据
+    var users = [
+        {"name": "xiaoee","icon": "images/noavatar_small.gif"},
+        {"name": "tdxy01","icon":"images/noavatar_small.gif"},
+        {"name": "沉眠楚人","icon":"images/noavatar_small.gif"},
+        {"name": "爱上karina","icon":"images/75_avatar_small.jpg"},
+        {"name": "tdxy01","icon":"images/89_avatar_small.jpg"},
+        {"name": "today","icon":"images/noavatar_small.gif"},
+        {"name": "hlg","icon":"images/noavatar_small.gif"},
+        {"name": "heima","icon":"images/noavatar_small.gif"},
+        {"name": "nima","icon":"images/noavatar_small.gif"},
+        {"name": "gege","icon":"images/noavatar_small.gif"},
+        {"name": "nimei","icon":"images/noavatar_small.gif"},
+        {"name": "goodman","icon":"images/noavatar_small.gif"},
+        {"name": "haoren","icon":"images/noavatar_small.gif"},
+        {"name": "yuanxiaojie","icon":"images/noavatar_small.gif"},
+        {"name": "zhengyue","icon":"images/noavatar_small.gif"},
+        {"name": "qishi","icon":"images/noavatar_small.gif"},
+        {"name": "qqtang","icon":"images/89_avatar_small.jpg"},
+        {"name": "wawawa","icon":"images/noavatar_small.gif"},
+        {"name": "hsaa","icon":"images/89_avatar_small.jpg"},
+        {"name": "haha","icon":"images/noavatar_small.gif"},
+        {"name": "robot","icon":"images/noavatar_small.gif"},
+        {"name": "XFlute","icon":"images/noavatar_small.gif"},
+        {"name": "lovmilan","icon":"images/noavatar_small.gif"},
+        {"name": "johnny670","icon":"images/noavatar_small.gif"},
+        {"name": "xiaobinbin02","icon":"images/noavatar_small.gif"},
+        {"name": "axxxxx","icon":"images/noavatar_small.gif"},
+        {"name": "robot","icon":"images/noavatar_small.gif"},
+    ];
+    //解析这组数据
+    // 首先准备好一个变量，用于连接要拼接的内容及其数据
+//    <li>
+//    <a href="#">
+//            <img src="images/noavatar_small.gif" alt="">
+//            <p>沉眠楚人</p>
+//            </a>
+//            </li>
+    var str = '';
+    for( var key in users ){
+//        console.log( users[key].icon );
+        str += '<li>';
+        str += '<a href="#">';
+        str += '<img src="' + users[key].icon + '" alt="">';
+        str += '<p>' + users[key].name + '</p>'
+        str += '</a>';
+        str += '</li>';
+    }
+    var ul = document.getElementsByTagName('ul')[0];
+    ul.innerHTML = str;
+</script>
+</body>
+</html>

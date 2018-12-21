@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+    </style>
+    <script src="js/Tween.js"></script>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/TweenGuest.js"></script>
+</head>
+<body>
+<div></div>
+        <script>
+            var div0=document.getElementsByTagName("div")[0];
+            div0.style.left="0px";
+            div0.style.top="0px";
+          /*  var speedX=1;
+            var speedY=1;
+            var lefts;
+            var tops;*/
+            window.addEventListener("mousemove",clickHandler)
+
+            function clickHandler(e) {
+                TweenGuset.tweenAB(
+                    div0,
+                    {left:parseInt(div0.style.left),top:parseInt(div0.style.top)},
+                    {left:e.x-25,top:e.y-25},
+                    100)
+            }
+           // divMoveHandler()   
+            function divMoveHandler() {
+
+                requestAnimationFrame(divMoveHandler);
+
+                lefts=div0.style.left;//left改变不会引起小球变化
+                tops=div0.style.top;
+                var divS=div0.style;//divS.left改变会引起小球变化
+
+                if(parseInt(lefts)>=500){
+                    speedX=-1;
+                }
+                if(parseInt(lefts)<=0){
+                    speedX=1;
+                }
+                if(parseInt(tops)>=300){
+                    speedY=-1;
+                }
+                if(parseInt(tops)<=0){
+                    speedY=1;
+                }
+                div0.style.left=parseInt(lefts)+5*speedX+"px";
+                div0.style.top=parseInt(tops)+5*speedY+"px";
+
+            }
+        </script>
+</body>
+</html>

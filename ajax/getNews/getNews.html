@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="btn" value="点击">
+<ul id="ul1"></ul>
+<script>
+
+
+        var btn=document.getElementById('btn');
+        var ul=document.getElementById('ul1');
+
+        function shows(){
+
+            //第一步，创建请求对象
+            var xhr;
+            if (window.XMLHttpRequest){
+
+                xhr=new XMLHttpRequest();
+            }else {
+                xhr=new ActiveXObject('Microsoft.XMLHTTP');
+            }
+
+            //监听xhr对象的readystatechange事件，每隔一段时间就会触发
+            xhr.onreadystatechange= function () {
+
+                if(xhr.readyState==4&&xhr.status==200){
+
+                    console.log( typeof xhr.responseText);
+                    console.log( xhr.responseText);
+
+                    var arr=JSON.parse(xhr.responseText);
+                    console.log( arr);
+
+                    var html;
+
+                    for (var i=0;i<arr.length;i++){
+
+                        html+='<li><a href="#"> '+arr[i].title+'</a>'+'<span>'+arr[i].date+'</span></li>'
+                    }
+
+                    ul.innerHTML=html;
+                }
+            }
+
+            //指定请求的方法，url,是否异步
+            xhr.open('get','getNews.php',true);
+
+            //发送请求
+            xhr.send();
+
+
+        }
+
+        btn.onclick=shows;
+
+//
+//     setInterval(function(){
+//         shows();
+//     },5000);
+
+
+</script>
+</body>
+</html>

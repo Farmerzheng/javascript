@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0
+    }
+    
+    #img {
+        width: 400px;
+        height: 250px;
+    }
+    
+    .tab {
+        width: 400px;
+        border: 1px solid red;
+    }
+    
+    .tab_item {
+        float: left;
+        width: 100px;
+        height: 50px;
+        box-sizing: border-box;
+        border: 1px solid yellow;
+        line-height: 50px;
+        text-align: center;
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .clearfix {
+        zoom: 1
+    }
+</style>
+
+<body>
+    <div class="tab_wrap">
+        <ul class="tab clearfix">
+            <li class="tab_item">视频</li>
+            <li class="tab_item">音乐</li>
+            <li class="tab_item">新闻</li>
+            <li class="tab_item">电影</li>
+        </ul>
+        <div id="box">
+            <img id="img" src="img/5.jpg" alt="">
+        </div>
+    </div>
+
+
+    <script>
+        let imgArr = ["img/5.jpg", "img/6.jpg", "img/7.jpg", "img/8.jpg"];
+        let tab_wrap = document.querySelector(".tab_wrap");
+        let tabList = document.querySelectorAll(".tab_item");
+
+        let index = 0;
+
+        let timer = null;
+
+        let img = document.querySelector("#img");
+
+
+        tab_wrap.addEventListener("mouseenter", mouseenterHandler);
+        tab_wrap.addEventListener("mouseleave", mouseleaveHandler);
+        for (let i = 0; i < tabList.length; i++) {
+
+            tabList[i].addEventListener("click", function() {
+                // console.log(i);
+                img.src = imgArr[i];
+                for (let i = 0; i < tabList.length; i++) {
+                    tabList[i].style.backgroundColor = "#fff";
+                }
+                this.style.backgroundColor = "blue";
+            });
+
+        }
+
+        function autoPlay() {
+            timer = setInterval(function() {
+                index++;
+                if (index === 4) {
+                    index = 0;
+                }
+                img.src = imgArr[index];
+            }, 1000)
+        }
+
+        // 进入页面自动播放
+        autoPlay();
+
+
+
+        function mouseenterHandler() {
+            clearInterval(timer);
+        }
+
+        function mouseleaveHandler() {
+            autoPlay();
+        }
+
+        // function clickTabHandler(){
+        // 点击了哪个tab
+
+        // this
+        // }
+    </script>
+</body>
+
+</html>

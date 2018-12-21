@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 500px;
+            margin: 100px auto;
+        }
+        li{
+            height: 30px;
+            background: #ccc;
+            margin-bottom:1px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<script>
+    // 1.先找到所有的li，
+    var lis = document.getElementsByTagName('li');
+    //2. 为每一个li添加索引值
+    for( var i = 0; i < lis.length; i++ ){
+        // i 的值   0 ~ 9
+        lis[i].index = i;
+        lis[i].onmouseover = function(){
+            //获取当前li的索引值
+            alert( this.index );
+        }
+    }
+    // 鼠标滑过li的时候，获取当前li的索引值
+    /*for( var i = 0; i < lis.length; i++ ){
+        lis[i].onmouseover = function(){
+            //获取当前li的索引值
+            alert( this.index );
+        }
+    }*/
+
+    
+</script>
+</body>
+</html>

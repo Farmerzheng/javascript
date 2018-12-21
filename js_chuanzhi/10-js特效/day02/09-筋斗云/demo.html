@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background: #333;
+        }
+        div{
+            width: 1000px;
+            height: 42px;
+            margin:100px auto;
+            font:16px/42px "微软雅黑";
+            border-radius: 10px;
+            background: #fff url("images/wifi.png") no-repeat right center;
+            position: relative;
+        }
+        ul{
+            position: relative;
+        }
+        li{
+            float: left;
+            width: 83px;
+            height: 42px;
+            text-align: center;
+            cursor: pointer;
+        }
+        span{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 83px;
+            height: 42px;
+            background: url("images/cloud.gif") no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+    <span></span>
+    <ul>
+        <li>网站首页</li>
+        <li>关于我们</li>
+        <li>WEB前端</li>
+        <li>UI设计</li>
+        <li>人工智能</li>
+        <li>软件开发</li>
+        <li>软件测试</li>
+        <li>后台开发</li>
+    </ul>
+</div>
+<script>
+
+    var banner = document.getElementById('banner');
+    //找span 和 li
+    var span = banner.children[0];
+    var lis = banner.children[1].children;
+    //计算一个li的宽度
+    var liWidth = lis[0].offsetWidth
+    //需要一个变量，记录索引值，表示span默认的位置
+    var num = 0;
+    //鼠标点击li
+    for( var i = 0; i < lis.length; i++ ) {
+        //给每一个li添加索引值
+        lis[i].index = i;
+        lis[i].onmouseover = function () {
+            //控制span的left值   当前的索引值 * 83
+            animate(span,'left',this.index*liWidth);
+        }
+        lis[i].onmouseout = function () {
+            //回到默认值
+            animate( span,'left',num*liWidth );
+        }
+        lis[i].onclick = function () {
+            //alert(this.index);
+            // 没点击一次，默认的索引值也要发生变化
+            // 变成当前点击盒子的索引值
+            num = this.index;
+        }
+    }
+
+
+    function animate( element,attr,target ) {
+        clearInterval( element.timer );
+        element.timer = setInterval( function () {
+            var leader = parseInt(getStyle(element,attr));
+            var step = ( target - leader )/10;
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            element.style[attr] = leader + step + 'px';
+            if( target === leader ){
+                clearInterval(element.timer);
+            }
+        },15 );
+    }
+    function getStyle( obj,attr ){
+        if( window.getComputedStyle ){
+            return window.getComputedStyle(obj,null)[attr];
+        }else{
+            return obj.currentStyle[attr];
+        }
+    }
+</script>
+</body>
+</html>

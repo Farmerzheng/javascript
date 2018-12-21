@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1px solid black">
+    <tr>
+        <td>Who was the first president of the United States?</td>
+        <td><input id="president" type="text"></td>
+    </tr>
+    <tr>
+        <td>There are 13 items in a baker's dozen</td>
+        <td>
+            <input id="baker_true" type="radio" name="baker" value="true">true
+            <input  type="radio" name="baker" value="false">false
+        </td>
+    </tr>
+    <tr>
+        <td>What is the capital of Maine?</td>
+        <td>
+            <input type="radio" name="capital" value="false">Bangor
+            <input type="radio" name="capital" value="false">EastOversshoe
+            <input type="radio" name="capital" value="false">Portland
+            <input id="augusta" type="radio" name="capital" value="true">Augusta
+            <input type="radio" name="capital" value="false">None of these
+        </td>
+    </tr>
+    <tr>
+        <td>Which of the following animals are typically fonund on an American farm[check all that apply]</td>
+        <td>
+            <input id="pig" type="checkbox">Pig
+            <input type="checkbox">Elephant
+            <input id="cow" type="checkbox">Cow
+            <input type="checkbox">Kangaroo
+        </td>
+    </tr>
+    <tr>
+        <td>The Nile River's estuary is located in what nation? </td>
+        <td>
+            <select id="country">
+                <option value="埃及">请选择……</option>
+                <option value="埃及">埃及</option>
+                <option value="中国">中国</option>
+                <option value="美国">美国</option>
+            </select>
+        </td>
+    </tr>
+</table>
+<input id="submit" type="submit" value="Grade this test">
+<script>
+    window.onload=function() {
+//        alert(window.navigator.userAgent);
+
+        var president = document.getElementById('president');
+        var submitBtn=document.getElementById('submit');
+        var baker_true=document.getElementById('baker_true');
+        var augusta=document.getElementById('augusta');
+        var pig=document.getElementById('pig');
+        var cow=document.getElementById('cow');
+        var select=document.getElementById('country');
+
+        select.onchange=function(){
+            console.log(select.selectedIndex);
+        };
+
+        submitBtn.onclick=function(){
+            var score = 0;
+            if (president.value.toUpperCase()=='WASHINGTON') {score++;}
+            if(baker_true.checked==true){score++}
+            if(augusta.checked==true){score++}
+            if(pig.checked==true){score++}
+            if(cow.checked==true){score++}
+            if(select.selectedIndex==1){score++}
+            alert('得分'+score);
+        }
+
+    }
+</script>
+</body>
+</html>

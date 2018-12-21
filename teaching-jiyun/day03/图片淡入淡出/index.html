@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="nature1.jpg" id = "img">
+	<div id="div1" style = "background-color: red;width:100px;height:100px;"></div>
+	<script type="text/javascript" src = "../无缝滚动/requetAnimationFrame.js"></script>
+	<script type="text/javascript">
+		var img = document.getElementById("img");
+        var div1 = document.getElementById("div1");
+
+
+		 // var flag = true;
+
+		 //此对象集成了图片淡入淡出的放大，想让图片淡入淡入调用此对象的方法就可以了
+		// var fadeinout = new FadeInOut(img,0.05);
+        
+        //此对象集成了div1淡入淡出的放大，想让图片淡入淡入调用此对象的方法就可以了
+		var fadeinout = new FadeInOut(div1,0.05);
+
+
+		div1.onmouseover = function(){
+
+		   fadeinout.fadeout();
+		}
+
+		div1.onmouseout = function(){
+
+           fadeinout.fadein();
+	       
+		}
+        
+        /**
+        创建构造函数
+        img 是你要淡入淡出的那个对象
+        speed 淡入淡出的速度
+        **/
+
+		function FadeInOut(img,speed){
+          
+          //创建对象的animation属性
+          this.animation = null;
+
+                           
+          //创建对象的value属性
+          this.value = 1;
+
+          
+          
+          //创建对象的淡入方法
+          this.fadein = function(){
+                
+          	       var self = this;
+                   
+                   //清空上一次的动画
+          	       cancelAnimationFrame(this.animation);        
+                   
+                  
+                   //执行淡入的动画
+			       requestAnimationFrame(step);
+             
+                    
+                    //动画函数
+                    function step(){
+
+                    self.value += speed;					
+
+				    self.renderDOM();
+
+	                self.animation = requestAnimationFrame(step); 
+                      if(self.value >= 1){
+                        cancelAnimationFrame(self.animation);
+			           }	
+		  
+			        }	
+				    
+          }
+
+          this.fadeout = function(){       	  
+
+          	  cancelAnimationFrame(this.animation);
+                
+		        requestAnimationFrame(step);
+	          
+	             var self = this;
+			       function step(){
+
+
+
+         }
+
+        
+
+
+	</script>
+</body>
+</html>

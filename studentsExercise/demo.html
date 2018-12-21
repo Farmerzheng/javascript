@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<label>请输入8位数字</label>
+	    <input type="" name="">
+	</div>
+    <button>查看结果</button>
+	<script type="text/javascript">
+		var inputText=document.getElementsByTagName("input")[0];
+		var oBtn=document.getElementsByTagName("button")[0];
+		var sum=0;
+		oBtn.onclick=function(){
+			var text=inputText.value;
+			// console.log(text);
+			var textArr=text.split("");
+			console.log(textArr);
+
+
+             //循环数组，求和
+			for(var i=0;i<textArr.length;i++){
+
+				var num=parseInt(textArr[i]);
+				sum+=num;
+                
+		       }
+		       alert("相加的和为"+sum);
+
+		       //倒序排列
+		       var max=0;
+		       var reverseArr=textArr.reverse();
+		       alert("反序数组为"+reverseArr);
+		
+		}
+
+	</script>
+</body>
+</html>

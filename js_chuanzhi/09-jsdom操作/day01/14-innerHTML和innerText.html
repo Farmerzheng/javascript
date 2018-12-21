@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>这是一个段落</p>
+<ul>
+    <li>这是一个列表</li>
+    <li>这是一个列表</li>
+</ul>
+<script>
+
+    var p = document.getElementsByTagName('p')[0];
+    var ul = document.getElementsByTagName('ul')[0];
+    p.innerHTML += '这是替<br>换的内容';
+    //获取标签之间的内容
+    //  innerHTML 不仅仅获取文本，还获取里边的标签
+    //  innerText 指示获取标签之间的文本
+    //console.log( p.innerHTML );
+//    console.log( p.innerText );
+//    console.log( ul.innerHTML );
+//    console.log( ul.innerText );
+</script>
+</body>
+</html>

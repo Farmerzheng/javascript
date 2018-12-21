@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    var a = 1;
+//    var b = 2;
+    // 用逗号隔开，表示一次创建了两个变量
+//    var a = 5,b = 6;   var a=5; var b = 6;
+//    console.log(a);
+//    console.log(b);
+    //使用var 创建的变量是局部变量，不适用var创建的变量是全局变量
+    function say(){
+        //
+        c=1;    //全局
+        b=c;    // 全局
+        var a= b; // 局部
+        var a = b = c = 1;
+    }
+    say();
+    //console.log(a);
+
+//    定义了一个变量，但是没有赋值；此时对应的值 undefined
+    var m;
+    m = 1;
+    console.log(m);
+</script>
+</body>
+</html>

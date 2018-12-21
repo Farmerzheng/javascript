@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person( name,age ) {
+        this.name = name;
+        this.age = age;
+    }
+    // fn中需要传递一个对象
+    function fn( p ){
+        p.name = 'Jerry';
+    }
+    var p1 = new Person( 'tom',20 );
+    var p2 = p1;
+    //使用fn
+    fn( p1 );
+    //p1的name是多少
+    console.log( p2.name );
+    console.log( p1.name )
+</script>
+
+</body>
+</html>

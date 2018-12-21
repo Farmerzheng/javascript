@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>
+    <span class="good"></span>
+    <span class="minus">-</span>
+    <span class="num"></span>
+    <span class="plus">+</span>
+    <span class="price"></span><span>元</span>
+  </p>
+  <p>总价<span class="totalPrice"></span>元</p>
+  <script>
+  var data = {
+    name: "牛奶",
+    price: 2,
+    num: 10
+  }
+
+  function ShopCar(data) {
+    this.name = data.name;
+    this.price = data.price;
+    this._num = data.num;
+    this._totalPrice = data.num * data.price;
+  }
+
+  ShopCar.prototype = {
+    init: function() {
+      this.plusBtn = document.querySelector(".plus");
+      this.minusBtn = document.querySelector(".minus");
+      this.goodDiv = document.querySelector(".good");
+      this.goodDiv.innerText = this.name;
+      this.numDiv = document.querySelector(".num");
+      this.numDiv.innerText = this.num;
+      this.priceDiv = document.querySelector(".price");
+      this.priceDiv.innerText = this.price;
+      this.totalPriceDiv = document.querySelector(".totalPrice");
+      this.totalPriceDiv.innerText = this._totalPrice;
+      this.bindEvent();
+    },
+    bindEvent: function() {
+      this.minusBtn.addEventListener("click", this.minusClickHandler.bind(this));
+      this.plusBtn.addEventListener("click", this.plusClickHander.bind(this))
+    },
+    minusClickHandler: function() {
+      this.num--;
+      this.totalPrice = this.num * this.price;
+    },
+    plusClickHander: function() {
+      this.num++;
+      this.totalPrice = this.num * this.price;
+    },
+    set num(value) {
+      this._num = value;
+      this.numDiv.innerText = value;
+    },
+    get num() {
+      return this._num;
+    },
+    set totalPrice(value) {
+      this._totalPrice = value;
+      this.totalPriceDiv.innerText = value;
+    },
+    get totalPrice() {
+      return this._totalPrice;
+    }
+
+  }
+
+  var shopCar = new ShopCar(data);
+  shopCar.init();
+  </script>
+</body>
+
+</html>

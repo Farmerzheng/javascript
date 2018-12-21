@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	#container{
+		width:1000px;
+        margin:0 auto;
+	}
+	.destination{
+		width:998px;
+		height:200px;
+		border:1px  solid gray;
+	}
+	.logo{
+		float:left;
+		width:400px;
+		height:190px;
+		margin-top:5px;
+		margin-left:10px;
+	}
+	.logo img{
+		width:100%;
+		height:100%;
+	}
+	.main{
+		float: right;
+		height:190px;
+		margin-top:5px;
+		width:580px;
+	}
+	.detail{
+		float: left;
+		height:190px;
+		width:350px;
+		}
+	.price{
+		float: right;
+		width:230px;
+		height:190px;
+	}
+	.title{
+		font-weight: bold;
+	}
+	.description{
+
+	}
+	.travel span{
+		color:green;
+		border-radius: 2px;
+		border:1px solid green;
+	}
+	.date span{
+	    color:green;
+		border-radius: 2px;
+		border:1px solid green;
+	}
+	.price{
+		text-align: center
+	}
+	.price>div{
+       margin-top:60px;
+       width:;
+       height:20px;
+	}
+	.price>div div{
+		text-align: center;
+		width:115px;
+	}
+	.price>div .nowPrice{
+		float: left;
+		text-align: center;
+	}
+	.price>div .prePrice{
+		float: right;
+		text-align: center
+	}
+	.price button{
+
+	}
+	.nowPrice span{
+       color:orange;
+	}
+	.prePrice del{
+		color:lightgray;
+	}
+</style>
+<body>
+    <div id="container">      
+    </div>
+	<script type="text/javascript" src = "jQuery 1.12.3.min.js"></script>
+	<script type="text/javascript">
+
+	var container = document.getElementById("container");
+
+    //刚进入页面，加载数据
+    function requireData(index){
+
+        $.ajax({
+            type:"GET",
+            url:'http://app.sencha.com.cn/soya/apps/homework/server/?action=travelinfo.list',
+            dataType:'jsonp',
+            data:{
+                perPage:5,
+                page:index
+            },
+            success:function(response){
+                // console.log(response.data); 
+                var dataArr = response.data;
+                for(var i = 0 ; i < dataArr.length ; i++){
+                	var item = dataArr[i];
+                	console.log(item);
+                	var destination = document.createElement("div");
+                	destination.className = "destination";
+                	var logo = document.createElement("div");
+                	logo.className = "logo";
+                	var img = new Image();
+                	img.src = item.imgurl;
+                	logo.appendChild(img);
+                	destination.appendChild(logo);
+                	container.appendChild(destination);
+
+                	var main = document.createElement("div");
+                	main.className = "main";
+                	destination.appendChild(main);
+
+                	main.innerHTML =
+                	      "<div class='detail'>"+
+			    				 "<div class='title'>"+item.title+"</div>"+
+			    				 "<div class='description'>"+item.description+"</div>"+
+			    				"<div class='travel'>"+
+			    					"<span>交通</span>"+
+			    					"<span>"+item.traffic+"</span>"+
+			    				"</div>"+
+			    				"<div class='date'>"+
+			    					"<span>团期</span>"+
+			    					"<span>"+item.groupGate+"</span>"+
+			    				"</div>"+
+			    				"<div>积云教育免费提供大巴来学校考察，截止到<span class='endDate'>"+item.enddate+"</span>"+
+			    				"</div>"+
+			    			"</div>"+
+			    			"<div class='price'>"+
+			    				"<div>"+
+			    					"<div class='nowPrice'>"+
+			    						"￥"+
+			    						"<span>"+item.nowprice+"</span>"+
+			    					"</div>"+
+			    					"<div class='prePrice'>"+    						
+			    						"<del>￥</del>"+
+			    						"<del>"+item.preprice+"</del>"+
+			    					"</div>"+
+			    				"</div>"+
+			    				"<button>立即抢购</button>"+
+			    			"</div>";
+
+                }           
+
+
+            },
+            error:function(e){
+
+            }
+        });
+
+    }
+
+    requireData(1);
+
+
+
+
+
+
+	</script>
+</body>
+</html>

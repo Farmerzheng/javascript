@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	#container{
+		width:320px;
+		height:480px;
+		background-image: url(img/bg.jpg);
+		background-size: 100% 100%;
+		margin:0 auto;
+		position: relative;
+		overflow: hidden;
+	}
+	#bird{
+		width:40px;
+		height:26px;
+		background-image: url(img/bird0.png);
+		background-size: 100% 100%;
+		position:absolute;
+		left:50px;
+		top:0;
+	}
+</style>
+<body>
+	<div id="container">
+		<div id="bird"></div>
+	</div>
+	<script type="text/javascript">
+	   var container = document.getElementById("container");
+	   var bird = document.getElementById("bird");
+	   var birdSpeed = 2;
+	   var upBoolean = false;
+	   var downBoolean = true;
+	   var pipeArr = [];
+	   var time = 0;
+	   var pipeMove = true;
+		animation();
+		function animation(){
+			requestAnimationFrame(animation);
+			birdDown();
+			birdUp();
+			birdUpdate();
+            time++;
+            if(time%200 == 0){
+                createPipe();
+            }
+
+            updatePipe();
+
+		}
+
+		function birdDown(){
+			if(downBoolean == false)return;
+
+
+			console.log(bird.offsetTop);
+			
+			if(bird.offsetTop >= 390){
+				downBoolean = false;
+				// pipeMove = false;
+			}
+			birdSpeed += 0.2;
+			bird.style.top = bird.offsetTop + birdSpeed + "px";
+		}
+
+		function birdUp(){
+			if(upBoolean == false)return;			
+			birdSpeed += 0.2;
+			if(birdSpeed >= 0){
+				upBoolean = false;
+				downBoolean = true;
+			}
+			bird.style.top = bird.offsetTop + birdSpeed + "px";
+		}
+		function birdUpdate(){
+
+			if(birdSpeed >= 0){
+				bird.style.backgroundImage = "url(img/down_bird0.png)"
+			}else{
+				bird.style.backgroundImage = "url(img/up_bird0.png)"
+			}
+		}
+
+		//点击屏幕，小鸟上飞
+		container.addEventListener("click",function(){
+			 birdSpeed = -3;
+			 downBoolean = false;
+			 upBoolean = true;		
+		});
+
+		function createPipe(){
+
+			var pipe = document.createElement("div");
+
+		    pipeArr.push(pipe);
+
+			pipe.update = function (){
+				if(!pipe)return;
+				pipe.style.left = pipe.offsetLeft - 1 + "px";
+				if(pipe.offsetLeft <= -62){
+					pipe.remove();
+					pipeArr.shift();
+				}
+		    };
+
+			container.appendChild(pipe);
+			pipe.style.cssText = "width:62px;height:423px;position:absolute;left:320px;top:0;";
+			pipeTop = document.createElement("div");
+			pipeBottom = document.createElement("div");
+			pipe.appendChild(pipeTop);
+			pipe.appendChild(pipeBottom);
+			var topHeight = randomFn(300,60);
+			pipeTop.style.cssText = "width:62px;height:"+topHeight+"px;background:url('img/up_mod.png');position:absolute;top:0;left:0";
+			pipeTop.innerHTML = "<img src = 'img/up_pipe.png' style = 'position:absolute;bottom:0;left:0'>"
+			pipeBottom.style.cssText = "width:62px;height:"+(330-topHeight)+"px;background:url('img/down_mod.png');position:absolute;bottom:0;left:0";
+			pipeBottom.innerHTML = "<img src = 'img/down_pipe.png' style = 'position:absolute;top:0;left:0'>";	
+			return pipe;		
+		}
+
+		function updatePipe(){
+			if(pipeMove == false)return;
+			for(var i = 0 ; i < pipeArr.length ; i++){
+				// console.log(pipeArr.length)
+				pipeArr[i].update();
+			}
+		}
+
+
+		
+
+		function randomFn(max,min){
+			return parseInt(Math.random()*(max-min))+min;
+		}
+	</script>
+</body>
+</html>

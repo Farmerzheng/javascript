@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>localStorage</title>
+</head>
+<body>
+<textarea name="text" id="text" cols="30" rows="10"></textarea>
+<button id="save">保存</button>
+<script>
+
+        //localStorage存储的数据是永久的，没有时间限制
+        var oText=document.getElementById('text');
+        var oBtn=document.getElementById('save');
+
+        //获取输入框内的数据并且保存到浏览器数据库
+        oBtn.onclick=function(){
+            localStorage.textarea=oText.value;
+        }   
+
+        //从本地数据库里面取内容
+        console.log(localStorage.textarea);
+
+</script>
+</body>
+</html>

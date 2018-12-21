@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/HitTest.js"></script>
+</head>
+<body>
+    <script>
+        var scoreDiv;
+        var bg;
+        var contentDiv;
+        var startGameBool=false;
+        var eventList=[];
+        const START_PAGE="start_page";
+        const GAME_PAGE="game_page";
+        const OVER_PAGE="over_page";
+        var message;
+        var bird;
+        var score=0;
+        var stopBool=false;
+        var speed=1;
+        var heightLevel=0;
+        var pipeLevel=1;
+        var timeLevel=0;
+
+        var pipeTime=0;
+        var wingSpeed=5;
+        var lawnArr=[];
+        var pipeArr=[];
+
+        createBasePage();
+        animation();
+
+        function createBasePage() {
+            bg=document.createElement("div");
+            document.body.appendChild(bg);
+            contentDiv=document.createElement("div");
+            bg.appendChild(contentDiv);
+            var bgStyle={
+                width:"343px",
+                height:"480px",
+                backgroundImage:"url(img/bg.jpg)",
+                overflow:"hidden",
+                margin:"auto",
+                position:"relative"
+            };
+            var contentStyle={
+                position:"absolute",
+                left:"0px",
+                top:"0px"
+            };
+            setElementStyle(bg,bgStyle);
+            setElementStyle(contentDiv,contentStyle);
+            setScore(0);
+            initPage(START_PAGE);
+
+        }
+
+        function initPage(pageState) {
+            clearDiv(contentDiv);
+            switch (pageState){
+                case START_PAGE:
+                        createStartPage();
+                    break;
+                case GAME_PAGE:
+                    window.addEventListener("mousedown",windowHandler);
+                        createGamePage();
+                    startGameBool=true;
+                    stopBool=false;
+                    break;
+                case OVER_PAGE:
+                    window.removeEventListener("mousedown",windowHandler);
+                    startGameBool=false;
+                    bird=null;
+                    createOverPage();
+                    break;
+            }
+        }
+        
+        function createStartPage() {
+            createImg("img/head.jpg",65,100);
+            createImg("img/bird0.png",210,100);
+            createImg("img/start.jpg",50,250,null,"click",startHandler);
+            createImg("img/score.jpg",200,250,null,"click",scoreHandler);
+            message=new Image();
+            createImg("img/message.jpg",35,200,message,"click",scoreHandler);
+            message.style.display="none";
+        }
+        
+        function createOverPage() {
+            createImg("img/game_over.jpg",65,100);
+            createImg("img/ok.jpg",125,255,null,"click",overOkHandler);
+
+        }
+        
+        function createGamePage() {
+            if(lawnArr.length==0){
+                for(var i=0;i<2;i++){
+                    var lawnimg=new Image();
+                    lawnimg.src="img/banner.jpg";
+                    contentDiv.appendChild(lawnimg);
+                    setElemPosition(lawnimg,i*343,422);
+                    lawnArr.push(lawnimg);
+                }
+            }
+            if(!bird){
+                bird=new Image();
+                bird.src="img/bird0.png";
+                contentDiv.appendChild(bird);
+                bird.style.position="absolute";
+                bird.style.left="30px";
+                bird.style.top="198px";
+                speed=1;
+            }
+        }
+        
+        function createPipeDiv() {
+            var space=Math.floor(randomNum(150-heightLevel,190-heightLevel));
+            var upPipeHeight=Math.floor(randomNum(40,100))+60;
+            var downPipeHeight=422-space-upPipeHeight;
+            var upPipe=createPipe(upPipeHeight,"img/up_mod.png","img/up_pipe.png",true);
+            var downPipe=createPipe(downPipeHeight,"img/down_mod.png","img/down_pipe.png",false);
+            contentDiv.appendChild(upPipe);
+            contentDiv.appendChild(downPipe);
+            downPipe.style.top=(422-downPipe.offsetHeight)+"px";
+            upPipe.style.left="343px";
+            downPipe.style.left="343px";
+            pipeArr.push(upPipe,downPipe);
+        }
+
+        function createPipe(pipeHeight,bgsrc,pipeSrc,bottom) {
+            var div=document.createElement("div");
+            div.style.width="62px";
+            div.style.height=pipeHeight+"px";
+            div.style.backgroundImage="url("+bgsrc+")";
+            div.style.position="absolute";
+            var img=new Image();
+            img.src=pipeSrc;
+            div.appendChild(img);
+            img.style.position="absolute";
+            if(bottom){
+                img.style.bottom="0px";
+            }else{
+                img.style.top="0px";
+            }
+            return div;
+        }
+        
+        function updataLawn() {
+            if(lawnArr.length!=2) return;
+            for(var i=0;i<lawnArr.length;i++){
+                lawnArr[i].style.left=lawnArr[i].offsetLeft-1+"px";
+                if(lawnArr[i].offsetLeft<=-343){
+                    lawnArr[i].style.left="343px";
+                }
+
+
+            }
+        }
+        function updataPipe() {
+            if(pipeTime==0){
+                pipeTime=Math.floor(randomNum(180-timeLevel,300-timeLevel));
+                createPipeDiv();
+            }
+            pipeTime--;
+            var arr=[];
+            for(var i=0;i<pipeArr.length;i+=2){
+
+                pipeArr[i].style.left=pipeArr[i].offsetLeft-pipeLevel+"px";
+                pipeArr[i+1].style.left=pipeArr[i+1].offsetLeft-pipeLevel+"px";
+
+                if(pipeArr[i].offsetLeft<=-62){
+                    setScore(score+1);
+                    pipeArr[i].remove();
+                    pipeArr[i+1].remove();
+                    pipeArr[i]=null;
+                    pipeArr[i+1]=null;
+                }else{
+                    arr.push(pipeArr[i]);
+                    arr.push(pipeArr[i+1]);
+                }
+            }
+            pipeArr=arr.concat();
+            arr.length=0;
+        }
+        
+        function updataBird() {
+            if(!bird) return;
+            if(speed>6){
+                speed=6;
+            }else{
+                speed+=0.1;
+            }
+            if(wingSpeed==0){
+                if(speed>0){
+                    bird.src="img/down_bird"+(bird.src.indexOf("bird0")>-1 ? 1 :0)+".png";
+                }else if(speed<0){
+                    bird.src="img/up_bird"+(bird.src.indexOf("bird0")>-1 ? 1 :0)+".png";
+                }else{
+                    bird.src="img/bird"+(bird.src.indexOf("bird0")>-1 ? 1 :0)+".png";
+                }
+                wingSpeed=5;
+            }
+            wingSpeed--;
+            bird.style.top=bird.offsetTop+speed+"px";
+            if(bird.offsetTop<=0 || bird.offsetTop+26>=422){
+                birdDie();
+            }
+            for(var i=0;i<pipeArr.length;i++){
+                if(HitTest.test(bird,pipeArr[i])){
+                    birdDie();
+                }
+            }
+
+        }
+
+        function birdDie() {
+            window.removeEventListener("mousedown",windowHandler);
+            stopBool=true;
+            if(bird.offsetTop+26>=422){
+                bird.style.top="396px";
+                initPage(OVER_PAGE);
+            }
+        }
+
+        function setScore(num) {
+            if(!scoreDiv){
+                scoreDiv=document.createElement("div");
+                bg.appendChild(scoreDiv)
+            }
+            clearDiv(scoreDiv);
+            var len=num.toString().length;
+            var width=0;
+            for(var j=0;j<len;j++){
+                var img=new Image();
+                var str=String(num).substr(j,1);
+                img.src="img/"+str+".jpg";
+                scoreDiv.appendChild(img);
+                width+=28;
+            }
+            var scoreStyle={
+                position:"absolute",
+                left:(343-width)/2+"px",
+                top:"20px"
+            };
+            setElementStyle(scoreDiv,scoreStyle);
+            score=num;
+            if(num%10==0){
+                heightLevel+=5;
+                pipeLevel+=1;
+                timeLevel+=30;
+            }
+        }
+        
+        function windowHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            e.preventDefault();
+            speed=-3;
+        }
+        function overOkHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            initPage(START_PAGE);
+            setScore(0);
+        }
+        function startHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            initPage(GAME_PAGE);
+
+        }
+        function scoreHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(message.style.display=="none"){
+                message.style.display="block"
+            }else{
+                message.style.display="none"
+            }
+
+        }
+        function setElemPosition(elem,x,y) {
+            elem.style.position="absolute";
+            elem.style.left=x+"px";
+            elem.style.top=y+"px"
+        }
+        function createImg(src,x,y,target,event,eventHandler) {
+            if(!target){
+                target=new Image()
+            }
+            target.src=src;
+            contentDiv.appendChild(target);
+            if(event && eventHandler){
+                target.addEventListener(event,eventHandler);
+                eventList.push({target:target,event:event,eventHandler:eventHandler});
+            }
+            setElemPosition(target,x,y);
+        }
+
+        function randomNum(min,max) {
+            return Math.random()*(max-min)+min;
+        }
+
+        function setElementStyle(elem,style) {
+            for(var str in style){
+                elem.style[str]=style[str];
+            }
+        }
+
+        function animation() {
+            requestAnimationFrame(animation);
+            if(!startGameBool) return;
+            if(!stopBool){
+                updataLawn();
+                updataPipe();
+            }
+            updataBird();
+        }
+
+        function clearDiv(div) {
+            var len=div.children.length;
+            if(div==contentDiv){
+                for(var j=0;j<eventList.length;j++){
+                    eventList[j].target.removeEventListener(eventList[j].event,eventList[j].eventHandler);
+                    eventList[j].target=null;
+                    eventList[j].event=null;
+                    eventList[j].eventHandler=null;
+                    eventList[j]=null;
+                }
+                eventList.length=0;
+                for(var s=0;s<lawnArr.length;s++){
+                    lawnArr[s]=null;
+                }
+                lawnArr.length=0;
+            }
+            for(var i=0;i<len;i++){
+                div.removeChild(div.children[0]);
+            }
+        }
+        </script>
+</body>
+</html>

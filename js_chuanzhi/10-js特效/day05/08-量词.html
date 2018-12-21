@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // +86 1381111111
+    //      1
+    // ? 出现0次，或者出现1
+    console.log( /^a?$/.test('aa') );
+    // + 出现1次，或者多次 >= 1
+    console.log(/^a+$/.test('aaaaaa'));
+
+    // * 出现0次，或者多次  >=0
+    console.log(/^a*$/.test('aaaa'));
+
+    // 出现的次数 >= 2 <=5
+    console.log( /^a{2,5}$/.test('aaaaaaa') );
+    console.log( /^a{0,1}$/.test('aa') );
+
+</script>
+</body>
+</html>

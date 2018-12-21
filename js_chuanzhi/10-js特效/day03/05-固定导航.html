@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            display: block;
+            margin:0 auto;
+        }
+        .nav{
+            height: 83px;
+        }
+        .nav-bd{
+
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="images/top.png" alt="">
+    </div>
+    <div class="nav">
+        <div class="nav-bd">
+            <img src="images/nav.png" alt="">
+        </div>
+    </div>
+    <div class="main">
+        <img src="images/main.png" alt="">
+    </div>
+    <script>
+        var header = document.getElementsByClassName('header')[0];
+        var navBd = document.getElementsByClassName('nav-bd')[0];
+        window.onscroll = function () {
+            //如果滚动坐标大于header的高度时候，转成固定定位 fixed，否则就是不定位 static
+            if( scroll().top >= header.offsetHeight ){
+                navBd.style.position = 'fixed';
+            }else{
+                navBd.style.position = 'static';
+            }
+        }
+
+        function scroll(  ){
+            return {
+                left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+                top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+            }
+        }
+    </script>
+</body>
+</html>

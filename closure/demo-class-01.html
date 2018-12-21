@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button class="btn">按钮1</button>
+	<button class="btn">按钮2</button>
+	<button class="btn">按钮3</button>
+	<button class="btn">按钮4</button>
+	<button class="btn">按钮5</button>
+	<script>
+		var btnList = document.querySelectorAll(".btn");
+		var btnListLength = btnList.length;
+
+		//为按钮数组添加点击事件(遍历)
+		// 如果将btnListLength换成btnList.length以后，每次循环都要重新计算btnList数组的长度，消耗系统性能 
+
+		// for(var i = 0 ; i < btnList.length ; i++){
+		// }
+
+		for(var i = 0 ; i < btnListLength ; i++ ){
+           btnList[i].onclick = function(){
+           	//循环以后i变成5,点击事件触发的时候i肯定也是5
+           	console.log(i);
+           }
+		}
+	</script>
+</body>
+</html>

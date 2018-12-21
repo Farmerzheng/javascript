@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	.container{
+		width:400px;
+		height:500px;
+		margin:0 auto;
+		border:1px solid red;
+	}
+	.container .header{
+		width:100%;
+		height:60px;		
+	}
+	.container .header #time{
+		width:50%;
+		height:100%;
+		float: left;
+		line-height: 60px;
+		text-align: center;
+	}
+	.container .header #score{
+		width:50%;
+		height:100%;
+		float: right;
+		line-height: 60px;
+		text-align: center;
+	}
+	.container #color{
+		height:300px;
+		width:100%;
+		text-align: center;
+		line-height: 300px;
+		font-size: 50px;
+	}
+	.container .text{
+		text-align: center;
+		width:100%;
+		background-color: red;
+		height:60px;
+		line-height: 60px;
+	}
+	.container .button{
+		width:100%;
+		height:80px;
+	}
+	.container .button .btn{
+		width:20%;
+		height:80px;
+		float: left;
+		border-radius:40px;
+		box-shadow:2px 2px 2px black;
+		text-align: center;
+		line-height: 80px;
+		font-size: 50px
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="header">
+			<div id="time">时间</div>
+			<div id="score">得分</div>
+		</div>
+		<div id="color"></div>
+		<div class="text">
+			根据字体的颜色选出与其颜色对应的中文描述
+		</div>
+		<div class="button">
+			<button class="btn"></button>
+			<button class="btn"></button>
+			<button class="btn"></button>
+			<button class="btn"></button>
+			<button class="btn"></button>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+
+	var obj = {
+        //初始化对象
+		init:function(){
+
+			//为按钮添加文本
+           this.changeBtnText();
+
+           //添加中间的文本
+           this.changeMiddleText();
+
+           //添加事件
+           this.addBtnEvent();
+
+           //计时
+           this.calculateTime();
+		},
+
+		totalTime:20,
+
+		calculateTime:function(){
+            var self = this;
+			var timer = setInterval(function(){
+               
+                 self.totalTime -=1;
+
+                 if( self.totalTime == 0){
+                 	clearInterval(timer);
+                 	alert("game over")
+                 }
+                 self.timeDiv.innerHTML = "时间" + self.totalTime;
+
+			},1000)
+		},
+
+		score:0,
+
+		textArr:["红","黄","蓝","绿","黑"],
+
+		colorArr: ["red","yellow","blue","black","green"],
+
+		colorDiv:document.getElementById("color"),
+
+        timeDiv:document.getElementById("time"),
+
+        scoreDiv:document.getElementById("score"),
+
+        btnArr:document.getElementsByTagName("button"),
+
+        randomArr: function (){
+        	
+        	var arr =[];
+                
+                //循环次数不确定的时候用while循环
+        		while(arr.length < 5){
+
+	                var randomNum = this.randomFn(0,4);
+
+	                var flag = true;
+
+	                //将生成的随机数和数组里面其他的数作比较
+
+	                for( var j = 0 ; j <= arr.length ; j++){
+
+	                	if(randomNum == arr[j]){
+
+                           //判断数组当中是否存在生成的这个随机数
+	                		flag = false;
+	                	}
+
+	                }
+
+	                if(flag){
+	                	//数组当中没有这个随机数
+	                	arr.push(randomNum);
+	                }
+
+        		}
+
+        	return arr;
+        },
+        randomFn:function (min,max){
+			return  parseInt(Math.random()*(max-min+1))+min
+		},
+
+    	changeMiddleText:function(){
+			this.colorDiv.innerHTML = this.textArr[this.randomFn(0,4)];
+	        this.colorDiv.style.color = this.colorArr[this.randomFn(0,4)];
+    	},
+
+        changeBtnText:function(){
+
+        	var randomArray = this.randomArr();
+
+		    for(var i = 0 ; i < this.btnArr.length ; i++){
+
+		    	this.btnArr[i].innerHTML = this.textArr[randomArray[i]];
+
+		    	this.btnArr[i].style.color = this.colorArr[randomArray[i]];
+                 
+                // this.addBtnEvent(this.btnArr[i]);
+
+		    }
+        },
+        addBtnEvent:function(){          
+
+          var self = this;//this指的是obj   
+
+           for(var i = 0 ; i < this.btnArr.length ; i++){
+
+		    	
+           addEvent(this.btnArr[i],"click",function(){
+
+            //点击事件里面this指的是按钮本身
+             var text = this.innerHTML;
+
+             var color = self.colorDiv.style.color;
+
+
+
+             switch (text){
+
+             	case "红":
+             	 text = "red";
+             	break;
+             	case "黄":
+             	 text = "yellow";
+             	break;
+             	case "黑":
+             	 text = "black";
+             	break;
+             	case "蓝":
+             	 text = "blue";
+             	break;
+             	case "绿":
+             	 text = "green"
+             	break;
+
+             }
+
+             console.log(text,color);
+
+             if(text == color){
+             	// alert("加分")
+                self.score += 10;
+                self.scoreDiv.innerHTML = "得分" + self.score;
+             }else{
+             		// alert("加分")
+                self.score -= 10;
+                self.scoreDiv.innerHTML = "得分" + self.score;
+             }
+
+
+             // console.log(text,color);
+             self.changeMiddleText();
+             self.changeBtnText();
+
+        	})  
+         
+
+		    }             	
+        }
+
+	}
+    //初始化对象
+	obj.init();
+
+   function addEvent(obj,event,func){
+
+	    if(obj.addEventListener){
+			obj.addEventListener(event,func);
+		}else{
+			obj.attachEvent("on"+event,func);
+		}  
+	}
+
+
+	</script>
+</body>
+</html>	

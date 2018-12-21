@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //输入某年某月某日，判断这一天是这一年的第几天？
+    // 参数，年、月、日
+    // 返回值： 数字
+    function getDays( year,month,date ){
+        var days = 0;
+        //1.获取当前月份之前的天数
+            //知道不同的月，每个月分别有多少天 -----> 通过数组存储12个月，每个月的天数
+        var dayArr = [ 31,28,31,30,31,30,31,31,30,31,30,31 ];
+        //根据当前月，来获取前边的月份中，所有的天数
+        for( var i = 1; i < month; i++){
+            //找到数组中对应的天数
+            days += dayArr[ i - 1 ]
+        }
+        //还需要加上当前月份中天数
+        days += date;
+        // 闰年，必须大于2月份才能在天数基础上+1
+        if( isRun( year ) && month > 2 ){
+            days += 1;
+        }
+        return days;
+    }
+    // 判断是否为闰年   4年一闰， 100年不闰，400年再闰
+    //  参数，年份
+    //  返回值： 布尔型   是 true  不是 false
+    function isRun( year ){
+        if( year % 4 === 0 && year % 100 !== 0 || year % 400 === 0 ){
+            return true;
+        }
+        return false;
+    }
+
+    console.log( getDays( 2017,3,1 ) );
+    //console.log( isRun(3200) );
+</script>
+</body>
+</html>

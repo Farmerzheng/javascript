@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="Drag-class-ES6.js"></script>
+</head>
+<style>
+body {
+  /*margin:0;*/
+  /*padding:0;*/
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+</style>
+
+<body>
+  <div class="box"></div>
+  <script>
+    // Drag类可以让box具有拖拽的功能而且还可以拿到box
+  var box = new Drag(document.querySelector(".box"));
+  </script>
+</body>
+
+</html>

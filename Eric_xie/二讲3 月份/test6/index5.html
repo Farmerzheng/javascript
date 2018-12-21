@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+        .div1
+        {
+            background-color: deepskyblue;
+        }
+        .table
+        {
+            width: 600px;
+            height: 400px;
+            border-collapse: collapse;
+        }
+        td
+        {
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+<div></div>
+    <script>
+        $("div").css("width");//获取div样式的width
+        $("div").css("width","300px");//设置div样式的width的值为300px
+        $("div").css(["width","height"]);//获取div样式的width和高度，返回一个对象
+        $("tr").css("backgroundColor",function (index,value) {
+            if(index%3==0){
+                return "rgba(255,0,0,0.3)";
+            }else if(index%3==1){
+                return "rgba(0,255,0,0.3)";
+            }else{
+                return "rgba(0,0,255,0.3)";
+            }
+        });//设置行的背景色，被3整除为红色，被3整除余1的为绿色，其他是蓝色
+        $("td").css({
+            "backgroundColor":"rgba(255,0,0,0.3)",
+            "border":"none"
+        });//设置td的多个属性，包括背景色和边线
+
+        $("div")[0].addEventListener("click",clickHandler);
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            $(this).toggleClass("div1")
+        };//当点击对象时，切换样式，toggleClass(styleName,true)如果第二个参数不填写，就是往返切换，如果填写为true，切换一次，如果填写为false不切换
+
+        $("table").addClass("table");//添加样式，可以添加多个，样式名称用空格隔开
+        $("table").removeClass("table");//删除样式，可以添加多个，样式名称用空格隔开
+
+
+        var obj={a:1,b:2};
+        $.each(obj,function (str,value) {
+            console.log(str,value)
+        })//each遍历，可以遍历对象的所有属性
+
+        $("tr").each(function (index,elem) {
+            console.log(index,elem)
+        })//可以遍历jq对象所有元素
+
+
+        /*console.log($("div").eq(0).css(["width","height"]))
+        $("div").eq(0).css(["width","height"])*/
+        
+       /* $("tr").css("backgroundColor",function (index,value) {
+            if(index%3==0){
+                return "rgba(255,0,0,0.3)";
+            }else if(index%3==1){
+                return "rgba(0,255,0,0.3)";
+            }else{
+                return "rgba(0,0,255,0.3)";
+            }
+        })*/
+
+        /*var obj={a:1,b:2};
+        $.each(obj,function (str,value) {
+            console.log(str,value)
+        })*/
+       /* $("tr").each(function (index,elem) {
+                console.log(index,elem)
+        })
+        $("td").css({
+            "backgroundColor":"rgba(255,0,0,0.3)",
+            "border":"none"
+        })*/
+   /*     $("table").addClass("table");
+        $("table").removeClass("table");*/
+
+        /*$("div")[0].addEventListener("click",clickHandler);
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            $(this).toggleClass("div1")
+        }*/
+    </script>
+</body>
+</html>

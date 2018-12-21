@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		img{
+			border: 1px solid red;
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<p></p>
+</body>
+<script type="text/javascript">
+	var p = document.querySelector('p');
+
+	var arr = ['1.jpeg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpeg','7.jpg']
+
+	var arrImg = [];   //存放图片对象
+
+	var index = 0;
+
+	// 创建7个img
+	for(var i = 0; i < 7; i++){
+
+		var img = new Image();
+
+		img.src = 'http://127.0.0.1/images/' + arr[i];
+
+		arrImg.push(img);
+
+		// img src=""
+		img.onload = function() {
+
+			index++;
+
+			var rate = index / arr.length *100 + '%';
+
+			console.log(rate);
+
+			p.innerHTML = rate;
+
+			// 当所有的图片加载完成后，显示在body中
+			if(index >= 7){
+
+				for(var j = 0; j < arrImg.length; j++){
+					document.body.appendChild(arrImg[j]);
+				}
+
+			}
+		}
+
+	}
+
+</script>
+</html>

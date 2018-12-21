@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  class Plane {
+    constructor(name) {
+      this.name = name
+    }
+
+    move() {
+      console.log(this.name + "能够运动")
+    }
+  }
+  // 创建一个MyPlane类，继承Plane
+  class MyPlane extends Plane {
+    // 自类的constructor方法当中一定要有父类contructor方法的参数
+    // 自类自己的参数也要写在constructor方法上面
+
+    constructor(name,bullet) {
+      // 在派生的类里面必需要调用super方法
+      // 如果不调用super方法会出现referenceError(引用错误)
+      // 不调用super方法，里面没有this这个变量
+      // super() 方法的作用？ 
+      //1、创建this对象，并且让this对象的__proto__（原型链指针）指向Plane
+      //2、调用父类的constructor方法
+
+      super(name);
+      this.bullet = bullet;
+    }
+
+    shoot(){
+       console.log("发射"+this.bullet)
+    }
+  }
+  var myPlane = new MyPlane("飞机","炮弹");
+  myPlane.move();
+
+  // myPlane.__proto__---->Plane
+  // Plane.prototype  = {move(){}}
+  myPlane.shoot();
+  </script>
+</body>
+
+</html>

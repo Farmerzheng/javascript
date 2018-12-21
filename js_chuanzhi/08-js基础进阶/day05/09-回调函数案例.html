@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //计算加减乘除，把加减乘除分别放到了四个函数中
+    //
+
+    function fn( a,b,cal ){
+        return cal(a,b);
+    }
+
+    console.log( fn( 2,5,jia ) );
+
+    console.log(  fn(3,4,cheng)  );
+
+    function jia(a,b){
+        return a+b;
+    }
+    function jian(a,b){
+        return a-b;
+    }
+    function cheng(a,b){
+        return a*b;
+    }
+    function chu(a,b){
+        return a/b;
+    }
+
+
+</script>
+</body>
+</html>

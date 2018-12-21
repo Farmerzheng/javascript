@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //输入某年某月某日，判断这一天是这一年的第几天？
+    // 参数，年、月、日
+    // 返回值： 数字
+    function getDays( year,month,date ){
+        var days = 0;
+        var dayArr = [ 31,28,31,30,31,30,31,31,30,31,30,31 ];
+        for( var i = 1; i < month; i++){
+            days += dayArr[ i - 1 ]
+        }
+        days += date;
+        if( isRun( year )  && month > 2 ){
+            days += 1;
+        }
+        return days;
+    }
+    function isRun( year ){
+        if( year % 4 === 0 && year % 100 !== 0 || year % 400 === 0 ){
+            return true;
+        }
+        return false;
+    }
+
+    console.log( getDays( 2017,3,1 ) );
+    //console.log( isRun(3200) );
+</script>
+</body>
+</html>

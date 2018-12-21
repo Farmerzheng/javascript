@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div style="left:200px;top:100px;"></div>
+<script>
+    var div = document.getElementsByTagName('div')[0];
+    console.log( div.style.left );
+
+    console.log( getStyle('top') );
+
+    //通过方法获取css属性
+    function getStyle( attr ){
+        //如果以参数形式，只能是中括号形式
+        return div.style[attr];
+    }
+</script>
+</body>
+</html>

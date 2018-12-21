@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear:both;
+        }
+        .wrap{
+            position: relative;
+            width: 500px;height: 98%;
+            border: 5px solid #cef;
+            margin:0 auto;
+        }
+        .countdown,.score{
+            width: 50%;
+            padding: 10px 0 30px;
+            text-align: left;
+            text-indent: 1em;
+            font-size: 30px;
+        }
+        .txt{
+            font-size: 60px;
+            line-height: 180px;
+            text-align: center;
+        }
+        .tip{
+            text-align: center;
+            font-size: 32px;
+            margin-top: 60px;
+        }
+        .btns{
+            width: 510px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            bottom: 30px;
+            line-height: 100px;
+            margin-left: -10px;
+        }
+        ul.btns li{
+            float: left;
+            width:92px;
+            list-style: none;
+            text-align: center;
+            font-size: 42px;
+            background: #ccc;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+    <div class="header clearfix">
+        <div class="countdown fl">倒计时：60</div>
+        <div class="score fr">得分：0</div>
+    </div>
+    <div class="main">
+        <p class="txt">黄</p>
+        <p class="tip">根据字体的颜色选出与其颜色对应的中文描述</p>
+    </div>
+
+    <ul class="btns">
+        <li>红</li>
+        <li>黄</li>
+        <li>蓝</li>
+        <li>绿</li>
+        <li>黑</li>
+    </ul>
+
+</body>
+<script type="text/javascript">
+
+    // 手机号:15093617666
+    // 存放文字的数组
+    var txtArr = ["红","黄","蓝","绿","黑"];
+    // 存放颜色的数组
+    var colorArr = ["red","yellow","blue","green","black"];
+
+    // 获取上边文字标签
+    var txtP = document.getElementsByClassName('txt')[0];
+
+    // 获取下边5个按钮
+    var btns = document.getElementsByClassName("btns")[0].getElementsByTagName('li');
+
+    // 获取存放得分的标签
+    var score = document.getElementsByClassName('score')[0];
+
+    // 存放分数的变量
+    var total = 0;
+
+    // 改变上边文字颜色和内容
+    topChange();
+
+    //改变按钮颜色和内容
+    bottomChange();
+
+
+
+    // 随机数
+    function randNumFn(min,max){
+        return parseInt(Math.random() * (max - min + 1) + min);
+    }
+
+    // 随机一组不相同的数
+    function randNumArrFn(){
+        var arr = [];
+        while (arr.length < 5) {
+            var rand = randNumFn(0, 4);
+            var bol = true;
+            for(var i = 0; i < arr.length; i++){
+                if(arr[i] == rand){
+                    bol = false;
+                }
+            }
+            if(bol == true){
+                arr.push(rand);
+            }
+        }
+        return arr;
+    }
+
+
+    // 给下边按钮添加点击事件
+    for(var i = 0; i < btns.length; i++){
+        btns[i].onclick = function(){
+
+            console.log(colorArr.indexOf(txtP.style.color));
+            console.log(txtArr.indexOf(this.innerHTML));
+
+            if(colorArr.indexOf(txtP.style.color) == txtArr.indexOf(this.innerHTML)){
+                // alert("点对了");
+                // 改变上边文字颜色和内容
+                topChange();
+                // 改变下边按钮颜色和内容
+                bottomChange();
+                total = total + 10;
+                score.innerHTML = "得分:"+total;
+            }
+        }
+    }
+
+    // 给上边文字设置颜色和内容
+    function topChange(){
+        txtP.innerHTML=txtArr[randNumFn(0,4)];
+        txtP.style.color=colorArr[randNumFn(0,4)];
+    }
+
+    // 给下边按钮设置颜色和内容
+    function bottomChange(){
+        // 定义一个数组，用来存放数组的下标
+        var txtRandArr = randNumArrFn();//txtRandArr = [0,3,2,1,4];
+
+        var colorRandArr = randNumArrFn();
+
+        // 给下边按钮循环添加文字和颜色
+        for(var i = 0; i < btns.length; i++){
+            btns[i].innerHTML = txtArr[txtRandArr[i]];
+            btns[i].style.color = colorArr[colorRandArr[i]];
+        }
+    }
+
+
+
+
+
+
+
+
+</script>
+</html>

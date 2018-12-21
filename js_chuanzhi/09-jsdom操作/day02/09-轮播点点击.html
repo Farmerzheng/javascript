@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 500px;
+            margin:100px auto;
+        }
+        li{
+            width: 14px;
+            height: 14px;
+            background: orange;
+            float: left;
+            margin:0 7px;
+            border-radius: 50%;
+        }
+        .current{
+            background: blue;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li class="current"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    //1. 给所有的li添加点击事件
+    //2. 点击当前的li，添加类current
+    //3. 当前添加类的同时，要确保其它的li没有类current
+       // dom ，找其它兄弟节点
+       //  先让所有的li都移除类current，然后再给当前的li添加类current
+
+
+    //1. 给所有的li添加点击事件
+    var lis = document.getElementsByTagName('li');
+    for( var i = 0; i < lis.length; i++ ){
+        lis[i].onclick = function(){
+            // 3.在给当前的li添加current类前，先移除所有li上的类current
+            for( var j = 0; j < lis.length; j++ ){
+                lis[ j].className = '';
+            }
+            //2. 点击当前的li，添加类current
+            this.className = 'current';
+        }
+    }
+
+</script>
+</body>
+</html>

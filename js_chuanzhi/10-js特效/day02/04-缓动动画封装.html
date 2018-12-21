@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 300px;
+            background: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<button>按钮2</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var button2 = document.getElementsByTagName('button')[1];
+    var div = document.getElementsByTagName('div')[0];
+
+    button.onclick = function () {
+        animate( div,400 );
+    }
+    button2.onclick = function () {
+        animate( div,600 );
+    }
+    function animate ( element,target ) {
+        clearInterval( element.timer );
+        element.timer = setInterval( function () {
+            //缓动动画，先确定步长
+            var step = ( target - element.offsetLeft ) / 10;
+            //二次处理步长，大于0 ，向上取整，否则小于0 ，向下取整
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            //每次在当前的基础之上加上步长
+            element.style.left = element.offsetLeft + step + 'px';
+            //清除定时器
+            if( target === element.offsetLeft ){
+                clearInterval(element.timer);
+            }
+        },15 );
+    }
+</script>
+</body>
+</html>

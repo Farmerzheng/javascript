@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+    .container{
+    	width:300px;
+    	margin:0 auto;
+    	background-color: pink
+    }
+	textarea{
+		vertical-align: top;
+	}
+	.content{
+		margin:10px 0;
+	}
+	.container #comment{
+		/*height:100px;*/
+		width:300px;
+	}
+	.container #comment p{
+		margin :5px 0;
+	}
+	.container #comment #title{
+		/*height:50px;*/
+		width:300px;
+		background-color: gray;
+	}
+	.container #comment #content{
+		/*height:50px;*/
+		width:300px;
+		background-color: lightgray
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="content">
+			<label for = "a">标题</label>
+			<input type="text" name="title" id = "a">
+		</div>
+		<div class="content">
+			<label for = "b">内容</label>
+		    <textarea cols="25" rows="10" id = "b"></textarea>
+		</div>
+		<button id = "submit">提交</button>
+	<!-- 	<div id="comment">
+			 <p id = "title"></p>
+			 <p id = "content"></p>
+		</div> -->
+		<script type="text/javascript">
+		    var container = document.querySelector(".container");
+			var btn = document.getElementById("submit");
+			var title = document.getElementById("a");
+			var content = document.getElementById("b");
+
+			btn.addEventListener("click",function(){
+				//获取到输入框里面的内容
+               var titleText = title.value;
+               var contentText = content.value;
+               
+               //创建一个comment盒子
+               var comment = document.createElement("div");
+               comment.setAttribute("id","comment");
+            
+               var p1 = document.createElement("p");
+               var p2 = document.createElement("p");
+
+               p1.innerText = titleText;
+               p1.setAttribute("id","title");
+               p2.innerText = contentText;
+               p2.setAttribute("id","content");
+
+               var btn = document.createElement("button");
+               btn.innerText = "删除";
+               btn.onclick = function(){
+               	this.parentNode.parentNode.remove();
+               }
+               p2.appendChild(btn);
+
+
+               comment.appendChild(p1);
+               comment.appendChild(p2);
+
+               container.appendChild(comment);
+                
+            	title.value= "";
+            	content.value = "";
+
+
+              
+			})
+
+		</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    body{
+    	height:2000px;
+    }
+	button{
+		position:fixed;
+		right:0;
+		bottom:100px;
+		display: none
+	}
+</style>
+<body>
+    <button>回到顶部</button>
+	<script type="text/javascript">
+
+	    var btn = document.getElementsByTagName("button")[0];
+
+        //可视区的高度
+		var windowHeight = document.documentElement.clientHeight;
+        
+        //整个页面的高度
+		var pageHeight = document.documentElement.scrollHeight;
+		
+        var scrollTop = null;
+        var scroll = false;
+        var speed;
+
+    
+
+		window.onscroll = function(){
+
+			//页面滚去的高度
+		   scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+
+			if(scrollTop+windowHeight>=pageHeight){
+                btn.style.display = "block";
+			}
+		}
+
+
+	
+
+		btn.onclick = function(){	
+           
+           //直接让卷去的高度等于0
+		   // document.documentElement.scrollTop = document.body.scrollTop = 0;         
+           scroll = true;
+		}
+        
+        
+        
+        
+         animation();
+
+         function animation(){ 
+
+            //让scrollTop值由快到慢变成0
+            //pageHeight - windowHeight ——————》0
+
+             //执行动画的第一行就写这句话
+             requestAnimationFrame(animation);        
+             
+             //让滚动条滚动到顶部
+              scrollToTop();
+
+
+         }
+
+         function scrollToTop(){
+         	 //第一次进入页面滚动条不会滚动（不会执行下面的代码）
+            // 当点击按钮的时候让滚动条滚动
+            if(scroll == false)return;
+
+            //滚动条到达最顶端不执行下面的代码
+            if(parseInt(scrollTop) == 0){
+                 scroll = false;
+            }           
+
+            //速度在不断减小,因为scrollTop在不断减小 
+            speed = scrollTop/9;
+            
+            //让scrollTop不断减小，直到变成0
+            scrollTop -= speed;           
+           
+
+            //让页面回到最顶端
+             document.documentElement.scrollTop = document.body.scrollTop = parseInt(scrollTop);
+         }
+
+       
+
+
+	</script>
+</body>
+</html>

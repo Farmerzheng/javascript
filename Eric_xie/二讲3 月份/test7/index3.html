@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <style>
+        img
+        {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            transition: all 2s;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    var s=0;
+    for(var i=0;i<10;i++){
+        for(var j=0;j<6;j++){
+            s++;
+            var img=$("<img>");
+            img.attr("src","img/golf"+s+".jpg");
+            $("body").append(img);
+            img.css({
+                "left":j*50+"px",
+                "top":i*50+"px",
+                "zIndex":s
+            })
+        }
+    }
+    $("img").hover(function () {
+       this.index1=$(this).css("zIndex");
+        this.x1=$(this).offset().left;
+        this.y1=$(this).offset().top;
+        $(this).css({
+            "width":"200px",
+            "height":"200px",
+            "left":$(this).offset().left-100+"px",
+            "top":$(this).offset().top-100+"px",
+            "zIndex":"999"
+        })
+    },function () {
+        $(this).css({
+            "width":"50px",
+            "height":"50px",
+            "left":this.x1+"px",
+            "top":this.y1+"px",
+            "zIndex":this.index1
+        })
+    })
+</script>
+</body>
+</html>

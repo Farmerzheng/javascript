@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+    <div>
+    	<img src="img/nature1.jpg">
+    </div>
+	<script type="text/javascript">
+        
+        var oImg = document.getElementsByTagName("img")[0];
+        
+        oImg.onmouseover = function(){
+        	//鼠标移入，图片淡出
+
+        	 var animation;
+           var iTarget = 100;
+           var ispeed = 4;
+            
+            function step(){
+
+              iTarget -=ispeed;
+
+              if(iTarget == 0){
+
+                cancelAnimationFrame(animation)
+              }else{
+                oImg.style.opacity = iTarget/100;
+                oImg.style.filter = "alpha(opacity="+iTarget+")";
+
+               animation =  requestAnimationFrame(step)
+              }              
+
+            }  
+
+           animation = requestAnimationFrame(step)
+        }
+
+
+        oImg.onmouseout = function(){
+        	//鼠标移入，图片淡出
+
+        	
+           var animation;
+           var iTarget = 0;
+           var ispeed = 4;
+            
+            function step(){
+
+              iTarget +=ispeed;
+
+              if(iTarget == 100){
+
+                cancelAnimationFrame(animation);
+              }else{
+                oImg.style.opacity = iTarget/100;
+                oImg.style.filter = "alpha(opacity="+iTarget+")";
+
+               animation =  requestAnimationFrame(step)
+              }              
+
+            }  
+
+           animation = requestAnimationFrame(step)
+        }      
+      
+	   
+	</script>
+</body>
+</html>	

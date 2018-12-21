@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<ul>
+    <li id="li1">1</li>
+    <li class="liName">2</li>
+    <li class="liName">3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+<h1>a</h1>
+<h2>b</h2>
+    <script>
+        $("li:first");//li第一项
+        $("li:last");//li最后一项
+        $("li:not(#li1)");//li中不是id=li1的元素
+        $("li:not(.liName)");//li中不是class=liName的元素
+        $("li:even");//li中所有偶数下标的元素
+        $("li:odd");//li中所有奇数下标的元素
+        $("li:eq(2)");//li中下标是2的元素
+        $("li:gt(2)");//li中下标大于2的元素
+        $("li:lt(2)");//li中下标小于2的元素
+        $(":header");//选中h1到h6的所有标题
+        $(":animated");//正在执行动画的元素
+        $(":focus");//正在被焦点汇聚的元素
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position:absolute;
+            left:0;
+            top:40px;
+        }
+        div:nth-of-type(2){
+            background: orange;
+            margin-top:10px;
+            top:270px;
+        }
+    </style>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<div></div>
+<div></div>
+<script>
+    var buttons = document.getElementsByTagName('button');
+    var divs = document.getElementsByTagName('div');
+
+    buttons[0].onclick = function () {
+        animate( divs[0],400 );
+    }
+    buttons[1].onclick = function () {
+        animate( divs[1],600 );
+    }
+
+    //完整封装animate
+    //两个参数，第一个 运动的元素  第二个 目标位置
+    // element是所要操作的元素（dom对象）,
+    // 把timer以成员属性的形式添加到dom对象中，此时timer都是独立的
+    function animate ( element,target ) {
+        clearInterval( element.timer );
+        element.timer = setInterval( function () {
+            //判断step是正，还是负
+            // 如果目标值大于当前元素的位置，就是正 ，否则负
+            var step = target > element.offsetLeft ? 10 : -10;
+            //每次运动都是加 10
+            element.style.left = element.offsetLeft + step + 'px';
+            // 判断合适清除定时器
+            // 如果目标值和当前的位置相差不到一个step，清除定时器，设置盒子的位置，为目标值
+            if( Math.abs( target - element.offsetLeft ) < Math.abs(step) ){
+                element.style.left = target + 'px';
+                clearInterval( element.timer );
+            }
+        },15 );
+    }
+</script>
+</body>
+</html>

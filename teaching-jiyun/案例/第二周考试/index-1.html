@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        ul{
+            list-style: none;
+        }
+       #ul1 li{
+            height:25px;
+            line-height: 25px;
+           background: url("bj.gif")no-repeat;
+           text-indent: 2em;
+        }
+
+        img{
+            display: block;
+        }
+
+        #ul2{
+            display: none;
+        }
+        #ul3{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<ul id="ul1">
+    <li id="lis">一级菜单A</li>
+    <ul id="ul2">
+        <li id="lis1" class="two">文管产品</li>
+            <ul id="ul3">
+                <li>asdf</li>
+                <li>asdf</li>
+                <li>asdf</li>
+                <li>asdf</li>
+                <li>asdf</li>
+            </ul>
+        <li id="two">桌面文具</li>
+    </ul>
+    <li id="lis2">一级菜单B</li>
+    <li id="lis3">一级菜单C</li>
+</ul>
+<script>
+    var ul1=document.getElementById("ul1");
+    var ul2 = document.getElementById("ul2");
+    var ul3= document.getElementById("ul3");
+    var lis=document.getElementById("lis");
+    var lis1=document.getElementById("lis1");
+    var lis2=document.getElementById("lis2");
+    var lis3=document.getElementById("lis3");
+    var two=document.getElementById("two");
+
+    lis.addEventListener("click",clickHander);
+    lis1.addEventListener("click",towClickHander);
+    two.addEventListener("click",towClickHander);
+    lis2.addEventListener("click",clickHander);
+    lis3.addEventListener("click",clickHander);
+
+    var bool=false
+    function clickHander(e) {
+        if(!e){
+            e=window.event;
+        }
+        if (!bool){
+            ul2.style.display="block";
+            console.log(bool)
+          
+        }else {
+            ul2.style.display="none";
+        
+        }
+        if (e.target==lis2){
+            ul2.style.display="none";
+        }else if (e.target==lis3){
+            ul2.style.display="none";
+        }
+        bool=!bool;
+    }
+    function towClickHander(e) {
+        if(!e){
+            e=window.event;
+        }
+        if (bool){
+            ul3.style.display="block";
+            console.log(bool)
+      
+            ul3.style.display="none";
+          
+        }
+        if (e.target==two){
+            ul3.style.display="none";
+        }
+        bool=!bool;
+    }
+
+</script>
+</body>
+</html>

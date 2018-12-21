@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            /*var img=new Image();
+            img.src="images/golf0.jpg";
+            img.onload=function () {
+                document.body.appendChild(img);
+            }*/
+            var imgList=[];
+            var sum=-1;
+            loadImage();
+            function loadImage(e) {
+                if(!e){
+                    e=window.event;
+                }
+                sum++;
+
+                if(this && this!=window){
+                    imgList.push(this)
+                }
+                if(sum>71){
+                    appchildFun();
+                    return;
+                }
+                var img=new Image();
+                img.src="images/golf"+sum+".jpg";
+                img.addEventListener("load",loadImage);
+            }
+            function appchildFun() {
+                for (var i=0;i<imgList.length;i++){
+                    document.body.appendChild(imgList[i]);
+                }
+            }
+        </script>
+</body>
+</html>

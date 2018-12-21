@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //一、从1乘到100；
+//    var total = 1;
+//    for(var i = 1; i <= 100; i++){
+//        total = total * i;
+//    }
+//    console.log( total );
+    // 二、计算出1—100之间所有不能被7整除的整数的数字之和。
+//    var sum = 0;
+//    for(var i = 1; i <= 100; i++){
+//        if( i % 7 !== 0 ){
+//            //不能整除的时候，产生余数，就把i放入到sum中
+//            sum = sum + i;
+//        }
+//    }
+//    console.log( sum );
+// 三、计算出1—100之间所有不能被3整除的整数的和大于(或等于)2000的数字。
+    var sum = 0;
+    for( var i = 1; i <= 100; i++ ){
+        //不能被3整除的整数
+        if( i % 3 !== 0 ){
+            sum = sum + i;
+            //输出之前，判断是否大于等于2000
+            if( sum >= 2000){
+                console.log( sum );
+            }
+        }
+    }
+</script>
+</body>
+</html>

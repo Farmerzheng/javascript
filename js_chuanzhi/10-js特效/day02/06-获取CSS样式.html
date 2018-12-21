@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: blue;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+    //console.log( window.getComputedStyle );
+    var div = document.getElementsByTagName('div')[0];
+    //获取样式（不分位置）
+    //window.getComputedStyle,  w3c浏览器支持的标准
+    //console.log( window.getComputedStyle( div,null )['font-size'] );
+    // currentStyle  ie8以下支持的标准
+    //console.log( div.currentStyle['height'] );
+
+    console.log( getStyle(div,'height') );
+    // 封装获取样式
+    function getStyle( obj,attr ){
+        //判断当前的浏览器支持哪一个
+        // 能力检测  支持w3c
+        if( window.getComputedStyle ){
+            return window.getComputedStyle(obj,null)[attr];
+        }else{
+            return obj.currentStyle[attr];
+        }
+    }
+</script>
+</body>
+</html>

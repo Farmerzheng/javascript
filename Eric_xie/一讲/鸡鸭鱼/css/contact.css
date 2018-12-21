@@ -1,0 +1,106 @@
+.wrap {
+	width: 100%;
+	margin-top: 70px;
+	position: relative;
+	text-align: center;
+	padding-top: 7em;
+	padding-bottom: 17em;
+	background: url(../img/contant/contact_point_bg.png) no-repeat;
+	background-color: #f5f5f5;
+	background-position: center 69px;
+}
+
+.wrap .conwrap {
+	/*width: 100%;*/
+	margin-bottom: 30px;
+}
+nav #firstUl li:nth-child(6) {
+	border: 1px solid gray;
+}
+nav #firstUl li:nth-child(6) a {
+	color: white;
+}
+.wrap .conwrap span {
+	font-size: 1.4em;
+	vertical-align: middle;
+	font-weight: bold;
+	font-family: arial;
+}
+.wrap .place {
+	width: 100%;
+}
+.wrap .conwrap em {
+	font-weight: bold;
+	font-style: normal;
+	vertical-align: middle;
+	font-size: 1.1em;
+	color: #595757;
+}
+
+.wrap .mailwrap {
+	margin-bottom: 5em;
+}
+
+.wrap .mailwrap img {
+	vertical-align: middle;
+	margin-right: 7px;
+	width: 32px;
+}
+
+.wrap .mailwrap span {
+	font-size: 1.4em;
+	vertical-align: middle;
+	font-weight: bold;
+	font-family: arial;
+}
+
+.wrap .mailwrap em {
+	font-style: normal;
+	vertical-align: middle;
+	font-size: 1.1em;
+	color: #595757;
+}
+
+.wrap .con-phone-wrap {
+	width: 75%;
+    margin: 0 auto;
+    overflow: hidden;
+    /*zoom: 1;*/
+    font-size: 0.8em;
+    padding-left: 23%;
+    min-width: 640px;	
+}
+.wrap .con-phone-wrap .phone {
+	text-align: left;
+	width: 20%;
+	min-width: 117px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.wrap .con-phone-wrap .phoneone {
+	width: 25%;
+}
+.wrap .con-phone-wrap .phonethree {
+	width: 45%;
+}
+.wrap .con-phone-wrap .phone .num {
+	display: inline-block;
+	vertical-align: middle;
+}
+.wrap .con-phone-wrap .phone .pic {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 7px;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+

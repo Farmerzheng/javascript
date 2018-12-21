@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript" src="动画封装/tween.js"></script>
+<!-- <script type="text/javascript" src="lib/jquery-3.1.0.js"></script> -->
+<style type="text/css">
+      *{
+      	margin:0;
+      	padding:0;
+      }
+	.box{		
+		width:500px;
+		height:500px;
+		position:relative;
+		left:0px;
+		top:0px;
+		border:1px solid red;
+	}
+	.box .ball{
+        position:absolute;
+        width:30px;
+        height:30px;
+        left:0;
+        top:0;
+        border-radius: 15px;
+        background-color: yellow
+	}
+</style>
+<body>
+	<div class="box">
+	</div>
+	<script type="text/javascript">
+
+      var box = document.getElementsByClassName("box")[0];
+
+      function Ball(speed){
+
+          var self = this;
+          
+          this.body = document.createElement("div");
+
+          this.body.style.cssText = "width:30px;height:30px;background-color:yellow;position:absolute;left:0;top:0;border-radius:15px";
+
+          box.appendChild(this.body);
+
+          this.position = { left : 0 , top : 0 };
+          this.speed = speed||{ x : 3 , y : 5};
+
+
+          this.move = function(){
+               requestAnimationFrame(this.step);
+               console.log(this.body.offsetWidth)
+          }
+
+          this.step = function(){
+
+              self.position.left += self.speed.x;
+              self.position.top += self.speed.y;
+
+              if(self.position.left > 500-self.body.offsetWidth||self.position.left <0){
+
+                self.speed.x = -self.speed.x;
+
+              }else if(self.position.top > 500-self.body.offsetHeight || self.position.top < 0){
+
+                self.speed.y = -self.speed.y;
+              }
+
+              self.body.style.left = self.position.left + "px";
+              self.body.style.top = self.position.top + "px";
+
+              
+
+              requestAnimationFrame(self.step);
+
+          }
+
+      }
+
+      var ball1 = new Ball({x:6,y:9});
+
+
+      ball1.move();
+
+      var ball2 = new Ball({x:8,y:4});
+
+      ball2.move();
+
+	</script>
+      }
+</body>
+</html>	

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #form1{width: 60%;height:300px;background: #999;margin: 0 auto;padding:10px;}
+    #wrap div{}
+    #wrap div input{}
+</style>
+<body>
+  <form id="form1">
+      <div id="name">姓名：<input type="text" title="a" name="name"><span></span></div>
+      <div>地址：<input type="text" name="address"></div>
+      <div >城市：<input type="text" name="city"><span></span></div>
+      <div>省份：<select  id="sel" >
+                     <option class="please_select" value="请选择……"></option>
+                     <option value="河北"></option>
+                     <option value="河南"></option>
+                 </select>
+            邮编：<input type="text" name="postCode">
+      </div>
+      <div>电话号码：<input type="text" name="city"></div>
+      <div>干性食物数量：<input type="text" name="hard_footsize"> 软性食物数量：<input type="text" name="soft_footsize"></div>
+      <div>猫食数量：<input type="text" name="footSize"></div>
+      <div><input type="submit" name="send" value="发送订单"></div>
+  </form>
+<script>
+    var form1=document.getElementById('form1');
+    var oName=document.getElementsByName('name');
+    var oCity=document.getElementsByName('city');
+    var sendBtn=document.getElementsByName('send');
+    var names=document.getElementById('name');
+    var sel=document.getElementById('sel');
+    var please_select=document.getElementsByClassName('please_select');
+
+    sendBtn[0].onclick=function(){
+
+        //定义正确数量变量
+        var i=0;
+
+       //姓名
+        var re=/^[a-z]$/i;
+
+        if(re.test(oName[0].value))
+        {
+           names.lastChild.innerHTML='姓名必须为字母';
+            i++;
+        }
+
+        //城市
+        if(oCity.value==null){
+            oCity[0].parentNode.lastChild.innerHTML='城市不能为空';
+            i++;
+        }
+        //省份必选一个
+
+
+
+
+        //提交表单
+        if(i==6){
+            form1.submit();
+        }
+
+    }
+
+</script>
+</body>
+</html>

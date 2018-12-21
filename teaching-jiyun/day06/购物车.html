@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.product .num input{
+		width:20px;
+	}
+</style>
+<body>
+    <div id="title">
+    	<input type="checkbox" id = "allCheck">全选
+    </div>
+    <div class="product">
+    	 <input type="checkbox" name="productCheck">
+    	 <label>香蕉</label>
+    	 <span class="num">
+    	 	<button class="minus">-</button>
+    	 	<input type="text" name="num" value="1">
+    	 	<button class="plus">+</button>
+    	 </span>
+    	 <button class="deleteBtn">删除</button>
+    </div>
+    <div class="product">
+    	 <input type="checkbox" name="productCheck">
+    	 <label>橘子</label>
+    	 <span class="num">
+    	 	<button class="minus">-</button>
+    	 	<input type="text" name="num" value="1">
+    	 	<button class="plus">+</button>
+    	 </span>
+    	 <button class="deleteBtn">删除</button>
+    </div>
+
+    <div class="selectedProducts">
+    	已选商品<span id = "productSumNum"></span>
+    </div>
+	<script type="text/javascript">
+          
+
+          var allCheck = document.getElementById("allCheck");
+
+          var productCheckList = document.getElementsByName("productCheck");
+
+          var productSumNum = document.getElementById("productSumNum");
+
+          var minusBtnList = document.getElementsByClassName("minus");
+
+          var plusBtnList = document.getElementsByClassName("plus");
+
+          var productNumbers = 0;
+
+          var deleteBtnList = document.getElementsByClassName("deleteBtn");
+
+
+      
+          allCheck.onchange = function (){
+          	console.log(this.checked);
+
+          	if(this.checked == true){
+                  
+                for(var i = 0 ; i < productCheckList.length ; i++ ){
+                	productCheckList[i].checked = true;
+                }
+
+          	}
+
+          }
+      
+      //为商品的复选框添加点击事件
+      for(var i = 0 ; i< productCheckList.length ; i++){
+
+             productCheckList[i].addEventListener("change",function(){
+
+               if(this.checked == false){
+                   allCheck.checked = false;
+               }
+
+               var inputCheckBox = this.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling;
+
+               console.log(inputCheckBox);
+
+               if(this.checked == true){
+               	  productNumbers += parseInt(inputCheckBox.value)
+               	}else{
+                  productNumbers -= parseInt(inputCheckBox.value)
+               	}
+             
+
+               productSumNum.innerText = productNumbers;
+              
+
+
+             })
+      }
+
+      //为所有的减号添加点击事件
+      for( var i = 0 ; i < minusBtnList.length;i++){
+         minusBtnList[i].onclick = function(){
+
+         	if(parseInt(this.nextElementSibling.value) == 1){
+                return;
+         	}
+
+			 this.nextElementSibling.value = parseInt(this.nextElementSibling.value) - 1;
+			
+          var checkbox = this.parentNode.parentNode.firstElementChild;
+          
+          if(checkbox.checked == true){
+          	    productNumbers -= 1;
+
+                 productSumNum.innerText = productNumbers;
+          }
+         	
+         }
+      }
+
+      //为所有的加号添加点击事件
+      for( var i = 0 ; i < plusBtnList.length;i++){
+         plusBtnList[i].onclick = function(){
+
+           this.previousElementSibling.value = parseInt(this.previousElementSibling.value) + 1;
+           
+          var checkbox = this.parentNode.parentNode.firstElementChild;
+
+          if(checkbox.checked == true){
+          	    productNumbers += 1;
+
+                 productSumNum.innerText = productNumbers;
+          }
+
+       
+
+          
+         }
+      } 
+
+      //循环删除按钮添加点击事件
+      for(var i = 0 ; i < deleteBtnList.length ; i++){
+
+      	deleteBtnList[i].onclick = function(){
+            
+            if(this.parentNode.firstElementChild.checked == true){
+              this.parentNode.remove();
+
+             
+
+              
+
+              var minusNum = this.parentNode.getElementsByTagName("span")[0].getElementsByTagName("input")[0].value;
+
+               productNumbers -= parseInt(minusNum);
+               productSumNum.innerText = productNumbers;
+
+            }else{
+            	alert("请选择该商品");
+            }
+
+      	}
+
+      }
+
+
+	</script>
+</body>
+</html>	

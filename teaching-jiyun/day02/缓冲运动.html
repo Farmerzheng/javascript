@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        width:100px;
+        height:100px;
+        background-color: red;
+        position:absolute;
+        left:1000px;
+        top:0
+    }
+    .bar{
+        width:1px;
+        height:300px;
+        background-color: red;
+        position:absolute;
+        left:500px;
+        top:0
+    }
+    button{
+        position:absolute;
+        top:100px;
+    }
+</style>
+<body>
+<div class="box"></div>
+<div class="bar"></div>
+<button>点击</button>
+<script>
+    var box = document.getElementsByClassName("box")[0];
+    var btn = document.getElementsByTagName("button")[0];
+    var speed = 2;
+    var iTarget = 200;
+    var moveBoolean = false;
+    animation();
+    function animation(){
+        requestAnimationFrame(animation);
+        step();
+    }
+    function step(){
+
+            if(moveBoolean == false){ return; }
+
+            if(speed == 0){ return; }
+
+            speed = (iTarget - box.offsetLeft)/8;
+
+            speed =  speed > 0? Math.ceil(speed):Math.floor(speed);
+
+            box.style.left = box.offsetLeft + speed + "px";         
+    }
+    btn.onclick = function(){
+        moveBoolean = true;
+    }
+</script>
+</body>
+</html>

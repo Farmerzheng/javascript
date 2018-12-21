@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*
+1 打印1到100
+*/
+/*for(var i=0; i<100; i++){
+ // 循环体
+ console.log(1);
+}*/
+//var i;
+//for( i = 1; i <= 100; i++ ){
+//    console.log(i);
+//}
+////2 打印1到100的和
+//// 1 + 2+ 3+....100
+//    var sum = 0;
+//    for(var i = 1; i <= 100; i++){
+//        sum = sum + i;
+//    }
+//    document.write( sum );
+//    //3 求1-100之间所有数的和、平均值
+//    document.write( sum/100 );
+    //4 求1~100之间的乘积
+//    var total = 1;
+//    for(var i=1; i<=100; i++){
+//        //total = total * i;
+//        total *= i;
+//    }
+//    document.write(total);
+//5 求1-100之间所有偶数的和、所有奇数的和
+    //求奇数的和
+//    var sumodd = 0;
+//    var sumeven = 0;
+//    for(var i=1; i<=100; i++){
+//        //判断哪些是奇数，余数为1，是奇数
+//        if( i%2 === 1 ){
+//            sumodd = sumodd + i;
+//        }
+//        // 哪些是偶数，能被2整除，余数是0
+//        if( i%2 === 0 ){
+//            sumeven = sumeven + i;
+//        }
+//    }
+//    console.log( sumodd, sumeven );
+    //本金10000元存入银行，年利率是百分之三，每过1年，将本金和利息相加作为新的本金。计算5年后，获得的本金是多少？
+    // 第二年以后的本金 = 前一年本金 + 前一年本金*利率
+    var money = 10000;
+    var rate = 0.03;
+    for(var i = 1; i<= 5; i++){
+        //money = money + money * rate
+        //money = money*(1+rate);
+        money *= (1+rate);
+    }
+    console.log( money );
+    //6 有个人想知道，一年之内一对兔子能繁殖多少对？于是就筑了一道围墙把一对兔子关在里面。已知一对兔子每个月可以生一对小兔子，而一对兔子从出生后第3个月起每月生一对小兔子。假如一年内没有发生死亡现象，那么，一对兔子一年内（12个月）能繁殖成多少对？
+    // 1   1   2   3    5    8    13    21    34     55   89   144
+    // 斐波那契数列  前两个数字相加
+    //计算第20个月一共有多少对兔子
+    // 初始化两个变量，值为1
+var num1 = 1;
+var num2 = 1;
+for( var i = 3; i<= 12; i++ ){
+    //首先把num2存到一个变量中
+    var temp = num2;
+    // 首先计算num2 ，值为前两个数字相加
+    num2 = num1+num2;
+    // 现在的num1替换之前的num2
+    num1 = temp;
+}
+console.log( num2 );
+
+
+
+
+</script>
+</body>
+</html>

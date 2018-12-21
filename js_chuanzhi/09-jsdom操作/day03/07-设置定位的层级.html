@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            position: absolute;
+            left:0;
+            top:30px;
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+        img{
+            width: 200px;
+            /*  绝对，固定，相对都是支持 z-index*/
+            position: relative;
+        }
+        p{
+            position: absolute;
+            left:0;
+            bottom:0;
+            width: 200px;
+            height: 150px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div>
+    <img src="images/mm.png" alt="">
+    <p></p>
+</div>
+<script>
+    //点击button，
+    // 1. 改变div的位置
+    // 2. 图片显示出来
+    var button = document.getElementsByTagName('button')[0];
+    var img = document.getElementsByTagName('img')[0];
+    var div = document.getElementsByTagName('div')[0];
+
+    button.onclick = function () {
+        // 1. 改变div的位置
+        div.style.left = '500px';
+        div.style.top = '300px';
+        //2.图片显示出来
+        // z-index只能给定位的盒子添加
+        img.style.zIndex = 2;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .erweima{
+            width: 50px;
+            height: 50px;
+            background: url("images/bgs.png") no-repeat -159px -51px;
+            position: fixed;
+            right:0;
+            top:50%;
+            transform:translateY(-50%);
+        }
+        .erweima img{
+            position: absolute;
+            top:0;
+            left:-160px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="erweima">
+        <img src="images/456.png" alt="">
+    </div>
+    <script>
+        var code  = document.getElementsByClassName('erweima')[ 0 ];
+        //1.获取标签
+        //2.书写事件
+        //3. 事件驱动程序
+        code.onmouseover = fn1;
+        code.onmouseout = fn2;
+        function fn1 () {
+            //找到子标签，让子标签显示
+            this.children[0].style.display = 'block';
+        }
+        function fn2 ( ) {
+            this.children[0].style.display = 'none';
+        }
+    </script>
+</body>
+</html>

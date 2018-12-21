@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        div
+        {
+            position: relative;
+        }
+        img
+        {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div1=document.getElementsByTagName("div")[0];
+        div1.style.width="500px";
+        div1.style.height="500px";
+        div1.style.margin="auto";
+        div1.style.border="1px solid #000000";
+        var imglist=[];
+        var customsPass=2;
+
+            var img=new Image();
+            img.addEventListener("load",loadHandler)
+            img.src="images/img/2.png";
+
+        function loadHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            this.removeEventListener("load",loadHandler)
+            if(this.src.indexOf("2.png")>-1){
+
+                img.src="images/img/1.png";
+
+            }else{
+                createCustomsPass();
+            }
+
+        }
+
+
+        function createCustomsPass() {
+            for(var i=0;i<customsPass*customsPass;i++){
+                var img=new Image();
+                img.src="images/img/2.png";
+                imglist.push(img);
+            }
+            var len=imglist.length;
+            var random=Math.floor(Math.random()*len);
+            imglist[random].src="images/img/1.png";
+            for(var j=0;j<imglist.length;j++){
+                div1.appendChild(imglist[j]);
+                imglist[j].style.width=div1.offsetWidth/customsPass+"px";
+                imglist[j].style.height=div1.offsetHeight/customsPass+"px";
+                imglist[j].style.left=j%customsPass*imglist[j].offsetWidth+"px";
+                imglist[j].style.top=parseInt(j/customsPass)*imglist[j].offsetHeight+"px";
+                imglist[j].addEventListener("click",clickHandler)
+            }
+        }
+
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(this.src.indexOf("1.png")>-1){
+                window.alert("选对了");
+                customsPass++;
+                clearImg();
+                createCustomsPass();
+            }else{
+                window.alert("选错了");
+                clearImg();
+                createCustomsPass();
+            }
+        }
+        
+        function  clearImg() {
+            for(var i=0;i<imglist.length;i++){
+                imglist[i].remove();
+                imglist[i]=null;
+            }
+            imglist.length=0;
+
+        }
+    </script>
+</body>
+</html>

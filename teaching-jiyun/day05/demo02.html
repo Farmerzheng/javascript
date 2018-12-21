@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+/*奇数 红*/
+/*偶数 蓝色*/
+/*	table tr:nth-child(even){
+        background:blue;
+	}
+	table tr:nth-child(odd){
+        background: red;
+	}*/
+	.blue{
+		background:blue;
+		height:50px;
+		line-height: 50px;
+	}
+	.red{
+		background:red;
+		height:50px;
+		line-height: 50px
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="name">
+			<label>姓名</label>
+			<input type="" name="name">
+		</div>
+		<div class="sex">
+			<label for="">性别</label>
+			<input type="radio" name="sex" value = "男">男
+			<input type="radio" name="sex" value = "女">女
+		</div>
+		<div class="age">
+			<label for="">年龄</label>
+			<input type="" name="age">
+		</div>
+		<div class="hobby">
+			<label>爱好</label>
+			<input type="text" name = "hobby">
+		</div>
+		<div class="education">
+		    <label for="">学历</label>
+			<select name="education" id="">
+				<option value="">学历</option>
+				<option value="undergraduate">本科</option>
+				<option value="professional">专科</option>
+				<option value="senior">高中</option>
+				<option value="junior">初中</option>
+			</select>
+		</div>
+		<div class="major">
+			<label for="">专业</label>
+			<input type="text" name="major">
+		</div>
+		<div class="intro">
+			<label>简介</label>
+			<input type="text" name="intro">
+		</div>
+		<button>添加</button>
+		<table border="1" style = "border-collapse:collapse;" >
+			<tr>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>年龄</th>
+				<th>爱好</th>
+				<th>学历</th>
+				<th>专业</th>
+				<th>简介</th>
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript">
+
+		var btn = document.getElementsByTagName("button")[0];
+		var table = document.getElementsByTagName("table")[0];
+		var flag = true;
+		var  index = 0;
+		
+		btn.addEventListener("click",function(){
+
+
+
+			//获取到用户输入的值
+			var nameText = document.getElementsByName("name")[0].value;
+			var sexText;
+			var sexArr = document.getElementsByName("sex");
+			for(var i = 0 ; i < sexArr.length ; i++){
+
+				if(	sexArr[i].checked == true){
+                    sexText = sexArr[i].value;                
+				}		
+			
+			}
+			var ageText = document.getElementsByName("age")[0].value;
+			var hobbyText = document.getElementsByName("hobby")[0].value;
+			var selectText = document.getElementsByName("education")[0].selectedOptions[0].textContent;
+            var majorText = document.getElementsByName("major")[0].value;
+            var introText = document.getElementsByName("intro")[0].value;
+            var tr = document.createElement("tr");
+            tr.innerHTML = 
+                "<td>"+nameText+"</td>"+
+                "<td>"+sexText+"</td>"+
+                "<td>"+ageText+"</td>"+
+                "<td>"+hobbyText+"</td>"+
+                "<td>"+selectText+"</td>"+
+                "<td>"+majorText+"</td>"+
+                "<td>"+introText+"</td>";
+
+             index +=1;
+             // 在css当中，类就是样式的代名词，要想改变某个元素的样式，给这个元素添加类名就可以了
+             index%2 == 0 ?tr.className = "blue":tr.className = "red"
+            
+
+
+            table.appendChild(tr);
+		})
+	</script>
+</body>
+</html>	

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<input type="password">
+<input type="button" value="存储">
+<input type="button" value="删除">
+        <script>
+            var inputs=document.getElementsByTagName("input");
+            inputs[2].addEventListener("click",clickHandler);
+            inputs[3].addEventListener("click",clickHandler);
+            showInput();
+            function clickHandler(e) {
+                if (!e) {
+                    e = window.event;
+                }
+                if(this==inputs[3]){
+//                    localStorage.clear();
+                    for(var str in localStorage){
+                        if(str=="name"){
+                            continue;
+                        }
+                        localStorage.removeItem(str);
+                    }
+                    showInput();
+                    return;
+                }
+                if (inputs[0].length == 0) {
+                    alert("请输入正确的用户名");
+                    return;
+                }
+                if (inputs[1].length == 0) {
+                    alert("请不要输入空密码");
+                    return;
+                }
+                localStorage.name=inputs[0].value;
+                localStorage.password=inputs[1].value;
+            /*    sessionStorage.name=inputs[0].value;
+                sessionStorage.password=inputs[1].value;*/
+                showInput();
+            }
+            function showInput() {
+                if(localStorage.name){
+                    inputs[0].value=localStorage.name;
+                }else{
+                    inputs[0].value="";
+                }
+                if(localStorage.password){
+                    inputs[1].value=localStorage.password;
+                }else{
+                    inputs[1].value="";
+                }
+            }
+
+        </script>
+</body>
+</html>

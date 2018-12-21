@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box
+        {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+        }
+        ul{
+            list-style: none;
+            position: absolute;
+            display: none;
+            z-index: 999;
+        }
+        li
+        {
+            width: 80px;
+            height: 30px;
+            background-color: aquamarine;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+    <script src="js/DragObj.js"></script>
+</head>
+<body>
+    <script>
+        var arr=["新建","复制","剪切","粘贴","删除"];
+        var ul=createUl(arr);
+        var selectedElem;
+        var drag;
+        var copyElement;
+        document.body.appendChild(ul);
+        ul.addEventListener("mouseleave",mouseHandler);
+        window.addEventListener("contextmenu",contextMenuHandler);
+        window.addEventListener("mousedown",contextMenuHandler);
+        function randomColor() {
+            var str="#";
+            for(var i=0;i<3;i++){
+                var color=Math.floor(Math.random()*256).toString(16);
+                if(color.length<2){
+                    color="0"+color;
+                }
+                str+=color;
+            }
+            return str;
+        }
+        function contextMenuHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            e.preventDefault();
+            if(e.type=="contextmenu"){
+                ul.style.display="block";
+                ul.style.left=e.clientX-5+"px";
+                ul.style.top=e.clientY-5+"px";
+            }
+
+        }
+
+        function createUl(_arr) {
+            var ul=document.createElement("ul");
+            for(var i=0;i<_arr.length;i++){
+                var li=document.createElement("li");
+                li.textContent=_arr[i];
+                li.addEventListener("mouseover",mouseHandler);
+                li.addEventListener("click",clickHandler)
+                ul.appendChild(li);
+            }
+            return ul;
+        }
+
+        function mouseHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.type=="mouseover"){
+                for(var i=0;i<ul.children.length;i++){
+                    if(this==ul.children[i]){
+                        this.style.backgroundColor="rgba(255,0,0,0.6)";
+                    }else{
+                        ul.children[i].style.backgroundColor="aquamarine"
+                    }
+                }
+            }else if(e.type=="mouseleave"){
+                this.style.display="none";
+            }
+
+        }
+
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            ul.style.display="none";
+            switch (arr.indexOf(this.textContent))
+            {
+                case 0:
+//                        新建
+                    createDiv(e);
+                    break;
+                case 1:
+                  //  if(selectedElem){
+                    //    copyElement=selectedElem.cloneNode(false);
+                   // }
+                    break;
+                case 2:
+                   // if(selectedElem){
+                     //   copyElement=selectedElem.cloneNode(false);
+                       // removeElem();
+                   // }
+                    break;
+                case 3:
+                       // if(copyElement){
+                         //   document.body.appendChild(copyElement);
+                           // copyElement.style.border="none";
+                            //copyElement.style.left=e.clientX-25+"px";
+                           // copyElement.style.top=e.clientY-25+"px";
+                           // copyElement.addEventListener("click",selectedDivHandler);
+                       // }
+
+                  //  copyElement=null;
+                    break;
+                case 4:
+                 //   removeElem();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        function createDiv(e) {
+            var div=document.createElement("div");
+            div.style.backgroundColor=randomColor();
+            div.addEventListener("click",selectedDivHandler);
+            div.style.left=e.clientX-25+"px";
+            div.style.top=e.clientY-25+"px";
+            div.className="box";
+            document.body.appendChild(div);
+        }
+        
+       function selectedDivHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(selectedElem){
+                selectedElem.style.border="none";
+            }
+            selectedElem=this;
+            selectedElem.style.border="1px solid #FF0000";
+            if(drag){
+                drag.removeEvent();
+                drag=null;
+            }
+            drag=new DragObj(selectedElem);
+        }
+       function removeElem() {
+            if(drag){
+                drag.removeEvent();
+                drag=null;
+            }
+            selectedElem.removeEventListener("click",selectedDivHandler);
+            selectedElem.remove();
+            selectedElem=null;
+        }
+    </script>
+</body>
+</html>

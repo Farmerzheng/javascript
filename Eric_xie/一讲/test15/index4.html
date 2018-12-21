@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            margin-top: 10px;
+
+            list-style: none;
+
+        }
+        li
+        {
+            width: 30px;
+            height: 10px;
+            border: 1px solid #000000;
+            float: left;
+            margin-left: 10px;
+        }
+        span
+        {
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0);
+            background-color: red;
+            /*display: inline-block;*/
+            line-height: 20px;
+            text-align: center;
+            margin-left: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="text"><span>x</span>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script>
+    var text=document.querySelector("#text");
+    var span=document.querySelector("span");
+    var reg1=/^[a-zA-Z]{6,18}$/;
+    var reg2=/^[a-zA-Z0-9]{6,18}$/;
+    var reg3=/^.{6,18}$/;
+    var li=document.getElementsByTagName("li");
+
+    text.addEventListener("blur",inputHandler);
+    function inputHandler(e) {
+        if(!e){
+            e=window.event;
+        }
+
+        if(reg1.test(text.value)){
+            span.style.display="none";
+            for(var i=0;i<li.length;i++){
+                if(i==0){
+                    li[i].style.backgroundColor="#FF0000";
+                }else{
+                    li[i].style.backgroundColor="#FFFFFF";
+                }
+            }
+        }else if(reg2.test(text.value)){
+            span.style.display="none";
+            for(var i=0;i<li.length;i++){
+                if(i==0 || i==1){
+                    li[i].style.backgroundColor="#FFAA00";
+                }else{
+                    li[i].style.backgroundColor="#FFFFFF";
+                }
+            }
+        }else if(reg3.test(text.value)){
+            span.style.display="none";
+            for(var i=0;i<li.length;i++){
+                li[i].style.backgroundColor="#00FF00";
+            }
+        }else{
+            span.style.display="inline-block";
+            for(var i=0;i<li.length;i++){
+                li[i].style.backgroundColor="#FFFFFF";
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="checkbox.js"></script>
+</head>
+<style>
+	body{
+		background-color: yellow;
+	}
+</style>
+<body>
+  <script>
+  var skinList = [{ x: 0, y: 0, w: 16, h: 16}, { x: -18, y: 0, w: 16, h: 16 }];
+  var check = new CheckBox(skinList);
+  var checkbox =  check.init();
+  checkbox.addEventListener("selected", selectedHandler);
+
+  function selectedHandler(event) {
+    console.log(event.selected);
+  }
+
+  document.body.appendChild(checkbox)
+  </script>
+</body>
+
+</html>

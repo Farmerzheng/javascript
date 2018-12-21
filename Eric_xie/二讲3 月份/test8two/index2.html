@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <style>
+        div
+        {
+            width:100px;
+            height: 100px;
+            background-color:blueviolet;
+
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<input type="button" value="隐藏">
+    <script>
+        $(":button").on("click",clickHandler);
+        function clickHandler(e) {
+            $("div").first().hide(200,function () {
+
+                if($(this).next()){
+                    $(this).next().hide(200,arguments.callee);
+                }
+                $(this).remove();
+            })
+        }
+    </script>
+</body>
+</html>

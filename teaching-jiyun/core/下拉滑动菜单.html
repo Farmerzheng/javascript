@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+	.father{
+		width:100px;
+		height:30px;
+		line-height: 30px;
+		background-color: red;
+		text-align: center;
+		position:relative;
+		float:left;
+		margin-left:20px;
+	}
+	.father .child{
+		width:100px;
+		position:absolute;
+		height:0px;
+		background-color: yellow;
+		/*display: none;*/
+        left:0;
+        top:30px;
+	}
+</style>
+<body>
+	<div class="father">
+		苹果
+		<div class="child"></div>
+	</div>
+		<div class="father">
+		香蕉
+		<div class="child"></div>
+	</div>
+		<div class="father">
+		橘子
+		<div class="child"></div>
+	</div>
+		<div class="father">
+		葡萄
+		<div class="child"></div>
+	</div>
+	<script type="text/javascript">
+		var father = document.getElementsByClassName("father")[0];
+		var child = document.getElementsByClassName("child")[0];
+		var childHeight = 0,animation;
+
+		father.addEventListener("mouseover",function(){
+			cancelAnimationFrame(animation);
+			requestAnimationFrame(step);
+
+		})
+
+		father.addEventListener("mouseout",function(){
+			cancelAnimationFrame(animation);
+
+			requestAnimationFrame(step2);
+
+		})
+
+		function step(){
+
+			   
+
+                if(childHeight >= 200){
+
+                	cancelAnimationFrame(animation);
+                	 console.log(childHeight);
+
+                }else{                	
+
+	                childHeight += 8;
+
+	                console.log(childHeight+"888");
+
+	                child.style.height = childHeight+"px";
+
+	                animation = requestAnimationFrame(step);
+
+                }
+
+
+		}
+
+	   function step2(){
+
+			   
+
+                if(childHeight <= 0){
+
+                	 cancelAnimationFrame(animation);
+                	 console.log(childHeight);
+
+                }else{                	
+
+	                childHeight -= 8;
+	                console.log(childHeight,"777")
+	                child.style.height = childHeight+"px";
+	                animation = requestAnimationFrame(step2);
+
+                }
+
+
+		}
+	</script>
+</body>
+</html>

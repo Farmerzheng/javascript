@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 50px;
+            height: 50px;
+            background-color: blueviolet;
+            position: absolute;
+        }
+        input
+        {
+            position: absolute;
+            top: 100px;
+        }
+    </style>
+    <script src="js/DragObj.js"></script>
+</head>
+<body>
+    <div></div>
+<input type="button" value="播放">
+<script>
+        var record=false;
+        var replay=false;
+        var recordArr=[];
+        var div0=document.getElementsByTagName("div")[0];
+        var bn=document.querySelector("input");
+        bn.addEventListener("click",mouseHandler);
+        new DragObj(div0);
+        div0.addEventListener("mousedown",mouseHandler);
+        function mouseHandler(e) {
+            if(!e){
+                e=window.event
+            }
+            if(this==bn){
+                replay=true;
+                recordArr.reverse();
+                return;
+            }
+            if(e.type=="mousedown"){
+                div0.addEventListener("mouseup",mouseHandler);
+                record=true;
+            }else if(e.type=="mouseup"){
+                div0.removeEventListener("mouseup",mouseHandler);
+                record=false;
+            }
+        }
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            if(record){
+                var obj={};
+                obj.x=div0.offsetLeft;
+                obj.y=div0.offsetTop;
+                recordArr.push(obj);
+            }
+            if(replay){
+                if(recordArr.length==0){
+                    replay=false;
+                    return;
+                }
+                div0.style.left=recordArr[0].x+"px";
+                div0.style.top=recordArr[0].y+"px";
+                recordArr[0]=null;
+                recordArr.shift();
+
+            }
+        }
+</script>
+</body>
+</html>

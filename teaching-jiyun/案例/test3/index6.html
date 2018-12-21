@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #div0
+        {
+            width: 250px;
+            height: 150px;
+            position: relative;
+            background-color: antiquewhite;
+            overflow: hidden;
+        }
+        #div1
+        {
+            font-size: 0px;
+            width: 1300px;
+            height: 150px;
+            background-color: blueviolet;
+            position: absolute;
+        }
+        #leftBn
+        {
+            position:absolute;
+            top: 70px;
+        }
+        #rightBn
+        {
+            position: absolute;
+            top: 70px;
+            right: 0px;
+        }
+        li
+        {
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            border: 1px solid #FF0000;
+            float: left;
+            margin-left: 5px;
+        }
+        ul
+        {
+            list-style: none;
+            position: absolute;
+            left: 85px;
+            bottom: 15px;
+        }
+    </style>
+    <script src="js/Tween.js"></script>
+    <script src="js/RequestAnimationFrame.js"></script>
+    <script src="js/TweenGuest.js"></script>
+</head>
+<body>
+<div id="div0">
+    <div id="div1">
+        <img src="img/pic1.jpg">
+        <img src="img/pic2.jpg">
+        <img src="img/pic3.jpg">
+        <img src="img/pic4.jpg">
+        <img src="img/pic5.jpg">
+    </div>
+   <input type="button" value="左" id="leftBn">
+    <input type="button" value="右" id="rightBn">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+    <script>
+        var leftBn=document.getElementById("leftBn");
+        var rightBn=document.getElementById("rightBn");
+        var lis=document.getElementsByTagName("li");
+        var div1=document.getElementById("div1");
+        var postion=0;
+
+        div1.style.left="0px";
+        for(var i=0;i<lis.length;i++){
+            lis[i].addEventListener("mouseover",clickHandler);
+
+        }
+        leftBn.addEventListener("click",clickHandler);
+        rightBn.addEventListener("click",clickHandler);
+        var id;
+        var distance=0;
+        function clickHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            console.log(this)
+            if(e.type=="click"){
+                if(this==leftBn){
+                   if(postion==0){
+                       postion=4;
+                   }else{
+                       postion--;
+                   }
+                }else if(this==rightBn){
+                   if(postion==4){
+                       postion=0
+                   }else{
+                       postion++;
+                   }
+                }
+            }else if(e.type=="mouseover"){
+                for(var i=0;i<lis.length;i++){
+                    if(lis[i]==this){
+                        postion=i;
+                    }
+                }
+            }
+//            showImage()
+          /*  使用TweenGuset下面的方法tweenAB
+            参数：1位：要变化的对象
+                 2位：起始参数，必须是对象，里面的值必须是style下的属性
+                 3为：目标参数，必须是对象，里面的值必须与起始属性对应
+                 4位：缓动的整个时间，单位是毫秒
+                 5位：缓动的效果，必须是TWEEN.Easing下的所有效果*/
+            TweenGuset.tweenAB(div1,{left:parseInt(div1.style.left)},{left:-postion*250},2000,TWEEN.Easing.Linear.None)
+        }
+        function showImage() {
+            div1.style.left=-postion*250+"px"
+        }
+      /*  var lefts=parseInt(div1.style.left)
+        var tween=new TWEEN.Tween({left:lefts});
+        tween.to({left:-2*250});
+        tween.easing(TWEEN.Easing.Bounce.InOut)
+        tween.onUpdate(showImage)
+        tween.repeat(3)
+        tween.start()
+
+
+
+        function showImage() {
+            div1.style.left=this.left+"px"
+        }
+
+       animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            TWEEN.update()
+        }*/
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--正则表达式：regular expression-->
+<script>
+    //创建正则: 创建的一种的规则
+    //1.构造函数（new）
+    //1.1创建了一种规则，要求必须要包含 hello 这个单词
+    var reg = new RegExp(/hello/);
+    //1.2使用规则来进行验证
+    //  需求：对一句话进行验证   'welcome to china'
+    // test  是用于验证一个字符串是否符合规则  ，返回值 Boolean
+    console.log( reg.test('welcome to china') );
+    console.log( reg.test( 'welcome to beijing,hello body' ) );
+    //2.字面量
+    var reg1 = /a/;
+    console.log( reg1.test('kldsjaflksj') );
+    console.log(  /b/.test('4354trgfdg')  );
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+        <script>
+            var div0=document.querySelector("div");
+
+            var imgList=[];
+            var img=new Image();
+            img.addEventListener("load",loadImageHandler);
+            img.src="image/golf0.jpg";
+            var num=0;
+            function loadImageHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                imgList.push(e.target);
+                e.target.removeEventListener("load",loadImageHandler);
+                num++;
+                if(num<72){
+                    div0.textContent=(parseFloat((num+1)/72)*100).toFixed(2)+"%";
+                    var img=new Image();
+                    img.addEventListener("load",loadImageHandler);
+                    img.src="image/golf"+num+".jpg";
+                }else{
+                    imgLoadFinsh();
+                }
+
+            }
+            
+            function imgLoadFinsh() {
+                for(var i=0;i<imgList.length;i++){
+                    document.body.appendChild(imgList[i]);
+                }
+            }
+        </script>
+</body>
+</html>

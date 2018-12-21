@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person( name,age ){
+        this.name = name;
+        this.age = age;
+    }
+
+    function Animal( color,name ){
+        this.color = color;
+        this.name = name;
+    }
+    //实例化对象
+    var p = new Person( 'Tom',20 );
+    var p2 = p;
+    // instanceof 判断某一个实例化对的对象 是否属于构造函数
+    console.log( p instanceof Person );
+    console.log( p2 instanceof Person);
+    console.log( p instanceof Animal);
+
+    var dog = new Animal( 'Jerry',18 );
+</script>
+</body>
+</html>

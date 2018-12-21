@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+        <script>
+            var arr=[1,2,3,4,5];
+         /*   arr.push(6);
+            arr.unshift(0);
+            arr.pop();
+            arr.shift();
+            arr.splice(3,0,9,10);
+            arr.splice(2,1,"p");
+            arr.splice(3,1);
+            var arr1=arr.concat(9,10,11);
+            var str=arr.join(",");
+            arr.reverse();
+            var indexs=arr.indexOf("p");
+            var indexlast=arr.lastIndexOf("p");
+            arr.sort(function () {
+                return Math.random()-0.5
+            });*/
+
+            var lis=document.getElementsByTagName("li");
+            var ul=document.getElementsByTagName("ul")[0];
+            var arr=[];
+            for(var i=0;i<lis.length;i++){
+                arr.push(lis[i]);
+            }
+
+     /*       var len=arr.length;
+           for(var j=0;j<len;j++){
+
+                ul.removeChild(arr[j]);
+                arr.pop()
+//               arr.shift();
+           }
+        arr.length=0;
+            arr=[];*/
+            var len=arr.length;
+            var arr1=[];
+        for(var j=0;j<len;j++){
+            if(j==0 || j==2 || j==4){
+                ul.removeChild(arr[j]);
+                arr[j]=null;
+            }else{
+                arr1.push(arr[j]);
+            }
+
+        }
+        arr=arr1.concat();
+            arr1.length=0;
+            arr1=null;
+            console.log(arr)
+        </script>
+</body>
+</html>

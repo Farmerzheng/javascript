@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div0">
+    <div id="div1"></div>
+</div>
+        <script>
+            var div0=document.querySelector("#div0");
+            var div1=document.querySelector("#div1");
+            div0.addEventListener("YouRenMa",youRenMaHandler0,true);
+            div1.addEventListener("YouRenMa",youRenMaHandler1,true);
+             var evt=new Event("YouRenMa");
+             evt.index=5;
+            div1.dispatchEvent(evt);
+//            div0.dispatchEvent(evt);
+
+
+            function youRenMaHandler0(e) {
+                if(!e){
+                    e=window.event;
+                }
+                console.log("div0")
+            }
+            function youRenMaHandler1(e) {
+                if(!e){
+                    e=window.event;
+                }
+                console.log("div1")
+            }
+        </script>
+</body>
+</html>

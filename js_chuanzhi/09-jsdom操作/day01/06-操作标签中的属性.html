@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+        .box1{
+            background: blue;
+            border:5px solid red;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div class="box" style="">
+
+</div>
+<script>
+    //1.获取标签元素
+    //2.书写事件
+    //3 .事件驱动程序
+    // 获取的结果是集合，伪数组
+    var div = document.getElementsByClassName( 'box' )[ 0 ]
+    div.onclick = function(){
+        // div多个样式发生变化
+        // 如何在当前的类名基础之上，再次添加类名
+        //div.className = div.className + ' box1';
+        div.className += ' box1';
+        //添加id属性
+        div.id = 'pox';
+    }
+    //
+    var button = document.getElementsByTagName('button')[0];
+    button.onclick = function(){
+        //获取标签中属性
+//        alert( div.className );
+        alert( div.id );
+    }
+
+</script>
+</body>
+</html>

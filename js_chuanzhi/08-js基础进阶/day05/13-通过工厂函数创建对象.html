@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //通过函数（工厂函数）创建对象, 简化的了代码
+    function createObject( name,weight,color ){
+        var obj = new Object();
+        obj.name = name;
+        obj.weight = weight;
+        obj.color = color;
+
+        obj.say = function(){
+            return '我的名字叫' + this.name + ',我的体重是'+this.weight + '，我的颜色是'+this.color;
+        }
+        // 需要设置返回值，就是创建好的对象
+        return obj;
+    }
+    var haDog = createObject( '二哈','50kg','white&black' );
+    var taiDog = createObject( '小泰','4kg','red' );
+    console.log( haDog.say() );
+    console.log( taiDog.say() );
+</script>
+</body>
+</html>

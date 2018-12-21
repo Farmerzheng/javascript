@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            html,
+            body {
+                min-height: 100%;
+                font-family: 微软雅黑;
+                background-color: #f0f0f0;
+            }
+            
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 760px;
+                height: 420px;
+                margin-left: -380px;
+                margin-top: -210px;
+                background-image: url(./考试素材/bg.jpg);
+            }
+            
+            .close {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 30px;
+                height: 15px;
+                text-align: center;
+                line-height: 15px;
+                color: #2fb3ff;
+                font-size: 14px;
+                cursor: pointer;
+            }
+            
+            .form {
+                position: relative;
+                width: 100%;
+                height: 420px;
+                box-sizing: border-box;
+                padding: 30px;
+                padding-left: 410px;
+            }
+            
+            .title {
+                position: relative;
+                width: 100%;
+                height: 44px;
+                font-size: 18px;
+                font-weight: 600;
+                color: #fff;
+                text-align: left;
+            }
+            
+            .input {
+                position: relative;
+                box-sizing: border-box;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 8px;
+                padding-right: 8px;
+                margin-bottom: 20px;
+                width: 100%;
+                height: 40px;
+                background-color: #fff;
+            }
+            
+            .input input {
+                position: relative;
+                width: 100%;
+                height: 20px;
+                line-height: 20px;
+                font-size: 14px;
+                border: none;
+                outline: none;
+            }
+            
+            .code {
+                width: 180px;
+                margin-right: 140px;
+            }
+            
+            .get-code {
+                position: absolute;
+                top: 0;
+                right: -140px;
+                width: 130px;
+                height: 40px;
+                color: #fff;
+                font-size: 14px;
+                text-align: center;
+                line-height: 40px;
+                background-color: #2fb3ff;
+                cursor: pointer;
+            }
+            
+            .get-code:hover {
+                opacity: 0.8;
+            }
+            
+            .button {
+                background-color: transparent;
+                padding: 0;
+            }
+            
+            .register {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                color: #fff;
+                line-height: 40px;
+                font-size: 14px;
+                text-align: center;
+                background-color: #2fb3ff;
+                cursor: pointer;
+            }
+            
+            .register:hover {
+                opacity: 0.7;
+            }
+            
+            .agreement {
+                position: relative;
+                box-sizing: border-box;
+                padding-bottom: 8px;
+                width: 100%;
+                height: 20px;
+                color: #fff;
+                font-size: 12px;
+                background-color: transparent;
+            }
+            
+            .agreement input {
+                position: relative;
+                top: 2px;
+                width: 12px;
+                height: 12px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container" class="container">
+            <div class="form">
+                <div class="title">手机注册</div>
+                <div class="input">
+                    <input id="phone" type="text" placeholder="手机号码">
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="密码" id="pass">
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="确认密码" id="repass">
+                </div>
+                <div class="input code">
+                    <input id="code" type="text" placeholder="验证码">
+                    <div id="getCode" class="get-code">获取验证码</div>
+                </div>
+                <div class="input button">
+                    <div id="register" class="register">注册</div>
+                </div>
+                <div class="agreement">
+                    <input id="agreement" type="checkbox" checked>
+                    <label for="agreement">同意用户协议和刮目相看声明</label>
+                </div>
+            </div>
+            <div id="close" class="close">关闭</div>
+        </div>
+        <script>
+            var phone = document.getElementById('phone'),
+                code = document.getElementById('code'),
+                getCode = document.getElementById('getCode'),
+                register = document.getElementById('register'),
+                container = document.getElementById('container'),
+                close = document.getElementById('close'),
+				pass=document.getElementById('pass'),
+				repass=document.getElementById('repass');
+
+            register.onclick = function() {
+                var phoneNumber = phone.value;
+
+                if (11 != phoneNumber.length ) {
+                    alert('手机号格式错误');
+                } else if(pass.value.length<8){
+				alert('密码至少8位字符');
+				}
+				else if(repass.value !=pass.value)
+				{
+				alert('您输入的确认密码与密码不致');
+				}
+				else {
+                    alert('注册成功');
+                }
+            };
+
+            getCode.onclick = function() {
+                var codeNumber = 100000 + parseInt(Math.random() * 900000);
+                code.value = codeNumber;
+            };
+
+            close.onclick = function() {
+                container.style.display = 'none';
+            };
+        </script>
+    </body>
+
+</html>

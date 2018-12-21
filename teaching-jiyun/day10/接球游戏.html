@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	#box{
+		width:600px;
+		height:500px;
+		border:1px solid red;
+		margin:0 auto;
+		position:relative;
+	}
+	#box #bar{
+		position:absolute;
+		bottom:0;
+		width:200px;
+		height:10px;
+		left:0;
+		background-color:yellow;
+	}
+	#box #ball{
+		width:50px;
+		height:50px;
+		background-color:blue;
+		border-radius:25px;
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+</style>
+<body>
+	<div id="box">
+		<div id="ball"></div>
+        <div id="bar"></div>
+	</div>
+	<script type="text/javascript">
+
+        var bar = document.getElementById("bar");
+        var ball = document.getElementById("ball");
+
+		document.addEventListener("keydown",function(e){
+			var  event = e || window.event;
+
+          switch (event.code){
+            case "ArrowLeft":
+            // console.log(1);
+            if(bar.offsetLeft == 0)return;
+            bar.style.left = (bar.offsetLeft - 10) +"px";
+            break;
+            case "ArrowRight":
+             if(bar.offsetLeft == 400)return;
+            bar.style.left = (bar.offsetLeft + 10) +"px";
+
+          }
+		});
+
+		function Ball(){
+
+			this.playing = true;
+
+            this.ball = ball;
+
+            this.speed = {x :3 ,y :4};
+
+            this.update = function(){
+
+            	if(this.playing == false)return;
+
+            	this.ball.style.left = this.ball.offsetLeft +this.speed.x + "px";
+
+            	this.ball.style.top = this.ball.offsetTop + this.speed.y +"px";
+
+            	if(this.ball.offsetLeft >= 550){
+            		this.speed.x = - this.speed.x;
+            	}
+
+            	if(this.ball.offsetLeft <= 0){
+            		this.speed.x = - this.speed.x;
+            	}
+                
+            	if(this.ball.offsetTop <= 0){
+            		this.speed.y = - this.speed.y;
+            	}
+
+
+            	if(this.ball.offsetTop >= 440){
+            		
+
+	            	//平板的左右坐标 
+	            	// bar.offsetLeft  
+	            	//bar.offsetLeft+bar.offsetWidth
+                   
+                   if(this.ball.offsetLeft>bar.offsetLeft&&this.ball.offsetLeft<bar.offsetLeft+bar.offsetWidth){
+                   	 this.speed.y = - this.speed.y;
+                   	}else{
+                        this.playing = false;
+                   		alert("游戏结束");
+                   	}
+
+                  
+
+            	}
+
+
+
+
+
+
+            
+            }
+		}
+
+		var balls = new Ball();
+
+		animation();
+		function animation(){
+			requestAnimationFrame(animation);
+			balls.update();
+		}
+
+
+	</script>
+</body>
+</html>

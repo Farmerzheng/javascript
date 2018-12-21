@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*给人物查电影*/
+    //var person = prompt('请输入演员姓名');
+//    document.write(person);
+    /*if( person === '刘德华' ){
+        document.write( '演过追龙' );
+    }else if( person == '陈道明' ){
+        document.write( '康熙王朝' );
+    }else if(person === '成亮'){
+        document.write( 'n多好电影' );
+    }else{
+        document.write( '找一个有名的换一换' );
+    }*/
+//    switch( person ){
+//        case '刘德华':
+//            document.write('演过无间道');
+//            break;
+//        case '陈道明':
+//            document.write( '演过康熙王朝' );
+//            break;
+//        case '陈小春':
+//            document.write('演过古惑仔');
+//            break;
+//        default:
+//            //默认的行为，前边的情况都不满足
+//            document.write('找一个有名的换一换');
+//    }
+//    判断当天是星期几
+//    获取当前的时间对象
+//    var now = new Date();
+//    //console.log(now);
+//    //获取星期
+////    console.log( now.getDay() );
+//    var day = now.getDay();
+//    // day 返回的结果是 0 ~ 6 之间的数字
+//    if( day === 0  ){
+//        document.write('星期日');
+//    }else if( day === 1 ){
+//        document.write('星期一');
+//    }else if( day === 2){
+//        document.write('星期二');
+//    }else if( day === 3){
+//        document.write('星期三');
+//    }else if( day === 4){
+//        document.write('星期四');
+//    }else if( day === 5){
+//        document.write('星期五');
+//    }else if( day === 6){
+//        document.write('星期六');
+//    }
+
+
+
+//    把百分制转换成优良中可差
+    var score = 82;
+
+    score = parseInt( score/10 );
+    // 比较方式  ===
+    switch( score ){
+        case 10:
+            document.write( '完美' );
+            break;
+        case 9:
+            document.write('优秀');
+            break;
+        case 8:
+            document.write('良好');
+            break;
+        case 7:
+            document.write('中等');
+            break;
+        case 6:
+            document.write('及格');
+            break;
+        default:
+            document.write('不及格');
+    }
+
+
+
+</script>
+</body>
+</html>

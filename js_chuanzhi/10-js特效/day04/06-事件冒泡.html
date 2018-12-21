@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <div id="box">
+            <button id="btn">按钮</button>
+        </div>
+    </body>
+    <script>
+
+        //冒泡，从底层开始，逐渐往上
+        //捕获，从顶层开始，逐渐往下（了解）
+        //不支持冒泡的事件类型：blur、focus、load、unload、mouseenter、mouseleave
+
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+        //添加事件
+        btn.onclick = function () {
+            alert('button点击');
+        }
+        box.onclick = function () {
+            alert('div点击');
+        }
+        document.body.onclick = function () {
+            alert('body点击');
+        }
+        document.onclick = function () {
+            alert('document点击');
+        }
+        window.onclick = function () {
+            alert('window点击');
+        }
+    </script>
+</html>

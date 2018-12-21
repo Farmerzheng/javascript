@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    ul,li{
+        list-style: none;
+    }
+    .container{
+        width:300px;
+        height:200px;
+        position:relative;
+        left:500px;
+        // border:1px solid red;
+        overflow: hidden;
+    }
+    .container .item{
+        position:absolute;
+        left:-300px;
+        width:300px;
+        height:200px;
+        top:0
+    }
+    .container .item img{
+        width:100%;
+        height:100%
+    }
+
+    .container .dotList{
+        width:100px;
+        height:10px;
+        position:absolute;
+        left:100px;
+        top:180px;
+        /*background-color: red;*/
+    }
+    .container .dotList .dot{
+        width:10px;
+        height:10px;
+        float: left;
+        background: yellow;
+        border-radius: 5px;
+        margin:0 7px
+    }
+    .container .btnArr{
+        position:absolute;
+        left:0;
+        top:50%;
+        width:300px;
+        height:30px;
+        margin-top:-10px;
+        /*background-color: pink*/
+    }
+     .container .btnArr .left{
+        float:left;
+        width:30px;
+        height:100%;
+        background-color: green;
+        text-align: center;
+        cursor:pointer;
+        line-height: 30px;
+     }
+    .container .btnArr .right{
+        float:right;
+        width:30px;
+        height:100%;
+        background-color: green;
+        text-align: center;
+        cursor:pointer;
+        line-height: 30px
+     }
+</style>
+<body>
+<ul class="container">
+    <li class="item" style="left:0"><img src="img/nature1.jpg" alt=""></li>
+    <li class="item"><img src="img/nature2.jpg" alt=""></li>
+    <li class="item"><img src="img/nature3.jpg" alt=""></li>
+    <li class="item"><img src="img/nature4.jpg" alt=""></li>
+    <ul class="dotList">
+        <li class="dot"></li>
+        <li class="dot"></li>
+        <li class="dot"></li>
+        <li class="dot"></li>
+    </ul>
+    <div class="btnArr">
+        <div class="left">左</div>
+        <div class="right">右</div>
+    </div>      
+</ul>
+<script src = "tween.js"></script>
+<script src = "move.js"></script>
+<script>
+    var container = document.getElementsByClassName("container")[0];
+    var itemArr = document.getElementsByClassName("item");
+    var dotList = document.getElementsByClassName("dot");
+    var leftBtn = document.getElementsByClassName("left")[0];
+    var rightBtn = document.getElementsByClassName("right")[0];
+    // console.log(container.offsetWidth);
+
+    dotList[0].style.backgroundColor = "red" ;
+
+    var index = 0;
+    var timer ;
+
+   function autoPlay(){
+        timer = setInterval(function(){
+        move(itemArr[index],0,0,-300,30);
+        index++;
+        if(index == 4){
+            index = 0;
+        }       
+        move(itemArr[index],0,300,0,30);
+        changeDot();
+    },2000);
+   } 
+
+   autoPlay();
+
+   function changeDot(){
+
+      for(var i = 0 ; i < dotList.length ; i++){
+            dotList[i].style.backgroundColor = "yellow"
+        }
+      dotList[index].style.backgroundColor = "red";
+
+   }
+
+    container.addEventListener("mouseover",function(){
+
+        clearInterval(timer);
+    })
+
+    container.addEventListener("mouseout",function(){
+
+        autoPlay();
+    })
+
+    leftBtn.addEventListener("click",function(){
+
+        move(itemArr[index],0,0,-300,30);
+        index++;
+        if(index == 4){
+            index = 0;
+        };       
+        move(itemArr[index],0,300,0,30);
+        changeDot();
+
+    })
+
+    rightBtn.addEventListener("click",function(){
+        
+       move(itemArr[index],0,0,300,30); 
+        index--;
+        if(index == -1){
+            index = 3;
+        };
+        move(itemArr[index],0,-300,0,30);
+        changeDot();
+    })
+
+    //点击小圆点
+    for(var i = 0 ; i < dotList.length ; i++){
+        
+        dotList[i].index = i;
+
+        dotList[i].addEventListener("mouseover",function(){
+
+            if(this.index > index){
+
+               //左移
+
+                move(itemArr[this.index],0,300,0,30);
+
+                move(itemArr[index],0,0,-300,30);
+
+                index = this.index;
+
+                changeDot();
+
+            }else{
+
+               //右移
+
+                move(itemArr[this.index],0,-300,0,30);
+
+                move(itemArr[index],0,0,300,30);
+
+                index = this.index;
+
+                changeDot(); 
+
+            }
+
+         
+        })
+        
+    }
+
+
+</script>
+</body>
+</html>

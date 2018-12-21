@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 100px;
+            height: 100px;
+            background-color: deepskyblue;
+            position: absolute;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <div></div>
+    <input type="button" value="播放">
+    <script>
+        var mouseBool=false;
+        var playBool=false;
+        var obj={};
+        var pointList=[];
+        $("div").on("mousedown mouseup mousemove",mouseHandler);
+        $(":button").on("click",clickHandler);
+        function clickHandler(e) {
+            playBool=!playBool;
+            if(playBool){
+                $(this).val("停止");
+            }else{
+                $(this).val("播放");
+            }
+        }
+        function mouseHandler(e) {
+            switch (e.type){
+                case "mousedown":
+                        mouseBool=true;
+                        obj.x=e.offsetX;
+                        obj.y=e.offsetY;
+                    break;
+                case "mouseup":
+                        mouseBool=false;
+                    break;
+                case "mousemove":
+                        if(!mouseBool) return;
+                        $(this).css({
+                            left:e.clientX-obj.x+"px",
+                            top:e.clientY-obj.y+"px"
+                        });
+                    break;
+            }
+        }
+
+        animation();
+        function animation() {
+            requestAnimationFrame(animation);
+            if(mouseBool){
+                pointList.push($("div").offset());
+            }
+            if(playBool && pointList.length>0){
+                $("div").css({
+                    left:pointList[0].left+"px",
+                    top:pointList[0].top+"px"
+                });
+                pointList[0]=null;
+                pointList.shift();
+            }
+        }
+    </script>
+</body>
+</html>

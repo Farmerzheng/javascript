@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //一、求阶乘
+    //  参数 数字    返回值  数字
+    function getJC( n ){
+        //变量：保存相乘的结果
+        var sumJc = 1;
+        for( var i = 1; i <= n; i++ ){
+            sumJc *= i;
+        }
+        return sumJc;
+    }
+    //console.log( getJC( 6 ) );
+    //二、求1!+2!+3!+....+n! 的和
+    // 参数 数字   返回值  数字
+    function getJcSum( n ){
+        var sum = 0;
+        for( var i = 1; i <= n; i++ ){
+            sum = sum + getJC( i );
+        }
+        return sum;
+    }
+    console.log( getJcSum( 6 )  );
+    //三、判断一个数是否是素数
+    //  参数  数字   返回值  布尔型的值    true  是  false  不是
+    function isPrime( n ){
+        //素数，质数
+        //满足条件： 只能被 1  和  自身整除
+        // 拿 2  和  小于自身 之间的数字进行比对，结果不能有余数
+//        for( var i = 2; i < n; i++ ){
+//            //如果没有余数，表示能整除，此时就表示，不是一个质数
+//            if( n % i === 0 ){
+//                return false;
+//            }
+//        }
+//        return true;
+        // 假如是质数
+        // 开闭原则
+        var bool = true;
+        for( var i = 2; i < n; i++ ){
+            if( n % i === 0){
+                bool = false;
+            }
+        }
+        return bool;
+    }
+    console.log( isPrime( 9 ) );
+
+
+</script>
+</body>
+</html>

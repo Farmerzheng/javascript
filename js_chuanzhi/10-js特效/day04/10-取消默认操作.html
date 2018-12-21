@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a id="link" href="http://www.baidu.com">百度</a>
+<script>
+    var a = document.getElementById('link');
+    a.onclick = function ( event ) {
+        var e = event || window.event;
+        //取消默认操作
+//        e.preventDefault()
+        //return false;
+        //能力检测
+        if ( e.preventDefault  ){
+            e.preventDefault();
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

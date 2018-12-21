@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  	// Object.create 实现继承
+  var Ball = {
+    name: "球",
+    play: function() {
+
+    }
+  };
+
+  if (!Object.create) {
+    Object.create = function(obj) {
+      function F() {};
+      F.prototype = obj;
+      return new F();
+    }
+  }
+
+  var ball = Object.create(Ball);
+  console.log(ball.name)
+
+  </script>
+</body>
+
+</html>

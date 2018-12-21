@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="Drag.js"></script>
+  <script src="HitTest.js"></script>
+</head>
+<style>
+body {
+  /*margin:0;*/
+  /*padding:0;*/
+}
+
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  position: absolute;
+  left: 300px;
+  top: 300px;
+}
+</style>
+
+<body>
+  <div class="box2"></div>
+  <script>
+  var box2 = document.querySelector(".box2");
+  HitTest.mouseTest(box2, function() {
+    alert("发生碰撞")
+  })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+        /*
+        *   name 键
+		*   value 键对应的值
+		*   dateLength 存储的时间长度
+		*/
+		function setCookie(name,value,dateLength){
+			//先算出当前时间，然后让当前时间加上dateLength
+			var now = new Date();
+			now.setDate(now.getDate()+dateLength);
+           //expires  是字符串中的一个特殊的值，用于设置cookie的过期时间
+			document.cookie = name + "=" + value + ";expires="+now;
+		}
+		setCookie("username","lisi",30);
+		setCookie("password","123",30);
+		setCookie("email","123@qq.com",30);
+		
+	</script>
+</body>
+</html>

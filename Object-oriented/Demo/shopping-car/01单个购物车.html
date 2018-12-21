@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="rem.js"></script>
+</head>
+<style>
+    span {
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+</style>
+<body>
+<div>
+    <p>
+        <span>牛奶</span>
+        <span id="minus">-</span>
+        <span id="num">11</span>
+        <span id="plus">+</span>
+        <span>单价2元</span>
+    </p>
+    <p>总价<span id="price">22</span>元</p>
+
+</div>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    var car = {
+        price: 2,
+        num: 11,
+        numDom: $("num"),
+        minusDom: $("minus"),
+        plusDom: $("plus"),
+        init: function () {
+            this.bindEvent();
+        },
+        bindEvent: function () {
+            var me = this;
+            this.minusDom.addEventListener("click", function () {
+                me.num--;
+                me.renderNum();
+                price.render();
+            });
+            this.plusDom.addEventListener("click", function () {
+                me.num++;
+                me.renderNum();
+                price.render();
+            })
+        },
+        renderNum: function () {
+            this.numDom.innerHTML = this.num;
+        }
+    };
+    car.init();
+
+    var price = {
+        priceDom: $("price"),
+        init: function () {
+            this.render();
+        },
+        render: function () {
+            this.priceDom.innerHTML = car.price * car.num;
+        }
+    };
+    price.init();
+
+</script>
+</body>
+</html>

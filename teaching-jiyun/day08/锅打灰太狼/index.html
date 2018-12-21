@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+     *{
+     	margin:0;
+     	padding:0;
+     }
+	#bg{
+		width:320px;
+		height:480px;
+		background-image: url(img/game_bg.jpg);
+		background-size: 100% 100%;
+		margin:0 auto;
+		position: relative;
+	}
+</style>
+<body>
+    <div id="bg">
+      <span id = "score" style = "position:absolute;left:60px;top:10px;font-size:20px;color:white">0</span>
+    	
+    </div>
+    <script type="text/javascript" src = "reload.js"></script>
+	<script type="text/javascript">
+
+         var container = document.getElementById("bg");
+         var scoreBox = document.getElementById("score");
+
+         var totalTime = 0;
+
+         var totalScore = 0;
+
+        //定义一个数组，存放灰太狼的位置
+         var wolfsPositionArr = [{left:"98px",top:"115px"},{left:"17px",top:"160px"},{left:"15px",top:"220px"},{left:"30px",top:"293px"},{left:"122px",top:"273px"},{left:"207px",top:"295px"},{left:"200px",top:"211px"},{left:"187px",top:"141px"},{left:"100px",top:"185px"}];
+    
+       //利用预加载插件，加载游戏所用的图片
+       var imgList = ["img/game_bg.jpg","img/h0.png","img/h1.png","img/h2.png","img/h3.png","img/h4.png","img/h5.png","img/h6.png","img/h7.png","img/h8.png","img/h9.png","img/x0.png","img/x1.png","img/x2.png","img/x3.png","img/x4.png","img/x5.png","img/x6.png","img/x7.png","img/x8.png","img/x9.png","img/progress.png"];
+
+       var reloadImg = new ReloadImg(imgList,beginGame);
+       reloadImg.init();
+ 
+//图片加载完成后的回调
+     function beginGame(){   
+ 
+
+     //每隔2秒创建一个狼
+      setInterval(function(){
+
+         if(totalTime%10 == 0){
+             //创建一个小灰灰
+                var huihui = new Wolf("img/x",container);
+                huihui.init();
+            }else{
+                //创建一头狼
+                var wolf = new Wolf("img/h",container);
+                wolf.init();
+            }
+           totalTime += 2;
+        },2000);      
+  
+     }  
+
+    //随机函数    
+    function randomFn(max,min){
+          return parseInt(Math.random()*(max - min))+min;
+    }
+
+  //创建狼对象的构造函数
+function Wolf(imgSrc,container){
+
+            this.imgSrc = imgSrc;
+            this.container = container;
+            //狼的背景图片
+            this.bg = new Image(); 
+            //狼被单击的图片索引
+            this.hitIndex = 6; 
+            //狼的背景图片索引
+             this.imgIndex = -1;
+             //狼默认情况下是向上运动的
+             this.up = true;              
+             //狼只能被点击一次
+             this.clicked = false;             
+             //让狼的背景图片的that属性值是狼对象本身
+            this.bg.that = this;
+            window.that = this;            
+            //狼被点击        
+            this.bg.addEventListener("click", this.wolfClickHandler);
+    }
+
+Wolf.prototype = {
+      //初始化
+      init:function(){
+            //将狼添加到页面上
+            this.container.appendChild(this.bg);
+            this.createPosition();
+            this.move(); 
+      },
+
+      //狼运动
+      move:function(){
+                var self = this;
+                //每隔200毫秒换一张图片
+                var moveTimer = window.setInterval(function(){ 
+                    if(self.up){                    
+                      if(self.imgIndex == 5){
+                        self.imgIndex = 4;
+                        self.up = false;
+                      }else{
+                         self.imgIndex++;
+                      }
+                    }else{                      
+                      if(self.imgIndex == 0){
+                        self.bg.remove();
+                        clearInterval(moveTimer);
+                      }else{
+                         self.imgIndex--;
+                      }                      
+                    }
+                    self.bg.src = self.imgSrc+self.imgIndex+".png";
+                },300)
+            },
+          //狼的位置
+        createPosition :function(){
+              this.position = wolfsPositionArr[randomFn(9,0)]; 
+              //循环所有狼的位置,判断生成的这个狼的位置是否和其他狼的位置相等
+              this.wolfs = document.getElementsByTagName("img");
+              for(var i = 0 ; i < this.wolfs.length ; i++ ){
+                  if(this.wolfs[i].style.left == this.position.left){
+                      this.createPosition();
+                  }
+              };
+               //狼的样式
+              this.bg.style.cssText = "position:absolute;left:"+this.position.left+";top:"+this.position.top+";"
+            },
+        wolfClickHandler:function(){
+                //this指狼的背景图
+                //this.that 指wolf 
+                //不允许重复点击             
+                if(this.that.clicked == true)return;           
+                  this.that.clicked = true;               
+                 //将背景图片换成敲打图片，每隔一定时间把图片换掉
+                 //this 指的是图片
+                 var self = this;
+                 //点击正确就加分
+                 if(this.that.imgSrc == "img/h"){
+                  totalScore += 10;
+                 }else{
+                  totalScore -= 10;
+                 }
+                 scoreBox.innerHTML = totalScore;
+                 //点击时的动画效果
+                 var clickTimer = setInterval(function(){
+                  //this指window
+                  //this.that指Wolf
+                     self.src = this.that.imgSrc+this.that.hitIndex+".png";
+                     this.that.hitIndex++;
+                     if(this.that.hitIndex == 10){
+                      clearInterval(clickTimer);
+                      self.remove();
+                     }
+                 },200);            
+             
+            }  
+}
+
+	</script>
+</body>
+</html>

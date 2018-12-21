@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding:200px;
+        }
+    </style>
+</head>
+<body>
+<button>选中重庆</button>
+<button>取消重庆</button>
+<select name="" id="" multiple>
+    <option value="">北京</option>
+    <option value="">上海</option>
+    <option value="" selected>成都</option>
+    <option value="">重庆</option>
+    <option value="">广州</option>
+    <option value="">深圳</option>
+    <option value="">南昌</option>
+</select>
+<input type="text" value="请输入">
+<script>
+    var button = document.getElementsByTagName('button');
+    var select = document.getElementsByTagName('select')[0];
+    var option = select.getElementsByTagName('option');
+    var input = document.getElementsByTagName('input')[0];
+    //点击选中重庆
+    button[0].onclick = function () {
+        option[ 3 ].selected = true;
+    }
+    button[1].onclick = function () {
+        option[ 3 ].selected = false;
+    }
+    //给input添加失去光标事件，一旦验证失败，重新输入，自动选中之前输入的内容
+    input.onblur = function () {
+        if( this.value.length < 6 ){
+            //选中输入的内容
+            this.select();
+            //让光标进去,通过方法来获取光标
+            this.focus();
+        }
+    }
+</script>
+</body>
+</html>

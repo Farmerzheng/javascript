@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+body {
+  background-color: #999;
+}
+
+td {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  background-color: #666;
+}
+
+.snakeBody {
+  background-color: #000;
+}
+
+.snakeHeader {
+  background-color: red;
+}
+
+.snakeFood {
+  background-color: yellow;
+}
+</style>
+
+<body>
+  <div class="score"></div>
+  <table id="map"></table>
+</body>
+<script>
+function Snake() {
+  this.map = document.querySelector("#map");
+  this.rows = 15;
+  this.cols = 20;
+  this.foodPos = {
+    x: -1,
+    y: -1
+  }
+  this.pos = [{
+    "x": 2,
+    "y": 5
+  }, {
+    "x": 1,
+    "y": 5
+  }, {
+    "x": 0,
+    "y": 5
+  }];
+  this.keyCode = 39;
+  this.updateBoolean = false;
+  this.score = 0;
+}
+
+Snake.prototype = {
+  init: function() {
+    this.createGameMap(this.rows, this.cols);
+    this.createSnake();
+    this.bindkeyEvent();
+    this.createFood();
+
+  },
+  createFood: function() {
+    // food不能落在蛇身上
+    do {
+      this.foodPos.x = parseInt(Math.random() * (this.cols));
+      this.foodPos.y = parseInt(Math.random() * (this.rows));
+    } while (this.map.rows[this.foodPos.y].cells[this.foodPos.x].className != "")
+    this.map.rows[this.foodPos.y].cells[this.foodPos.x].className = "snakeFood"
+
+
+  },
+  createSnake: function() {
+
+    for (var i = 0; i < this.pos.length; i++) {
+      this.map.rows[this.pos[i].y].cells[this.pos[i].x].className = "snakeBody"
+    }
+    this.map.rows[this.pos[0].y].cells[this.pos[0].x].className = "snakeHeader"
+  },
+  createGameMap: function(rows, cols) {
+    for (var i = 0; i < rows; i++) {
+      // 从最后一行插入
+      this.map.insertRow();
+      for (var j = 0; j < cols; j++) {
+        this.map.rows[i].insertCell()
+      }
+    }
+  },
+  bindkeyEvent: function() {
+    var self = this;
+    document.onkeydown = function(e) {
+      var e = e || event;
+      var eKey = e.keyCode || e.which || e.charCode;
+
+      if (eKey >= 37 && eKey <= 40 && eKey != self.keyCode && !((self.keyCode == 37 && eKey == 39) || (self.keyCode == 38 && eKey == 40) || (self.keyCode == 39 && eKey == 37) || (self.keyCode == 40 && eKey == 38)) && self.updateBoolean == true) { //响应:上下左右 & 不是当前方向 & 不是反方向 & 不在暂停状态
+        self.keyCode = eKey;
+      } else if (eKey == 32) {
+        self.updateBoolean = !self.updateBoolean;
+      }
+
+    }
+  },
+  update: function() {
+
+    if (this.updateBoolean == false) return;
+
+    //判断方向
+    switch (this.keyCode) {
+      case 37:
+        // 左移
+        if (this.pos[0].x < 1) {
+          // console.log("死亡了")
+          this.die()
+          return;
+        } else {
+          this.pos.unshift({
+            x: this.pos[0].x - 1,
+            y: this.pos[0].y
+          })
+        }
+        break;
+      case 38:
+        // 上移
+        if (this.pos[0].y < 1) {
+          // console.log("死亡了")
+          this.die()
+          return;
+        } else {
+          this.pos.unshift({
+            x: this.pos[0].x,
+            y: this.pos[0].y - 1
+          })
+        }
+        break;
+      case 39:
+        // 右移
+
+        if (this.pos[0].x > this.cols - 2) {
+          // console.log("死亡了")
+          this.die()
+          return;
+        } else {
+          this.pos.unshift({
+            x: this.pos[0].x + 1,
+            y: this.pos[0].y
+          })
+        }
+
+        break;
+      case 40:
+        // 下移
+        if (this.pos[0].y > this.rows - 2) {
+          // console.log("死亡了")
+          this.die()
+          return;
+        } else {
+          this.pos.unshift({
+            x: this.pos[0].x,
+            y: this.pos[0].y + 1
+          })
+        }
+        break;
+    }
+
+    //蛇不能撞到自身
+
+    for (i = 3; i < this.pos.length; i++) { //从蛇的第四节开始判断是否撞到自己了 因为蛇头为两节 第三节不可能拐过来
+      if (this.pos[i].x == this.pos[0].x && this.pos[i].y == this.pos[0].y) {
+        this.die();
+        return;
+      }
+    }
+
+    //判断是否吃到食物
+    if (this.pos[0].y == this.foodPos.y && this.pos[0].x == this.foodPos.x) {
+      this.score++;
+      // 不删蛇尾
+      this.createFood();
+    } else {
+      //删除蛇尾
+      this.map.rows[this.pos[this.pos.length - 1].y].cells[this.pos[this.pos.length - 1].x].className = ""
+      this.pos.pop();
+    }
+
+    // console.log(this.pos)
+
+    //重绘蛇
+    this.createSnake();
+  },
+  die: function() {
+    this.updateBoolean = false;
+    alert("得分为" + this.score);
+    this.keyCode = 39;
+    this.pos = [{
+      "x": 2,
+      "y": 5
+    }, {
+      "x": 1,
+      "y": 5
+    }, {
+      "x": 0,
+      "y": 5
+    }];
+
+    // 清空地图
+    var tdArr = document.querySelectorAll("td");
+    tdArr.forEach(function(el) {
+      // console.log(el);
+      el.className = "";
+    })
+    //创建一条蛇
+    this.createSnake();
+    this.createFood();
+  }
+}
+
+var snake = new Snake();
+snake.init();
+
+setInterval(function() {
+  snake.update();
+}, 200)
+</script>
+
+</html>

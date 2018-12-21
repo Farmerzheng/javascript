@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            height: 30px;
+            font:18px/30px "微软雅黑";
+            background: #09c;
+            text-align: center;
+            color:#fff;
+        }
+        .login{
+            position: absolute;
+            left:300px;
+            top:200px;
+            width: 400px;
+            height: 280px;
+            background: pink;
+            border:2px solid #ccc;
+            box-shadow: 4px 4px 5px rgba(0,0,0,0.5);
+        }
+        .login-hd{
+            height: 30px;
+            background: #909;
+            color:#fff;
+            cursor: move;
+        }
+        .login-hd h3{
+            float: left;
+        }
+        .login-hd a{
+            float: right;
+            color:#fff;
+
+        }
+    </style>
+</head>
+<body>
+<header>注册信息</header>
+<div class="login" id="login">
+    <div class="login-hd">
+        <h3>注册信息</h3>
+        <a href="#">[关闭]</a>
+    </div>
+</div>
+<script>
+    var login = document.getElementById('login');
+    var loginHd = login.children[0];
+
+    //鼠标按下
+    loginHd.onmousedown = function ( event ) {
+        var e = event || window.event;
+        console.log( '按下' );
+        //获取当前触发的点，在盒子中的坐标
+        // 坐标值-盒子距离左侧的值
+        var pagex = e.pageX || scroll().left + e.clientX;
+        var pagey = e.pageY || scroll().top + e.clientY;
+        var boxX = pagex - login.offsetLeft;
+        var boxY = pagey - login.offsetTop;
+
+        //鼠标移动(如果事件源只是在当前元素，可能出现bug)
+        // document,  window
+        window.onmousemove = function ( event ){
+            var e = event || window.event;
+            //console.log( '移动' );
+            //在移动的时候，获取当前距离页面的左侧和顶部坐标
+            var x = e.pageX || scroll().left + e.clientX;
+            var y = e.pageY || scroll().top + e.clientY;
+            //设置
+            x = x - boxX;
+            y = y - boxY;
+
+            //把获取的值给大盒子的left和top
+            login.style.left = x + 'px';
+            login.style.top = y + 'px';
+        }
+    }
+    //鼠标松开
+    window.onmouseup = function () {
+        console.log( '松开' );
+        //松开的时候，解绑鼠标移动
+        window.onmousemove = null;
+    }
+
+
+    function scroll(  ){
+        return {
+            left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+            top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        }
+    }
+</script>
+</body>
+</html>

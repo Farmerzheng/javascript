@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		document.onkeydown = function(e){
+
+			//e 是事件处理函数的一个形式参数，这个参数在事件处理函数调用的时候会自动传入，这个参数本质上是一个对象，此对象包含了事件发生时的一些特征，例如点击事件的鼠标位置，键盘事件的按键编号
+
+            //事件对象的兼容性写法
+			var event = e || window.event;
+         
+
+			console.log(event);
+			//我现在想知道用户究竟按下了哪个键
+			//按下按键不同，事件对象的 keyCode 属性值不同
+
+			switch (event.keyCode){
+				case 37:
+				console.log("用户按下了左键");
+				break;
+				case 39:
+				console.log("用户按下了右键");
+				
+			}
+		}
+	</script>
+</body>
+</html>	

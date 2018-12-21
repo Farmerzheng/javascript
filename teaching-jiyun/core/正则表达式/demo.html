@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+     <div id = "number">
+     	<input type="text" name="" placeholder="请输入网址" id = "phone">
+     	<span></span>
+     </div>
+    
+    <button id = "btn">匹配</button>
+	<script type="text/javascript">
+	   /*
+		   需求:
+		1：以http(s)://开头
+		2：需要有 www
+		3：中间以字母或者数字或者下划线
+		4：后缀是2-4个字母
+		5：不区分大小写
+		例如https://www.baidu.com
+
+		*/
+
+		var myReg = /^(http:\/\/|https:\/\/)w{3}\.\w+\.[A-z]{2,4}$/i;
+		var btn = document.getElementById("btn");
+		var input = document.getElementById("phone");
+		var number = document.getElementById("number");
+		btn.onclick = function(){
+			var text = input.value;
+			var a = myReg.test(text);
+			// console.log(a);
+			if(a == false){
+				number.lastElementChild.innerText = "您输入的网址不正确";
+				number.lastElementChild.style.color = "red";
+			}else{
+                number.lastElementChild.innerText = "格式正确";
+                number.lastElementChild.style.color = "green";
+			}
+		}
+	</script>
+</body>
+</html>

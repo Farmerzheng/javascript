@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            margin:10px;
+            border:10px red solid;
+            padding:10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+    今天说要下雪，结果没下成。今天说要下雪，结果没下成。今天说要下雪，结果没下成。今天说要下雪，结果没下成。今天说要下雪，结果没下成。今天说要下雪，结果没下成。今天说要下雪，结果没下成。
+</div>
+<script>
+    var div = document.getElementsByTagName('div')[0];
+//    console.log(div.offsetWidth);
+    // scrollWidth = width + padding
+    // scrollHeight = height + padding 如果内容超出盒子，高度就是按照内容的高度计算
+    console.log( div.scrollHeight );
+
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    replace（参数1，参数2）  替换
+    // 参数1，要替换的规则（正则表达式）
+    // 参数2，要替换的内容
+    // 正则表达式后边的g---global    全局搜索
+    // 返回值：替换后的字符串
+    var str = '中华台北是中国的一部分,中华台北是中国的一部分,中华台北是中国的一部分'
+    var res = str.replace(/中华台北/g,'中国台湾');
+    console.log(res);
+</script>
+</body>
+</html>

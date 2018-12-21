@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>这是土著人1</li>
+    <li>这是土著人2</li>
+    <li>这是土著人3</li>
+</ul>
+<script>
+    //找到ul
+    var ul = document.getElementsByTagName('ul')[0];
+    var lis = document.getElementsByTagName('li');
+    //创建节点
+//    var newLi = document.createElement('li');
+//    newLi.innerHTML = '我是新来的';
+//    //要把创建好的节点添加进ul中
+//    // ul.appendChild( li );
+//    // appendChild 添加在指定元素的最后
+//    //把创建好的li添加在 第二个li的上边
+//    // insertBefore( 节点名称 ， 指定的位置 )
+//    //  把节点添加在指定位置的前边
+//    ul.insertBefore( newLi, lis[0]);
+    // 在ul中添加10个人名字
+    var arr = [ '张飞','曹操','赵云','马超','黄忠','周瑜','陈瑞','王欢','小乔','大乔' ];
+    for(var i = 0; i < arr.length; i++){
+        //没循环一次，创建li，最后把li添加在ul中
+        var newLi = document.createElement('li');
+//        newLi.innerHTML = '三国演义';
+        newLi.innerHTML = arr[i];
+        ul.appendChild( newLi );
+    }
+
+</script>
+</body>
+</html>

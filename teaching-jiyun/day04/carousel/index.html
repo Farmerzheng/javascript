@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+    ul,li{
+    	margin:0;
+    	padding:0;
+    	list-style: none
+    }
+	.carousel{
+		width:300px;
+		height:200px;
+		margin:0 auto;
+		position:relative;
+		overflow: hidden;
+	}
+	.carousel .wrapper{
+		position:absolute;
+		width:1200px;
+		height:200px;
+		left:0;
+		top:0;
+		transition: 1s;
+	}
+	.carousel .wrapper li{
+		float:left;
+		width:300px;
+		height:200px;
+	}
+	.carousel .wrapper li img{
+		width:100%;
+		height:100%;
+	}
+	.carousel .dotList{
+		width:80px;
+		height:20px;
+		position:absolute;
+		left:100px;
+		bottom:20px;
+	}
+	.carousel .dotList li{
+		width:16px;
+		height:16px;
+		border-radius:8px;
+		margin:0 2px;
+		background-color: yellow;
+		float:left;
+	}
+	.carousel .buttonWrapper{
+		position:absolute;
+		left:0;
+		top:100px;
+		width:300px;
+		height:20px;
+	}
+	.carousel .buttonWrapper .left{
+		float: left
+	}
+	.carousel .buttonWrapper .left{
+		float: right
+	}
+</style>
+<body>
+	<div class="carousel">
+		<ul class="wrapper">
+			<li><img src="img/nature1.jpg" alt=""></li>
+			<li><img src="img/nature2.jpg" alt=""></li>
+			<li><img src="img/nature3.jpg" alt=""></li>
+			<li><img src="img/nature4.jpg" alt=""></li>
+		</ul>
+		<ul class="dotList">
+			<li style = "background-color: red"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="buttonWrapper">
+			<button class="right">&lt;</button>
+			<button class="left">&gt;</button>
+		</div>
+	</div>
+	<script  type="text/javascript" charset="utf-8" async defer>
+
+	   //获取要操作的DOM对象
+		var carouselDiv = document.querySelector(".carousel");
+		var wrapperDiv = document.querySelector(".wrapper");
+		var dotList = document.querySelectorAll(".dotList li");
+		var leftBtn = document.querySelector(".left");
+		var rightBtn = document.querySelector(".right");
+		var imgIndex = 0;
+
+		var timer;
+
+		//鼠标移入轮播图，停止轮播
+		carouselDiv.addEventListener("mouseover",stopCarousel);
+
+
+		//鼠标移出轮播图，开始轮播
+		carouselDiv.addEventListener("mouseout",startCarousel);
+
+		//为左右按钮挂接点击事件
+		leftBtn.addEventListener("click",leftMove);
+		rightBtn.addEventListener("click",rightMove);
+
+		function autoPlay(){
+		    timer = setInterval(function(){
+	                imgIndex++;
+		            if(imgIndex==4){
+		               imgIndex=0
+		            }	             
+
+	             imgMove()  
+
+	            //改变小圆点的背景颜色
+	            changeDot();
+	        
+			},2000)
+		}
+
+		autoPlay();
+
+	
+       //改变小圆点的背景色
+		function changeDot(){
+          
+            for(var i = 0 ; i < dotList.length;i++){
+            	dotList[i].style.backgroundColor = "yellow"
+            }
+            dotList[imgIndex].style.backgroundColor = 'red';
+		}
+        
+        function imgMove(){
+           wrapperDiv.style.transform=`translate(${-imgIndex*300}px,0)`;
+        }
+
+		//停止轮播
+		function stopCarousel(){
+           clearInterval(timer);
+		}
+        //开始轮播
+		function startCarousel(){
+           autoPlay()
+
+		}
+
+		function leftMove(){
+			
+			   imgIndex++;
+		       if(imgIndex==4){
+		           imgIndex=0
+		        }
+
+             imgMove()
+            
+            changeDot() 
+		}
+
+		function rightMove(){
+
+			   imgIndex--;
+		       if(imgIndex==-1){
+		           imgIndex=3
+		        }
+
+             imgMove()
+            
+            changeDot()
+
+		}
+
+		//为小圆点挂接鼠标移入移出事件
+          
+          for(var i = 0 ; i < dotList.length ; i++){
+
+             dotList[i].index = i;
+             dotList[i].addEventListener("mouseover",function(){
+
+             
+
+              imgIndex = this.index;
+              imgMove()
+              changeDot()
+
+             })
+
+          }
+
+	</script>
+</body>
+</html>

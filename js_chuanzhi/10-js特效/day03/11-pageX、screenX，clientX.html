@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    document.onclick = function (event) {
+        var e = event || window.event;
+        // pageY  相对于网页的坐标值   ie低版本不支持此属性
+        // screenY  相对于 电脑屏幕
+        // clientY  相对于当前窗口
+        console.log( 'pageY-----' + e.pageY );
+        console.log( 'screenY----' + e.screenY );
+        console.log( 'clientY----' + e.clientY  );
+    }
+</script>
+</body>
+</html>

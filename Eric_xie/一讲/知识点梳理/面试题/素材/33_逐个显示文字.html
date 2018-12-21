@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		
+	</style>
+	<script type="text/javascript">
+	window.onload = function(){
+		var txt = "小说：以刻画人物形象为中心，通过完整的故事情节和环境描写来反映社会生活的文学体裁。人物、情节、环境是小说的三要素。情节一般包括开端、发展、高潮、结局四部分，有的包括序幕、尾声。环境包括自然环境和社会环境。 小说按照篇幅及容量可分为长篇、中篇、短篇和微型小说（小小说）。按照表现的内容可分为科幻、公案、传奇、武侠、言情、同人、官宦等。按照体制可分为章回体小说、日记体小说、书信体小说、自传体小说。按照语言形式可分为文言小说和白话小说。小说与诗歌、散文、戏剧，并称“四大文学体裁”。小说刻画人物的方法：心理描写、动作描写、语言描写、外貌描写、神态描写。" ;
+	var pText = document.getElementById('pText');
+	var i = 0;
+	function jiequ(){
+		i++;
+		//截取字符串
+		var str = txt.substring(0,i);
+		// 截取的字符串放到P标签内
+		pText.innerHTML = str;
+		//当。。。的时候
+		// if(i > txt.length){
+		// 	clearInterval(timer);
+		// }
+	}
+
+
+
+	var timer = setInterval(jiequ, 100);
+	}
+	
+
+	
+	
+
+</script>
+</head>
+<body>
+	<p id="pText"></p>
+	
+</body>
+
+</html>

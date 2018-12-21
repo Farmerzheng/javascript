@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <button id="btn">按钮</button>
+</div>
+<script>
+    var btn = document.getElementById('btn');
+    var box = document.getElementById('box');
+    //添加事件
+    btn.onclick = function ( event ) {
+        var e = event || window.event;
+        alert('button点击');
+    }
+    box.onclick = function (e) {
+        var e = event || window.event;
+        alert('div点击');
+        //取消冒泡
+        //取消冒泡
+        //e.stopPropagation();
+        // ie低版本取消冒泡
+//        e.cancelBubble = true;
+        //兼容取消冒泡
+        if ( e.stopPropagation ) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    }
+    document.body.onclick = function () {
+        alert('body点击');
+    }
+    document.onclick = function () {
+        alert('document点击');
+    }
+</script>
+</body>
+</html>

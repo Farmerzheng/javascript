@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <script>
+            var arr=[];
+            var obj={}
+            obj.name="张三";
+            obj.sexs="男";
+            obj.age="28";
+            var div;
+        bn.onclick=function () {
+            arr.push(obj);
+        }
+            label.onmouseover=function () {
+                div.style.display="block"
+                var obj;
+                var name=this.textContent;
+                for(var i=0;i<arr.length;i++){
+                    if(arr[i].name==name){
+                        obj=arr[i];
+                    }
+                }
+                var tds=tr.getElementsByTagName("td");
+                tds[0].textContent=obj.name;
+                tds[1].textContent=obj.sexs;
+                tds[2].textContent=obj.age;
+            }
+            label.onmouseout=function () {
+                div.style.display="none"
+            }
+
+        </script>
+</body>
+</html>

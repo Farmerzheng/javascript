@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/rem.js"></script>
+    <script src="js/iscroll-zoom.js"></script>
+</head>
+<style>
+
+    /*iscroll*/
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html {
+        -ms-touch-action: none;
+    }
+
+    body,ul,li {
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+
+    body {
+        font-size: 12px;
+        font-family: ubuntu, helvetica, arial;
+        /*overflow: hidden; !* this is important to prevent the whole page to bounce *!*/
+    }
+
+    #wrapper {
+        position: absolute;
+        z-index: 1;
+        top: 10rem;
+        bottom: 10rem;
+        left:0;
+        right:0;
+        background: #ccc;
+        overflow: hidden;
+    }
+
+    #scroller {
+        position: absolute;
+        z-index: 1;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        width: 100%;
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-text-size-adjust: none;
+        -moz-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+        -o-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    #scroller ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-align: left;
+    }
+
+    #scroller ul li,#scroller ul li img{
+        width: 100%;
+    }
+
+</style>
+<body >
+
+    <div id="wrapper">
+        <div id="scroller">
+            <ul>
+                <li><img src="images/1.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+
+<!--<ul>-->
+        <!--<li><img src="images/1.jpg" alt=""></li>-->
+        <!--<li><img src="images/2.jpg" alt=""></li>-->
+        <!--<li><img src="images/3.jpg" alt=""></li>-->
+        <!--<li><img src="images/4.jpg" alt=""></li>-->
+        <!--<li><img src="images/1.jpg" alt=""></li>-->
+        <!--<li><img src="images/2.jpg" alt=""></li>-->
+        <!--<li><img src="images/3.jpg" alt=""></li>-->
+        <!--<li><img src="images/4.jpg" alt=""></li>-->
+        <!--<li><img src="images/1.jpg" alt=""></li>-->
+        <!--<li><img src="images/2.jpg" alt=""></li>-->
+        <!--<li><img src="images/3.jpg" alt=""></li>-->
+        <!--<li><img src="images/4.jpg" alt=""></li>-->
+    <!--</ul>-->
+
+<script src="js/jQuery.js"></script>
+<script src="js/hammer.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

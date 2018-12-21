@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  	// prototype 实现继承
+  function Ball(_width, _height) {
+    this.width = _width;
+    this.height = _height;
+  }
+  Ball.prototype = {
+    play: function() {
+      console.log("I am a ball , my width is "+this.width+"my height is "+this.height)
+    }
+  }
+
+  var ball1 = new Ball(30,40);
+  var ball2 = new Ball(10, 10)
+  
+  </script>
+</body>
+
+</html>

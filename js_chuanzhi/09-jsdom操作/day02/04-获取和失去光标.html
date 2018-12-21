@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" placeholder="请输入">
+<br>
+<br>
+<input type="text" value="格兰仕微波炉" id="inp">
+<script>
+    var inp = document.getElementById('inp');
+    // 获取光标
+    inp.onfocus = function () {
+        //清空当前表单中内容，value值为空
+//        value = ''
+//        setAttribute('value','');
+        //判断，只有里边的内容是默认值 格兰仕微波炉 才会清空
+        if( this.value === '格兰仕微波炉' ) {
+            this.value = '';
+        }
+    }
+    //失去光标
+    inp.onblur = function () {
+        //如果里边的内容为空，把之前的 内容放回来
+
+        if( this.value === '' ){
+            this.value = '格兰仕微波炉';
+        }
+
+    }
+</script>
+</body>
+</html>

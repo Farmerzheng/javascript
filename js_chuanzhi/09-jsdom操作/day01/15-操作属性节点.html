@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="images/jd1.png" width="160" height="170" alt="" title="这是logo">
+<script>
+    var img = document.getElementsByTagName('img')[0];
+    // 操作节点属性
+//    img.width = 300;
+    // 设置节点属性
+    img.setAttribute('height','300');
+    //获取节点属性
+    console.log( img.getAttribute('title') );
+</script>
+</body>
+</html>

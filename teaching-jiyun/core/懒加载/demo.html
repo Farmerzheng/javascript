@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0
+    }
+</style>
+<body style="height:4000px">
+<div class="top" style = "width:1000px;height:1000px;background-color:
+red"></div>
+  <div class="container" style="position:relative;"></div>
+<script src = lazyLoadImg.js></script>
+<script>
+    var container = document.getElementsByClassName("container")[0];
+    var imgSrcList = ["img/nature1.jpg","img/nature2.jpg","img/nature3.jpg","img/nature4.jpg"];
+
+   var loadImage = new LoadImage(container,imgSrcList,"width:500px;height:800px");
+    loadImage.init();
+</script>
+</body>
+</html>

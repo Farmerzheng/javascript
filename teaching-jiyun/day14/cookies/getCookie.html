@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    console.log(document.cookie);
+//    var str = document.cookie;
+//    var arr = str.split(";");
+////    console.log(arr);
+//    for(var i = 0 ; i < arr.length ; i++){
+//        var arrItem = arr[i];
+//        var itemArr = arrItem.split("=");
+//       //trim() 方法的作用是删除字符串左右两边的空格
+//        if(itemArr[0].trim() == "email"){
+//            console.log(itemArr[1])
+//        }
+//    }
+//
+    function getCookie(name){
+        var str = document.cookie;
+        var arr = str.split(";");
+        for(var i = 0 ; i < arr.length ; i++){
+            var arrItem = arr[i];
+            var itemArr = arrItem.split("=");
+            //trim() 方法的作用是删除字符串左右两边的空格
+            if(itemArr[0].trim() == name){
+                return itemArr[1];
+            }
+        }
+    }
+    
+
+
+
+
+</script>
+</body>
+</html>

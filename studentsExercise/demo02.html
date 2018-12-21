@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function main(){
+
+			var s=[
+				{"学号":235,"成绩":67},
+				{"学号":245,"成绩":77},
+				{"学号":255,"成绩":87},
+				{"学号":265,"成绩":97},
+				{"学号":275,"成绩":68},
+				{"学号":285,"成绩":69}
+			];
+
+			var b=[];
+			var sum=0; //总分 
+
+			for(var i=0;i<s.length;i++){
+              var student=s[i];
+              var studentScore=student["成绩"];
+              sum+=studentScore;
+
+			}
+
+			//平均分
+			var averageScore=sum/s.length;
+
+		    for(var i=0;i<s.length;i++){
+
+              var student=s[i];
+              var studentScore=student["成绩"];
+
+              if(studentScore>=averageScore){
+                    b.push(student);
+              }
+
+			}
+
+			console.log(b);
+			return averageScore;
+		}
+
+		main();
+	</script>
+</body>
+</html>

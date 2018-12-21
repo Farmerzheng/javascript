@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function person(){
+			var name = "zhangsan";
+			var age = 13;
+			return {
+				increaseAge:function(){
+                  //年龄增加
+                  age++;
+				},
+				decreaseAge:function(){
+                 //年龄减小
+                 age--;
+				},
+				ageValue:function(){
+				 //获取年龄	
+				 return age;
+				}
+			}
+
+		}
+
+		var zhangsan = person();
+		zhangsan.increaseAge();
+		console.log(zhangsan.ageValue());
+	</script>
+</body>
+</html>

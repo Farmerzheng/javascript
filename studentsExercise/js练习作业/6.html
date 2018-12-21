@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="text" type="text">
+<script>
+    window.onload=function() {
+
+        var text=document.getElementById('text');
+
+        function Consonant(str) {
+//            console.log(str);
+            var ConsonantArray = ['b', 'p', 'm', 'f', 'd', 't', 'n', 'l', 'g', 'k', 'h', 'j', 'q', 'x', 'zh',
+                'ch', 'sh', 'r', 'z', 'c', 's', 'y', 'w'];
+
+            var a = ConsonantArray.indexOf(str) == -1 ? false : true;
+            alert(a);
+        }
+       text.onblur=function(){
+           Consonant(text.value);
+       }
+
+    }
+</script>
+</body>
+</html>

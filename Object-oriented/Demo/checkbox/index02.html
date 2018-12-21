@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body style="background-color: red">
+  <script src="checkbox-class.js"></script>
+  <script>
+  var skinList = [{ x: 0, y: 0, w: 19, h: 19 }, { x: -19, y: 0, w: 19, h: 19 }];
+  var checkObj = new CheckBox("1.png", skinList)
+
+  var checkbox = checkObj.init();
+
+  // 挂接自定义事件
+  checkbox.addEventListener("selected",selectHandler);
+
+  function selectHandler(e){
+  	// 事件对象的selected属性是已经定义好的
+   console.log(e.selected);
+
+   // 发送请求给服务器
+   // ………………………………………………………………………………………………………………
+  }
+
+
+
+
+
+
+
+
+
+
+  
+
+  // 外界要使用我们自己写的这个checkbox ，但是外界并不知道什么时候被选中，什么时候不被选中
+
+  document.body.appendChild(checkbox);
+  </script>
+</body>
+
+</html>

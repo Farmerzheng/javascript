@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 函数：就是一个可以多次执行的代码块
+//    function 函数名称( 参数 ){
+//        // 函数体
+//    }
+    // 1. 函数创建是通过function 关键字
+    // 2. 函数名称可以自定义的，规则和变量相同
+    // 3. 参数不需要，可以留空
+    // 4. 函数体，是要多次执行的代码
+    // 5. 函数只是创建，不调用的话，是不会执行的。
+    // 6. 函数执行方式： 函数名称(  参数  ) ； 如果之前创建没有参数，调用可以不加用参数，多个参数之间用逗号隔开
+    function fn( ) {
+        for( var i=1; i<=5; i++ ){
+            console.log( i );
+        }
+    }
+    fn( 1,2,3 );
+    fn();
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.product .num input{
+		width:20px;
+	}
+</style>
+<body>
+    <div id="title">
+    	<input type="checkbox" id = "allCheck">全选
+    </div>
+    <div id="productContainer">
+      
+    </div>
+
+    <div class="selectedProducts">
+    	已选商品<span id = "productSumNum">0</span>
+    </div>
+    <div>
+      <button id = "buy">购买</button>
+    </div>
+	<script type="text/javascript">
+
+          var shopList = ["香蕉" ,"橘子","葡萄","榴莲","山竹","猕猴桃","荔枝","草莓","麻辣香锅"];
+          
+
+          var allCheck = document.getElementById("allCheck");         
+
+          var productSumNum = document.getElementById("productSumNum");
+
+          var productNumbers = 0;
+
+          var productContainer = document.getElementById("productContainer");
+
+          var buyBtn = document.getElementById("buy");
+         
+         //创建一个空数组，用来存放数据
+          var dataArr = [];
+
+
+
+      //可以把单个 商品看做一个对象
+      //这个商品对象有哪些属性呢？
+      //属性：复选框、商品名称、加法按钮、商品数量、减法按钮、删除按钮
+      //方法：加法事件、减法事件、选中事件、删除事件
+
+     //匿名函数的调用
+     // (function(){console.log(1)})();
+
+      // 面向过程的方法？买菜
+      //面向对象? 把要做的事情交给一个对象就可以了
+      //我们把每一个商品看做是一个对象
+     
+      //用构造函数的方法创建对象可以通过传入参数的形式改变对象的某些特征，例如我们这个购物车对象的商品名称是不同的，所以采用构造函数的方法创建对象
+      
+      //构造函数与普通函数的区别？构造函数的首字母要大写，构造函数是通过new关键字进行调用的 
+      function CarShop(container,name,totalNumber){
+        //构造函数当中的this指的是什么？指的就是用构造函数创建的那个对象
+        //既然this是个对象，this就有自己的方法和属性
+
+        this.box = document.createElement("div");
+        this.box.className = "product";
+        this.totalNum = totalNumber;
+
+        //复选框属性
+        this.checkbox = (function(){//匿名函数的调用
+                          var checkbox = document.createElement("input");
+                          checkbox.setAttribute("type","checkbox");
+                          //通过匿名函数调用，函数的返回值就是checkBox的属性值
+                           // productContainer.appendChild(checkbox);
+                          return checkbox;
+                        })();
+        //商品名称  goodsName和name的区别？————》name 是形参，goodsName是this对象的属性名
+        this.goodsName = (function(){
+                           var span = document.createElement("span");
+                           span.innerText = name;
+                           return span;
+                          })();
+
+        this.plusBtn =  (function(){
+                          var plusBtn =  document.createElement("button");
+                          plusBtn.innerText = "+";
+                          return plusBtn;
+                        })();
+
+        this.minusBtn = (function(){
+                          var minusBtn =  document.createElement("button");
+                          minusBtn.innerText = "-";
+                          return minusBtn;
+                        })();
+
+        this.num = (function(){
+                          var num =  document.createElement("input");
+                            num.setAttribute("type","text");
+                            num.value = 1;
+                          return num;
+                   })();  
+
+        this.deleteBtn = (function(){
+                            var deleteBtn =  document.createElement("button");
+                            deleteBtn.innerText = "删除";
+                            return deleteBtn;
+                         })(); 
+        
+        //将container 作为对象的一个属性                  
+        this.domContainer = container;
+
+        //为属性添加事件
+        this.plusBtn.addEventListener("click",this.plusClickHandler);
+        //加法按钮的that属性是咱们的这个对象，这个that属性是我自定义的
+        this.plusBtn.that = this;
+        this.minusBtn.addEventListener("click",this.minusClickHandler);
+        this.minusBtn.that = this;
+        this.checkbox.addEventListener("change",this.changeHandler);
+        this.checkbox.that = this;
+        this.deleteBtn.addEventListener("click",this.deleteHandler);
+        this.deleteBtn.that = this;
+      }
+
+      CarShop.prototype = {
+              //将对象的属性渲染的页面                
+        renderDOM : function(){
+            //原型对象方法中的 this 和 构造函数当中的this是一样的
+            this.box.appendChild(this.checkbox);
+            this.box.appendChild(this.goodsName);
+            this.box.appendChild(this.minusBtn);
+            this.box.appendChild(this.num);
+            this.box.appendChild(this.plusBtn);
+            this.box.appendChild(this.deleteBtn);
+            this.domContainer.appendChild(this.box);
+        },
+        //事件的回调函数写在原型对象里面
+        plusClickHandler:function(){
+                //this指的是加法按钮
+                this.that.num.value = parseInt(this.that.num.value)+1;
+                if(this.that.checkbox.checked == true){
+                  this.that.totalNum.innerText =  parseInt(this.that.totalNum.innerText)+1;
+                }
+                
+        } ,
+        minusClickHandler:function(){
+                if(parseInt(this.that.num.value) == 1)return;
+                this.that.num.value = parseInt(this.that.num.value)-1;
+                if(this.that.checkbox.checked == true){
+                  this.that.totalNum.innerText =  parseInt(this.that.totalNum.innerText)-1;
+                }
+                
+        } ,
+        changeHandler:function(){
+                if(this.checked == true){
+                  this.that.totalNum.innerText = parseInt(this.that.totalNum.innerText)+parseInt(this.that.num.value);
+                }else{
+                    this.that.totalNum.innerText = parseInt(this.that.totalNum.innerText)- parseInt(this.that.num.value);
+                }
+                
+        } ,
+        deleteHandler:function(){
+               if(this.that.checkbox.checked == true){
+                  this.that.box.remove();
+                  this.that.totalNum.innerText = parseInt(this.that.totalNum.innerText) - parseInt(this.that.num.value)
+               }
+               
+        }                                 
+
+      }
+
+      //通过构造函数创建对象
+      //不会断点调试就不会编程
+      for(var i = 0 ; i < shopList.length ; i++){
+           var goods = new CarShop(productContainer,shopList[i],productSumNum)
+           goods.renderDOM();
+      }
+
+      //为全选按钮添加点击事件
+      allCheck.onclick = function(){
+          var productList = document.getElementsByClassName("product");
+
+          if(allCheck.checked == true){
+              for(var i = 0 ; i < productList.length ; i++){
+              productList[i].firstElementChild.checked = true;
+              productSumNum.innerText = parseInt( productSumNum.innerText) +parseInt(productList[i].firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.value);
+               }
+
+          }else{
+
+              for(var i = 0 ; i < productList.length ; i++){
+                productList[i].firstElementChild.checked = false;
+                productSumNum.innerText = 0;
+               }
+
+          }
+        
+      }
+
+      buyBtn.onclick = function(){
+
+        //将数据发送给后台
+        var productList = document.getElementsByClassName("product");
+
+         //循环所有的商品
+         for(var i = 0 ; i < productList.length ; i++){
+              
+              //勾选的商品
+              if(productList[i].firstElementChild.checked == true){
+                 
+                 //创建一个空对象，用来存放单个商品的数据
+                 var productData = {};
+                
+                 //将商品的名称作为对象name属性的属性值
+                 productData.name = productList[i].firstElementChild.nextElementSibling.innerText;
+                 //将商品的数量作为对象num属性的属性值
+                 productData.num = parseInt(productList[i].firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.value);
+
+                 //将对象存放在商品数组里面
+                 dataArr.push(productData);
+
+              }
+           
+          }
+
+          console.log(dataArr);
+
+
+      }
+
+
+
+   
+      
+
+	</script>
+  
+</body>
+</html>	

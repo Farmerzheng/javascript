@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+    <script>
+        var div0=document.querySelector("div");
+        /*var reg=/1|2/;  //reg=/[12]/
+        var str="3";
+        console.log(str.match(reg))*/
+
+        /*var reg=/[0-9]+$|[a-zA-Z]+$/;
+        var str="4CC";
+        console.log(str.match(reg))*/
+
+        /*var reg=/^[1-9]$|^[12][0-9]$|^3[01]$/;
+        var str="35";
+        console.log(str.match(reg));*/
+
+
+       /* var reg=/^[0-9]$|^[1-9][0-9]$|^1[0-9]{2}$|^2[0-4][0-9]$|^25[0-5]$/;
+        var str="254.";
+        console.log(str.match(reg))*/
+
+        /*var reg=/(\d{3})(\d{4})(\d{4})/;
+        var str="18517891876";
+        console.log(str.replace(reg,"$1****$3"));*/
+
+        /*var regMail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+        var mail="xietian_79@163.com";
+        console.log(mail.match(regMail));*/
+
+        /*var reg=/\b.*\b/g;
+        var str="i love china";
+        console.log(str.match(reg));*/
+
+        /*var reg=/(?=a)/;
+        var str="i love china";
+        console.log(str.replace(reg,"s"));*/
+
+       /* var reg=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9a-z]{6,12}$/;
+        var str="123456xie";
+        console.log(str.match(reg));*/
+     /*   var num=0x4e00;
+        var num1=0x9fd5;
+
+        var reg=/[\u4e00-\u9fa5]/;
+
+        var str="一";
+        console.log(num,num1)
+        console.log(str.charCodeAt(0))*/
+
+       /* var str="aAzZ09";
+        console.log(str.charCodeAt(0),str.charCodeAt(1),str.charCodeAt(2),str.charCodeAt(3),str.charCodeAt(4),str.charCodeAt(5));
+        var arr=[];
+        for(var i=48;i<=57;i++){
+            arr.push(i)
+        }
+        for(var i=65;i<=90;i++){
+            arr.push(i);
+        }
+        for(var i=97;i<=122;i++){
+            arr.push(i)
+        }
+        arr.sort(function () {
+            return Math.random()-0.5;
+        });
+        var arr1=arr.slice(0,4);
+        var str="";
+        for(var i=0;i<arr1.length;i++){
+                str+=String.fromCharCode(arr1[i]);
+        }*/
+
+      /*  function randomChar(min,max) {
+            var random=Math.floor(Math.random()*(max-min))+min;
+            return String.fromCharCode(random);
+        }
+        for(var i=0;i<4;i++){
+            str+=randomChar(0x4e00,0x9fd5)
+        }*/
+//        div0.textContent=str;
+
+       /* var str="<p>Uber的这款无人车原型配备了多个<strong>摄像头</strong>、<em>激光雷达</em>以及<span>传感器</span>，可看清100米范围内任何方向的东西</p><br/><p>第二行内容，哎嘿，第二行内容</p>"
+        var reg=/(<p>)|(<\/p>)|(<strong>)|(<\/strong>)|(<em>)|(<\/em>)|(<span>)|(<\/span>)/g;
+        str=str.replace(reg,"");
+        reg=/(<br\/>)/g;
+        console.log(str.replace(reg,"\n"))*/
+
+//        var reg=/^https?:\/\/w{3}\.\w+\.[a-z]{2,4}$/i;
+
+//        var reg=/^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}$/
+//        var str="255.255.255.255";
+//        console.log(reg.test(str));
+    </script>
+</body>
+</html>

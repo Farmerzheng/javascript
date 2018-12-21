@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        #div0
+        {
+
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000000;
+            position: relative;
+        }
+        #div1
+        {
+            width: 50px;
+            height: 50px;
+            background-color: #FF0000;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+    </style>
+    <script src="js/DragObj.js"></script>
+</head>
+<body>
+    <div id="div0">
+        <div id="div1"></div>
+    </div>
+<script>
+        var div1=document.getElementById("div1");
+        var div0=document.getElementById("div0");
+        div1.addEventListener("mousedown",mouseHandler);
+
+        function mouseHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            if(e.type=="mousedown"){
+                div1.addEventListener("mousemove",mouseHandler);
+                div1.addEventListener("mouseout",mouseHandler)
+                div1.addEventListener("mouseup",mouseHandler);
+
+            }else if(e.type=="mouseup")
+            {
+
+                div1.removeEventListener("mouseup",mouseHandler);
+                div1.removeEventListener("mousemove",mouseHandler)
+            }else if(e.type=="mousemove"){
+                div1.style.left=e.clientX-div1.offsetWidth/2+"px";
+                div1.style.top=e.clientY-div1.offsetHeight/2+"px";
+                moveHandler();
+            }else if(e.type=="mouseout"){
+
+                div1.removeEventListener("mouseup",mouseHandler);
+                div1.removeEventListener("mousemove",mouseHandler)
+                div1.removeEventListener("mouseout",mouseHandler)
+            }
+        }
+        function moveHandler() {
+
+            var x=div1.offsetLeft;
+            var y=div1.offsetTop;
+            if(x+div1.offsetWidth>=div0.offsetWidth){
+                div0.style.borderRightColor="#FF0000";
+                div1.style.left=div0.offsetWidth-div1.offsetWidth+"px"
+            }else{
+                div0.style.borderRightColor="#000000";
+            }
+
+            if(y+div1.offsetHeight>=div0.offsetHeight){
+                div0.style.borderBottomColor="#FF0000";
+                div1.style.top=div0.offsetHeight-div1.offsetHeight+"px"
+            }else{
+                div0.style.borderBottomColor="#000000";
+            }
+            if(x<=0){
+                div0.style.borderLeftColor="#FF0000";
+                div1.style.left="0px"
+            }else{
+                div0.style.borderLeftColor="#000000";
+            }
+            if(y<=0){
+                div0.style.borderTopColor="#FF0000";
+                div1.style.top="0px"
+            }else{
+                div0.style.borderTopColor="#000000";
+            }
+        }
+</script>
+</body>
+</html>

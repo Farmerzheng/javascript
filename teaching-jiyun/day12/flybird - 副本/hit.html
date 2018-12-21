@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+
+	#box{
+		width:100px;
+		height:100px;
+		background-color: red;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+</style>
+<body>
+    <script type="text/javascript" src = "Hit.js"></script>
+	<div id="box"></div>
+
+	<div id = "box2" style = "width:100px;height:100px;background-color: yellow;position:absolute;left:300px;top:300px;"></div>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var box2 = document.getElementById("box2");
+        
+        //监听盒子是否被鼠标点击
+		box.onmousedown = function(e){
+           var event = e || window.event;
+           // console.log(event);
+           //x 鼠标距离盒子左边框的距离
+           //y 鼠标距离盒子上边框的距离
+           //当鼠标移动的时候 x 和 y 是不会变化的
+           var x = event.clientX - box.offsetLeft;
+           var y = event.clientY - box.offsetTop;
+           
+           //监听鼠标在box上移动
+           //监听鼠标在document上移动
+           //mousemove 事件一定要写在mousedown事件函数里面么？
+            document.onmousemove = function(e){
+
+           	var event = e || window.event;
+
+           	// console.log(event.clientX,event.clientY);
+
+           	//根据鼠标的坐标计算盒子的left值和top值
+             box.style.left = (event.clientX - x)+"px";
+             box.style.top = (event.clientY - y)+"px";
+           };
+            document.onmouseup = function(){
+            	//当鼠标抬起的时候将mousemove事件移除掉
+				document.onmousemove = null;
+			}
+		}
+
+		// console.log(box.getBoundingClientRect());
+
+
+		animation();
+		function animation(){
+			requestAnimationFrame(animation);
+
+            var flag = Hit.test(box,box2);
+
+            console.log(flag);
+
+            if(flag){
+            	box2.style.backgroundColor = "green";
+            }else{
+                box2.style.backgroundColor = "yellow";
+            }
+		}
+         
+         // console.log(box2.getBoundingClientRect());
+
+
+		 
+	
+	</script>
+</body>
+</html>	

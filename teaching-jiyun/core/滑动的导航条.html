@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+        padding:0;
+    }
+    ul,li{
+    	list-style: none
+    }
+	#nav{
+        width:1000px;
+        margin:0 auto;
+        height:60px;
+        background-color: pink; 
+        position:relative;
+	}
+	#nav .list{
+		float: left;
+		width:200px;
+		height:60px;
+		line-height: 60px;
+		text-align: center;
+		cursor:pointer;
+	}
+	#nav .bar{
+		position:absolute;
+		left:70px;
+		top:46px;
+		width:60px;
+		height:4px;
+		border-radius:2px;
+		background-color: red
+	}
+</style>
+<body>
+	<ul id="nav">
+		<li class="list">首页</li>
+		<li class="list">新闻</li>
+		<li class="list">视频</li>
+		<li class="list">音乐</li>
+		<li class="list">小说</li>
+		<div class="bar"></div>
+	</ul>
+	<script type="text/javascript" src = "js/tween.js"></script>
+	<script type="text/javascript" src = "js/move.js"></script>
+	<script type="text/javascript">
+		var list = document.getElementsByClassName("list");
+		var bar =document.getElementsByClassName("bar")[0];
+		var beginPosition = 70 ;
+
+		//循环添加鼠标移入事件
+		for(var i = 0 ; i < list.length ; i++){
+            
+            list[i].index = i;
+
+			list[i].addEventListener("mouseover",function(){
+
+				 beginPos = beginPosition;
+
+				 var iTarget = this.offsetLeft+70;
+
+                 move(bar,0,beginPos,iTarget,30);
+
+                 beginPosition = this.offsetLeft;
+
+			})
+
+		}
+	</script>
+</body>
+</html>

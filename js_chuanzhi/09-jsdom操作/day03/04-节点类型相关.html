@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box" id="pox">这是内容</div>
+<script>
+    // nodeType  判断节点的类型   1  标签元素   2  属性   3  文本
+    // nodeName  元素名称，返回的结果是大写的标签  例如 LI  DIV
+    // nodeValue 值
+    var pox = document.getElementById('pox');
+    //获取属性节点
+    var attr  = pox.getAttributeNode('id');
+    var text = pox.firstChild;
+    //1.获取他们的nodeType
+//    console.log( pox.nodeType );
+//    console.log( attr.nodeType );
+//    console.log( text.nodeType );
+    //2.获取nodeName
+//    console.log( pox.nodeName );   //DIV
+//    console.log( attr.nodeName );  // id
+//    console.log( text.nodeName ); //  #text 文本节点的name
+    //3.获取nodeValue
+    console.log( pox.nodeValue );//  元素  节点 他的nodevalue属性就是null
+    console.log( attr.nodeValue );// 属性  节点 就是属性值
+    console.log( text.nodeValue );//文本   节点  文本的内容
+</script>
+</body>
+</html>

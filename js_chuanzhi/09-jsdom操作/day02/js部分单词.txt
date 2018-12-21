@@ -1,0 +1,36 @@
+number数值型 
+string字符串类型
+boolean布尔型
+object对象型  
+undefined未定义型 
+typeof  是用来检测数据类型
+Infinity  无穷大
+parseInt 转换成 整数 （整形）
+parseInt 转换成小数 （浮点型）
+break  结束循环
+continue  跳过循环
+while  死循环求和
+do while  不管成不成立都要循环一次
+count 循环次数
+arr.length  标量长度
+toFixed
+element  所要遍历的每一个元素
+index  每一个元素对应的索引
+array  索要遍历的数组
+some  只有一个或者多个满足条件，就会返回true
+map 返回操作之后的数组
+filter  过滤
+forEach   参数是一个回调函数
+join 把数组中的元素组合成字符串
+concat  连接数组，返回连接后新数组
+sort 是对数组进行排序
+shift 就是从数组的前边删除 
+pop  返回值 是删除的数组中的项
+push 返回值 数组的个数
+arguments 对象，称为伪数组
+arguments.length 获取的值是实参的个数
+children    只是找标签
+childNodes  找的结果，是包含有空格，回车等
+parentNode  找父级
+nextElementSibling  找下一个兄弟
+previousElementSibling  找上一个兄弟

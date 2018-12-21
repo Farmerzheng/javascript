@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	    <button id = "btn">button</button>
+
+     <script type="text/javascript">
+     	var button = document.getElementById("btn");
+     	button.onclick = function(e){
+     		//事件对象的兼容性写法
+           var event = e || window.event;
+            //阻止冒泡的兼容性写法
+           if(event.stopPropagation){
+           	 event.stopPropagation();
+           }else{
+           	 event.cancelBubble = true;
+           }
+           alert(2);//只会弹出2，不会弹出1
+     	}
+
+      button.onclick = null;
+
+      // button.removeEventListener("click",)
+     </script>
+</body>
+</html>

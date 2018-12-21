@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		已知 arr = [1,2,2,3,3,3,6,6,7,8,8,8,8,9,9];
+		取出数组中重复的数，
+		并将重复的数作为对象的属性保存在对象中，
+		属性对应的值是该数出现的次数
+		*/
+
+         var obj = {2:2,3:3,6:2,8:4}
+         var arr = [1,2,2,3,3,3,6,6,7,8,8,8,8,9,9];
+         var obj = {};         
+         var previous = arr[0];
+         var num = 1;
+         for(var i = 1 ; i < arr.length ; i++){ 
+            if(previous == arr[i]){
+            //把arr[i]作为对象的属性存在对象里面
+            num++;
+            obj[arr[i]] = num;	
+            }else{
+            	num = 1;
+            }            
+            previous = arr[i];           
+         }
+         console.log(obj);//{2:2,3:3,6:2,8:4}
+
+
+
+    
+
+
+
+		
+	</script>
+</body>
+</html>	

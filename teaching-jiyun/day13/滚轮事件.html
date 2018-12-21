@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <img src="放大镜/img/max.jpg" style = "width:300px;height:300px">
+	<script type="text/javascript">
+	(function(document){
+      var img = document.getElementsByTagName("img")[0];
+	  var speed = 5;
+		if(navigator.userAgent.indexOf("Firefox") != -1){
+			document.addEventListener("DOMMouseScroll",function(e){
+	           var event = e || window.event;
+	           if(event.detail == 3){
+	           	big();
+	           }else{
+	           	small();
+	           } 
+			})
+		}else{
+			document.addEventListener("mousewheel",function(e){
+	           var event = e || window.event;
+	           if(event.wheelDelta == 120){
+	           	big();	          
+	           }else{
+	           	small();	          
+	           }
+			})
+		}
+		function big(){
+			 	img.style.width = img.offsetWidth + speed + "px";
+	           	img.style.height = img.offsetHeight + speed + "px";
+		}
+		function small(){
+			 	img.style.width = img.offsetWidth - speed + "px";
+	           	img.style.height = img.offsetHeight - speed + "px";
+		}
+	})(document);
+	  
+	</script>
+</body>
+</html>

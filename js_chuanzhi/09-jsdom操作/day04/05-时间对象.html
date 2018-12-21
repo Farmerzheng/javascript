@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="#" target=""></a>
+<script>
+    // 1. 所查找的标签  都是对象
+    // window 对象   Math 对象   自定义对象  数组对象
+    // json 对象   div.style   Number  String   Boolean
+    //时间对象 获取的是当前的时间对象
+    var now = new Date();
+    //document.write( now );
+    // 2018 2 10  17:30:00
+    // 获取某一个时间的对象 ，存在兼容性问题
+    //var time = new Date('2018,2,10');
+    // 不存在兼容性问题
+//    var time = new Date( '2018/2/11 17:30:00' );
+    //var time = new Date( 'Sun Feb 14 2018 17:30:00 GMT+0800 (中国标准时间)' );
+//    document.write( time );
+    //获取当前年月日，时分秒，星期
+//    console.log(now);
+//    获取年份
+    var year = now.getFullYear();
+    // 获取月份 ,获取的结果   0 ~ 11
+    var month = now.getMonth();
+    // 获取日期
+    var date = now.getDate();
+    // 获取时分秒
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+//    console.log( hours + ':' + minutes + ':' + seconds );
+    // day 获取星期    0 ~ 6  0星期日
+//    var day = now.getDay();
+    // getTime 获取的时间  Unix时间
+    // 距离 1970,1,1  的毫秒数
+    var time = now.getTime();
+    console.log( time/1000/60/60/24/365 );
+</script>
+</body>
+</html>

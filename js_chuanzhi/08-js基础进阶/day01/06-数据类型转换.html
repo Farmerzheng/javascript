@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a = 1;
+    var b = '1.5hello';
+    var c = true;
+    var d = null;
+    var e;
+    //转换成字符串
+    //console.log( 'abc'+3 );
+    //console.log(  typeof (a+'') );
+    // 任何的数据类型通过  +''  就自动转换成了字符串类型（  隐式转换 ）
+    //console.log( typeof (d+'') );
+    // String 强制转换为字符串类型
+//    console.log( typeof String(c) );
+
+//    转换成数值型
+    // NaN  也是一个数值型的值
+//    console.log(  Number(b) );
+ //   console.log(  typeof Number( b ) );
+    // 从第一个数字开始，到后边自目前（不能是小数）
+    // parseInt 转换成 整数 （整形）
+    console.log( parseInt(b) );
+    // parseInt 转换成小数 （浮点型）
+    console.log(  parseFloat(b) );
+
+    console.log( Number(c) );            
+
+</script>
+</body>
+</html>

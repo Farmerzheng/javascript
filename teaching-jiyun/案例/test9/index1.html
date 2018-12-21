@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<input type="button" id="bn">
+        <script>
+            const EVENT_ID="Event_Id";
+            var bool=false;
+            var div1=document.getElementsByTagName("div")[0];
+            var bn=document.getElementById("bn");
+            bn.addEventListener("click",clickHandler)
+            div1.addEventListener(EVENT_ID,imgFinshHandler)
+            var img=new Image();
+            img.addEventListener("load",loadHandler)
+            img.src="img/golf0.jpg";
+            document.body.appendChild(img);
+
+            var clickBoolean=false;
+           function loadHandler(e) {
+               if(!e){
+                   e=window.event;
+               }
+                var evt=new Event(EVENT_ID);
+               evt.src=this.src;
+               div1.dispatchEvent(evt);
+           }
+            function clickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                clickBoolean=true;
+                console.log(e)
+                if(bool){
+                    div1.textContent="图片已加载"
+                }
+            }
+
+            function imgFinshHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                console.log(e.src)
+                bool=true;
+                if(clickBoolean){
+                    div1.textContent="图片已加载"
+                }
+            }
+        </script>
+</body>
+</html>

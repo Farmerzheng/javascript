@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	    //去掉行首行尾空格
+	    var str = "      rrr        ";
+		var myReg = /(^\s*)|(\s*$)/g;
+		var newstr = str.replace(myReg,"");
+		var a = str.match(myReg);
+		console.log(newstr);
+		console.log(a);
+	</script>
+</body>
+</html>	

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//var str = "1234asdf5623saldskf3456lasdfj5555www";
+		// var strArr = str.split("");
+		// var numArr = [];
+		// var num = "";
+		// for(var i = 0 ; i < strArr.length ; i++){			
+
+  //           //字符串比较的是字符编码值
+  //           if(strArr[i]>"0"&&strArr[i]<"9"){
+  //           	console.log(strArr[i]);
+  //           	num += strArr[i];            	
+  //           }else{
+  //           	if(num != ""){
+  //           		numArr.push(num);
+  //           	    num = "";
+  //           	}
+            	
+  //           }
+		// }
+		// console.log(numArr)
+
+
+		//正则表达式
+		//正则表达式作用？简化字符串操作
+		//创建一个正则表达式对象,和创建字符串对象一样，有两种方式，一种是字面量方式，一种是构造函数方式,一般采用字面量方式创建正则表达式
+
+		//字面量的方式？
+		    //1.内容写在//里面
+		    //2.g是一个修饰符，修饰符一般写在"//"的外面，是global的缩写形式，表示对整个字符串进行匹配
+		    //3.\d 表示对所有的数字进行匹配，d是digital的缩写
+		    //4.{4} 表示匹配的数量 
+		    //5.match 找到一个或多个正则表达式的匹配
+
+        var str = "1234asdf5623saldskf3456lasdfj5555www";
+		var myReg = /\d{4}/g;//字面量方式
+
+		// var myReg = new RegExp("\\d{4}","g");//构造函数方式
+		var arr = str.match(myReg);
+		console.log(arr);//["1234", "5623", "3456", "5555"]
+	</script>
+</body>
+</html>	

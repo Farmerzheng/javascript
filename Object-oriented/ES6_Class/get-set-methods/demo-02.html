@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 红色小盒子，选中红色，没选中灰色
+  function CheckBox() {
+    this.box = null;
+    this._selected = false;
+  }
+
+  CheckBox.prototype = {
+    init: function() {
+      this.createCheckbox();
+    },
+    createCheckbox: function() {
+      var box = document.createElement("div");
+      box.style.width = "20px";
+      box.style.height = "20px";
+      box.style.backgroundColor = "gray";
+      box.addEventListener("click", this.clickHandler.bind(this));
+      this.box = box;
+    },
+    clickHandler: function() {
+      // 点击改变selected属性的真假
+      this.selected = !this.selected;
+    },
+    // set和get方法能够监听到selected的值得改变
+    get selected() {
+      // selected 属性的值与 _selected属性的值保持一致
+      return this._selected;
+    },
+    set selected(value) {
+      //根据value设置 _selected 的值
+      this._selected = value;
+
+      if (this._selected) {
+        this.box.style.backgroundColor = "red";
+      } else {
+        this.box.style.backgroundColor = "gray";
+      }
+      // 如何将是否被选中这件事情通知给别人？通过事件派发的方式
+      console.log(value);
+
+    }
+  }
+
+  var check = new CheckBox();
+  check.init();
+
+  document.body.appendChild(check.box)
+  </script>
+</body>
+
+</html>

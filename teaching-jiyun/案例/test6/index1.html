@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        div
+        {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+        <script>
+            for(var i=0;i<10;i++){
+                var div=document.createElement("div");
+                document.body.appendChild(div);
+                randomPostion(div);
+            }
+            
+            function randomPostion(div) {
+                div.style.left=Math.random()*(document.documentElement.clientWidth-100)+"px";
+                div.style.top=Math.random()*(document.documentElement.clientHeight-100)+"px";
+                div.style.backgroundColor="#"+Math.floor(Math.random()*0xFFFFFF).toString(16);
+
+            }
+        </script>
+</body>
+</html>

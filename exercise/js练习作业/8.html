@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="input" type="text" >
+<input id="button" type="button" value="替换">
+<input id="output" type="text" >
+<script>
+    window.onload=function() {
+
+        var input=document.getElementById('input');
+        var output=document.getElementById('output');
+        var button=document.getElementById('button');
+
+        function fiveToZero(str){
+            var newStr=str.replace(/[5-9]/g,'0');
+            output.value=newStr;
+        }
+
+
+        button.onclick=function(){
+            fiveToZero(input.value);
+        }
+
+    }
+</script>
+</body>
+</html>

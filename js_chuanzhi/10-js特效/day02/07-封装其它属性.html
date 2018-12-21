@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div></div>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var div = document.getElementsByTagName('div')[0];
+    button.onclick = function ( ) {
+        //执行div的宽度动画
+        animate( div,'width',400 );
+    }
+    function animate( element,attr,target ) {
+        clearInterval( element.timer );
+        element.timer = setInterval( function () {
+            //处理步长，目标值-当前属性的样式 / 10
+            // 获取当前位置的样式  height  --- 200px
+            var step = ( target - parseInt(getStyle(element,attr)) )/10;
+            //二次处理步
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            //开始在当前基础之上+step
+            element.style[attr] = parseInt(getStyle(element,attr)) + step + 'px';
+            //清除定时器
+            if( target === parseInt( getStyle(element,attr) ) ){
+                clearInterval(element.timer);
+            }
+        },15 );
+    }
+
+    function getStyle( obj,attr ){
+        if( window.getComputedStyle ){
+            return window.getComputedStyle(obj,null)[attr];
+        }else{
+            return obj.currentStyle[attr];
+        }
+    }
+</script>
+</body>
+</html>

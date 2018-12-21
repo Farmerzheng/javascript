@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *
+        {
+            margin: 0px;
+            padding: 0px;
+        }
+        table
+        {
+            position: absolute;
+            border-collapse: collapse;
+            width: 260px;
+            height: 400px;
+            opacity: 0.4;;
+
+        }
+        td
+        {
+            border: 1px solid #000000;
+            width: 52px;
+            height: 80px;
+
+        }
+        img
+        {
+            position: absolute;
+
+        }
+    </style>
+    <script src="js/DomCreate.js"></script>
+    <script src="js/DragObj.js"></script>
+    <script src="js/Loadimg.js"></script>
+    <script src="js/HitTest.js"></script>
+</head>
+<body>
+    <script>
+        var arr=[];
+        var table;
+        var trs;
+       var dragList=[];
+        var sum=0;
+        for(var i=0;i<5;i++){
+            for(var j=0;j<5;j++){
+                var imgName="img/img"+i+"-"+j+".gif";
+               arr.push(imgName);
+            }
+        }
+        new LoadImg(arr,loadFinshHandler);
+        function loadFinshHandler(list) {
+            arr.length=0;
+            arr=list;
+
+            createTable();
+            createDiv();
+        }
+        function createTable() {
+            table=DomCreate.createElement("table",document.body);
+            for(var i=0;i<5;i++){
+                DomCreate.createTr(table,["","","","",""]);
+            }
+            table.style.backgroundImage="url(img/4.jpg)";
+            trs=table.getElementsByTagName("tr");
+        }
+        function createDiv() {
+            var div=DomCreate.createElement("div",document.body,{width:"300px",height:"300px",border:"1px solid #000000",position:"absolute",left:"400px"});
+            for(var i=0;i<arr.length;i++){
+                arr[i].style.zIndex=i.toString();
+                document.body.appendChild(arr[i]);
+                arr[i].style.left=Math.random()*(div.offsetWidth-arr[i].offsetWidth)+div.offsetLeft+"px";
+                arr[i].style.top=Math.random()*(div.offsetHeight-arr[i].offsetHeight)+div.offsetTop+"px";
+                var drag=new DragObj(arr[i])
+                dragList.push(drag);
+                arr[i].addEventListener("mouseup",mouseupHandler);
+            }
+        }
+        function mouseupHandler(e) {
+            if(!e){
+                e=window.event;
+            }
+            var index=arr.indexOf(this);
+           var row=parseInt(index/5);
+            var col=index%5;
+            var tds=trs[row].getElementsByTagName("td");
+           if(HitTest.test(tds[col],this)){
+               this.style.left=tds[col].offsetLeft+1+"px";
+               this.style.top=tds[col].offsetTop+1+"px";
+               this.removeEventListener("mouseup",mouseupHandler)
+               this.removeEventListener("mousedown",dragList[index].mouseHandler);
+               dragList[index]=null;
+
+               sum++;
+           }
+            if(sum==arr.length){
+                alert("你赢了")
+                dragList.length=0;
+            }
+            console.log(row,col,tds[col].offsetLeft,tds[col].offsetTop)
+        }
+    </script>
+</body>
+</html>

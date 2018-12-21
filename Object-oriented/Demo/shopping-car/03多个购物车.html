@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="../rem.js"></script>
+</head>
+<style>
+    span {
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+</style>
+<body>
+<div id="wrapDom">
+    <!-- <p>
+        <span>牛奶</span>
+        <span id="minus">-</span>
+        <span id="num">11</span>
+        <span id="plus">+</span>
+        <span>单价2元</span>
+    </p> -->
+    <p>总价<span id="price">22</span>元</p>
+
+</div>
+<script src="data.js"></script>
+<script src="singleCar.js"></script>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+
+    // var price = {
+    //     priceDom: $("price"),
+    //     init: function () {
+    //         this.render();
+    //     },
+    //     render: function () {
+    //         this.priceDom.innerHTML = car.price * car.num;
+    //     }
+    // };
+    // price.init();
+
+    //专注度分离--》面向对象
+    //    数据层、逻辑层(mvc)
+    //常见一个全局的对象，负责全局的调度
+var carContainer={
+    price:$("price"),
+    wrapDom:$("wrapDom"),
+    init:function(){
+        this.bindEvent();
+        this.render();
+    },
+    bindEvent:function(){
+        var me=this;
+
+        //事件委托
+        this.wrapDom.onclick=function(event){
+
+            // console.log(event.target.className);            
+            if(event.target.className==="plus"){                
+                var plus=event.target;
+                var numDom=plus.parentNode.getElementsByClassName("name")[0];
+                
+                   var addNum;
+                for(var i=0;i<carList.length;i++){
+
+                    if(carList[i].name==numDom.innerHTML){
+
+                        carList[i].num+=1;
+                        addNum=carList[i].price;
+                    }
+                }
+                carContainer.price.innerHTML=addNum+parseInt(carContainer.price.innerHTML);
+                
+            }else if(event.target.className==="minus"){
+
+             
+                
+            }
+
+           // me.render();
+        }
+    },
+    render:function(){
+         var str="";
+         var num=0;
+        for(var i=0;i<carList.length;i++){
+            var item=carList[i];
+            var singleCar=new SingleCar(item);
+            // console.log(singleCar.render());
+            str+=singleCar.render();
+            num+=singleCar.num*singleCar.price;
+            // console.log(num); 
+        }
+        this.wrapDom.innerHTML=str;
+        this.price.innerHTML=num;
+        this.wrapDom.appendChild(this.price.parentNode);
+    }
+
+}
+carContainer.init();
+
+</script>
+</body>
+</html>

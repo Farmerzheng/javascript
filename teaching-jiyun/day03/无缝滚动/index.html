@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    ul,li{
+        list-style: none;
+    }
+    .container{
+        width:1200px;
+        height:200px;
+        position:relative;
+        margin:0 auto;
+        overflow: hidden;
+    }
+    .container .list{
+        width:2400px;
+        height:200px;
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .container .list li{
+        float: left;
+        width:300px;
+        height:200px;
+    }
+    .container .list li img{
+        width:100%;
+        height:100%;
+    }
+</style>
+<body>
+<div class="container">
+    <ul class="list">
+        <li><img src="img/nature1.jpg" alt=""></li>
+        <li><img src="img/nature2.jpg" alt=""></li>
+        <li><img src="img/nature3.jpg" alt=""></li>
+        <li><img src="img/nature4.jpg" alt=""></li>
+        <li><img src="img/nature1.jpg" alt=""></li>
+        <li><img src="img/nature2.jpg" alt=""></li>
+        <li><img src="img/nature3.jpg" alt=""></li>
+        <li><img src="img/nature4.jpg" alt=""></li>
+    </ul>
+    <script>
+
+        function seamlessScrolling(list){
+
+        }
+        var list = document.getElementsByClassName("list")[0];
+        requestAnimationFrame(step);
+        var left = 0;
+        function step(){
+            left -= 5;
+            console.log(left);
+            if(left == -1200){
+                left = 0;
+            }
+            list.style.left = left + "px";
+            requestAnimationFrame(step);
+        }
+    </script>
+</div>
+</body>
+</html>

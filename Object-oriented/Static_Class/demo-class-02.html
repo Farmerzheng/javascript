@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+  // ES6当中的静态属性 、静态方法
+  class Person {
+    constructor() {
+      // code
+      this.name = "zhangsan"//动态属性
+    }
+    // 动态方法
+    speak() {
+      console.log("I can speak")
+    }
+    //ES6中的静态方法在方法名前面加上一个static关键字
+    static eat() {
+      console.log("I can eat")
+    } 
+  }
+  var person = new Person();
+  person.speak();
+  Person.eat();
+  
+
+  </script>
+</body>
+
+</html>

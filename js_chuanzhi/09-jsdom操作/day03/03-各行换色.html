@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border:1px solid #ccc;
+            width: 500px;
+            margin:100px auto;
+            border-collapse: collapse;
+        }
+        th{
+            background: #09c;
+            color:#fff;
+        }
+        th,td{
+            height: 40px;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>出版社</th>
+            <th>阅读量</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>盗墓笔记</td>
+            <td>南派三叔</td>
+            <td>中国邮电出版社</td>
+            <td>100000</td>
+        </tr>
+        <tr>
+            <td>鬼吹灯</td>
+            <td>天下霸唱</td>
+            <td>中信出版社</td>
+            <td>8899999</td>
+        </tr>
+        <tr>
+            <td>红楼梦</td>
+            <td>曹雪芹</td>
+            <td>中国教育出版社</td>
+            <td>8899999</td>
+        </tr>
+        <tr>
+            <td>西游记</td>
+            <td>王欢</td>
+            <td>机械工业出版社</td>
+            <td>88939999</td>
+        </tr>
+        <tr>
+            <td>水浒传</td>
+            <td>陈瑞</td>
+            <td>机械工业出版社</td>
+            <td>334939999</td>
+        </tr>
+        <tr>
+            <td>三国演义</td>
+            <td>罗贯中</td>
+            <td>机械工业出版社</td>
+            <td>88939999</td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    // 找到tbody下的所有的tr
+    var trs = document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    // 添加各行换色效果
+    for( var i = 0; i < trs.length; i++ ){
+        if( i % 2 === 0 ){
+            trs[i].style.background = '#C1C7A5';
+        }else{
+            trs[i].style.background = '#eee';
+        }
+        //先再for循环中，给每一个tr添加索引值
+        trs[i].index = i;
+        //鼠标经过每一个tr，背景 颜色变为白色
+        trs[ i].onmouseover = function(){
+            this.style.background = '#fff';
+        };
+        trs[i].onmouseout = function(){
+            //this.style.background = '#C1C7A5'
+            // 鼠标离开的时候，判断当前的索引值是奇数还是偶数
+            if( this.index % 2 === 0 ){
+                this.style.background = '#C1C7A5';
+            }else{
+                this.style.background = '#eee';
+            }
+        }
+
+
+    }
+
+
+
+</script>
+</body>
+</html>

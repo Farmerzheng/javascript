@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div
+        {
+            width: 50px;
+            height: 50px;
+            background-color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+        <script>
+            var div0=document.getElementsByTagName("div")[0];
+            console.log(this,"_1")
+
+            function abc() {
+                console.log(this,"_2")
+                function ab() {
+                    console.log(this,"_3");
+                }
+                ab()
+            }
+
+            abc();
+
+
+
+            div0.addEventListener("click",clickHandler);
+
+            function clickHandler(e) {
+                if(!e){
+                    e=window.event;
+                }
+                console.log(this,e.target,"_4")
+
+            }
+            
+            
+            var obj={
+                abc:function () {
+                    console.log(this,"_5")
+                }
+            };
+            
+            var MaskCircle=MaskCircle || (function () {
+                        return {
+                            abc:function () {
+                                console.log(this,"_6")
+                            }
+                        }
+                    })();
+            obj.abc();
+
+            MaskCircle.abc();
+
+
+            function Plane() {
+                console.log(this,"_7")
+            }
+            Plane.prototype={
+                abc:function () {
+                    console.log(this,"_8")
+                }
+            };
+            Plane();
+            var plane=new Plane()
+            plane.abc();
+        </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+#waterfall {
+	position: relative;
+	width: 95%;
+	margin: 0 auto;
+}
+
+#waterfall ul {
+	float: left;
+	width: 23.5%;
+	/*height: 500px;*/
+}
+nav #firstUl li:nth-child(3) {
+	border: 1px solid gray;
+}
+nav #firstUl li:nth-child(3) a {
+	color: white;
+}
+#waterfall ul:not(#firstUl) {
+	margin-left: 2%;
+}
+
+#waterfall ul li {
+	margin-top: 3%;
+	position: relative;
+	width: 100%;
+}
+
+#waterfall ul li div {
+	display: none;
+}
+
+#waterfall ul li img {
+	width: 100%;
+}
+
+body:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#waterfall:after {
+	content: "";
+	display: block;
+	clear: both;
+	/*position: absolute;*/
+}
+
+#waterfall div {
+	position: fixed;
+	width: 50%;
+	top: 50%;
+	left: 50%;
+	margin: auto;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+	padding: 15px;
+	background-color: white;
+	display: none;
+}
+
+#waterfall div img {
+	width: 100%;
+}
+
+@media only screen and (min-width: 500px) {
+	#waterfall ul {
+		margin-top: 0 !important;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#waterfall {
+		position: relative;
+		width: 95%;
+		margin-left: 2%;
+	}
+	#waterfall ul {
+		float: none;
+		display: inline-block;
+		width: 46%;
+		vertical-align: top;
+		margin-left: 2%;
+	}
+	/*#waterfall ul:nth-child(2) {
+		position: absolute;
+		left: 0;
+		margin-left: 0 !important;
+		display: block;
+		float: none;
+	}*/
+	/*#waterfall ul:nth-child(3) {
+		margin-left: 0 !important;
+		display: block;
+		float: none;
+	}*/
+	/*#waterfall ul:nth-child(4) {
+		float: right;
+	}*/
+}

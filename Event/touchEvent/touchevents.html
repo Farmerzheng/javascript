@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Title</title>
+</head>
+<style>
+    #target{
+        width: 200px;
+        height:200px;
+        background:yellow;
+    }
+</style>
+<body>
+<h1>手指触摸事件</h1>
+<div id="target">
+    <p>事件名称：<span id="name"></span></p>
+    <p>X坐标：<span id="X"></span></p>
+    <p>Y坐标：<span id="Y"></span></p>
+</div>
+<script>
+    window.onload=function(){
+    	
+        var oName=document.getElementById('name');
+        var oX=document.getElementById('X');
+        var oY=document.getElementById('Y');
+        
+        function touchStart(e){
+            console.log('start',e, e.touches[0].clientX, e.touches[0].clientY);
+            oName.innerHTML= e.type;
+            oX.innerHTML=e.touches[0].clientX;
+            oY.innerHTML=e.touches[0].clientY;
+        }
+        function touchMove(e){
+            console.log('move',e);
+            oName.innerHTML=e.type;
+            oX.innerHTML=e.touches[0].clientX;
+            oY.innerHTML=e.touches[0].clientY;
+        }
+        function touchEnd(e){
+            console.log('end',e);
+            oName.innerHTML=e.type;
+        }
+        function touchCancel(e){
+            console.log('cancel',e);
+            oName.innerHTML=e.type;
+            oX.innerHTML=e.touches[0].clientX;
+            oY.innerHTML=e.touches[0].clientY;
+        }
+        
+        var oDiv=document.getElementById('target');
+        
+        oDiv.addEventListener('touchstart',touchStart,false);
+        oDiv.addEventListener('touchmove',touchMove,false);
+        oDiv.addEventListener('touchend',touchEnd,false);
+        oDiv.addEventListener('touchcancel',touchCancel,false);
+    }
+
+</script>
+</body>
+</html>

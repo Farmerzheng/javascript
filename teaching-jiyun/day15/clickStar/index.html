@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+        margin:0;
+        padding:0;
+    }
+    html,body{
+    	width:100%;
+    	height:100%;
+    }
+	#container{
+        width:100%;
+    	height:100%;
+    	background-color: red;
+	}
+	#container #topBar{
+		width:100%;
+		height:10%;
+		background-color: yellow;
+	}
+	#container #topBar #start{
+		width:10%;
+		height:100%;
+		background-color: gold;
+		text-align:center;
+		float: left;
+		font-size: 20px;
+		color:white;
+		font-weight: bold;
+		border:none;
+	}
+	#container #topBar #progressBar{
+		width:80%;
+		height:100%;
+		float: left;
+		background-color: green
+	}
+	#container #topBar #score{
+		width:10%;
+		height:100%;
+		background-color: blue;
+		float: right;
+		border:none;
+		font-size: 30px;
+		color:white;
+		font-weight:bold;
+	}
+	#container #gameArea{
+		width:100%;
+		height:90%;
+		background-color: pink;
+		position: relative;
+	}
+</style>
+<body>
+    <div id="container">
+    	<div id="topBar">
+    		<button id="start">开始</button>
+    		<div id="progressBar"></div>
+    		<button id="score">0</button>
+    	</div>
+    	<div id="gameArea"></div>
+    </div>
+    <script type="text/javascript" src = "hit.js"></script>
+	<script type="text/javascript">
+
+        var gameArea = document.getElementById("gameArea");
+        var scoreDiv = document.getElementById("score");
+        var time = 0;
+        var starArr = [];
+        var SCORE = 0;
+
+		animation();
+		
+		function animation(){
+			requestAnimationFrame(animation);
+			//创建小星星
+			time++;
+			if(time%50 == 0){
+		      createStar();	   
+				
+			}
+
+			//删除小星星
+			if(time >= 300 && time%50 == 0){
+			   starArr[0].remove();
+			   starArr.shift();
+			   
+			}
+
+		}
+
+		function createStar(){
+			
+          var img = new Image();
+          img.src = "star.png";
+          img.style.position = "absolute";
+          var imgWidth = randomFn(10,6);
+          img.style.width = imgWidth+"%";
+          img.style.left = randomFn(100 - imgWidth,0)+"%";
+          img.style.top = randomFn(100-imgWidth,0)+"%";
+          img.onclick = function(){
+          	SCORE += 1;
+            scoreDiv.innerHTML = SCORE;
+
+            this.remove();
+
+          }
+          //将创建的小星星添加到页面上
+          gameArea.appendChild(img);
+
+          //因为要进行碰撞检测，所以要取到页面上所有的小星星，我们可以把所有的小星星放到一个数组里面
+          starArr.push(img);
+
+          //定义一个boolean值，判断是否发生碰撞，默认情况下是false（没有碰撞）
+          var hit = false;       
+
+          //数组为空，说明页面当中没有小星星
+          if(starArr.length > 0){
+           
+           //循环判断生成的小星星和其他小星星的位置关系
+          	for(var i = 0 ; i <starArr.length-1 ; i++){
+               
+                //碰撞监测，如果发生碰撞,hit将变为true
+          		hit = Hit.test(img,starArr[i]);
+
+                //记录一下是否重叠过
+
+                if(hit == true){
+                	//数组当中有小星星和咱们创建的小星星发生重叠
+                  break;
+                }
+
+
+          	}
+          }
+
+          //小星星是否有重叠？
+          //有重叠？递归、将添加到游戏区域的小星星删除掉、将starArr当中的小星星移除掉
+          //没有重叠
+         
+         //放生碰撞的条件  hit == true
+         if(hit == true){
+         	img.remove();
+         	starArr.pop();
+         	//重新向页面当中添加一个星星
+         	createStar();
+         }         
+        
+			
+		}
+
+		function randomFn(max,min){
+			return parseInt(Math.random()*(max-min)+min)
+		}
+	</script>
+</body>
+</html>	

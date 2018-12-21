@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var data=new Date();
+        data.setDate(28);
+
+        document.cookie="names='张三'";
+        document.cookie="age=30";
+        document.cookie="names='李四';expires="+data.toDateString();
+    </script>
+</body>
+</html>

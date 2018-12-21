@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+       /* var a=6;
+        function abc() {
+            console.log(a)
+           var a=5;
+            console.log(a);
+        }
+        abc();
+*/
+
+   /* function abc() {
+        var a=6;
+        function cde() {
+            return a;
+        }
+        /!*var d=cde();
+        return d;*!/
+        return cde;
+    }
+        var num=abc()();
+        console.log(num)*/
+
+
+        /*function abc() {
+            var num=0;
+           return function() {
+                num++;
+                return num;
+            }
+
+        }*/
+
+        /*var abc=(function () {
+            var sum=0;
+            return function () {
+                return ++sum;
+            }
+        })();*/
+
+       var abc=(function () {
+           var a=6;
+           var _e=0;
+           var obj={a:5};
+           return {
+               b:5,
+               c:function () {
+                   return a+this.b;
+               },
+               set e(value){
+                   a+=value;
+                    _e=value;
+               },
+               get e(){
+                   return _e;
+               },
+               dispose:function () {
+                   obj=null;
+               }
+           }
+       })();
+       
+       // abc.e=10;
+       // console.log(abc.c());
+       // abc.dispose();
+       //  abc=null;
+       //  console.log(abc.c());
+
+
+    </script>
+</body>
+</html>

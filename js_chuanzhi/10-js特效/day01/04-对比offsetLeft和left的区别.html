@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            position: absolute;
+            left:200px;
+            top:150px;
+        }
+        .big{
+            width: 500px;
+            height: 400px;
+            background: orange;
+            margin:50px auto;
+            /*position: relative;*/
+        }
+        .small{
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+            position: absolute;
+            left:180px;
+            top:230px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box1" style="left:200px;">
+
+    </div>
+    <div class="big">
+        <div class="small"></div>
+    </div>
+    <script>
+        var box1 = document.getElementsByClassName('box1')[0];
+        var big = document.getElementsByClassName('big')[0];
+        var small = document.getElementsByClassName('small')[0];
+        //获取的值是一个字符串形式的，只能获取行内式的值
+//        console.log(box1.style.left);
+//        //获取的值是一个数值型的，都可以获取
+         // 只能获取值，不能修改值
+//        console.log( box1.offsetLeft );
+//        box1.style.left = '500px';
+        box1.offsetLeft = 300;
+    </script>
+</body>
+</html>

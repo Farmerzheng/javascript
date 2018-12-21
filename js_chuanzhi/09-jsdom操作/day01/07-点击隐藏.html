@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .big{
+            width: 100%;
+            height: 100px;
+            background: pink;
+            position: relative;
+        }
+        .big i{
+            width: 20px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            left:50%;
+            margin-left:480px;
+        }
+    </style>
+</head>
+<body>
+<div class="big">
+    <i></i>
+</div>
+<div class="small">
+    <i></i>
+</div>
+<script>
+    var big = document.getElementsByClassName('big')[ 0 ];
+    var close = big.getElementsByTagName('i')[ 0 ];
+
+    //事件：
+    // 1. 获取标签  2.添加事件   3.事件驱动程序
+    close.onclick = function(){
+        big.style.display = 'none';
+        // display :  none  /  block;
+    }
+</script>
+</body>
+</html>

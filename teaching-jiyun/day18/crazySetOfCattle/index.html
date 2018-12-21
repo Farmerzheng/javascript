@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>疯狂套牛</title>
+    <link rel="stylesheet" href="launcher/game.css">
+
+</head>
+<body>
+<div id="loading_page">
+    <div class="progress">
+        <img src="resource/assets/load/logo.png" alt="">
+        <div class="progressbar"></div>
+        <div class="progresstext">
+            <span class="current"></span>/
+            <span class="total"></span>
+        </div>
+    </div>
+</div>
+<div id="start_page">
+    <div class="logo"></div>
+    <div class="startBtn"></div>
+    <div class="ruleBtn"></div>
+    <div class="rule_bg"> </div>
+    <div class="bgImg">
+        <div class="titleImg"></div>
+        <div class="sureBtn"></div>
+        <p class="text">点击按钮，看看20s内谁才是真正的牛仔</p>
+    </div>
+</div>
+<audio src="resource/sound/1.mp3" loop></audio>
+<div id="game_page" style="position: relative">
+    <span id="single_score"></span>
+    <div class="score"><span ></span></div>
+    <div class="time"><span></span></div>
+
+    <div class="cow_wrap">
+    </div>
+
+    <div class="rope_wrap">
+        <img class="rope" src="resource/assets/game/rope.png">
+    </div>
+    <div  class="pushBtn"><img src="resource/assets/game/pushBtn.png"></div>
+</div>
+<div id="over_page">
+    <div class="myScore"><span>asdf</span></div>
+    <div class="rule"></div>
+    <div class="tryAgain"></div>
+</div>
+<script src="launcher/jQuery 1.12.1.js"></script>
+<script src="launcher/fastclick.js"></script>
+<script src="launcher/resLoader.js"></script>
+<script src="launcher/game.js"></script>
+</body>
+</html>

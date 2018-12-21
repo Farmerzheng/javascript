@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>
+    <span class="good"></span>
+    <span class="minus">-</span>
+    <span class="num"></span>
+    <span class="plus">+</span>
+    <span class="price"></span><span>元</span>
+  </p>
+  <p>总价<span class="totalPrice"></span>元</p>
+  <script>
+  var shoppingCar = {
+    name: "牛奶",
+    _number: 0,
+    price: 2,
+    plusBtn: document.querySelector(".plus"),
+    minusBtn: document.querySelector(".minus"),
+    numDiv: document.querySelector(".num"),
+    //bind  绑定   event  事件
+    bindEvent: function() {
+      this.plusBtn.addEventListener("click", this.plusClickHandler.bind(this));
+      this.minusBtn.addEventListener("click", this.minusClickHandler.bind(this))
+    },
+    plusClickHandler: function() {
+      // 点击按钮只需关心数据的变化
+      this.number++;
+    },
+    minusClickHandler: function() {
+      this.number--;
+    },
+    set number(value) {
+      // 数据只要发生变化，页面重新渲染
+      this._number = value;
+      this.numDiv.innerText = value;
+    },
+    get number() {
+      return this._number;
+    }
+
+  }
+
+  shoppingCar.bindEvent();
+  </script>
+</body>
+
+</html>

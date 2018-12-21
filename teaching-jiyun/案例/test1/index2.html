@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            float: left;
+            width: 120px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            background: red;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="uls">
+        <li>1</li>
+        <li>3</li>
+        <li>5</li>
+        <li>7</li>
+        <li>9</li>
+        <li>11</li>
+        <li>13</li>
+    </ul>
+<script>
+       var uls=document.getElementById("uls");
+        var lis=uls.getElementsByTagName("li");
+       var sum=0;
+        for(var i=0;i<lis.length;i++){
+            sum+=parseInt(lis[i].textContent);
+        }
+    console.log(sum)
+</script>
+</body>
+</html>

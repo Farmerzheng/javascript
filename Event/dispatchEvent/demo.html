@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">点击</button>
+  <div id="checkbox" style="width:20px;height:20px;background-color: red;"></div>
+  <script>
+  
+  // 事件的兼容处理函数
+  function addEvent(element, event, handleFun) {
+    //addEventListener----应用于mozilla 
+    if (element.addEventListener) {
+      element.addEventListener(event, handleFun, false);
+    } //attachEvent----应用于IE 
+    else if (element.attachEvent) {
+      element.attachEvent("on" + event, handleFun);
+    } //其他的选择dom0级事件处理程序 
+    else {
+      //element.onclick===element["on"+event]; 
+      element["on" + event] = handleFun;
+    }
+  }
+  
+  /* 
+     为DOM对象挂接自定义事件，次函数浏览器支持IE9+
+     element：DOM对象
+     event：自定义事件名称
+  */
+  function fireEvent(element, event) {
+  	
+    var evt = document.createEvent('HTMLEvents');
+    // 事件对象初始化
+    // 3个参数：事件类型，是否冒泡，是否阻止浏览器的默认行为
+    evt.initEvent(event, true, true);
+    // 触发自定义事件
+    element.dispatchEvent(evt);
+  }
+
+  var btn = document.getElementById("btn");
+  var checkbox = document.getElementById("checkbox");
+
+  addEvent(btn, "click", function() {
+  	// 将checkbox对象的selected事件派发出去（为checkbox添加自定义事件）
+    fireEvent(checkbox, "selected");
+  })
+ 
+  // 为checkbox对象添加selected事件
+  addEvent(checkbox, "selected", function() {
+    this.style.backgroundColor = "yellow";
+    console.log("选中");
+  })
+  </script>
+</body>
+
+</html>

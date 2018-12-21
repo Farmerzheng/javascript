@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+    *{
+    	margin:0;
+    	padding:0;
+    }
+    #list{
+    	width:400px;
+    }
+	li,ul{
+		list-style: none;
+	}
+</style>
+<body>
+<div id = "container">
+	<input type="text" name="" id = "user">
+	<div id="list">
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+         //后台
+          // wangzheng(data);
+          
+
+        //键盘抬起的时候请求的网址
+        //wd的值是用户输入的值
+        //cb  callBack---> 回调函数 
+        //数据返回成功以后会调用此函数 
+
+		// https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=1&json=1&p=3&sid=1420_21087_17001_20929&req=2&csor=1&cb=jQuery110203850980076347521_1498116866927&_=1498116866930
+
+		var userInput = document.getElementById("user");
+		var list = document.getElementById("list");
+		userInput.addEventListener("keyup",function(){
+			//发送网络请求
+		   //才用跨域请求的方式拿数据
+		   // console.log(this.value,"");
+		   if(this.value == " ")return;	
+
+			var script = document.createElement("script");
+			script.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+this.value+"&json=1&p=3&sid=1420_21087_17001_20929&req=2&csor=1&cb=wangzheng"
+
+			document.body.appendChild(script);
+		})
+
+
+        
+        //当数据返回到浏览器本地的时候会调用此函数
+        //回调函数一定是一个全局函数
+		function wangzheng(data){
+             console.log(data)
+             //将数据展示到页面上
+             var dataArr = data.g;
+             
+             list.innerHTML = "";
+
+             for(var i = 0 ; i < dataArr.length ; i++){
+             	var li = document.createElement("li");
+             	li.innerHTML = dataArr[i].q;
+             	list.appendChild(li);
+             }
+
+		}
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

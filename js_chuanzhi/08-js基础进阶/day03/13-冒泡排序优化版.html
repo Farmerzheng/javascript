@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // var numbers = [ 97,68,72,29,51,45 ];
+    var numbers = [1,2,3,4,5,6];
+    //记录循环的次数
+    var count = 0;
+    //用到两层循环
+    //第一层循环：控制是循环趟数
+    for( var i = 0; i < numbers.length - 1; i++ ){
+        count++;
+        // 如何判断排序是否排好
+        // 不一定都得执行完所有排序才能确定是否排好
+        // 假设已经是排好了
+        var isSort = true;
+
+        // 第二层循环，控制的是循环的次数
+        for( var j = 0; j < numbers.length - 1 - i; j++ ){
+
+            // 判断，如果当前的值，大于后边的值，交换两个值的位置
+            if( numbers[ j ] > numbers[ j + 1 ] ){
+                // 一旦执行这组值交换，就表示没有排好
+                isSort = false;
+                var tmp = numbers[ j ];
+                numbers[ j ] = numbers[ j + 1 ];
+                numbers[ j + 1 ] = tmp;
+            }
+            count++;
+        }
+        // 如果已经拍好了，没有值交换，那么就终止循环
+        if( isSort ){
+            break;
+        }
+
+    }
+
+    console.log( numbers );
+    console.log( count );
+</script>
+</body>
+</html>
